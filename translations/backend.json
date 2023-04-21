@@ -9,7 +9,8 @@
                 "fr": "Antiraid",
                 "es": "Antiraid",
                 "ru": "Антирайд",
-                "it": "Antiraid"
+                "it": "Antiraid",
+                "nl": "Antiraid"
             },
             "Desc": {
                 "description": "Timeout a specific user and delete all his messages in the last 2 hours.",
@@ -19,7 +20,8 @@
                 "fr": "Mettez un utilisateur spécifique en sourdine et supprimez tous ses messages des 2 dernières heures.",
                 "es": "Ponga en silencio a un usuario específico y elimine todos sus mensajes de las últimas 2 horas.",
                 "ru": "Заглушите определенного пользователя и удалите все его сообщения за последние 2 часа.",
-                "it": "Disattiva un utente specifico e elimina tutti i suoi messaggi negli ultimi 2 ore."
+                "it": "Disattiva un utente specifico e elimina tutti i suoi messaggi negli ultimi 2 ore.",
+                "nl": "Timeout een specifieke gebruiker en verwijder al zijn berichten in de laatste 2 uur."
             },
             "User": {
                 "Name": {
@@ -30,7 +32,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -40,7 +43,8 @@
                     "fr": "utilisateur à punir",
                     "es": "usuario a castigar",
                     "ru": "пользователь для наказания",
-                    "it": "utente da punire"
+                    "it": "utente da punire",
+                    "nl": "te straffen gebruiker"
                 }
             }
         },
@@ -53,7 +57,8 @@
                 "fr": "Avatar",
                 "es": "Avatar",
                 "ru": "Аватар",
-                "it": "Avatar"
+                "it": "Avatar",
+                "nl": "Avatar"
             },
             "Desc": {
                 "description": "Get the high resolution avatar of a user.",
@@ -63,7 +68,8 @@
                 "fr": "Obtenez l'avatar haute résolution d'un utilisateur.",
                 "es": "Obtenga el avatar de alta resolución de un usuario.",
                 "ru": "Получите высокое разрешение аватара пользователя.",
-                "it": "Ottieni l'avatar ad alta risoluzione di un utente."
+                "it": "Ottieni l'avatar ad alta risoluzione di un utente.",
+                "nl": "Krijg de hoge resolutie avatar van een gebruiker"
             },
             "User": {
                 "Name": {
@@ -74,7 +80,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -84,7 +91,8 @@
                     "fr": "Utilisateur dont vous souhaitez obtenir l'avatar",
                     "es": "Usuario del que desea obtener el avatar",
                     "ru": "Пользователь, аватар которого вы хотите получить",
-                    "it": "Utente di cui si desidera ottenere l'avatar"
+                    "it": "Utente di cui si desidera ottenere l'avatar",
+                    "nl": "Gebruiker om de avatar van te nemen"
                 }
             }
         },
@@ -97,7 +105,8 @@
                 "fr": "Bannir",
                 "es": "Prohibir",
                 "ru": "Запретить",
-                "it": "Bandire"
+                "it": "Bandire",
+                "nl": "Ban"
             },
             "Desc": {
                 "description": "Ban a user and create a modcase",
@@ -107,7 +116,8 @@
                 "fr": "Bannir un utilisateur et créer un cas de modération",
                 "es": "Prohibir a un usuario y crear un caso de moderación",
                 "ru": "Запретить пользователя и создать модкейс",
-                "it": "Bandire un utente e creare un caso di moderazione"
+                "it": "Bandire un utente e creare un caso di moderazione",
+                "nl": "Ban een gebruiker en maak een modcase aan"
             },
             "User": {
                 "Name": {
@@ -118,7 +128,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -128,7 +139,8 @@
                     "fr": "utilisateur à punir",
                     "es": "usuario a castigar",
                     "ru": "пользователь для наказания",
-                    "it": "utente da punire"
+                    "it": "utente da punire",
+                    "nl": "gebruiker om te straffen"
                 }
             },
             "Title": {
@@ -140,7 +152,8 @@
                     "fr": "Titre",
                     "es": "Título",
                     "ru": "Заголовок",
-                    "it": "Titolo"
+                    "it": "Titolo",
+                    "nl": "Titel"
                 },
                 "Desc": {
                     "description": "The description of the 'title' parameter",
@@ -150,7 +163,8 @@
                     "fr": "Titre du cas de modération",
                     "es": "Título del caso de moderación",
                     "ru": "Заголовок модкейса",
-                    "it": "Titolo del caso di moderazione"
+                    "it": "Titolo del caso di moderazione",
+                    "nl": "Titel van de modcase"
                 }
             },
             "Details": {
@@ -162,7 +176,8 @@
                     "fr": "Détails",
                     "es": "Detalles",
                     "ru": "Детали",
-                    "it": "Dettagli"
+                    "it": "Dettagli",
+                    "nl": "Details"
                 },
                 "Desc": {
                     "description": "The description of the 'details' parameter",
@@ -172,7 +187,8 @@
                     "fr": "Détails du cas de modération",
                     "es": "Detalles del caso de moderación",
                     "ru": "Детали модкейса",
-                    "it": "Dettagli del caso di moderazione"
+                    "it": "Dettagli del caso di moderazione",
+                    "nl": "Details van de modcase"
                 }
             },
             "hours": {
@@ -184,7 +200,8 @@
                     "fr": "Heures",
                     "es": "Horas",
                     "ru": "Часы",
-                    "it": "Ore"
+                    "it": "Ore",
+                    "nl": "Uur"
                 },
                 "Desc": {
                     "description": "The description of the 'hours' parameter",
@@ -194,7 +211,8 @@
                     "fr": "Heures pour bannir l'utilisateur",
                     "es": "Horas para prohibir al usuario",
                     "ru": "Часы, чтобы запретить пользователю",
-                    "it": "Ore per bandire l'utente"
+                    "it": "Ore per bandire l'utente",
+                    "nl": "Uur om de geruiker te verbannen"
                 },
                 "None": {
                     "Name": {
@@ -205,7 +223,8 @@
                         "fr": "Illimité",
                         "es": "Ilimitado",
                         "ru": "Неограниченный",
-                        "it": "Illimitato"
+                        "it": "Illimitato",
+                        "nl": "Oneindig"
                     }
                 },
                 "1 Hour": {
@@ -217,7 +236,8 @@
                         "fr": "1 heure",
                         "es": "1 hora",
                         "ru": "1 час",
-                        "it": "1 ora"
+                        "it": "1 ora",
+                        "nl": "1 Uur"
                     }
                 },
                 "1 Day": {
@@ -229,7 +249,8 @@
                         "fr": "1 jour",
                         "es": "1 día",
                         "ru": "1 день",
-                        "it": "1 giorno"
+                        "it": "1 giorno",
+                        "nl": "1 Dag"
                     }
                 },
                 "1 Week": {
@@ -241,7 +262,8 @@
                         "fr": "1 semaine",
                         "es": "1 semana",
                         "ru": "1 неделя",
-                        "it": "1 settimana"
+                        "it": "1 settimana",
+                        "nl": "1 Week"
                     }
                 },
                 "1 Month": {
@@ -253,7 +275,8 @@
                         "fr": "1 mois",
                         "es": "1 mes",
                         "ru": "1 месяц",
-                        "it": "1 mese"
+                        "it": "1 mese",
+                        "nl": "1 Maand"
                     }
                 }
             },
@@ -266,7 +289,8 @@
                     "fr": "DM",
                     "es": "DM",
                     "ru": "DM",
-                    "it": "DM"
+                    "it": "DM",
+                    "nl": "DM"
                 },
                 "Desc": {
                     "description": "Whether to send a dm notification",
@@ -276,7 +300,8 @@
                     "fr": "Si une notification DM doit être envoyée",
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
-                    "it": "Se inviare una notifica DM"
+                    "it": "Se inviare una notifica DM",
+                    "nl": "Of een DM-melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -288,7 +313,8 @@
                     "fr": "public",
                     "es": "público",
                     "ru": "общественный",
-                    "it": "pubblico"
+                    "it": "pubblico",
+                    "nl": "openbaar"
                 },
                 "Desc": {
                     "description": "Whether to send a public notification",
@@ -298,7 +324,8 @@
                     "fr": "Si une notification publique doit être envoyée",
                     "es": "Si se debe enviar una notificación pública",
                     "ru": "Отправлять ли общественное уведомление",
-                    "it": "Se inviare una notifica pubblica"
+                    "it": "Se inviare una notifica pubblica",
+                    "nl": "Of een openbare melding moet worden verzonden"
                 }
             },
             "execute-punishment": {
@@ -310,7 +337,8 @@
                     "fr": "exécuter",
                     "es": "ejecutar",
                     "ru": "выполнить",
-                    "it": "eseguire"
+                    "it": "eseguire",
+                    "nl": "uitvoeren"
                 },
                 "Desc": {
                     "description": "Whether to execute the punishment",
@@ -320,7 +348,8 @@
                     "fr": "Si la punition doit être exécutée",
                     "es": "Si se debe ejecutar el castigo",
                     "ru": "Выполнить ли наказание",
-                    "it": "Se eseguire la punizione"
+                    "it": "Se eseguire la punizione",
+                    "nl": "Of de straf moet uitgevoerd worden"
                 }
             }
         },
@@ -333,7 +362,8 @@
                 "fr": "Nettoyage",
                 "es": "Limpieza",
                 "ru": "Очистка",
-                "it": "Pulizia"
+                "it": "Pulizia",
+                "nl": "Opruimen"
             },
             "Desc": {
                 "description": "The description of the 'cleanup' command",
@@ -343,7 +373,8 @@
                 "fr": "Nettoyez des données spécifiques du serveur et / ou de la chaîne.",
                 "es": "Limpie datos específicos del servidor y / o del canal.",
                 "ru": "Очистите определенные данные с сервера и / или канала.",
-                "it": "Pulisci dati specifici dal server e / o dal canale."
+                "it": "Pulisci dati specifici dal server e / o dal canale.",
+                "nl": "Ruim specifieke data van de server en/of kanaal op."
             },
             "Mode": {
                 "Name": {
@@ -354,7 +385,8 @@
                     "fr": "mode",
                     "es": "modo",
                     "ru": "режим",
-                    "it": "modo"
+                    "it": "modo",
+                    "nl": "modus"
                 },
                 "Desc": {
                     "description": "The description of the 'mode' argument",
@@ -364,7 +396,8 @@
                     "fr": "les données que vous souhaitez supprimer",
                     "es": "los datos que desea eliminar",
                     "ru": "какие данные вы хотите удалить",
-                    "it": "i dati che si desidera eliminare"
+                    "it": "i dati che si desidera eliminare",
+                    "nl": "welke data wenst u te verwijderen"
                 }
             },
             "Channel": {
@@ -376,7 +409,8 @@
                     "fr": "canal",
                     "es": "canal",
                     "ru": "канал",
-                    "it": "canale"
+                    "it": "canale",
+                    "nl": "kanaal"
                 },
                 "Desc": {
                     "description": "The description of the 'channel' argument",
@@ -386,7 +420,8 @@
                     "fr": "où supprimer, par défaut sur le courant.",
                     "es": "dónde eliminar, por defecto en el actual.",
                     "ru": "куда удалять, по умолчанию - текущий.",
-                    "it": "dove eliminare, di default corrente."
+                    "it": "dove eliminare, di default corrente.",
+                    "nl": "waar te verwijderen, staat standaard ingesteld op huidig."
                 }
             },
             "Count": {
@@ -398,7 +433,8 @@
                     "fr": "compter",
                     "es": "contar",
                     "ru": "считать",
-                    "it": "contare"
+                    "it": "contare",
+                    "nl": "tel"
                 },
                 "Desc": {
                     "description": "The description of the 'count' argument",
@@ -408,7 +444,8 @@
                     "fr": "combien de messages supprimer, par défaut sur 100.",
                     "es": "cuántos mensajes eliminar, por defecto en 100.",
                     "ru": "сколько сообщений удалять, по умолчанию - 100.",
-                    "it": "quanti messaggi eliminare, di default 100."
+                    "it": "quanti messaggi eliminare, di default 100.",
+                    "nl": "hoeveel berichten te verwijderen, standaard ingesteld op 100."
                 }
             },
             "User": {
@@ -420,7 +457,8 @@
                     "fr": "utilisateur",
                     "es": "usuario",
                     "ru": "пользователь",
-                    "it": "utente"
+                    "it": "utente",
+                    "nl": "gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' argument",
@@ -430,7 +468,8 @@
                     "fr": "filtre supplémentaire sur cet utilisateur",
                     "es": "filtro adicional en este usuario",
                     "ru": "дополнительный фильтр на этого пользователя",
-                    "it": "filtro aggiuntivo su questo utente"
+                    "it": "filtro aggiuntivo su questo utente",
+                    "nl": "extra filter op deze gebruiker"
                 }
             }
         },
@@ -443,7 +482,8 @@
                 "fr": "fonctionnalités",
                 "es": "características",
                 "ru": "особенности",
-                "it": "caratteristiche"
+                "it": "caratteristiche",
+                "nl": "functies"
             },
             "Desc": {
                 "description": "The description of the 'features' command",
@@ -453,7 +493,8 @@
                 "fr": "Vérifie si d'autres configurations sont nécessaires pour utiliser les fonctionnalités de MASZ.",
                 "es": "Comprueba si se necesita más configuración para usar las características de MASZ.",
                 "ru": "Проверяет, нужна ли дополнительная конфигурация для использования функций MASZ.",
-                "it": "Controlla se è necessaria ulteriore configurazione per utilizzare le funzionalità di MASZ."
+                "it": "Controlla se è necessaria ulteriore configurazione per utilizzare le funzionalità di MASZ.",
+                "nl": "Bekijkt of verdere configuratie nodig is om gebruik te maken van MASZ functies."
             }
         },
         "Github": {
@@ -465,7 +506,8 @@
                 "fr": "github",
                 "es": "github",
                 "ru": "github",
-                "it": "github"
+                "it": "github",
+                "nl": "github"
             },
             "Desc": {
                 "description": "The description of the 'github' command",
@@ -475,7 +517,8 @@
                 "fr": "Affiche le lien vers le référentiel github.",
                 "es": "Muestra el enlace al repositorio de github.",
                 "ru": "Отображает ссылку на репозиторий github.",
-                "it": "Mostra il link al repository github."
+                "it": "Mostra il link al repository github.",
+                "nl": "Toont de link naar de github-repository."
             }
         },
         "Invite": {
@@ -487,7 +530,8 @@
                 "fr": "inviter",
                 "es": "invitar",
                 "ru": "пригласить",
-                "it": "invitare"
+                "it": "invitare",
+                "nl": "uitnodigen"
             },
             "Desc": {
                 "description": "The description of the 'invite' command",
@@ -497,7 +541,8 @@
                 "fr": "Comment inviter ce bot.",
                 "es": "Cómo invitar a este bot.",
                 "ru": "Как пригласить этого бота.",
-                "it": "Come invitare questo bot."
+                "it": "Come invitare questo bot.",
+                "nl": "Hoe nodig je deze bot uit."
             }
         },
         "Kick": {
@@ -509,7 +554,8 @@
                 "fr": "Expulser",
                 "es": "Patada",
                 "ru": "Кик",
-                "it": "Calcio"
+                "it": "Calcio",
+                "nl": "Kick"
             },
             "Desc": {
                 "description": "Kick a user and create a modcase",
@@ -519,7 +565,8 @@
                 "fr": "Expulsez un utilisateur et créez un cas de modération",
                 "es": "Expulsa a un usuario y crea un caso de moderación",
                 "ru": "Выгнать пользователя и создать модкейс",
-                "it": "Espelli un utente e crea un caso di moderazione"
+                "it": "Espelli un utente e crea un caso di moderazione",
+                "nl": "Kick een gebruiker en maak een modcase aan"
             },
             "User": {
                 "Name": {
@@ -530,7 +577,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -540,7 +588,8 @@
                     "fr": "utilisateur à punir",
                     "es": "usuario a castigar",
                     "ru": "пользователь для наказания",
-                    "it": "utente da punire"
+                    "it": "utente da punire",
+                    "nl": "te straffen gebruiker"
                 }
             },
             "Title": {
@@ -552,7 +601,8 @@
                     "fr": "Titre",
                     "es": "Título",
                     "ru": "Заголовок",
-                    "it": "Titolo"
+                    "it": "Titolo",
+                    "nl": "Titel"
                 },
                 "Desc": {
                     "description": "The description of the 'title' parameter",
@@ -562,7 +612,8 @@
                     "fr": "Titre du cas de modération",
                     "es": "Título del caso de moderación",
                     "ru": "Заголовок модкейса",
-                    "it": "Titolo del caso di moderazione"
+                    "it": "Titolo del caso di moderazione",
+                    "nl": "Titel van de modcase"
                 }
             },
             "Details": {
@@ -574,7 +625,8 @@
                     "fr": "Détails",
                     "es": "Detalles",
                     "ru": "Детали",
-                    "it": "Dettagli"
+                    "it": "Dettagli",
+                    "nl": "Details"
                 },
                 "Desc": {
                     "description": "The description of the 'details' parameter",
@@ -584,7 +636,8 @@
                     "fr": "Détails du cas de modération",
                     "es": "Detalles del caso de moderación",
                     "ru": "Детали модкейса",
-                    "it": "Dettagli del caso di moderazione"
+                    "it": "Dettagli del caso di moderazione",
+                    "nl": "Details van de modcase"
                 }
             },
             "dm-notification": {
@@ -596,7 +649,8 @@
                     "fr": "DM",
                     "es": "DM",
                     "ru": "DM",
-                    "it": "DM"
+                    "it": "DM",
+                    "nl": "DM"
                 },
                 "Desc": {
                     "description": "Whether to send a dm notification",
@@ -606,7 +660,8 @@
                     "fr": "Si une notification DM doit être envoyée",
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
-                    "it": "Se inviare una notifica DM"
+                    "it": "Se inviare una notifica DM",
+                    "nl": "Of een DM-melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -618,7 +673,8 @@
                     "fr": "public",
                     "es": "público",
                     "ru": "общественный",
-                    "it": "pubblico"
+                    "it": "pubblico",
+                    "nl": "openbaar"
                 },
                 "Desc": {
                     "description": "Whether to send a public notification",
@@ -628,7 +684,8 @@
                     "fr": "Si une notification publique doit être envoyée",
                     "es": "Si se debe enviar una notificación pública",
                     "ru": "Отправлять ли общественное уведомление",
-                    "it": "Se inviare una notifica pubblica"
+                    "it": "Se inviare una notifica pubblica",
+                    "nl": "Of een openbare melding moet worden verzonden"
                 }
             },
             "execute-punishment": {
@@ -640,7 +697,8 @@
                     "fr": "exécuter",
                     "es": "ejecutar",
                     "ru": "выполнить",
-                    "it": "eseguire"
+                    "it": "eseguire",
+                    "nl": "uitvoeren"
                 },
                 "Desc": {
                     "description": "Whether to execute the punishment",
@@ -650,7 +708,8 @@
                     "fr": "Si la punition doit être exécutée",
                     "es": "Si se debe ejecutar el castigo",
                     "ru": "Выполнить ли наказание",
-                    "it": "Se eseguire la punizione"
+                    "it": "Se eseguire la punizione",
+                    "nl": "Of de straf moet uitgevoerd worden"
                 }
             }
         },
@@ -663,7 +722,8 @@
                 "fr": "Muet",
                 "es": "Silenciar",
                 "ru": "Заглушить",
-                "it": "Silenzia"
+                "it": "Silenzia",
+                "nl": "Dempen"
             },
             "Desc": {
                 "description": "Mute a user and create a modcase",
@@ -673,7 +733,8 @@
                 "fr": "Muet un utilisateur et crée un cas de modération",
                 "es": "Silencia a un usuario y crea un caso de moderación",
                 "ru": "Заглушить пользователя и создать модкейс",
-                "it": "Silenzia un utente e crea un caso di moderazione"
+                "it": "Silenzia un utente e crea un caso di moderazione",
+                "nl": "Demp een gebruiker en maak een modcase aan"
             },
             "User": {
                 "Name": {
@@ -684,7 +745,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -694,7 +756,8 @@
                     "fr": "utilisateur à punir",
                     "es": "usuario a castigar",
                     "ru": "пользователь для наказания",
-                    "it": "utente da punire"
+                    "it": "utente da punire",
+                    "nl": "te straffen gebruiker"
                 }
             },
             "Title": {
@@ -706,7 +769,8 @@
                     "fr": "Titre",
                     "es": "Título",
                     "ru": "Заголовок",
-                    "it": "Titolo"
+                    "it": "Titolo",
+                    "nl": "Titel"
                 },
                 "Desc": {
                     "description": "The description of the 'title' parameter",
@@ -716,7 +780,8 @@
                     "fr": "Titre du cas de modération",
                     "es": "Título del caso de moderación",
                     "ru": "Заголовок модкейса",
-                    "it": "Titolo del caso di moderazione"
+                    "it": "Titolo del caso di moderazione",
+                    "nl": "Titel van de modcase"
                 }
             },
             "Details": {
@@ -728,7 +793,8 @@
                     "fr": "Détails",
                     "es": "Detalles",
                     "ru": "Детали",
-                    "it": "Dettagli"
+                    "it": "Dettagli",
+                    "nl": "Details"
                 },
                 "Desc": {
                     "description": "The description of the 'details' parameter",
@@ -738,7 +804,8 @@
                     "fr": "Détails du cas de modération",
                     "es": "Detalles del caso de moderación",
                     "ru": "Детали модкейса",
-                    "it": "Dettagli del caso di moderazione"
+                    "it": "Dettagli del caso di moderazione",
+                    "nl": "Details van de modcase"
                 }
             },
             "hours": {
@@ -750,7 +817,8 @@
                     "fr": "Heures",
                     "es": "Horas",
                     "ru": "Часы",
-                    "it": "Ore"
+                    "it": "Ore",
+                    "nl": "Uur"
                 },
                 "Desc": {
                     "description": "The description of the 'hours' parameter",
@@ -760,7 +828,8 @@
                     "fr": "Heures pour rendre muet l'utilisateur",
                     "es": "Horas para silenciar al usuario",
                     "ru": "Часы для заглушения пользователя",
-                    "it": "Ore per silenziare l'utente"
+                    "it": "Ore per silenziare l'utente",
+                    "nl": "Uur om de gebruiker te dempen"
                 },
                 "None": {
                     "Name": {
@@ -771,7 +840,8 @@
                         "fr": "Illimité",
                         "es": "Ilimitado",
                         "ru": "Неограниченный",
-                        "it": "Illimitato"
+                        "it": "Illimitato",
+                        "nl": "oneindig"
                     }
                 },
                 "1 Hour": {
@@ -783,7 +853,8 @@
                         "fr": "1 heure",
                         "es": "1 hora",
                         "ru": "1 час",
-                        "it": "1 ora"
+                        "it": "1 ora",
+                        "nl": "1 Uur"
                     }
                 },
                 "1 Day": {
@@ -795,7 +866,8 @@
                         "fr": "1 jour",
                         "es": "1 día",
                         "ru": "1 день",
-                        "it": "1 giorno"
+                        "it": "1 giorno",
+                        "nl": "1 Dag"
                     }
                 },
                 "1 Week": {
@@ -807,7 +879,8 @@
                         "fr": "1 semaine",
                         "es": "1 semana",
                         "ru": "1 неделя",
-                        "it": "1 settimana"
+                        "it": "1 settimana",
+                        "nl": "1 Week"
                     }
                 },
                 "1 Month": {
@@ -819,7 +892,8 @@
                         "fr": "1 mois",
                         "es": "1 mes",
                         "ru": "1 месяц",
-                        "it": "1 mese"
+                        "it": "1 mese",
+                        "nl": "1 Maand"
                     }
                 }
             },
@@ -832,7 +906,8 @@
                     "fr": "DM",
                     "es": "DM",
                     "ru": "DM",
-                    "it": "DM"
+                    "it": "DM",
+                    "nl": "DM"
                 },
                 "Desc": {
                     "description": "Whether to send a dm notification",
@@ -842,7 +917,8 @@
                     "fr": "Si une notification DM doit être envoyée",
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
-                    "it": "Se inviare una notifica DM"
+                    "it": "Se inviare una notifica DM",
+                    "nl": "Of een DM-melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -854,7 +930,8 @@
                     "fr": "public",
                     "es": "público",
                     "ru": "общественный",
-                    "it": "pubblico"
+                    "it": "pubblico",
+                    "nl": "openbaar"
                 },
                 "Desc": {
                     "description": "Whether to send a public notification",
@@ -864,7 +941,8 @@
                     "fr": "Si une notification publique doit être envoyée",
                     "es": "Si se debe enviar una notificación pública",
                     "ru": "Отправлять ли общественное уведомление",
-                    "it": "Se inviare una notifica pubblica"
+                    "it": "Se inviare una notifica pubblica",
+                    "nl": "Of een openbare melding moet worden verzonden"
                 }
             },
             "execute-punishment": {
@@ -876,7 +954,8 @@
                     "fr": "exécuter",
                     "es": "ejecutar",
                     "ru": "выполнить",
-                    "it": "eseguire"
+                    "it": "eseguire",
+                    "nl": "uitvoeren"
                 },
                 "Desc": {
                     "description": "Whether to execute the punishment",
@@ -886,7 +965,8 @@
                     "fr": "Si la punition doit être exécutée",
                     "es": "Si se debe ejecutar el castigo",
                     "ru": "Выполнить ли наказание",
-                    "it": "Se eseguire la punizione"
+                    "it": "Se eseguire la punizione",
+                    "nl": "Of de straf moet uitgevoerd worden"
                 }
             }
         },
@@ -899,7 +979,8 @@
                 "fr": "Signaler aux",
                 "es": "Reportar a los moderadores",
                 "ru": "Сообщить модераторам",
-                "it": "Segnala ai moderatori"
+                "it": "Segnala ai moderatori",
+                "nl": "Rapporteer aan moderatoren"
             },
             "Desc": {
                 "description": "The description of the 'Report' command",
@@ -909,7 +990,8 @@
                 "fr": "Signaler aux",
                 "es": "Reportar a los moderadores",
                 "ru": "Сообщить модераторам",
-                "it": "Segnala ai moderatori"
+                "it": "Segnala ai moderatori",
+                "nl": "Rapporteer aan moderatoren"
             }
         },
         "Say": {
@@ -921,7 +1003,8 @@
                 "fr": "Dire",
                 "es": "Decir",
                 "ru": "Сказать",
-                "it": "Dire"
+                "it": "Dire",
+                "nl": "Zeg"
             },
             "Desc": {
                 "description": "The description of the 'Say' command",
@@ -931,7 +1014,8 @@
                 "fr": "Permet au bot d'envoyer un message.",
                 "es": "Deja que el bot envíe un mensaje.",
                 "ru": "Позволяет боту отправить сообщение.",
-                "it": "Permetti al bot di inviare un messaggio."
+                "it": "Permetti al bot di inviare un messaggio.",
+                "nl": "Laat de bot een bericht sturen."
             },
             "Message": {
                 "Name": {
@@ -942,7 +1026,8 @@
                     "fr": "Message",
                     "es": "Mensaje",
                     "ru": "Сообщение",
-                    "it": "Messaggio"
+                    "it": "Messaggio",
+                    "nl": "Bericht"
                 },
                 "Desc": {
                     "description": "The description of the 'Message' argument",
@@ -952,7 +1037,8 @@
                     "fr": "Le message à envoyer.",
                     "es": "El mensaje a enviar.",
                     "ru": "Сообщение для отправки.",
-                    "it": "Il messaggio da inviare."
+                    "it": "Il messaggio da inviare.",
+                    "nl": "Te verzenden bericht."
                 }
             },
             "Channel": {
@@ -964,7 +1050,8 @@
                     "fr": "Canal",
                     "es": "Canal",
                     "ru": "Канал",
-                    "it": "Canale"
+                    "it": "Canale",
+                    "nl": "Kanaal"
                 },
                 "Desc": {
                     "description": "The description of the 'Channel' argument",
@@ -974,7 +1061,8 @@
                     "fr": "canal dans lequel écrire le message, par défaut actuel",
                     "es": "canal en el que escribir el mensaje, predeterminado actual",
                     "ru": "канал для записи сообщения, по умолчанию текущий",
-                    "it": "canale in cui scrivere il messaggio, predefinito corrente"
+                    "it": "canale in cui scrivere il messaggio, predefinito corrente",
+                    "nl": "Kanaal om het bericht in te sturen, staat standaard ingesteld op huidig"
                 }
             }
         },
@@ -987,7 +1075,8 @@
                 "fr": "Statut",
                 "es": "Estado",
                 "ru": "Статус",
-                "it": "Stato"
+                "it": "Stato",
+                "nl": "Status"
             },
             "Desc": {
                 "description": "The description of the 'Status' command",
@@ -997,7 +1086,8 @@
                 "fr": "Voir l'état actuel de votre application.",
                 "es": "Ver el estado actual de su aplicación.",
                 "ru": "Посмотрите текущий статус вашего приложения.",
-                "it": "Vedi lo stato attuale della tua applicazione."
+                "it": "Vedi lo stato attuale della tua applicazione.",
+                "nl": "Bekijk de huidige status van uw aanvraag."
             }
         },
         "Track": {
@@ -1009,7 +1099,8 @@
                 "fr": "Piste",
                 "es": "Pista",
                 "ru": "Дорожка",
-                "it": "Traccia"
+                "it": "Traccia",
+                "nl": "Volgen"
             },
             "Desc": {
                 "description": "The description of the 'Track' command",
@@ -1019,7 +1110,8 @@
                 "fr": "Suivez une invitation, son créateur et ses utilisateurs.",
                 "es": "Rastree una invitación, su creador y sus usuarios.",
                 "ru": "Отслеживайте приглашение, его создателя и его пользователей.",
-                "it": "Traccia un invito, il suo creatore e i suoi utenti."
+                "it": "Traccia un invito, il suo creatore e i suoi utenti.",
+                "nl": "Volg een uitnodiging, de maker en de gebruikers ervan."
             },
             "Invite": {
                 "Name": {
@@ -1030,7 +1122,8 @@
                     "fr": "Inviter",
                     "es": "Invitar",
                     "ru": "Приглашать",
-                    "it": "Invitare"
+                    "it": "Invitare",
+                    "nl": "Uitnodiging"
                 },
                 "Desc": {
                     "description": "The description of the 'Invite' argument",
@@ -1040,7 +1133,8 @@
                     "fr": "Entrez soit le code d'invitation, soit l'URL",
                     "es": "Ingrese el código de invitación o la URL",
                     "ru": "Введите код приглашения или URL",
-                    "it": "Inserisci il codice di invito o l'URL"
+                    "it": "Inserisci il codice di invito o l'URL",
+                    "nl": "Voeg de uitnodigingscode of de URL toe"
                 }
             }
         },
@@ -1053,7 +1147,8 @@
                 "fr": "Débannir",
                 "es": "Desbanear",
                 "ru": "Разбанить",
-                "it": "Sbannare"
+                "it": "Sbannare",
+                "nl": "onbannen"
             },
             "Desc": {
                 "description": "The description of the 'Unban' command",
@@ -1063,7 +1158,8 @@
                 "fr": "Débannir un utilisateur en désactivant tous ses modcases.",
                 "es": "Desbanea a un usuario desactivando todos sus modcases.",
                 "ru": "Разбаньте пользователя, отключив все его модкейсы.",
-                "it": "Sbanna un utente disattivando tutti i suoi modcase."
+                "it": "Sbanna un utente disattivando tutti i suoi modcase.",
+                "nl": "Maak een gebruiker weer actief door al zijn modcases te deactiveren."
             },
             "User": {
                 "Name": {
@@ -1074,7 +1170,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'User' argument",
@@ -1084,7 +1181,8 @@
                     "fr": "L'utilisateur à débannir",
                     "es": "El usuario a desbanear",
                     "ru": "Пользователь, которого нужно разбанить",
-                    "it": "L'utente da sbannare"
+                    "it": "L'utente da sbannare",
+                    "nl": "De gebruiker die moet worden onbannen"
                 }
             }
         },
@@ -1097,7 +1195,8 @@
                 "fr": "Démuter",
                 "es": "Desmutear",
                 "ru": "Размутить",
-                "it": "Smutare"
+                "it": "Smutare",
+                "nl": "Dempen opheffen"
             },
             "Desc": {
                 "description": "The description of the 'Unmute' command",
@@ -1107,7 +1206,8 @@
                 "fr": "Débannir un utilisateur en désactivant tous ses modcases.",
                 "es": "Desbanea a un usuario desactivando todos sus modcases.",
                 "ru": "Разбаньте пользователя, отключив все его модкейсы.",
-                "it": "Sbanna un utente disattivando tutti i suoi modcase."
+                "it": "Sbanna un utente disattivando tutti i suoi modcase.",
+                "nl": "Dempen van een gebruiker ongedaan maken door al zijn modcases te deactiveren."
             },
             "User": {
                 "Name": {
@@ -1118,7 +1218,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'User' argument",
@@ -1128,7 +1229,8 @@
                     "fr": "L'utilisateur à débannir",
                     "es": "El usuario a desbanear",
                     "ru": "Пользователь, которого нужно разбанить",
-                    "it": "L'utente da sbannare"
+                    "it": "L'utente da sbannare",
+                    "nl": "De gebruiker om te onbannen"
                 }
             }
         },
@@ -1141,7 +1243,8 @@
                 "fr": "URL",
                 "es": "URL",
                 "ru": "URL",
-                "it": "URL"
+                "it": "URL",
+                "nl": "URL"
             },
             "Desc": {
                 "description": "The description of the 'URL' command",
@@ -1151,7 +1254,8 @@
                 "fr": "Affiche l'URL sur laquelle MASZ est déployé.",
                 "es": "Muestra la URL en la que se implementa MASZ.",
                 "ru": "Отображает URL, на котором развернут MASZ.",
-                "it": "Mostra l'URL su cui è installato MASZ."
+                "it": "Mostra l'URL su cui è installato MASZ.",
+                "nl": "Geeft de URL weer waarop MASZ is geïmplementeerd."
             }
         },
         "View": {
@@ -1163,7 +1267,8 @@
                 "fr": "Voir",
                 "es": "Ver",
                 "ru": "Посмотреть",
-                "it": "Vedere"
+                "it": "Vedere",
+                "nl": "Bekijken"
             },
             "Desc": {
                 "description": "The description of the 'View' command",
@@ -1173,7 +1278,8 @@
                 "fr": "Afficher un modcase.",
                 "es": "Ver un modcase.",
                 "ru": "Посмотреть модкейс.",
-                "it": "Visualizza un modcase."
+                "it": "Visualizza un modcase.",
+                "nl": "Bekijk een modcase"
             },
             "Id": {
                 "Name": {
@@ -1184,7 +1290,8 @@
                     "fr": "Id",
                     "es": "Id",
                     "ru": "Id",
-                    "it": "Id"
+                    "it": "Id",
+                    "nl": "Id"
                 },
                 "Desc": {
                     "description": "The description of the 'Id' argument",
@@ -1194,7 +1301,8 @@
                     "fr": "L'identifiant du modcase à afficher.",
                     "es": "El id del modcase a ver.",
                     "ru": "Идентификатор просматриваемого модкейса.",
-                    "it": "L'id del modcase da visualizzare."
+                    "it": "L'id del modcase da visualizzare.",
+                    "nl": "Het ID van de modcase om te bekijken."
                 }
             },
             "Guildid": {
@@ -1206,7 +1314,8 @@
                     "fr": "Guildid",
                     "es": "Guildid",
                     "ru": "Guildid",
-                    "it": "Guildid"
+                    "it": "Guildid",
+                    "nl": "Guildid"
                 },
                 "Desc": {
                     "description": "The description of the 'Guildid' argument",
@@ -1216,7 +1325,8 @@
                     "fr": "L'identifiant de la guilde dans laquelle se trouve le modcase.",
                     "es": "El id de la guilda en la que está el modcase.",
                     "ru": "Идентификатор гильдии, в которой находится модкейс.",
-                    "it": "L'id della gilda in cui si trova il modcase."
+                    "it": "L'id della gilda in cui si trova il modcase.",
+                    "nl": "De Id van de gilde waarin de modcase zich bevindt."
                 }
             }
         },
@@ -1229,7 +1339,8 @@
                 "fr": "Avertir",
                 "es": "Advertir",
                 "ru": "Предупредить",
-                "it": "Avvertire"
+                "it": "Avvertire",
+                "nl": "Waarschuwen"
             },
             "Desc": {
                 "description": "Warn a user and create a modcase",
@@ -1239,7 +1350,8 @@
                 "fr": "Avertir un utilisateur et créer un modcase",
                 "es": "Advertir a un usuario y crear un modcase",
                 "ru": "Предупредить пользователя и создать модкейс",
-                "it": "Avvertire un utente e creare un modcase"
+                "it": "Avvertire un utente e creare un modcase",
+                "nl": "Waarschuw een gebruiker en maak een modcase aan"
             },
             "User": {
                 "Name": {
@@ -1250,7 +1362,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' parameter",
@@ -1260,7 +1373,8 @@
                     "fr": "utilisateur à punir",
                     "es": "usuario a castigar",
                     "ru": "пользователь для наказания",
-                    "it": "utente da punire"
+                    "it": "utente da punire",
+                    "nl": "Te straffen gebruiker"
                 }
             },
             "Title": {
@@ -1272,7 +1386,8 @@
                     "fr": "Titre",
                     "es": "Título",
                     "ru": "Заголовок",
-                    "it": "Titolo"
+                    "it": "Titolo",
+                    "nl": "Titel"
                 },
                 "Desc": {
                     "description": "The description of the 'title' parameter",
@@ -1282,7 +1397,8 @@
                     "fr": "Titre du cas de modération",
                     "es": "Título del caso de moderación",
                     "ru": "Заголовок модкейса",
-                    "it": "Titolo del caso di moderazione"
+                    "it": "Titolo del caso di moderazione",
+                    "nl": "Titel van de modcase"
                 }
             },
             "Details": {
@@ -1294,7 +1410,8 @@
                     "fr": "Détails",
                     "es": "Detalles",
                     "ru": "Детали",
-                    "it": "Dettagli"
+                    "it": "Dettagli",
+                    "nl": "Details"
                 },
                 "Desc": {
                     "description": "The description of the 'details' parameter",
@@ -1304,7 +1421,8 @@
                     "fr": "Détails du cas de modération",
                     "es": "Detalles del caso de moderación",
                     "ru": "Детали модкейса",
-                    "it": "Dettagli del caso di moderazione"
+                    "it": "Dettagli del caso di moderazione",
+                    "nl": "Details van de modcase"
                 }
             },
             "dm-notification": {
@@ -1316,7 +1434,8 @@
                     "fr": "DM",
                     "es": "DM",
                     "ru": "DM",
-                    "it": "DM"
+                    "it": "DM",
+                    "nl": "DM"
                 },
                 "Desc": {
                     "description": "Whether to send a dm notification",
@@ -1326,7 +1445,8 @@
                     "fr": "Si une notification DM doit être envoyée",
                     "es": "Si se debe enviar una notificación DM",
                     "ru": "Отправлять ли уведомление DM",
-                    "it": "Se inviare una notifica DM"
+                    "it": "Se inviare una notifica DM",
+                    "nl": "Of een DM-melding moet worden verzonden"
                 }
             },
             "public-notification": {
@@ -1338,7 +1458,8 @@
                     "fr": "public",
                     "es": "público",
                     "ru": "общественный",
-                    "it": "pubblico"
+                    "it": "pubblico",
+                    "nl": "openbaar"
                 },
                 "Desc": {
                     "description": "Whether to send a public notification",
@@ -1348,7 +1469,8 @@
                     "fr": "Si une notification publique doit être envoyée",
                     "es": "Si se debe enviar una notificación pública",
                     "ru": "Отправлять ли общественное уведомление",
-                    "it": "Se inviare una notifica pubblica"
+                    "it": "Se inviare una notifica pubblica",
+                    "nl": "Of een openbare melding moet worden verzonden"
                 }
             },
             "execute-punishment": {
@@ -1360,7 +1482,8 @@
                     "fr": "exécuter",
                     "es": "ejecutar",
                     "ru": "выполнить",
-                    "it": "eseguire"
+                    "it": "eseguire",
+                    "nl": "uitvoeren"
                 },
                 "Desc": {
                     "description": "Whether to execute the punishment",
@@ -1370,7 +1493,8 @@
                     "fr": "Si la punition doit être exécutée",
                     "es": "Si se debe ejecutar el castigo",
                     "ru": "Выполнить ли наказание",
-                    "it": "Se eseguire la punizione"
+                    "it": "Se eseguire la punizione",
+                    "nl": "of de straf moet uitgevoerd worden"
                 }
             }
         },
@@ -1383,7 +1507,8 @@
                 "fr": "Whois",
                 "es": "Whois",
                 "ru": "Whois",
-                "it": "Whois"
+                "it": "Whois",
+                "nl": "Whois"
             },
             "Desc": {
                 "description": "The description of the 'whois' command",
@@ -1393,7 +1518,8 @@
                 "fr": "Affiche des informations sur un utilisateur",
                 "es": "Muestra información sobre un usuario",
                 "ru": "Показывает информацию о пользователе",
-                "it": "Mostra informazioni su un utente"
+                "it": "Mostra informazioni su un utente",
+                "nl": "Toont informatie over een gebruiker"
             },
             "User": {
                 "Name": {
@@ -1404,7 +1530,8 @@
                     "fr": "Utilisateur",
                     "es": "Usuario",
                     "ru": "Пользователь",
-                    "it": "Utente"
+                    "it": "Utente",
+                    "nl": "Gebruiker"
                 },
                 "Desc": {
                     "description": "The description of the 'user' argument",
@@ -1414,7 +1541,8 @@
                     "fr": "Utilisateur pour afficher les informations",
                     "es": "Usuario para mostrar información",
                     "ru": "Пользователь для отображения информации",
-                    "it": "Utente per mostrare le informazioni"
+                    "it": "Utente per mostrare le informazioni",
+                    "nl": "Gebruiker om informatie van te tonen"
                 }
             }
         }
@@ -1427,7 +1555,8 @@
         "fr": "Caractéristiques",
         "es": "Características",
         "ru": "Функции",
-        "it": "Caratteristiche"
+        "it": "Caratteristiche",
+        "nl": "Functies"
     },
     "Automoderation": {
         "description": "The word 'Automoderation'",
@@ -1437,7 +1566,8 @@
         "fr": "Automodération",
         "es": "Automoderación",
         "ru": "Автомобильная промышленность",
-        "it": "Automoderazione"
+        "it": "Automoderazione",
+        "nl": "Automatische moderatie"
     },
     "Action": {
         "description": "The word 'Action'",
@@ -1447,7 +1577,8 @@
         "fr": "action",
         "es": "Acción",
         "ru": "Действие",
-        "it": "Azione"
+        "it": "Azione",
+        "nl": "Actie"
     },
     "NotFound": {
         "description": "The word 'NotFound'",
@@ -1457,7 +1588,8 @@
         "fr": "Pas trouvé.",
         "es": "Extraviado.",
         "ru": "Не найден.",
-        "it": "Non trovato."
+        "it": "Non trovato.",
+        "nl": "Niet gevonden"
     },
     "Author": {
         "description": "The word 'Author'",
@@ -1467,7 +1599,8 @@
         "fr": "Auteur",
         "es": "Autor",
         "ru": "Автор",
-        "it": "Autore"
+        "it": "Autore",
+        "nl": "Auteur"
     },
     "MessageContent": {
         "description": "The word 'message content'",
@@ -1477,7 +1610,8 @@
         "fr": "Contenu du message",
         "es": "Contenido del mensaje",
         "ru": "Содержание сообщения",
-        "it": "Contenuto del messaggio"
+        "it": "Contenuto del messaggio",
+        "nl": "Berichtinhoud"
     },
     "ViewDetailsOn": {
         "description": "you can view details on url",
@@ -1490,7 +1624,8 @@
         "fr": "Voir les détails sur : {url}",
         "es": "Ver detalles en: {url}",
         "ru": "Подробнее о: {url}",
-        "it": "Visualizza dettagli su: {url}"
+        "it": "Visualizza dettagli su: {url}",
+        "nl": "Bekijk details op: {url}"
     },
     "Attachments": {
         "description": "The word 'attachments'",
@@ -1500,7 +1635,8 @@
         "fr": "Pièces jointes",
         "es": "Archivos adjuntos",
         "ru": "Вложения",
-        "it": "Allegati"
+        "it": "Allegati",
+        "nl": "Bijlagen"
     },
     "Attachment": {
         "description": "The word 'attachment'",
@@ -1510,7 +1646,8 @@
         "fr": "Attachement",
         "es": "Adjunto",
         "ru": "Вложение",
-        "it": "allegato"
+        "it": "allegato",
+        "nl": "Bijlage"
     },
     "AndXMore": {
         "description": "The word 'and x more'",
@@ -1523,7 +1660,8 @@
         "fr": "et {count} plus...",
         "es": "y {count} más ...",
         "ru": "и еще {count} ...",
-        "it": "e {count} altro..."
+        "it": "e {count} altro...",
+        "nl": "en nog {count}..."
     },
     "Channel": {
         "description": "The word 'channel'",
@@ -1533,7 +1671,8 @@
         "fr": "Canaliser",
         "es": "Canal",
         "ru": "Канал",
-        "it": "Canale"
+        "it": "Canale",
+        "nl": "Kanaal"
     },
     "SomethingWentWrong": {
         "description": "The word 'something went wrong.'",
@@ -1543,7 +1682,8 @@
         "fr": "Quelque chose s'est mal passé.",
         "es": "Algo salió mal.",
         "ru": "Что-то пошло не так.",
-        "it": "Qualcosa è andato storto."
+        "it": "Qualcosa è andato storto.",
+        "nl": "Er is iets misgegaan."
     },
     "Code": {
         "description": "The word 'code'. like in 'the error code'",
@@ -1553,7 +1693,8 @@
         "fr": "Code",
         "es": "Código",
         "ru": "Код",
-        "it": "Codice"
+        "it": "Codice",
+        "nl": "Code"
     },
     "LanguageWord": {
         "description": "The word 'language'",
@@ -1563,7 +1704,8 @@
         "fr": "Langue",
         "es": "Idioma",
         "ru": "Язык",
-        "it": "Lingua"
+        "it": "Lingua",
+        "nl": "Taal"
     },
     "Timestamps": {
         "description": "The word 'timestamps'",
@@ -1573,7 +1715,8 @@
         "fr": "Horodatage",
         "es": "Marcas de tiempo",
         "ru": "Отметки времени",
-        "it": "Timestamp"
+        "it": "Timestamp",
+        "nl": "Tijdstempels"
     },
     "Support": {
         "description": "The word 'support'",
@@ -1583,7 +1726,8 @@
         "fr": "Soutien",
         "es": "Apoyo",
         "ru": "Служба поддержки",
-        "it": "Supporto"
+        "it": "Supporto",
+        "nl": "Support"
     },
     "Punishment": {
         "description": "The word 'punishment'",
@@ -1593,7 +1737,8 @@
         "fr": "Châtiment",
         "es": "Castigo",
         "ru": "Наказание",
-        "it": "Punizione"
+        "it": "Punizione",
+        "nl": "Straf"
     },
     "Until": {
         "description": "The word 'until'",
@@ -1603,7 +1748,8 @@
         "fr": "jusqu'à",
         "es": "Hasta que",
         "ru": "до",
-        "it": "fino a"
+        "it": "fino a",
+        "nl": "Tot"
     },
     "PunishmentUntil": {
         "description": "headline for a temporary punishment stating the timezone",
@@ -1613,7 +1759,8 @@
         "fr": "Puni jusqu'à",
         "es": "Castigado hasta",
         "ru": "Наказан до",
-        "it": "Punito fino a"
+        "it": "Punito fino a",
+        "nl": "Straf tot"
     },
     "Description": {
         "description": "The word 'description'",
@@ -1623,7 +1770,8 @@
         "fr": "La description",
         "es": "Descripción",
         "ru": "Описание",
-        "it": "Descrizione"
+        "it": "Descrizione",
+        "nl": "Beschrijving"
     },
     "Labels": {
         "description": "The word 'labels'",
@@ -1633,7 +1781,8 @@
         "fr": "Étiquettes",
         "es": "Etiquetas",
         "ru": "Этикетки",
-        "it": "etichette"
+        "it": "etichette",
+        "nl": "Labels"
     },
     "Filename": {
         "description": "The word 'filename'. The name of a file",
@@ -1643,7 +1792,8 @@
         "fr": "Nom de fichier",
         "es": "Nombre del archivo",
         "ru": "Имя файла",
-        "it": "Nome del file"
+        "it": "Nome del file",
+        "nl": "Bestandnaam"
     },
     "Message": {
         "description": "The word 'message'",
@@ -1653,7 +1803,8 @@
         "fr": "Un message",
         "es": "Mensaje",
         "ru": "Сообщение",
-        "it": "Messaggio"
+        "it": "Messaggio",
+        "nl": "Bericht"
     },
     "UserNote": {
         "description": "The word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
@@ -1663,7 +1814,8 @@
         "fr": "Note de l'utilisateur",
         "es": "UserNote",
         "ru": "UserNote",
-        "it": "Nota utente"
+        "it": "Nota utente",
+        "nl": "Gebruikersnotitie"
     },
     "UserNotes": {
         "description": "The plural word 'usernote'. This is a feature to share hidden guild-wide notes of a user with other moderators.",
@@ -1673,7 +1825,8 @@
         "fr": "Notes de l'utilisateur",
         "es": "Notas de usuario",
         "ru": "UserNotes",
-        "it": "Note utente"
+        "it": "Note utente",
+        "nl": "Gebruikersnotities"
     },
     "Cases": {
         "description": "The word 'cases'",
@@ -1683,7 +1836,8 @@
         "fr": "Cas",
         "es": "Casos",
         "ru": "Случаи",
-        "it": "casi"
+        "it": "casi",
+        "nl": "Zaken"
     },
     "MotD": {
         "description": "The word 'motd'",
@@ -1693,7 +1847,8 @@
         "fr": "Le message du jour",
         "es": "Mensaje del día",
         "ru": "Послание дня",
-        "it": "Messaggio del giorno"
+        "it": "Messaggio del giorno",
+        "nl": "Bericht van de dag"
     },
     "ActivePunishments": {
         "description": "The word 'active punishments'",
@@ -1703,7 +1858,8 @@
         "fr": "Punitions actives",
         "es": "Castigos activos",
         "ru": "Активные наказания",
-        "it": "punizioni attive"
+        "it": "punizioni attive",
+        "nl": "Actieve straffen"
     },
     "UserMap": {
         "description": "The word 'usermap'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
@@ -1713,7 +1869,8 @@
         "fr": "UserMap",
         "es": "UserMap",
         "ru": "UserMap",
-        "it": "Mappa utente"
+        "it": "Mappa utente",
+        "nl": "Gebruikersmap"
     },
     "UserMaps": {
         "description": "The plural word 'usermaps'. This is a feature to share hidden guild-wide connections of two users with other moderators.",
@@ -1723,7 +1880,8 @@
         "fr": "UserMaps",
         "es": "UserMaps",
         "ru": "UserMaps",
-        "it": "Mappe utente"
+        "it": "Mappe utente",
+        "nl": "Gebruikersmappen"
     },
     "UserMapBetween": {
         "description": "Describes a usermap between two users.",
@@ -1736,7 +1894,8 @@
         "fr": "UserMap entre <@{userMap.UserA}> et <@{userMap.UserB}>.",
         "es": "UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
         "ru": "UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
-        "it": "UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>."
+        "it": "UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>.",
+        "nl": "Gebruikersmap tussen <@{userMap.UserA}> en <@{userMap.UserB}>."
     },
     "Imported": {
         "description": "Case that has been imported",
@@ -1746,7 +1905,8 @@
         "fr": "Importé",
         "es": "Importado",
         "ru": "Импортный",
-        "it": "importato"
+        "it": "importato",
+        "nl": "Geïmporteerd"
     },
     "ImportedFromExistingBans": {
         "description": "Case that has been imported from existing bans",
@@ -1756,7 +1916,8 @@
         "fr": "Importé à partir des interdictions existantes",
         "es": "Importado de prohibiciones existentes",
         "ru": "Импортировано из существующих банов",
-        "it": "Importato da divieti esistenti"
+        "it": "Importato da divieti esistenti",
+        "nl": "Geïmporteerd van bestaande bans"
     },
     "Type": {
         "description": "The word 'type'",
@@ -1766,7 +1927,8 @@
         "fr": "Taper",
         "es": "Escribe",
         "ru": "Тип",
-        "it": "Tipo"
+        "it": "Tipo",
+        "nl": "Type"
     },
     "Joined": {
         "description": "The word 'joined'",
@@ -1776,7 +1938,8 @@
         "fr": "Inscrit",
         "es": "Unido",
         "ru": "Присоединился",
-        "it": "Partecipato"
+        "it": "Partecipato",
+        "nl": "Toegetreden"
     },
     "Registered": {
         "description": "The word 'registered'",
@@ -1786,7 +1949,8 @@
         "fr": "Inscrit",
         "es": "Registrado",
         "ru": "Зарегистрировано",
-        "it": "Registrato"
+        "it": "Registrato",
+        "nl": "Geregistreerd"
     },
     "Notification": {
         "Modcase": {
@@ -1802,7 +1966,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.",
                     "es": "Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.",
-                    "it": "È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
+                    "it": "È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
+                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
@@ -1816,7 +1981,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
             "Update": {
@@ -1831,7 +1997,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.",
                     "es": "Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.",
-                    "it": "È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
+                    "it": "È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
@@ -1845,7 +2012,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
                     "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
             "Delete": {
@@ -1860,7 +2028,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.",
                     "es": "Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato."
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato.",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
@@ -1874,7 +2043,8 @@
                     "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
                     "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
                     "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
                 }
             },
             "Comments": {
@@ -1887,7 +2057,8 @@
                         "fr": "Commentaire créé",
                         "es": "Comentario creado",
                         "ru": "Комментарий создан",
-                        "it": "Commento creato"
+                        "it": "Commento creato",
+                        "nl": "Reactie gemaakt"
                     },
                     "Update": {
                         "description": "A modcase comment has been updated.",
@@ -1897,7 +2068,8 @@
                         "fr": "Commentaire mis à jour",
                         "es": "Comentario actualizado",
                         "ru": "Комментарий обновлен",
-                        "it": "Commento aggiornato"
+                        "it": "Commento aggiornato",
+                        "nl": "Reactie bijgewerkt"
                     },
                     "Delete": {
                         "description": "A modcase comment has been deleted.",
@@ -1907,7 +2079,8 @@
                         "fr": "Commentaire supprimé",
                         "es": "Comentario borrado",
                         "ru": "Комментарий удален",
-                        "it": "Commento cancellato"
+                        "it": "Commento cancellato",
+                        "nl": "Reactie verwijderd"
                     }
                 },
                 "Create": {
@@ -1921,7 +2094,8 @@
                     "fr": "Un **commentaire** a été créé par <@{actor.Id}>.",
                     "es": "<@{actor.Id}> ha creado un **comentario**.",
                     "ru": "**комментарий** был создан <@{actor.Id}>.",
-                    "it": "Un **commento** è stato creato da <@{actor.Id}>."
+                    "it": "Un **commento** è stato creato da <@{actor.Id}>.",
+                    "nl": "Er is een **reactie** gemaakt door <@{actor.Id}>."
                 },
                 "Update": {
                     "description": "A modcase comment has been updated.",
@@ -1934,7 +2108,8 @@
                     "fr": "Un **commentaire** a été mis à jour par <@{actor.Id}>.",
                     "es": "<@{actor.Id}> ha actualizado un **comentario **.",
                     "ru": "**комментарий ** был обновлен пользователем <@{actor.Id}>.",
-                    "it": "Un **commento** è stato aggiornato da <@{actor.Id}>."
+                    "it": "Un **commento** è stato aggiornato da <@{actor.Id}>.",
+                    "nl": "Een **reactie** is bijgewerkt door <@{actor.Id}>."
                 },
                 "Delete": {
                     "description": "A modcase comment has been deleted.",
@@ -1947,7 +2122,8 @@
                     "fr": "Un **commentaire** a été supprimé par <@{actor.Id}>.",
                     "es": "<@{actor.Id}> ha eliminado un **comentario **.",
                     "ru": "**комментарий** был удален <@{actor.Id}>.",
-                    "it": "Un **commento** è stato eliminato da <@{actor.Id}>."
+                    "it": "Un **commento** è stato eliminato da <@{actor.Id}>.",
+                    "nl": "Een **reactie** is verwijderd door <@{actor.Id}>." 
                 }
             },
             "File": {
@@ -1962,7 +2138,8 @@
                     "fr": "Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).",
                     "ru": "**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "it": "Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "nl": "Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 },
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
@@ -1975,7 +2152,8 @@
                     "fr": "Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.",
                     "ru": "**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "it": "Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "nl": "Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 },
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
@@ -1988,7 +2166,8 @@
                     "fr": "Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
                     "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.",
                     "ru": "**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "it": "Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                    "nl": "Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
                 }
             },
             "DM": {
@@ -2001,10 +2180,11 @@
                     "en": "The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                     "de": "Die Moderatoren von `{guild.Name}` haben dich verwarnt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                     "at": "Die Moderatoan vo `{guild.Name}` hom di verwoarnt.\nFia weitere Infos oda ein Entbannungsantrag schau bei {serviceBaseUrl} noch.",
-                    "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                    "es": "Los moderadores del gremio `{guild.Name}` te han advertido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                    "ru": "Модераторы гильдии `{guild.Name}` вас предупредили.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                    "it": "I moderatori della gilda `{guild.Name}` ti hanno avvisato.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                    "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont prévenu.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                    "es": "Los moderadores del gremio `{guild.Name}` te han advertido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                    "ru": "Модераторы гильдии `{guild.Name}` вас предупредили.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                    "it": "I moderatori della gilda `{guild.Name}` ti hanno avvisato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                    "nl": "De moderators van server `{guild.Name}` hebben je gewaarschuwd. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}"
                 },
                 "Mute": {
                     "Temp": {
@@ -2017,10 +2197,11 @@
                         "en": "The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                         "de": "Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
-                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                        "es": "Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                        "ru": "Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                        "it": "I moderatori della gilda `{guild.Name}` ti hanno temporaneamente disattivato l'audio fino a {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement mis en sourdine jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                        "es": "Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                        "ru": "Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                        "it": "I moderatori della gilda `{guild.Name}` ti hanno temporaneamente disattivato l'audio fino a {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                        "nl": ""
                     },
                     "Perm": {
                         "description": "DM notification for perm mute modcase. This does not disclose information about the moderator.",
@@ -2031,10 +2212,11 @@
                         "en": "The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                         "de": "Die Moderatoren von `{guild.Name}` haben dich stummgeschalten.\nFür weitere Informationen besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di stummgschoit.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
-                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont mis en sourdine.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                        "es": "Los moderadores del gremio `{guild.Name}` te han silenciado.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                        "ru": "Модераторы гильдии `{guild.Name}` отключили вас.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                        "it": "I moderatori della gilda `{guild.Name}` ti hanno disattivato.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont mis en sourdine.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                        "es": "Los moderadores del gremio `{guild.Name}` te han silenciado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                        "ru": "Модераторы гильдии `{guild.Name}` отключили вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                        "it": "I moderatori della gilda `{guild.Name}` ti hanno disattivato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                        "nl": "De moderators van server `{guild.Name}` hebben je gedempt. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}"
                     }
                 },
                 "Ban": {
@@ -2048,10 +2230,11 @@
                         "en": "The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                         "de": "Die Moderatoren von `{guild.Name}` haben dich bis zum {modCase.PunishedUntil.Value.ToDiscordTS()} temporär gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di bis am {modCase.PunishedUntil.Value.ToDiscordTS()} vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
-                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                        "es": "Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                        "ru": "Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                        "it": "I moderatori della gilda `{guild.Name}` ti hanno temporaneamente bannato fino al {modCase.PunishedUntil.Value.ToDiscordTS()}.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont temporairement banni jusqu'à {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                        "es": "Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                        "ru": "Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                        "it": "I moderatori della gilda `{guild.Name}` ti hanno temporaneamente bannato fino al {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                        "nl": "De moderators van server `{guild.Name}` hebben je tijdelijk verbannen tot {modCase.PunishedUntil.Value.ToDiscordTS()}. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}"
                     },
                     "Perm": {
                         "description": "DM notification for perm ban modcase. This does not disclose information about the moderator.",
@@ -2062,10 +2245,11 @@
                         "en": "The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                         "de": "Die Moderatoren von `{guild.Name}` haben dich gebannt.\nFür weitere Informationen oder zum Einreichen eines Entbannungsantrags besuche {serviceBaseUrl}",
                         "at": "Die Moderatoan vo `{guild.Name}` hom di vom Serva ausgsperrt.\nFia weitere Infos schau bei {serviceBaseUrl} noch",
-                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont banni.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                        "es": "Los moderadores del gremio `{guild.Name}` te han prohibido.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                        "ru": "Модераторы гильдии `{guild.Name}` забанили вас.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                        "it": "I moderatori della gilda `{guild.Name}` ti hanno bannato.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                        "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont banni.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                        "es": "Los moderadores del gremio `{guild.Name}` te han prohibido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                        "ru": "Модераторы гильдии `{guild.Name}` забанили вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                        "it": "I moderatori della gilda `{guild.Name}` ti hanno bannato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                        "nl": "De moderators van server `{guild.Name}` hebben je verbannen. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}"
                     }
                 },
                 "Kick": {
@@ -2077,10 +2261,11 @@
                     "en": "The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
                     "de": "Die Moderatoren von `{guild.Name}` haben dich kickt.\nFür weitere Informationen besuche {serviceBaseUrl}",
                     "at": "Die Moderatoan vo `{guild.Name}` hom di rausgschmissn.\nFia weitere Infos schau bei {serviceBaseUrl} noch.",
-                    "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont viré.\\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
-                    "es": "Los moderadores del gremio `{guild.Name}` te han pateado.\\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
-                    "ru": "Модераторы гильдии `{guild.Name}` выгнали вас.\\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
-                    "it": "I moderatori della gilda `{guild.Name}` ti hanno espulso.\\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}"
+                    "fr": "Les modérateurs de la guilde `{guild.Name}` vous ont viré.\nPour plus d'informations ou pour une réhabilitation, visitez : {serviceBaseUrl}",
+                    "es": "Los moderadores del gremio `{guild.Name}` te han pateado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
+                    "ru": "Модераторы гильдии `{guild.Name}` выгнали вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
+                    "it": "I moderatori della gilda `{guild.Name}` ti hanno espulso.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                    "nl": "De moderators van server `{guild.Name}` hebben je gekickt. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}"
                 }
             }
         },
@@ -2093,7 +2278,8 @@
                 "fr": "Fichier téléchargé",
                 "es": "Archivo subido",
                 "ru": "Файл загружен",
-                "it": "File caricato"
+                "it": "File caricato",
+                "nl": "Bestand geüpload"
             },
             "Delete": {
                 "description": "A file has been deleted.",
@@ -2103,7 +2289,8 @@
                 "fr": "Fichier supprimé",
                 "es": "Archivo eliminado",
                 "ru": "Файл удален",
-                "it": "File cancellato"
+                "it": "File cancellato",
+                "nl": "Bestand verwijderd"
             },
             "Update": {
                 "description": "A file has been updated.",
@@ -2113,7 +2300,8 @@
                 "fr": "Fichier mis à jour",
                 "es": "Archivo actualizado",
                 "ru": "Файл обновлен",
-                "it": "File aggiornato"
+                "it": "File aggiornato",
+                "nl": "Bestand bijgewerkt"
             }
         },
         "Appeals": {
@@ -2128,7 +2316,8 @@
                     "fr": "Un **appel de bannissement** a été créé par <@{actorId}>.",
                     "es": "Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
                     "ru": "Заявка на **бан** создана пользователем <@{actorId}>.",
-                    "it": "Un **appello al ban** è stato creato da <@{actorId}>."
+                    "it": "Un **appello al ban** è stato creato da <@{actorId}>.",
+                    "nl": "Er is een **ban appeal** aangemaakt door <@{actorId}>."
             },
             "Update": {
                 "description": "A appeal has been updated.",
@@ -2142,7 +2331,8 @@
                     "fr": "Un **appel de bannissement** pour <@{userId}> a été mis à jour par <@{actorId}>.",
                     "es": "Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
                     "ru": "Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
-                    "it": "Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>."
+                    "it": "Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>.",
+                    "nl": "Een **ban beroep** voor <@{userId}> is bijgewerkt door <@{actorId}>."
             },
             "Status": {
                 "description": "The word status",
@@ -2152,7 +2342,8 @@
                 "fr": "Statut",
                 "es": "Estado",
                 "ru": "статус",
-                "it": "Stato"
+                "it": "Stato",
+                "nl": "Status"
             },
             "Reason": {
                 "description": "The word reason",
@@ -2162,7 +2353,8 @@
                 "fr": "Raison",
                 "es": "Razón",
                 "ru": "причина",
-                "it": "Motivo"
+                "it": "Motivo",
+                "nl": "Reden"
             },
             "Appeal": {
                 "description": "The word appeal",
@@ -2172,7 +2364,8 @@
                 "fr": "appel de bannissement",
                 "es": "apelación de prohibición",
                 "ru": "заявка на бан",
-                "it": "appello al ban"
+                "it": "appello al ban",
+                "nl": "Ban beroep"
             }
         },
         "Register": {
@@ -2184,17 +2377,19 @@
                 "fr": "Bienvenue à MASZ !",
                 "es": "¡Bienvenido a MASZ!",
                 "ru": "Добро пожаловать в МАСЗ!",
-                "it": "Benvenuto in MASZ!"
+                "it": "Benvenuto in MASZ!",
+                "nl": "Welkom bij MASZ!"
             },
             "DescriptionThanks": {
                 "description": "Thanks for registering.",
                 "en": "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
                 "de": "Vielen Dank für deine Registrierung.\nHier sind ein paar nützliche Tipps zum Einrichten und Verwenden von **MASZ**.",
                 "at": "Donksche fia dei Registrierung.\nDu siachst glei ei poar nützliche Tipps zum Eirichtn und Vawendn vo **MASZ**.",
-                "fr": "Merci d'avoir enregistré votre guilde.\\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
-                "es": "Gracias por registrar tu gremio.\\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
-                "ru": "Спасибо за регистрацию вашей гильдии.\\nДалее вы получите несколько полезных советов по настройке и использованию **MASZ**.",
-                "it": "Grazie per aver registrato la tua gilda.\\nDi seguito imparerai alcuni suggerimenti utili per impostare e utilizzare **MASZ**."
+                "fr": "Merci d'avoir enregistré votre guilde.\nDans ce qui suit, vous apprendrez quelques conseils utiles pour configurer et utiliser **MASZ**.",
+                "es": "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
+                "ru": "Спасибо за регистрацию вашей гильдии.\nДалее вы получите несколько полезных советов по настройке и использованию **MASZ**.",
+                "it": "Grazie per aver registrato la tua gilda.\nDi seguito imparerai alcuni suggerimenti utili per impostare e utilizzare **MASZ**.",
+                "nl": "Bedankt voor het registreren van je gilde. \nIn het volgende leer je een aantal nuttige tips voor het opzetten en gebruiken van **MASZ**."
             },
             "UseFeaturesCommand": {
                 "description": "Use the `features` command to see the features of MASZ.",
@@ -2204,7 +2399,8 @@
                 "fr": "Utilisez la commande `/features` pour tester si votre configuration de guilde actuelle prend en charge toutes les fonctionnalités de **MASZ**.",
                 "es": "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de **MASZ**.",
                 "ru": "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции **MASZ**.",
-                "it": "Usa il comando `/features` per verificare se l'attuale configurazione della gilda supporta tutte le funzionalità di **MASZ**."
+                "it": "Usa il comando `/features` per verificare se l'attuale configurazione della gilda supporta tutte le funzionalità di **MASZ**.",
+                "nl": "Gebruik het `/features` commando om te testen of je huidige gilde setup alle features van **MASZ** ondersteunt."
             },
             "DefaultLanguageUsed": {
                 "description": "The default language is used for the guild.",
@@ -2217,17 +2413,19 @@
                 "fr": "MASZ utilisera `{language}` comme langue par défaut pour cette guilde dans la mesure du possible.",
                 "es": "MASZ usará `{language}` como idioma predeterminado para este gremio siempre que sea posible.",
                 "ru": "MASZ будет использовать `{language}` как язык по умолчанию для этой гильдии, когда это возможно.",
-                "it": "MASZ utilizzerà `{language}` come lingua predefinita per questa gilda ogni volta che sarà possibile."
+                "it": "MASZ utilizzerà `{language}` come lingua predefinita per questa gilda ogni volta che sarà possibile.",
+                "nl": ""
             },
             "ConfusingTimestamps": {
                 "description": "The timestamps are confusing.",
                 "en": "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
                 "de": "Zeitzonen können kompliziert sein.\nMASZ verwendet Discords Zeitstempel um immer die lokale Zeitzone deines PCs/Smartphones zu verwenden.",
                 "at": "De Zeitzonen kennan a weng schwer san.\nMASZ nutzt a Discord-Feature um Zeitstempl in da lokalen Zeitzon vo deim PC/Handy ozumzeign.",
-                "fr": "Les fuseaux horaires peuvent être déroutants.\\nMASZ utilise une fonction Discord pour afficher les horodatages dans le fuseau horaire local de votre ordinateur/téléphone.",
-                "es": "Las zonas horarias pueden resultar confusas.\\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
-                "ru": "Часовые пояса могут сбивать с толку.\\nMASZ использует функцию Discord для отображения меток времени в местном часовом поясе вашего компьютера / телефона.",
-                "it": "I fusi orari possono creare confusione.\\nMASZ utilizza una funzione Discord per visualizzare i timestamp nel fuso orario locale del tuo computer/telefono."
+                "fr": "Les fuseaux horaires peuvent être déroutants.\nMASZ utilise une fonction Discord pour afficher les horodatages dans le fuseau horaire local de votre ordinateur/téléphone.",
+                "es": "Las zonas horarias pueden resultar confusas.\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
+                "ru": "Часовые пояса могут сбивать с толку.\nMASZ использует функцию Discord для отображения меток времени в местном часовом поясе вашего компьютера / телефона.",
+                "it": "I fusi orari possono creare confusione.\nMASZ utilizza una funzione Discord per visualizzare i timestamp nel fuso orario locale del tuo computer/telefono.",
+                "nl": "Tijdzones kunnen verwarrend zijn. \nMASZ maakt gebruikt van een Discord functie om Tijdstempels in de lokale tijdzone te tonen van jouw computer/telefoon."
             },
             "Support": {
                 "description": "Support for MASZ is provided by the [MASZ Support Server](https://discord.gg/5zjpzw6h3S).",
@@ -2237,7 +2435,8 @@
                 "fr": "Veuillez vous référer au [serveur de support MASZ] (https://discord.gg/5zjpzw6h3S) pour d'autres questions.",
                 "es": "Consulte el [servidor de soporte MASZ] (https://discord.gg/5zjpzw6h3S) si tiene más preguntas.",
                 "ru": "Дополнительные вопросы можно найти на [сервере поддержки MASZ] (https://discord.gg/5zjpzw6h3S).",
-                "it": "Fare riferimento al [Server di supporto MASZ] (https://discord.gg/5zjpzw6h3S) per ulteriori domande."
+                "it": "Fare riferimento al [Server di supporto MASZ] (https://discord.gg/5zjpzw6h3S) per ulteriori domande.",
+                "nl": "Raadpleeg [MASZ Support Server] (https://discord.gg/5zjpzw6h3S) voor verdere vragen."
             }
         },
         "Automoderation": {
@@ -2252,7 +2451,8 @@
                 "fr": "{user.Mention} a déclenché l'automodération.",
                 "es": "{user.Mention} activó la automoderación.",
                 "ru": "{user.Mention} запустил автомодерацию.",
-                "it": "{user.Mention} ha attivato la moderazione automatica."
+                "it": "{user.Mention} ha attivato la moderazione automatica.",
+                "nl": "{user.Mention} activeerde automatisering."
             },
             "Case": {
                 "description": "case description for automod event",
@@ -2265,7 +2465,8 @@
                 "fr": "{user.Username}#{user.Discriminator} a déclenché la modération automatique.",
                 "es": "{user.Username}#{user.Discriminator} desencadenó la automoderación.",
                 "ru": "{user.Username}#{user.Discriminator} запускает автомодерацию.",
-                "it": "{user.Username}#{user.Discriminator} ha attivato la moderazione automatica."
+                "it": "{user.Username}#{user.Discriminator} ha attivato la moderazione automatica.",
+                "nl": "{user.Username}#{user.Discriminator} leidde tot automatisering."
             },
             "DM": {
                 "description": "DM description for automod event",
@@ -2278,10 +2479,11 @@
                 "en": "Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
                 "de": "Hallo {user.Mention},\n\nDu hast gerade die Automoderation in {channel.Mention} ausgelöst.\nGrund: {reason}\nAktion: {action}",
                 "at": "Servus {user.Mention},\n\nDu host de Automodaration in {channel.Mention} ausglest. Grund: {reason}\nAktion: {action}",
-                "fr": "Salut {user.Mention},\\n\\nVous avez déclenché l'automodération dans {channel.Mention}.\\nRaison : {reason}\\nAction : {action}",
-                "es": "Hola, {user.Mention}:\\n\\nActivó la automoderación en {channel.Mention}.\\nMotivo: {reason}\\nAcción: {action}",
-                "ru": "Привет, {user.Mention}!\\n\\nВы активировали автомодерацию в {channel.Mention}.\\nПричина: {reason}\\nДействие: {action}",
-                "it": "Ciao {user.Mention},\\n\\nHai attivato la moderazione automatica in {channel.Mention}.\\nMotivo: {reason}\\nAzione: {action}"
+                "fr": "Salut {user.Mention},\n\nVous avez déclenché l'automodération dans {channel.Mention}.\nRaison : {reason}\nAction : {action}",
+                "es": "Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
+                "ru": "Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention}.\nПричина: {reason}\nДействие: {action}",
+                "it": "Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention}.\nMotivo: {reason}\nAzione: {action}",
+                "nl": "Hallo {user.Mention},\n\nJe hebt de automatisering geactiveerd in {kanaal.Mention}.\nReason: {reason}\nAction: {action}"
             },
             "Channel": {
                 "description": "channel notification for automod event if message was deleted, should be oneline",
@@ -2295,7 +2497,8 @@
                 "fr": "{user.Mention} vous avez déclenché l'automodération. Raison : {reason}. Votre message a été supprimé.",
                 "es": "{user.Mention} has activado la automoderación. Razón: {reason}. Su mensaje ha sido eliminado.",
                 "ru": "{user.Mention} вы запустили автомодерацию. Причина: {reason}. Ваше сообщение было удалено.",
-                "it": "{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato."
+                "it": "{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato.",
+                "nl": "{user.Mention} u heeft de automatisering geactiveerd. Reden: {reason}. Uw bericht is verwijderd."
             }
         },
         "Motd": {
@@ -2311,7 +2514,8 @@
                     "fr": "Le nouveau MotD a été créé par {actor.Mention}.",
                     "es": "El nuevo MotD ha sido creado por {actor.Mention}.",
                     "ru": "Новый MotD был создан {actor.Mention}.",
-                    "it": "Il nuovo MotD è stato creato da {actor.Mention}."
+                    "it": "Il nuovo MotD è stato creato da {actor.Mention}.",
+                    "nl": "Nieuwe MotD is aangemaakt door {actor.Mention}."
                 },
                 "Edited": {
                     "description": "motd has been edited",
@@ -2324,7 +2528,8 @@
                     "fr": "MotD a été édité par {actor.Mention}.",
                     "es": "MotD ha sido editado por {actor.Mention}.",
                     "ru": "MotD редактировал {actor.Mention}.",
-                    "it": "MotD è stato modificato da {actor.Mention}."
+                    "it": "MotD è stato modificato da {actor.Mention}.",
+                    "nl": "MotD is bewerkt door {actor.Mention}."
                 }
             },
             "Show": {
@@ -2335,7 +2540,8 @@
                 "fr": "Montrer",
                 "es": "Show",
                 "ru": "Показывать",
-                "it": "Spettacolo"
+                "it": "Spettacolo",
+                "nl": "Toon"
             }
         },
         "AutomoderationConfig": {
@@ -2352,7 +2558,8 @@
                     "fr": "Automodconfig créé pour {eventType} par {actor.Mention}.",
                     "es": "Automodconfig creado para {eventType} por {actor.Mention}.",
                     "ru": "Automodconfig, созданный для {eventType} пользователем {actor.Mention}.",
-                    "it": "Automodconfig creato per {eventType} da {actor.Mention}."
+                    "it": "Automodconfig creato per {eventType} da {actor.Mention}.",
+                    "nl": "Automodconfiguratie gemaakt voor {eventType} door {actor.Mention}."
                 },
                 "Update": {
                     "description": "AutomoderationConfig updated",
@@ -2366,7 +2573,8 @@
                     "fr": "Automodconfig mis à jour pour {eventType} par {actor.Mention}.",
                     "es": "Automodconfig actualizado para {eventType} por {actor.Mention}.",
                     "ru": "Automodconfig обновлен для {eventType} пользователем {actor.Mention}.",
-                    "it": "Automodconfig aggiornato per {eventType} da {actor.Mention}."
+                    "it": "Automodconfig aggiornato per {eventType} da {actor.Mention}.",
+                    "nl": "Automodconfiguratie bijgewerkt voor {eventType} door {actor.Mention}."
                 },
                 "Delete": {
                     "description": "AutomoderationConfig deleted",
@@ -2380,7 +2588,8 @@
                     "fr": "Automodconfig supprimé pour {eventType} par {actor.Mention}.",
                     "es": "Automodconfig eliminado para {eventType} por {actor.Mention}.",
                     "ru": "Automodconfig удален для {eventType} пользователем {actor.Mention}.",
-                    "it": "Automodconfig eliminato per {eventType} da {actor.Mention}."
+                    "it": "Automodconfig eliminato per {eventType} da {actor.Mention}.",
+                    "nl": "Automodconfiguratie verwijderd voor {eventType} door {actor.Mention}."
                 }
             },
             "Limit": {
@@ -2391,7 +2600,8 @@
                 "fr": "Limite",
                 "es": "Límite",
                 "ru": "Предел",
-                "it": "Limite"
+                "it": "Limite",
+                "nl": "Limiet"
             },
             "TimeLimit": {
                 "description": "AutomoderationConfig time limit",
@@ -2401,7 +2611,8 @@
                 "fr": "Limite de temps",
                 "es": "Límite de tiempo",
                 "ru": "Лимит времени",
-                "it": "Limite di tempo"
+                "it": "Limite di tempo",
+                "nl": "Tijdsbeperking"
             },
             "Ignored": {
                 "Roles": {
@@ -2412,7 +2623,8 @@
                     "fr": "Rôles ignorés",
                     "es": "Roles ignorados",
                     "ru": "Игнорируемые роли",
-                    "it": "Ruoli ignorati"
+                    "it": "Ruoli ignorati",
+                    "nl": "Genegeerde rollen"
                 },
                 "Channels": {
                     "description": "Ignored channels in automod config",
@@ -2422,7 +2634,8 @@
                     "fr": "Canaux ignorés",
                     "es": "Canales ignorados",
                     "ru": "Игнорируемые каналы",
-                    "it": "Canali ignorati"
+                    "it": "Canali ignorati",
+                    "nl": "Genegeerde kanalen"
                 }
             },
             "Duration": {
@@ -2433,7 +2646,8 @@
                 "fr": "Durée",
                 "es": "Duración",
                 "ru": "Продолжительность",
-                "it": "Durata"
+                "it": "Durata",
+                "nl": "Duur"
             },
             "DeleteMessage": {
                 "description": "Delete message after automod action",
@@ -2443,7 +2657,8 @@
                 "fr": "Supprimer le message",
                 "es": "Borrar mensaje",
                 "ru": "Удаленное сообщение",
-                "it": "Cancella il messaggio"
+                "it": "Cancella il messaggio",
+                "nl": "Verwijder bericht"
             },
             "SendPublic": {
                 "description": "Send public message after automod action",
@@ -2453,7 +2668,8 @@
                 "fr": "Envoyer une notification publique",
                 "es": "Enviar notificación pública",
                 "ru": "Отправить публичное уведомление",
-                "it": "Invia notifica pubblica"
+                "it": "Invia notifica pubblica",
+                "nl": "Verzend openbare notificatie"
             },
             "SendDM": {
                 "description": "Send DM message after automod action",
@@ -2463,7 +2679,8 @@
                 "fr": "Envoyer une notification DM",
                 "es": "Enviar notificación DM",
                 "ru": "Отправить уведомление в прямом эфире",
-                "it": "Invia notifica DM"
+                "it": "Invia notifica DM",
+                "nl": "Verzend DM notificatie"
             }
         },
         "AutoWhois": {
@@ -2480,7 +2697,8 @@
                 "fr": "{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec l'invitation `{invite}`.",
                 "es": "{user.Mention} (registrado {registered.ToDiscordTS ()}) se unió con la invitación `{invite}`.",
                 "ru": "{user.Mention} (зарегистрированный {registered.ToDiscordTS ()}) присоединился с приглашением `{invite}`.",
-                "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`."
+                "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`.",
+                "nl": "{user.Mention} (geregistreerd {registered.ToDiscordTS()}) is lid geworden met uitnodiging `{invite}`."
             },
             "JoinWithAndFrom": {
                 "description": "A user joined with invite x from user y",
@@ -2497,7 +2715,8 @@
                 "fr": "{user.Mention} (enregistré {registered.ToDiscordTS()}) rejoint avec invite `{invite}` (créé {createdAt.ToDiscordTS()}) par <@{by}>.",
                 "es": "{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
                 "ru": "{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с помощью приглашения `{invite}` (created {createdAt.ToDiscordTS()}) пользователем <@{by}>.",
-                "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito all'invito `{invite}` (creato {createdAt.ToDiscordTS()}) da <@{by}>."
+                "it": "{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito all'invito `{invite}` (creato {createdAt.ToDiscordTS()}) da <@{by}>.",
+                "nl": "{user.Mention} (geregistreerd {registered.ToDiscordTS()}) is lid geworden met uitnodiging `{invite}` (gemaakt op {createdAt.ToDiscordTS()}) door <@{by}>."
             }
         },
         "DiscordAuditLog": {
@@ -2515,7 +2734,8 @@
                     "fr": "Punition pour ModCase #{caseId} par le modérateur {modId} exécutée : \\\"{reason}\\\"",
                     "es": "Castigo por ModCase # {caseId} por el moderador {modId} ejecutado: \\\"{reason} \\\"",
                     "ru": "Наказание за ModCase # {caseId} модератором {modId} выполнено: \\\"{reason} \\\"",
-                    "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\""
+                    "it": "Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \\\"{reason}\\\"",
+                    "nl": "Straf voor ModCase #{caseId} uitgevoerd door moderator {modId}: \\\"{reason}\\\"."
                 },
                 "ExecuteAutomod": {
                     "description": "Audit log header reason for executed punishment.",
@@ -2528,7 +2748,8 @@
                     "fr": "Punition pour Automod {autoModEvent} exécutée.",
                     "es": "Castigo para Automod {autoModEvent} ejecutado.",
                     "ru": "Наказание за Automod {autoModEvent} выполнено.",
-                    "it": "Punizione per Automod {autoModEvent} eseguita."
+                    "it": "Punizione per Automod {autoModEvent} eseguita.",
+                    "nl": "Straf voor Automod {autoModEvent} uitgevoerd."
                 },
                 "Undone": {
                     "description": "Audit log header reason for executed punishment.",
@@ -2542,7 +2763,8 @@
                     "fr": "Punition pour ModCase #{caseId} annulée : \\\"{reason}\\\"",
                     "es": "Castigo por ModCase # {caseId} deshecho: \\\"{reason} \\\"",
                     "ru": "Наказание за ModCase # {caseId} отменено: \\\"{reason} \\\"",
-                    "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\""
+                    "it": "Punizione per ModCase #{caseId} annullata: \\\"{reason}\\\"",
+                    "nl": "Straf voor ModCase #{caseId} ongedaan gemaakt: \\\"{reason}\\\"."
                 },
                 "AppealApproved": {
                     "description": "Audit log header reason for executed punishment.",
@@ -2556,7 +2778,8 @@
                     "fr": "Appel de bannissement #{appealId} approuvé : \\\"{reason}\\\"",
                     "es": "Solicitud de prohibición # {appealId} aprobada: \\\"{reason} \\\"",
                     "ru": "Обжалование забанения # {appealId} одобрено: \\\"{reason} \\\"",
-                    "it": "Appello per Ban Appeal #{appealId} approvato: \\\"{reason}\\\""
+                    "it": "Appello per Ban Appeal #{appealId} approvato: \\\"{reason}\\\"",
+                    "nl": "Ban-beroep #{appealId} goedgekeurd: \\\"{reason}\\\"."
                 }
             }
         },
@@ -2574,7 +2797,8 @@
                     "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été mis en place par {actor.Mention}.",
                     "es": "{actor.Mention} ha configurado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                     "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был создан {actor.Mention}.",
-                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato impostato da {actor.Mention}."
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato impostato da {actor.Mention}.",
+                    "nl": "Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is opgezet door {actor.Mention}."
                 },
                 "Update": {
                     "description": "A guild-level audit log has been edited.",
@@ -2588,7 +2812,8 @@
                     "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été modifié par {actor.Mention}.",
                     "es": "{actor.Mention} ha editado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                     "ru": "Журнал аудита на уровне гильдии для события `{eventName}` отредактировал {actor.Mention}.",
-                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato modificato da {actor.Mention}."
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato modificato da {actor.Mention}.",
+                    "nl": "Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is bewerkt door {actor.Mention}."
                 },
                 "Delete": {
                     "description": "A guild-level audit log has been deleted.",
@@ -2602,7 +2827,8 @@
                     "fr": "Le journal d'audit au niveau de la guilde pour l'événement `{eventName}` a été supprimé par {actor.Mention}.",
                     "es": "{actor.Mention} ha eliminado el registro de auditoría a nivel de hermandad para el evento `{eventName}`.",
                     "ru": "Журнал аудита на уровне гильдии для события `{eventName}` был удален {actor.Mention}.",
-                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato eliminato da {actor.Mention}."
+                    "it": "Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato eliminato da {actor.Mention}.",
+                    "nl": "Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is verwijderd door {actor.Mention}."
                 }
             },
             "MentionRoles": {
@@ -2613,7 +2839,8 @@
                 "fr": "Mentionner le(s) rôle(s)",
                 "es": "Mencionar rol (s)",
                 "ru": "Упоминание ролей",
-                "it": "Menzione ruolo/i"
+                "it": "Menzione ruolo/i",
+                "nl": "Noem rol(len)"
             },
             "ExcludeRoles": {
                 "description": "Select to exclude certain roles",
@@ -2623,7 +2850,8 @@
                 "fr": "Exclure les rôles",
                 "es": "Excluir roles",
                 "ru": "Исключить роли",
-                "it": "Escludi ruoli"
+                "it": "Escludi ruoli",
+                "nl": "Uitgezonderde rollen"
             },
             "ExcludeChannels": {
                 "description": "Select to exclude certain channels",
@@ -2633,7 +2861,8 @@
                 "fr": "Exclure les chaînes",
                 "es": "Excluir canales",
                 "ru": "Исключить каналы",
-                "it": "Escludi canali"
+                "it": "Escludi canali",
+                "nl": "Uitgesloten kanalen"
             },
             "Title": {
                 "description": "title",
@@ -2643,7 +2872,8 @@
                 "fr": "Journal d'audit au niveau de la guilde",
                 "es": "Registro de auditoría a nivel de gremio",
                 "ru": "Журнал аудита на уровне гильдии",
-                "it": "Registro di controllo a livello di gilda"
+                "it": "Registro di controllo a livello di gilda",
+                "nl": "Auditlogboek op gilde niveau"
             }
         },
         "Zalgo": {
@@ -2659,7 +2889,8 @@
             "fr": "L'utilisateur <@{id}> a été renommé de '{oldName}' à '{newName}'.",
             "es": "El usuario <@{id}> ha sido renombrado de '{oldName}' a '{newName}'.",
             "ru": "Пользователь <@{id}> был переименован '{oldName}' на '{newName}'.",
-            "it": "L'utente <@{id}> è stato rinominato da '{oldName}' a '{newName}'."
+            "it": "L'utente <@{id}> è stato rinominato da '{oldName}' a '{newName}'.",
+            "nl": "Gebruiker <@{id}> is hernoemd van '{oldName}' naar '{newName}'."
         }
     },
     "Cmd": {
@@ -2671,7 +2902,8 @@
             "fr": "Seuls les canaux de texte sont autorisés.",
             "es": "Solo se permiten canales de texto.",
             "ru": "Разрешены только текстовые каналы.",
-            "it": "Sono consentiti solo canali di testo."
+            "it": "Sono consentiti solo canali di testo.",
+            "nl": "Alleen tekstkanalen zijn toegestaan."
         },
         "CannotViewOrDeleteInChannel": {
             "description": "Bot cannot view or delete messages in this channel.",
@@ -2681,7 +2913,8 @@
             "fr": "Je ne suis pas autorisé à afficher ou supprimer les messages de cette chaîne !",
             "es": "¡No puedo ver ni borrar mensajes en este canal!",
             "ru": "Мне не разрешено просматривать или удалять сообщения на этом канале!",
-            "it": "Non sono autorizzato a visualizzare o eliminare i messaggi in questo canale!"
+            "it": "Non sono autorizzato a visualizzare o eliminare i messaggi in questo canale!",
+            "nl": "Ik mag geen berichten bekijken of verwijderen in dit kanaal!"
         },
         "GetAvatarURL": {
             "description": "Returns the avatar url of the chosen user.",
@@ -2691,7 +2924,8 @@
             "fr": "l'URL d'avatar",
             "es": "URL de avatar",
             "ru": "URL аватара",
-            "it": "l'URL dell'avatar"
+            "it": "l'URL dell'avatar",
+            "nl": "Avatar-URL"
         },
         "UserID": {
             "description": "User ID",
@@ -2701,7 +2935,8 @@
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",
             "ru": "ID пользователя",
-            "it": "ID utente"
+            "it": "ID utente",
+            "nl": "Gebruikers-ID"
         },
         "CannotFindChannel": {
             "description": "Cannot find channel.",
@@ -2711,7 +2946,8 @@
             "fr": "Impossible de trouver la chaîne.",
             "es": "No se puede encontrar el canal.",
             "ru": "Не могу найти канал.",
-            "it": "Impossibile trovare il canale."
+            "it": "Impossibile trovare il canale.",
+            "nl": "Kan kanaal niet vinden."
         },
         "NoWebhookConfigured": {
             "description": "No webhook configured.",
@@ -2721,7 +2957,8 @@
             "fr": "Cette guilde n'a pas configuré de webhook pour les notifications internes.",
             "es": "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
             "ru": "У этой гильдии нет настроенного веб-перехватчика для внутренних уведомлений.",
-            "it": "Questa gilda non ha webhook per le notifiche interne configurate."
+            "it": "Questa gilda non ha webhook per le notifiche interne configurate.",
+            "nl": "Dit gilde heeft geen webhook geconfigureerd voor interne meldingen."
         },
         "Cleanup": {
             "description": "Cleanup response",
@@ -2735,7 +2972,8 @@
             "fr": "{count} messages supprimés dans {channel.Mention}.",
             "es": "Se eliminaron {count} mensajes en {channel.Mention}.",
             "ru": "Удалено {count} сообщений в {channel.Mention}.",
-            "it": "Eliminati {count} messaggi in {channel.Mention}."
+            "it": "Eliminati {count} messaggi in {channel.Mention}.",
+            "nl": "{count} berichten verwijderd in {channel.Mention}."
         },
         "Antiraid": {
             "description": "antiraid response",
@@ -2748,7 +2986,8 @@
             "fr": "{count} messages supprimés.",
             "es": "Se eliminaron {count} mensajes.",
             "ru": "Удалено {count} сообщений.",
-            "it": "Eliminati {count} messaggi."
+            "it": "Eliminati {count} messaggi.",
+            "nl": "{count} berichten verwijderd."
         },
         "Features": {
             "KickPermission": {
@@ -2760,7 +2999,8 @@
                     "fr": "Autorisation de kick accordée.",
                     "es": "Permiso de patada concedido.",
                     "ru": "Разрешение на удар предоставлено.",
-                    "it": "Autorizzazione calci concessa."
+                    "it": "Autorizzazione calci concessa.",
+                    "nl": "Kick-toestemming verleend."
                 },
                 "NotGranted": {
                     "description": "Kick permission not granted.",
@@ -2770,7 +3010,8 @@
                     "fr": "L'autorisation de kick n'est pas accordée.",
                     "es": "Permiso de patada no concedido.",
                     "ru": "Разрешение на удар не предоставлено.",
-                    "it": "Autorizzazione calcio non concessa."
+                    "it": "Autorizzazione calcio non concessa.",
+                    "nl": "Kick-toestemming niet verleend."
                 }
             },
             "BanPermission": {
@@ -2782,7 +3023,8 @@
                     "fr": "Autorisation d'interdiction accordée.",
                     "es": "Prohibición concedida.",
                     "ru": "Получено разрешение на запрет.",
-                    "it": "Autorizzazione al divieto concessa."
+                    "it": "Autorizzazione al divieto concessa.",
+                    "nl": "Ban-toestemming verleend."
                 },
                 "NotGranted": {
                     "description": "Ban permission not granted.",
@@ -2792,7 +3034,8 @@
                     "fr": "Autorisation d'interdiction non accordée.",
                     "es": "Prohibir permiso no concedido.",
                     "ru": "Разрешение на запрет не предоставлено.",
-                    "it": "Autorizzazione al divieto non concessa."
+                    "it": "Autorizzazione al divieto non concessa.",
+                    "nl": "Ban-toestemming niet verleend."
                 }
             },
             "ManageRolePermission": {
@@ -2804,7 +3047,8 @@
                     "fr": "Gérer l'autorisation de rôle accordée.",
                     "es": "Administrar el permiso de función otorgado.",
                     "ru": "Разрешение на управление ролью предоставлено.",
-                    "it": "Gestire l'autorizzazione del ruolo concessa."
+                    "it": "Gestire l'autorizzazione del ruolo concessa.",
+                    "nl": "Toestemming voor rol beheren verleend."
                 },
                 "NotGranted": {
                     "description": "Manage role permission not granted.",
@@ -2814,7 +3058,8 @@
                     "fr": "L'autorisation de gestion du rôle n'est pas accordée.",
                     "es": "Administrar el permiso de función no concedido.",
                     "ru": "Не предоставлено разрешение на управление ролью.",
-                    "it": "Autorizzazione di gestione del ruolo non concessa."
+                    "it": "Autorizzazione di gestione del ruolo non concessa.",
+                    "nl": "Toestemming voor rol beheren niet verleend."
                 }
             },
             "MutedRole": {
@@ -2826,7 +3071,8 @@
                     "fr": "Rôle muet défini.",
                     "es": "Función silenciada definida.",
                     "ru": "Определена приглушенная роль.",
-                    "it": "Ruolo disattivato definito."
+                    "it": "Ruolo disattivato definito.",
+                    "nl": "Gedempte rol gedefinieerd."
                 },
                 "DefinedButTooHigh": {
                     "description": "Muted role defined but too high in role hierarchy.",
@@ -2836,7 +3082,8 @@
                     "fr": "Rôle en sourdine défini mais trop élevé dans la hiérarchie des rôles.",
                     "es": "Función silenciada definida pero demasiado alta en la jerarquía de funciones.",
                     "ru": "Определена приглушенная роль, но иерархия ролей слишком высока.",
-                    "it": "Ruolo disattivato definito ma troppo alto nella gerarchia dei ruoli."
+                    "it": "Ruolo disattivato definito ma troppo alto nella gerarchia dei ruoli.",
+                    "nl": "Gedempte rol gedefinieerd maar te hoog in rollenhiërarchie."
                 },
                 "DefinedButInvalid": {
                     "description": "Muted role defined but invalid.",
@@ -2846,7 +3093,8 @@
                     "fr": "Rôle muet défini mais invalide.",
                     "es": "Función silenciada definida pero no válida.",
                     "ru": "Роль без звука определена, но недействительна.",
-                    "it": "Ruolo disattivato definito ma non valido."
+                    "it": "Ruolo disattivato definito ma non valido.",
+                    "nl": "Gedempte rol gedefinieerd maar ongeldig."
                 },
                 "Undefined": {
                     "description": "Muted role undefined.",
@@ -2856,7 +3104,8 @@
                     "fr": "Rôle en sourdine non défini.",
                     "es": "Rol silenciado indefinido.",
                     "ru": "Отключенная роль не определена.",
-                    "it": "Ruolo disattivato non definito."
+                    "it": "Ruolo disattivato non definito.",
+                    "nl": "Gedempte rol niet gedefinieerd."
                 }
             },
             "PunishmentExecution": {
@@ -2867,7 +3116,8 @@
                 "fr": "Exécution de la peine",
                 "es": "Ejecución del castigo",
                 "ru": "Казнь",
-                "it": "Esecuzione della punizione"
+                "it": "Esecuzione della punizione",
+                "nl": "Uitvoering van de straf"
             },
             "PunishmentExecutionDescription": {
                 "description": "Punishment execution description",
@@ -2877,7 +3127,8 @@
                 "fr": "Laissez MASZ gérer les punitions (par exemple, tempbans, muets, etc.).",
                 "es": "Deje que MASZ maneje los castigos (por ejemplo, tempbans, mudos, etc.).",
                 "ru": "Позвольте MASZ заниматься наказаниями (например, временным запретом, отключением звука и т. Д.).",
-                "it": "Lascia che MASZ gestisca le punizioni (ad esempio tempban, mute, ecc.)."
+                "it": "Lascia che MASZ gestisca le punizioni (ad esempio tempban, mute, ecc.).",
+                "nl": "Laat MASZ straffen afhandelen (bijv. Tempbans, mutes, etc.)."
             },
             "UnbanRequests": {
                 "description": "Unban requests",
@@ -2887,7 +3138,8 @@
                 "fr": "Annuler l'interdiction des demandes",
                 "es": "Solicitudes de anulación de la prohibición",
                 "ru": "Запросы на разблокировку",
-                "it": "Riattiva richieste"
+                "it": "Riattiva richieste",
+                "nl": "Unban verzoeken"
             },
             "UnbanRequestsDescription": {
                 "Granted": {
@@ -2898,17 +3150,19 @@
                     "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.",
                     "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
                     "ru": "Позволяет заблокированным участникам просматривать свои дела и комментировать их для запросов на разблокировку.",
-                    "it": "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban."
+                    "it": "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban.",
+                    "nl": "Laat gebande gerbruikers toe om hun zaken te zien en erop te reageren voor unban verzoeken."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
                     "de": "Erlaubt Gebannten MASZ aufzurufen, sich ihre Fälle anzusehen und diese sie zu kommentieren.\nErteile MASZ die Bann-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt ausgsperrtn MASZ aufzurufa, sich ernane Fälle ozumschaun und de zum kommentian. \nErteil dem Bot die Ban-Berechtigung, um de Funktion nutza zu kenna.",
-                    "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
-                    "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\\nOtorga a este bot el permiso de prohibición para usar esta función.",
-                    "ru": "Позволяет заблокированным участникам просматривать свои дела и комментировать их для запросов на разблокировку.\\nПредоставьте этому боту разрешение на использование этой функции.",
-                    "it": "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban.\\nConcedi a questo bot il permesso di ban per utilizzare questa funzione."
+                    "fr": "Permet aux membres bannis de voir leurs cas et de les commenter pour les demandes de déban.\nAccordez à ce bot l'autorisation d'interdire l'utilisation de cette fonctionnalité.",
+                    "es": "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\nOtorga a este bot el permiso de prohibición para usar esta función.",
+                    "ru": "Позволяет заблокированным участникам просматривать свои дела и комментировать их для запросов на разблокировку.\nПредоставьте этому боту разрешение на использование этой функции.",
+                    "it": "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban.\nConcedi a questo bot il permesso di ban per utilizzare questa funzione.",
+                    "nl": "Laat gebande gerbruikers toe om hun zaken te zien en erop te reageren voor unban verzoeken.\nGeef deze bot toestemming om deze functie te gebruiken."
                 }
             },
             "ReportCommand": {
@@ -2919,7 +3173,8 @@
                 "fr": "Commande de rapport",
                 "es": "Comando de informe",
                 "ru": "Команда отчета",
-                "it": "Comando di rapporto"
+                "it": "Comando di rapporto",
+                "nl": "Opdracht rapporteren"
             },
             "ReportCommandDescription": {
                 "Granted": {
@@ -2930,17 +3185,19 @@
                     "fr": "Permet aux membres de signaler des messages.",
                     "es": "Permite a los miembros informar mensajes.",
                     "ru": "Позволяет участникам сообщать о сообщениях.",
-                    "it": "Consente ai membri di segnalare i messaggi."
+                    "it": "Consente ai membri di segnalare i messaggi.",
+                    "nl": "Geef toestemming aan gebruikers om berichten te rapporteren."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows members to report messages.\nDefine a internal staff webhook to use this feature.",
                     "de": "Erlaubt Mitgliedern, Nachrichten zu melden.\nDefiniere einen internen Webhook, um diese Funktion zu nutzen.",
                     "at": "Erlaub Mitglieda, Nochrichtn zum mödn. \nDefinia an internen Webook, um de Funktion nutzn zum kennan.",
-                    "fr": "Permet aux membres de signaler des messages.\\nDéfinissez un webhook interne pour le personnel pour utiliser cette fonctionnalité.",
-                    "es": "Permite a los miembros informar mensajes.\\nDefina un webhook de personal interno para utilizar esta función.",
-                    "ru": "Позволяет участникам сообщать о сообщениях.\\nОпределите внутренний веб-перехватчик персонала, чтобы использовать эту функцию.",
-                    "it": "Consente ai membri di segnalare i messaggi.\\nDefinire un webhook personale interno per utilizzare questa funzione."
+                    "fr": "Permet aux membres de signaler des messages.\nDéfinissez un webhook interne pour le personnel pour utiliser cette fonctionnalité.",
+                    "es": "Permite a los miembros informar mensajes.\nDefina un webhook de personal interno para utilizar esta función.",
+                    "ru": "Позволяет участникам сообщать о сообщениях.\nОпределите внутренний веб-перехватчик персонала, чтобы использовать эту функцию.",
+                    "it": "Consente ai membri di segnalare i messaggi.\nDefinire un webhook personale interno per utilizzare questa funzione.",
+                    "nl": "Geef toestemming aan gebruikers om berichten te rapporteren.\nDefinieer een interne personeelswebhook om deze functie te gebruiken."
                 }
             },
             "InviteTracking": {
@@ -2951,7 +3208,8 @@
                 "fr": "Suivi des invitations",
                 "es": "Seguimiento de invitaciones",
                 "ru": "Отслеживание приглашений",
-                "it": "Invita il monitoraggio"
+                "it": "Invita il monitoraggio",
+                "nl": "Uitnodiging volgen"
             },
             "InviteTrackingDescription": {
                 "Granted": {
@@ -2962,17 +3220,19 @@
                     "fr": "Permet MASZ de suivre les nouveaux membres invite utilisent.",
                     "es": "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.",
                     "ru": "Позволяет MASZ отслеживать приглашения, которые используют новые участники.",
-                    "it": "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri."
+                    "it": "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri.",
+                    "nl": "Hiermee kan MASZ de uitnodigingen bijhouden die nieuwe leden gebruiken."
                 },
                 "NotGranted": {
                     "description": "Unban requests description",
                     "en": "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
                     "de": "Erlaubt MASZ, die Einladungen neuer Mitglieder zu verfolgen.\nErteile diesem Bot die Server-Verwalten-Berechtigung, um diese Funktion zu nutzen.",
                     "at": "Erlaubt MASZ, de Eiladungen vo neichn Mitglieda zu verfoign.\nErteil dem Bot die Verwoitn-Gilden-Berechtigung, um de Funktion nutzn zu kenna.",
-                    "fr": "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
-                    "es": "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
-                    "ru": "Позволяет MASZ отслеживать приглашения, которые используют новые участники.\\nПредоставьте этому боту разрешение на управление гильдией на использование этой функции.",
-                    "it": "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri.\\nConcedi a questo bot il permesso di gestione della gilda per utilizzare questa funzione."
+                    "fr": "Permet à MASZ de suivre les invitations que les nouveaux membres utilisent.\nAccordez à ce bot l'autorisation de gestion de guilde pour utiliser cette fonctionnalité.",
+                    "es": "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
+                    "ru": "Позволяет MASZ отслеживать приглашения, которые используют новые участники.\nПредоставьте этому боту разрешение на управление гильдией на использование этой функции.",
+                    "it": "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri.\nConcedi a questo bot il permesso di gestione della gilda per utilizzare questa funzione.",
+                    "nl": "Hiermee kan MASZ de uitnodigingen bijhouden die nieuwe leden gebruiken.\nGeef deze bot de machtiging gilde beheren om deze functie te gebruiken."
                 }
             },
             "SupportAllFeatures": {
@@ -2983,7 +3243,8 @@
                 "fr": "Votre bot sur cette guilde est correctement configuré.",
                 "es": "Tu bot en este gremio está configurado correctamente.",
                 "ru": "Ваш бот в этой гильдии настроен правильно.",
-                "it": "Il tuo bot in questa gilda è configurato correttamente."
+                "it": "Il tuo bot in questa gilda è configurato correttamente.",
+                "nl": "Jouw bot op deze gilde is correct geconfigureerd."
             },
             "SupportAllFeaturesDesc": {
                 "description": "Support all features description",
@@ -2993,7 +3254,8 @@
                 "fr": "Toutes les fonctionnalités de MASZ peuvent être utilisées.",
                 "es": "Se pueden utilizar todas las funciones de MASZ.",
                 "ru": "Можно использовать все возможности MASZ.",
-                "it": "Tutte le funzionalità di MASZ possono essere utilizzate."
+                "it": "Tutte le funzionalità di MASZ possono essere utilizzate.",
+                "nl": "Alle functies van MASZ kunnen gebruikt worden."
             },
             "MissingFeatures": {
                 "description": "Missing features",
@@ -3003,7 +3265,8 @@
                 "fr": "Il y a des fonctionnalités de MASZ que vous ne pouvez pas utiliser pour le moment.",
                 "es": "Hay funciones de MASZ que no puede utilizar en este momento.",
                 "ru": "Есть функции MASZ, которые вы не можете использовать прямо сейчас.",
-                "it": "Ci sono funzionalità di MASZ che non puoi usare in questo momento."
+                "it": "Ci sono funzionalità di MASZ che non puoi usare in questo momento.",
+                "nl": "Er zijn functies van MASZ die u momenteel niet kunt gebruiken."
             }
         },
         "Invite": {
@@ -3011,10 +3274,11 @@
             "en": "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
             "de": "Du musst deine eigene Instanz von MASZ auf deinem Server oder PC hosten.\nSchau dir https://github.com/zaanposni/discord-masz#hosting an",
             "at": "Du muast dei eignane Inszanz vo MASZ auf deim Serva oda PC hosn.\nSchau da https://github.com/zaanposni/discord-masz#hosting o",
-            "fr": "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\\nCommander https://github.com/zaanposni/discord-masz#hosting",
-            "es": "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\\nPagar https://github.com/zaanposni/discord-masz#hosting",
-            "ru": "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\\nОформить заказ https://github.com/zaanposni/discord-masz#hosting",
-            "it": "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\\nAcquista https://github.com/zaanposni/discord-masz#hosting"
+            "fr": "Vous devrez héberger votre propre instance de MASZ sur votre serveur ou votre PC.\nCommander https://github.com/zaanposni/discord-masz#hosting",
+            "es": "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\nPagar https://github.com/zaanposni/discord-masz#hosting",
+            "ru": "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\nОформить заказ https://github.com/zaanposni/discord-masz#hosting",
+            "it": "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\nAcquista https://github.com/zaanposni/discord-masz#hosting",
+            "nl": "U zult uw eigen instantie van MASZ op uw server of pc moeten hosten.\nBekijk https://github.com/zaanposni/discord-masz#hosting"
         },
         "Punish": {
             "description": "Case created with link",
@@ -3028,7 +3292,8 @@
             "fr": "Cas `#{caseId}` créé : {caseLink}",
             "es": "Caso `# {caseId}` creado: {caseLink}",
             "ru": "Обращение `# {caseId}` создано: {caseLink}",
-            "it": "Caso `#{caseId}` creato: {caseLink}"
+            "it": "Caso `#{caseId}` creato: {caseLink}",
+            "nl": "Zaak `#{caseId}` aangemaakt: {caseLink}"
         },
         "Register": {
             "description": "Register a new guild",
@@ -3041,7 +3306,8 @@
             "fr": "Un administrateur de site peut enregistrer une guilde à l'adresse : {url}",
             "es": "Un administrador de sitio puede registrar un gremio en: {url}",
             "ru": "Администратор сайта может зарегистрировать гильдию по адресу: {url}",
-            "it": "Un amministratore del sito può registrare una gilda su: {url}"
+            "it": "Un amministratore del sito può registrare una gilda su: {url}",
+            "nl": "Een sitebeheerder kan een gilde registreren op: {url}"
         },
         "Report": {
             "Failed": {
@@ -3052,7 +3318,8 @@
                 "fr": "Échec de l'envoi de la notification interne aux modérateurs pour la commande de rapport.",
                 "es": "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
                 "ru": "Не удалось отправить внутреннее уведомление модераторам для команды отчета.",
-                "it": "Impossibile inviare una notifica interna ai moderatori per il comando di segnalazione."
+                "it": "Impossibile inviare una notifica interna ai moderatori per il comando di segnalazione.",
+                "nl": "Kan geen interne melding naar moderators sturen voor rapportopdracht."
             },
             "Sent": {
                 "description": "Report sent",
@@ -3062,7 +3329,8 @@
                 "fr": "Rapport envoyé.",
                 "es": "Reporte enviado.",
                 "ru": "Отчет отправлен.",
-                "it": "Rapporto inviato."
+                "it": "Rapporto inviato.",
+                "nl": "Rapport verzonden"
             },
             "Content": {
                 "description": "Report content",
@@ -3074,10 +3342,11 @@
                 "en": "{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "de": "{user.Mention} meldete eine Nachricht von {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "at": "{user.Mention} mödet a Nochricht vo {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
-                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {channel.Mention}.\\n{message.GetJumpUrl()}",
-                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {channel.Mention}.\\n{message.GetJumpUrl()}",
-                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {channel.Mention}.\\n{message.GetJumpUrl()}",
-                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {channel.Mention}.\\n{message.GetJumpUrl()}"
+                "fr": "{user.Mention} a signalé un message de {message.Author.Mention} dans {channel.Mention}.\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} informó un mensaje de {message.Author.Mention} en {channel.Mention}.\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} сообщил о сообщении от {message.Author.Mention} в {channel.Mention}.\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "nl": "{user.Mention} heeft een bericht van {message.Author.Mention} in {channel.Mention} gerapporteerd.\n{message.GetJumpUrl()}"
             }
         },
         "Say": {
@@ -3089,7 +3358,8 @@
                 "fr": "Échec de l'envoi du message",
                 "es": "No se pudo enviar el mensaje",
                 "ru": "Не удалось отправить сообщение",
-                "it": "Impossibile inviare il messaggio"
+                "it": "Impossibile inviare il messaggio",
+                "nl": "Bericht versturen mislukt"
             },
             "Sent": {
                 "description": "Send message",
@@ -3099,7 +3369,8 @@
                 "fr": "Message envoyé.",
                 "es": "Mensaje enviado.",
                 "ru": "Сообщение отправлено.",
-                "it": "Messaggio inviato."
+                "it": "Messaggio inviato.",
+                "nl": "Bericht verstuurd."
             },
             "SentMod": {
                 "description": "internal notification on say command",
@@ -3111,10 +3382,11 @@
                 "en": "{user.Mention} used the say command in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "de": "{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
                 "at": "{user.Mention} vawendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
-                "fr": "{user.Mention} a utilisé la commande « dire » dans{channel.Mention}.\\n{message.GetJumpUrl()}",
-                "es": "{user.Mention} usó el comando «decir» en {channel.Mention}.\\n{message.GetJumpUrl()}",
-                "ru": "{user.Mention} использовал команду «сказать» в {channel.Mention}.\\n{message.GetJumpUrl()}",
-                "it": "{user.Mention} ha usato il comando \\\"dire\\\" in {channel.Mention}.\\n{message.GetJumpUrl()}"
+                "fr": "{user.Mention} a utilisé la commande  dans{channel.Mention}.\n{message.GetJumpUrl()}",
+                "es": "{user.Mention} usó el comando  en {channel.Mention}.\n{message.GetJumpUrl()}",
+                "ru": "{user.Mention} использовал команду  в {channel.Mention}.\n{message.GetJumpUrl()}",
+                "it": "{user.Mention} ha usato il comando  in {channel.Mention}.\n{message.GetJumpUrl()}",
+                "nl": "{user.Mention} heeft het zeg commando gebruikt in {channel.Mention}.\n{message.GetJumpUrl()}"
             }
         },
         "Track": {
@@ -3126,7 +3398,8 @@
                 "fr": "L'invitation n'est pas de cette guilde.",
                 "es": "La invitación no es de este gremio.",
                 "ru": "Приглашение не из этой гильдии.",
-                "it": "L'invito non è di questa gilda."
+                "it": "L'invito non è di questa gilda.",
+                "nl": "De uitnodiging is niet van deze gilde."
             },
             "CannotFindInvite": {
                 "description": "Cannot find invite",
@@ -3136,7 +3409,8 @@
                 "fr": "Impossible de trouver l'invitation dans la base de données ou dans cette guilde.",
                 "es": "No se pudo encontrar la invitación en la base de datos o en este gremio.",
                 "ru": "Не удалось найти инвайт в базе данных или в этой гильдии.",
-                "it": "Impossibile trovare l'invito nel database o in questa gilda."
+                "it": "Impossibile trovare l'invito nel database o in questa gilda.",
+                "nl": "Kon uitnodiging niet vinden in de database of op deze gilde."
             },
             "FailedToFetchInvite": {
                 "description": "Failed to fetch invite",
@@ -3146,7 +3420,8 @@
                 "fr": "Échec de la récupération de l'invitation.",
                 "es": "No se pudo recuperar la invitación.",
                 "ru": "Не удалось получить приглашение.",
-                "it": "Impossibile recuperare l'invito."
+                "it": "Impossibile recuperare l'invito.",
+                "nl": "Kon de uitnodiging niet ophalen."
             },
             "CreatedAt": {
                 "description": "Created at",
@@ -3160,7 +3435,8 @@
                 "fr": "`{inviteCode}` créé à {createdAt.ToDiscordTS()}.",
                 "es": "`{inviteCode}` creado en {createdAt.ToDiscordTS ()}.",
                 "ru": "`{inviteCode}` создан в {createdAt.ToDiscordTS ()}.",
-                "it": "`{inviteCode}` creato su {createdAt.ToDiscordTS()}."
+                "it": "`{inviteCode}` creato su {createdAt.ToDiscordTS()}.",
+                "nl": "`{inviteCode}` gemaakt op {createdAt.ToDiscordTS()}."
             },
             "CreatedBy": {
                 "description": "Created by",
@@ -3174,7 +3450,8 @@
                 "fr": "`{inviteCode}` créé par {createdBy.Mention}.",
                 "es": "`{inviteCode}` creado por {createdBy.Mention}.",
                 "ru": "`{inviteCode}` создан {createdBy.Mention}.",
-                "it": "`{inviteCode}` creato da {createdBy.Mention}."
+                "it": "`{inviteCode}` creato da {createdBy.Mention}.",
+                "nl": "`{inviteCode}` gemaakt door {createdBy.Mention}."
             },
             "CreatedByAt": {
                 "description": "Created by",
@@ -3189,7 +3466,8 @@
                 "fr": "`{inviteCode}` créé par {createdBy.Mention} à {createdAt.ToDiscordTS()}.",
                 "es": "`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS ()}.",
                 "ru": "`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS ()}.",
-                "it": "`{inviteCode}` creato da {createdBy.Mention} su {createdAt.ToDiscordTS()}."
+                "it": "`{inviteCode}` creato da {createdBy.Mention} su {createdAt.ToDiscordTS()}.",
+                "nl": "{inviteCode} gecreëerd door {createdBy.Mention} op {createdAt.ToDiscordTS()}."
             },
             "NotTrackedYet": {
                 "description": "Not tracked yet",
@@ -3199,7 +3477,8 @@
                 "fr": "Cette invitation n'a pas encore été suivie par MASZ.",
                 "es": "MASZ aún no ha realizado el seguimiento de esta invitación.",
                 "ru": "Это приглашение еще не отслежено MASZ.",
-                "it": "Questo invito non è stato ancora monitorato da MASZ."
+                "it": "Questo invito non è stato ancora monitorato da MASZ.",
+                "nl": "Deze uitnodiging is nog niet gevolgd door MASZ."
             },
             "UsedBy": {
                 "description": "Used by",
@@ -3212,7 +3491,8 @@
                 "fr": "Utilisé par [{count}]",
                 "es": "Usado por [{count}]",
                 "ru": "Используется [{count}]",
-                "it": "Utilizzato da [{count}]"
+                "it": "Utilizzato da [{count}]",
+                "nl": "Gebruikt door [{count}]"
             }
         },
         "View": {
@@ -3224,7 +3504,8 @@
                 "fr": "Veuillez spécifier un identifiant de guilde valide.",
                 "es": "Por favor, especifique un guildid válido.",
                 "ru": "Укажите действующего гильдида.",
-                "it": "Si prega di specificare un ID gilda valido."
+                "it": "Si prega di specificare un ID gilda valido.",
+                "nl": "Gelieve een geldige guildid te specifiëren."
             },
             "NotAllowedToView": {
                 "description": "Not allowed to view",
@@ -3234,7 +3515,8 @@
                 "fr": "Vous n'êtes pas autorisé à voir ce cas.",
                 "es": "No se le permite ver este caso.",
                 "ru": "Вам не разрешено просматривать это дело.",
-                "it": "Non sei autorizzato a visualizzare questo caso."
+                "it": "Non sei autorizzato a visualizzare questo caso.",
+                "nl": "U bent niet gemachtigd om deze zaak te bekijken."
             }
         },
         "Whois": {
@@ -3249,7 +3531,8 @@
                 "fr": "Invitation utilisée `{inviteCode}`.",
                 "es": "Invitación usada `{inviteCode}`.",
                 "ru": "Использовал инвайт `{inviteCode}`.",
-                "it": "Invito usato `{inviteCode}`."
+                "it": "Invito usato `{inviteCode}`.",
+                "nl": "Gebruikte uitnodiging `{inviteCode}`."
             },
             "InviteBy": {
                 "description": "Invite by",
@@ -3262,7 +3545,8 @@
                 "fr": "Par <@{user}>.",
                 "es": "Por <@{user}>.",
                 "ru": "Автор <@{user}>.",
-                "it": "Da <@{user}>."
+                "it": "Da <@{user}>.",
+                "nl": "Door <@{user}>."
             },
             "NoCases": {
                 "description": "No cases",
@@ -3272,7 +3556,8 @@
                 "fr": "Il n'y a pas de cas pour cet utilisateur.",
                 "es": "No hay casos para este usuario.",
                 "ru": "Для этого пользователя нет случаев.",
-                "it": "Non ci sono casi per questo utente."
+                "it": "Non ci sono casi per questo utente.",
+                "nl": "Er zijn geen zaken voor deze gebruiker."
             }
         },
         "Undo": {
@@ -3285,7 +3570,8 @@
                     "fr": "Résultat",
                     "es": "Resultado",
                     "ru": "Результат",
-                    "it": "Risultato"
+                    "it": "Risultato",
+                    "nl": "Resultaat"
                 },
                 "Waiting": {
                     "description": "Waiting for approval",
@@ -3295,7 +3581,8 @@
                     "fr": "En attente d'approbation.",
                     "es": "A la espera de la aprobación.",
                     "ru": "Ожидание подтверждения.",
-                    "it": "In attesa di approvazione."
+                    "it": "In attesa di approvazione.",
+                    "nl": "Wachten op goedkeuring."
                 },
                 "Timedout": {
                     "description": "Timed out",
@@ -3305,7 +3592,8 @@
                     "fr": "Fin du temps",
                     "es": "Caducado",
                     "ru": "Время вышло",
-                    "it": "Fuori tempo"
+                    "it": "Fuori tempo",
+                    "nl": "Tijd verstreken."
                 },
                 "Canceled": {
                     "description": "cancel button to disapprove",
@@ -3315,7 +3603,8 @@
                     "fr": "Annulé",
                     "es": "Cancelado",
                     "ru": "Отменено",
-                    "it": "Annullato"
+                    "it": "Annullato",
+                    "nl": "Geannuleerd."
                 }
             },
             "PublicNotification": {
@@ -3327,7 +3616,8 @@
                     "fr": "Avis public",
                     "es": "Notificación pública",
                     "ru": "Публичное уведомление",
-                    "it": "Notifica pubblica"
+                    "it": "Notifica pubblica",
+                    "nl": "Openbare kennisgeving."
                 },
                 "Description": {
                     "description": "Public notification description",
@@ -3337,7 +3627,8 @@
                     "fr": "Envoyer une notification publique ?",
                     "es": "¿Enviar una notificación pública?",
                     "ru": "Отправить публичное уведомление?",
-                    "it": "Inviare una notifica pubblica?"
+                    "it": "Inviare una notifica pubblica?",
+                    "nl": "Een openbare kennisgeving versturen?"
                 }
             },
             "Buttons": {
@@ -3349,7 +3640,8 @@
                     "fr": "Annuler",
                     "es": "Cancelar",
                     "ru": "Отмена",
-                    "it": "Annulla"
+                    "it": "Annulla",
+                    "nl": "Annuleer"
                 },
                 "PublicNotification": {
                     "description": "public notification button",
@@ -3359,7 +3651,8 @@
                     "fr": "Avis public",
                     "es": "Notificación pública",
                     "ru": "Публичное уведомление",
-                    "it": "Notifica pubblica"
+                    "it": "Notifica pubblica",
+                    "nl": "Openbare kennisgeving."
                 },
                 "NoPublicNotification": {
                     "description": "no public notification button",
@@ -3369,7 +3662,8 @@
                     "fr": "Aucune notification publique",
                     "es": "Sin notificación pública",
                     "ru": "Нет публичного уведомления",
-                    "it": "Nessuna notifica pubblica"
+                    "it": "Nessuna notifica pubblica",
+                    "nl": "Geen openbare notificatie"
                 }
             },
             "CreatedAt": {
@@ -3380,7 +3674,8 @@
                 "fr": "Créé à.",
                 "es": "Creado en.",
                 "ru": "Создано в.",
-                "it": "Creato a."
+                "it": "Creato a.",
+                "nl": "Gemaakt bij."
             },
             "NoCases": {
                 "description": "No active modcases have been found.",
@@ -3390,7 +3685,8 @@
                 "fr": "Aucun modcase actif n'a été trouvé.",
                 "es": "No se han encontrado casos de modulación activos.",
                 "ru": "Активных модкейсов не обнаружено.",
-                "it": "Nessun modcase attivo è stato trovato."
+                "it": "Nessun modcase attivo è stato trovato.",
+                "nl": "Er zijn geen actieve moderatiezaken gevonden."
             },
             "Unmute": {
                 "FoundXCases": {
@@ -3404,7 +3700,8 @@
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour réactiver le son de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
                     "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы включить микрофон для пользователя?",
-                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riattivare l'audio dell'utente?"
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riattivare l'audio dell'utente?",
+                    "nl": "{caseCount} actieve zaken gevonden. Wil je ze allemaal deactiveren of verwijderen om de gebruiker te dempen?"
                 },
                 "Result": {
                     "Deleted": {
@@ -3415,7 +3712,8 @@
                         "fr": "Muets supprimés",
                         "es": "Silenciados eliminados",
                         "ru": "Без звука удалено",
-                        "it": "Disattiva audio cancellato"
+                        "it": "Disattiva audio cancellato",
+                        "nl": "Dempen verwijderd"
                     },
                     "Deactivated": {
                         "description": "someone approved",
@@ -3425,7 +3723,8 @@
                         "fr": "Muet désactivé",
                         "es": "Silencios desactivados",
                         "ru": "Отключение звука отключено",
-                        "it": "Mute disattivate"
+                        "it": "Mute disattivate",
+                        "nl": "Dempen gedeactiveerd."
                     }
                 },
                 "Buttons": {
@@ -3437,7 +3736,8 @@
                         "fr": "Supprimer les sourdines",
                         "es": "Eliminar silencios",
                         "ru": "Удалить отключение звука",
-                        "it": "Elimina mute"
+                        "it": "Elimina mute",
+                        "nl": "Dempen verwijderen."
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
@@ -3447,7 +3747,8 @@
                         "fr": "Désactiver les sourdines",
                         "es": "Silenciar desactivados",
                         "ru": "Отключить отключение звука",
-                        "it": "Disattiva sordina"
+                        "it": "Disattiva sordina",
+                        "nl": "Deactiveer Dempen"
                     }
                 }
             },
@@ -3463,7 +3764,8 @@
                     "fr": "`{caseCount}` cas actifs trouvés. Voulez-vous les désactiver ou les supprimer tous pour annuler l'interdiction de l'utilisateur ?",
                     "es": "Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
                     "ru": "Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы разблокировать пользователя?",
-                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riabilitare l'utente?"
+                    "it": "Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riabilitare l'utente?",
+                    "nl": "{caseCount} actieve zaken gevonden. Wil je ze allemaal deactiveren of verwijderen om de gebruiker te unbannen?"
                 },
                 "Result": {
                     "Deleted": {
@@ -3474,7 +3776,8 @@
                         "fr": "Interdictions supprimées",
                         "es": "Prohibiciones eliminadas",
                         "ru": "Баны удалены",
-                        "it": "Divieti cancellati"
+                        "it": "Divieti cancellati",
+                        "nl": "Bans verwijderd."
                     },
                     "Deactivated": {
                         "description": "someone approved",
@@ -3484,7 +3787,8 @@
                         "fr": "Interdictions désactivées",
                         "es": "Prohibiciones desactivadas",
                         "ru": "Баны отключены",
-                        "it": "Divieti disattivati"
+                        "it": "Divieti disattivati",
+                        "nl": "Bans gedeactiveerd"
                     }
                 },
                 "Buttons": {
@@ -3496,17 +3800,19 @@
                         "fr": "Supprimer les bannissements",
                         "es": "Eliminar prohibiciones",
                         "ru": "Удалить баны",
-                        "it": "Elimina ban"
+                        "it": "Elimina ban",
+                        "nl": "Verwijder bans"
                     },
                     "Deactivate": {
                         "description": "Unban button to approve",
-                        "en": "Deativate Bans",
+                        "en": "Deactivate Bans",
                         "de": "Banns deaktivieren",
                         "at": "Sperrungen deaktivian",
                         "fr": "Désactiver les interdictions",
                         "es": "Prohibiciones de desactivación",
                         "ru": "Деактивировать баны",
-                        "it": "Divieti di disattivazione"
+                        "it": "Divieti di disattivazione",
+                        "nl": "Bans deactiveren."
                     }
                 }
             }
@@ -3520,7 +3826,8 @@
                 "fr": "Statut",
                 "es": "Estado",
                 "ru": "Статус",
-                "it": "Stato"
+                "it": "Stato",
+                "nl": "Status"
             },
             "Bot": {
                 "description": "bot status",
@@ -3530,7 +3837,8 @@
                 "fr": "Bot",
                 "es": "Bot",
                 "ru": "Бот",
-                "it": "Bot"
+                "it": "Bot",
+                "nl": "Bot"
             },
             "Database": {
                 "description": "database status",
@@ -3540,7 +3848,8 @@
                 "fr": "Base de données",
                 "es": "Base de datos",
                 "ru": "База данных",
-                "it": "Database"
+                "it": "Database",
+                "nl": "Databank"
             },
             "InternalCache": {
                 "description": "internal cache status",
@@ -3550,7 +3859,8 @@
                 "fr": "Cache interne",
                 "es": "Cache interno",
                 "ru": "Внутренний кеш",
-                "it": "Cache interno"
+                "it": "Cache interno",
+                "nl": "Interne cache"
             },
             "CurrentlyLoggedIn": {
                 "description": "currently logged in users",
@@ -3560,7 +3870,8 @@
                 "fr": "Utilisateurs actuellement connectés",
                 "es": "Usuarios actualmente conectados",
                 "ru": "Пользователи, в настоящее время в системе",
-                "it": "Utenti attualmente collegati"
+                "it": "Utenti attualmente collegati",
+                "nl": "Momenteel ingelogd in gebruikers"
             },
             "LastDisconnectAt": {
                 "description": "last disconnect at",
@@ -3573,7 +3884,8 @@
                 "fr": "Dernière déconnexion à {time}.",
                 "es": "Última desconexión en {time}.",
                 "ru": "Последнее отключение: {time}.",
-                "it": "Ultima disconnessione a {time}."
+                "it": "Ultima disconnessione a {time}.",
+                "nl": "Laatste keer verbroken om {time}."
             }
         },
         "Evidence": {
@@ -3585,7 +3897,8 @@
                 "fr": "Impossible d'enregistrer la preuve.",
                 "es": "No se pudo registrar la evidencia.",
                 "ru": "Не удалось зарегистрировать доказательство.",
-                "it": "Impossibile registrare la prova."
+                "it": "Impossibile registrare la prova.",
+                "nl": "Kan geen bewijs registreren."
             },
             "Created": {
                 "description": "Response sent to moderator on evidence creation success",
@@ -3595,7 +3908,8 @@
                 "fr": "Preuve enregistrée avec succès",
                 "es": "Evidencia registrada con éxito",
                 "ru": "Доказательство успешно зарегистрировано",
-                "it": "Prova registrata con successo"
+                "it": "Prova registrata con successo",
+                "nl": "Bewijs succesvol geregistreerd."
             }
         }
     },
@@ -3608,7 +3922,8 @@
             "fr": "Canaliser",
             "es": "Canal",
             "ru": "Канал",
-            "it": "Canale"
+            "it": "Canale",
+            "nl": "Kanaal"
         },
         "ChannelBefore": {
             "description": "Channel before",
@@ -3618,7 +3933,8 @@
             "fr": "Canaliser avant",
             "es": "Canal antes",
             "ru": "Канал до",
-            "it": "Canale prima"
+            "it": "Canale prima",
+            "nl": "Kanaal voor"
         },
         "ChannelAfter": {
             "description": "Channel after",
@@ -3628,7 +3944,8 @@
             "fr": "Canaliser après",
             "es": "Canal después",
             "ru": "Канал после",
-            "it": "Canale dopo"
+            "it": "Canale dopo",
+            "nl": "Kanaal na"
         },
         "ChannelId": {
             "description": "ChannelId",
@@ -3638,7 +3955,8 @@
             "fr": "Identifiant de la chaine",
             "es": "Canal ID",
             "ru": "ChannelId",
-            "it": "Canale ID"
+            "it": "Canale ID",
+            "nl": "KanaalID"
         },
         "ID": {
             "description": "ID",
@@ -3648,7 +3966,8 @@
             "fr": "identifiant",
             "es": "IDENTIFICACIÓN",
             "ru": "Я БЫ",
-            "it": "ID"
+            "it": "ID",
+            "nl": "ID"
         },
         "Message": {
             "description": "Message",
@@ -3658,7 +3977,8 @@
             "fr": "Message",
             "es": "Mensaje",
             "ru": "Сообщение",
-            "it": "Messaggio"
+            "it": "Messaggio",
+            "nl": "Bericht"
         },
         "UserID": {
             "description": "User ID",
@@ -3668,7 +3988,8 @@
             "fr": "Identifiant d'utilisateur",
             "es": "User ID",
             "ru": "ID пользователя",
-            "it": "ID utente"
+            "it": "ID utente",
+            "nl": "Gebruikers-ID"
         },
         "User": {
             "description": "User",
@@ -3678,7 +3999,8 @@
             "fr": "Utilisateur",
             "es": "Usuario",
             "ru": "Пользователь",
-            "it": "Utente"
+            "it": "Utente",
+            "nl": "Gebruiker"
         },
         "Emote": {
             "description": "Emote",
@@ -3688,7 +4010,8 @@
             "fr": "Émoticône",
             "es": "Emoción",
             "ru": "Эмоция",
-            "it": "Emote"
+            "it": "Emote",
+            "nl": "Emoticon"
         },
         "Author": {
             "description": "Author",
@@ -3698,7 +4021,8 @@
             "fr": "Auteur",
             "es": "Autor",
             "ru": "Автор",
-            "it": "Autore"
+            "it": "Autore",
+            "nl": "Auteur"
         },
         "Created": {
             "description": "Created",
@@ -3708,7 +4032,8 @@
             "fr": "Créé",
             "es": "Creado",
             "ru": "Созданный",
-            "it": "Creato"
+            "it": "Creato",
+            "nl": "Gemaakt"
         },
         "CouldNotFetch": {
             "description": "Could not fetch",
@@ -3718,7 +4043,8 @@
             "fr": "Impossible de récupérer.",
             "es": "No se pudo recuperar.",
             "ru": "Не удалось получить.",
-            "it": "Impossibile recuperare."
+            "it": "Impossibile recuperare.",
+            "nl": "Kon niet ophalen."
         },
         "NotFoundInCache": {
             "description": "NotFoundInCache",
@@ -3728,7 +4054,8 @@
             "fr": "Informations non mises en cache.",
             "es": "Información no almacenada en caché.",
             "ru": "Информация не кешируется.",
-            "it": "Informazioni non memorizzate nella cache."
+            "it": "Informazioni non memorizzate nella cache.",
+            "nl": "Informatie niet in cache."
         },
         "Old": {
             "description": "Old",
@@ -3738,7 +4065,8 @@
             "fr": "Ancien",
             "es": "Viejo",
             "ru": "Старый",
-            "it": "Vecchio"
+            "it": "Vecchio",
+            "nl": "Oud"
         },
         "New": {
             "description": "New",
@@ -3748,7 +4076,8 @@
             "fr": "Nouveau",
             "es": "Nuevo",
             "ru": "Новый",
-            "it": "Nuovo"
+            "it": "Nuovo",
+            "nl": "Nieuw"
         },
         "Empty": {
             "description": "Empty",
@@ -3758,7 +4087,8 @@
             "fr": "Vide",
             "es": "Vacío",
             "ru": "Пустой",
-            "it": "Vuoto"
+            "it": "Vuoto",
+            "nl": "Leeg"
         },
         "MessageSent": {
             "Title": {
@@ -3769,7 +4099,8 @@
                 "fr": "Message envoyé",
                 "es": "Mensaje enviado",
                 "ru": "Сообщение отправлено",
-                "it": "Messaggio inviato"
+                "it": "Messaggio inviato",
+                "nl": "Bericht Verzonden"
             },
             "Content": {
                 "description": "Content",
@@ -3779,7 +4110,8 @@
                 "fr": "Teneur",
                 "es": "Contenido",
                 "ru": "Содержание",
-                "it": "Contenuto"
+                "it": "Contenuto",
+                "nl": "Inhoud"
             }
         },
         "MessageUpdated": {
@@ -3791,7 +4123,8 @@
                 "fr": "Message modifié",
                 "es": "Mensaje editado",
                 "ru": "Сообщение отредактировано",
-                "it": "Messaggio modificato"
+                "it": "Messaggio modificato",
+                "nl": "Bericht bewerkt"
             },
             "ContentBefore": {
                 "description": "Content",
@@ -3801,7 +4134,8 @@
                 "fr": "Avant",
                 "es": "Antes",
                 "ru": "До",
-                "it": "Prima"
+                "it": "Prima",
+                "nl": "Voor"
             },
             "ContentNew": {
                 "description": "Content",
@@ -3811,7 +4145,8 @@
                 "fr": "Nouveau",
                 "es": "Nuevo",
                 "ru": "Новый",
-                "it": "Nuovo"
+                "it": "Nuovo",
+                "nl": "Nieuw"
             },
             "Pinned": {
                 "description": "Pinned",
@@ -3821,7 +4156,8 @@
                 "fr": "Épinglé",
                 "es": "Fijado",
                 "ru": "Закрепленный",
-                "it": "In evidenza"
+                "it": "In evidenza",
+                "nl": "Vastgezet"
             }
         },
         "MessageDeleted": {
@@ -3833,7 +4169,8 @@
                 "fr": "Message supprimé",
                 "es": "Mensaje borrado",
                 "ru": "Сообщение удалено",
-                "it": "Messaggio cancellato"
+                "it": "Messaggio cancellato",
+                "nl": "Bericht verwijderd"
             },
             "Content": {
                 "description": "Content",
@@ -3843,7 +4180,8 @@
                 "fr": "Teneur",
                 "es": "Contenido",
                 "ru": "Содержание",
-                "it": "Contenuto"
+                "it": "Contenuto",
+                "nl": "Inhoud"
             }
         },
         "BanAdded": {
@@ -3855,7 +4193,8 @@
                 "fr": "Utilisateur banni",
                 "es": "Usuario baneado",
                 "ru": "Пользователь забанен",
-                "it": "Utente bannato"
+                "it": "Utente bannato",
+                "nl": "Gebruiker verbannen"
             }
         },
         "BanRemoved": {
@@ -3867,7 +4206,8 @@
                 "fr": "Utilisateur non banni",
                 "es": "Usuario no prohibido",
                 "ru": "Пользователь разблокирован",
-                "it": "Utente non bannato"
+                "it": "Utente non bannato",
+                "nl": "Gebruiker unbanned"
             }
         },
         "InviteCreated": {
@@ -3879,7 +4219,8 @@
                 "fr": "Invitation créée",
                 "es": "Invitación creada",
                 "ru": "Приглашение создано",
-                "it": "Invito creato"
+                "it": "Invito creato",
+                "nl": "uitnodiging aangemaakt"
             },
             "URL": {
                 "description": "URL",
@@ -3889,7 +4230,8 @@
                 "fr": "URL",
                 "es": "URL",
                 "ru": "URL",
-                "it": "URL"
+                "it": "URL",
+                "nl": "URL"
             },
             "MaxUses": {
                 "description": "Max uses",
@@ -3899,7 +4241,8 @@
                 "fr": "Utilisations maximales",
                 "es": "Usos máximos",
                 "ru": "Макс использует",
-                "it": "Usi massimi"
+                "it": "Usi massimi",
+                "nl": "Maximale gebruiken"
             },
             "Expiration": {
                 "description": "Expiration",
@@ -3909,7 +4252,8 @@
                 "fr": "Date d'expiration",
                 "es": "Fecha de caducidad",
                 "ru": "Срок хранения",
-                "it": "Data di scadenza"
+                "it": "Data di scadenza",
+                "nl": "Vervaldatum"
             },
             "TargetChannel": {
                 "description": "Target channel",
@@ -3919,7 +4263,8 @@
                 "fr": "Canal cible",
                 "es": "Canal objetivo",
                 "ru": "Целевой канал",
-                "it": "Canale di destinazione"
+                "it": "Canale di destinazione",
+                "nl": "Doelkanaal"
             }
         },
         "InviteDeleted": {
@@ -3931,7 +4276,8 @@
                 "fr": "Invitation supprimée",
                 "es": "Invitación eliminada",
                 "ru": "Приглашение удалено",
-                "it": "Invito cancellato"
+                "it": "Invito cancellato",
+                "nl": "uitnodiging verwijderd"
             }
         },
         "MemberJoined": {
@@ -3943,7 +4289,8 @@
                 "fr": "Membre rejoint",
                 "es": "Miembro se unió",
                 "ru": "Участник присоединился",
-                "it": "Membro iscritto"
+                "it": "Membro iscritto",
+                "nl": "Lid is toegetreden"
             },
             "Registered": {
                 "description": "Registered",
@@ -3953,7 +4300,8 @@
                 "fr": "Inscrit",
                 "es": "Registrado",
                 "ru": "Зарегистрировано",
-                "it": "Registrato"
+                "it": "Registrato",
+                "nl": "Geregistreerd"
             }
         },
         "MemberRemoved": {
@@ -3965,7 +4313,8 @@
                 "fr": "Membre supprimé",
                 "es": "Miembro eliminado",
                 "ru": "Участник удален",
-                "it": "Membro rimosso"
+                "it": "Membro rimosso",
+                "nl": "Lid verwijderd"
             }
         },
         "ThreadCreated": {
@@ -3977,7 +4326,8 @@
                 "fr": "Fil créé",
                 "es": "Hilo creado",
                 "ru": "Тема создана",
-                "it": "Discussione creata"
+                "it": "Discussione creata",
+                "nl": "Thread gemaakt"
             },
             "Parent": {
                 "description": "Parent channel of this thread",
@@ -3987,7 +4337,8 @@
                 "fr": "Parent",
                 "es": "Padre",
                 "ru": "Родитель",
-                "it": "Genitore"
+                "it": "Genitore",
+                "nl": "Ouder"
             },
             "Creator": {
                 "description": "Creator",
@@ -3997,7 +4348,8 @@
                 "fr": "Créateur",
                 "es": "Creador",
                 "ru": "Создатель",
-                "it": "Creatore"
+                "it": "Creatore",
+                "nl": "Maker"
             }
         },
         "UsernameUpdated": {
@@ -4009,7 +4361,8 @@
                 "fr": "Nom d'utilisateur mis à jour",
                 "es": "Nombre de usuario actualizado",
                 "ru": "Имя пользователя обновлено",
-                "it": "Nome utente aggiornato"
+                "it": "Nome utente aggiornato",
+                "nl": "Gebruikersnaam bijgewerkt"
             }
         },
         "AvatarUpdated": {
@@ -4021,7 +4374,8 @@
                 "fr": "Avatar mis à jour",
                 "es": "Avatar actualizado",
                 "ru": "Аватар обновлен",
-                "it": "Avatar aggiornato"
+                "it": "Avatar aggiornato",
+                "nl": "Avatar bijgewerkt"
             }
         },
         "NicknameUpdated": {
@@ -4033,7 +4387,8 @@
                 "fr": "Pseudo mis à jour",
                 "es": "Se actualizó el apodo",
                 "ru": "Псевдоним обновлен",
-                "it": "Nickname aggiornato"
+                "it": "Nickname aggiornato",
+                "nl": "Bijnaam bijgewerkt"
             }
         },
         "RolesUpdated": {
@@ -4045,7 +4400,8 @@
                 "fr": "Rôles mis à jour",
                 "es": "Funciones actualizadas",
                 "ru": "Роли обновлены",
-                "it": "Ruoli aggiornati"
+                "it": "Ruoli aggiornati",
+                "nl": "Rollen bijgewerkt"
             },
             "Added": {
                 "description": "Added",
@@ -4055,7 +4411,8 @@
                 "fr": "Ajoutée",
                 "es": "Adicional",
                 "ru": "Добавлен",
-                "it": "Aggiunto"
+                "it": "Aggiunto",
+                "nl": "Toegevoegd"
             },
             "Removed": {
                 "description": "Removed",
@@ -4065,7 +4422,8 @@
                 "fr": "Supprimé",
                 "es": "Remoto",
                 "ru": "Удаленный",
-                "it": "RIMOSSO"
+                "it": "RIMOSSO",
+                "nl": "Verwijderd"
             }
         },
         "ReactionAdded": {
@@ -4077,7 +4435,8 @@
                 "fr": "Réaction ajoutée",
                 "es": "Reacción añadida",
                 "ru": "Реакция добавлена",
-                "it": "Risposta aggiunta"
+                "it": "Risposta aggiunta",
+                "nl": "Reactie toegevoegd"
             }
         },
         "ReactionRemoved": {
@@ -4089,7 +4448,8 @@
                 "fr": "Réaction supprimée",
                 "es": "Reacción eliminada",
                 "ru": "Реакция удалена",
-                "it": "Risposta rimossa"
+                "it": "Risposta rimossa",
+                "nl": "Reactie verwijderd"
             }
         },
         "VoiceJoined": {
@@ -4101,7 +4461,8 @@
                 "fr": "Canal vocal rejoint",
                 "es": "Canal de voz unido",
                 "ru": "Голосовой канал присоединился",
-                "it": "Canale vocale unito"
+                "it": "Canale vocale unito",
+                "nl": "Spraakkanaal is toegetreden"
             }
         },
         "VoiceLeft": {
@@ -4113,7 +4474,8 @@
                 "fr": "Canal vocal quitté",
                 "es": "Canal de voz abandonado",
                 "ru": "Голосовой канал покинул",
-                "it": "Canale vocale lasciato"
+                "it": "Canale vocale lasciato",
+                "nl": "Spraakkanaal links"
             }
         },
         "VoiceMoved": {
@@ -4125,7 +4487,8 @@
                 "fr": "Canal vocal changé",
                 "es": "Canal de voz cambiado",
                 "ru": "Переключен голосовой канал",
-                "it": "Canale vocale cambiato"
+                "it": "Canale vocale cambiato",
+                "nl": "Gewisseld spraakkanaal"
             }
         }
     }
