@@ -202,14 +202,34 @@
     }
 
     $: calculatePunishedUntil(inputPunishedUntilDate, inputPunishedUntilTime, $currentLanguage);
-    function calculatePunishedUntil(date: string, time: string, language?: ILanguageSelect) {
-        if (language) {
-            date
-                ? (modCase.punishedUntil = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
+    function calculatePunishedUntil(date: string, time?: string, language?: ILanguageSelect) {
+        if(language) {
+
+            let newTime:string;
+            time ? newTime=time : newTime="12:00";
+            
+            if(date) {
+                
+                modCase.punishedUntil = moment(`${date} ${newTime}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
                       .utc(false)
-                      .utcOffset(utfOffset))
-                : (modCase.punishedUntil = null);
+                      .utcOffset(utfOffset)
+            }
+            else {
+
+                //Getting current time and setting the new moment to be 12 hours in the future
+                const currentDate = new Date();
+                const inputDate = `${currentDate.getFullYear()}-${currentDate.getMonth()+1}-${currentDate.getDate()}`;
+                const inputClock = `${currentDate.getHours()}:${currentDate.getMinutes()}`;
+
+                const newMoment = moment(`${inputDate} ${inputClock}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
+                .utc(false)
+                .utcOffset(utfOffset)
+                .add(12, 'hours');
+
+                modCase.punishedUntil = newMoment;
+            }
         }
+
     }
 
     function onSubmit() {
