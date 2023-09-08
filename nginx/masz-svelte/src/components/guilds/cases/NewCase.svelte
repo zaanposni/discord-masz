@@ -44,7 +44,7 @@
     import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
     import UserIcon from "../../discord/UserIcon.svelte";
 
-    const utfOffset = new Date().getTimezoneOffset() * -1;
+    const utcOffset = new Date().getTimezoneOffset() * -1;
 
     let templatesLoading: boolean = true;
     let templates: { id: string; text: string; obj: ITemplateView }[] = [];
@@ -204,11 +204,22 @@
     $: calculatePunishedUntil(inputPunishedUntilDate, inputPunishedUntilTime, $currentLanguage);
     function calculatePunishedUntil(date: string, time: string, language?: ILanguageSelect) {
         if (language) {
-            date
-                ? (modCase.punishedUntil = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
+            if (date) {
+                let res = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
                       .utc(false)
-                      .utcOffset(utfOffset))
-                : (modCase.punishedUntil = null);
+                      .utcOffset(utcOffset);
+
+                if (res === null) {
+                    res = moment(date, language.momentDateFormat)
+                      .utc(false)
+                      .utcOffset(utcOffset)
+                }
+
+                modCase.punishedUntil = res;
+
+                return;
+            }
+            modCase.punishedUntil = null;
         }
     }
 
@@ -585,9 +596,9 @@
                         <DatePickerInput labelText={$_("guilds.casedialog.punisheduntil")} placeholder={$currentLanguage?.dateFormat ?? "m/d/Y"} />
                     </DatePicker>
                     <TimePicker
-                        class="!grow-0"
+                    class="min-w-[10rem]"
                         bind:value={inputPunishedUntilTime}
-                        invalid={!!inputPunishedUntilTime && !/([01][012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
+                        invalid={!!inputPunishedUntilTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(inputPunishedUntilTime)}
                         invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "hh:MM"} })}
                         labelText={$_("guilds.casedialog.punisheduntil")}
                         placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
