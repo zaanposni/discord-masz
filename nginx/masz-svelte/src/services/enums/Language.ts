@@ -28,6 +28,10 @@ const enums: IMASZEnum[] = [
     {
         "id": 6,
         "translationKey": "enums.language.ru"
+    },
+    {
+        "id": 7,
+        "translationKey": "enums.language.nl"
     }
 ]
 

@@ -668,7 +668,7 @@ namespace MASZ.Services
                         UsedInvite = $"https://discord.gg/{usedInvite.Code}"
                     };
 
-                    _logger.LogInformation($"User {member.Username}#{member.Discriminator} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
+                    _logger.LogInformation($"User {member.Username} joined guild {member.Guild.Name} with ID: {member.Guild.Id} using invite {usedInvite.Code}");
 
                     if (guildConfig.ExecuteWhoisOnJoin && !string.IsNullOrEmpty(guildConfig.ModInternalNotificationWebhook))
                     {
@@ -731,7 +731,7 @@ namespace MASZ.Services
                 {
                     if (eResult.Exception is BaseAPIException apiException)
                     {
-                        _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: {(eResult.Exception as BaseAPIException).Error}");
+                        _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}' failed: {(eResult.Exception as BaseAPIException).Error}");
 
                         using var scope = _serviceProvider.CreateScope();
                         Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
@@ -768,11 +768,11 @@ namespace MASZ.Services
                     }
                     else
                     {
-                        _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed: " + eResult.Exception.Message + "\n" + eResult.Exception.StackTrace);
+                        _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}' failed: " + eResult.Exception.Message + "\n" + eResult.Exception.StackTrace);
                     }
                 }
                 else
-                    _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}#{context.User.Discriminator}' failed due to {result.Error}.");
+                    _logger.LogError($"Command '{info.Name}' invoked by '{context.User.Username}' failed due to {result.Error}.");
             }
         }
     }

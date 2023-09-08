@@ -44,7 +44,7 @@
     import type { IVerifiedEvidenceCompactView } from "../../../models/api/IVerifiedEvidenceCompactView";
     import UserIcon from "../../discord/UserIcon.svelte";
 
-    const utfOffset = new Date().getTimezoneOffset() * -1;
+    const utcOffset = new Date().getTimezoneOffset() * -1;
 
     let templatesLoading: boolean = true;
     let templates: { id: string; text: string; obj: ITemplateView }[] = [];
@@ -146,7 +146,7 @@
             .then((response: IDiscordUser[]) => {
                 members = response.map((x) => ({
                     id: x.id,
-                    text: `${x.username}#${x.discriminator}`,
+                    text: x.username,
                 }));
                 membersLoading = false;
             })
@@ -157,7 +157,7 @@
             .then((response: ITemplateView[]) => {
                 templates = response.map((x) => ({
                     id: x.caseTemplate.id.toString(),
-                    text: `"${x.caseTemplate.templateName}" by ${x.creator.username}#${x.creator.discriminator} from ${
+                    text: `"${x.caseTemplate.templateName}" by ${x.creator.username} from ${
                         x.guild?.name ?? "Unknown guild"
                     }`,
                     obj: x,
@@ -204,11 +204,22 @@
     $: calculatePunishedUntil(inputPunishedUntilDate, inputPunishedUntilTime, $currentLanguage);
     function calculatePunishedUntil(date: string, time: string, language?: ILanguageSelect) {
         if (language) {
-            date
-                ? (modCase.punishedUntil = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
+            if (date) {
+                let res = moment(`${date} ${time ? time : "00:00"}`, `${language.momentDateFormat} ${language.momentTimeFormat}`)
                       .utc(false)
-                      .utcOffset(utfOffset))
-                : (modCase.punishedUntil = null);
+                      .utcOffset(utcOffset);
+
+                if (res === null) {
+                    res = moment(date, language.momentDateFormat)
+                      .utc(false)
+                      .utcOffset(utcOffset)
+                }
+
+                modCase.punishedUntil = res;
+
+                return;
+            }
+            modCase.punishedUntil = null;
         }
     }
 
@@ -445,8 +456,7 @@
                                 <div class="flex flex-row flex-wrap items-center">
                                     <UserIcon class="self-start mr-2" user={evidence.reported}/>
                                     <div class="mr-2">
-                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}#{evidence.reported?.discriminator ??
-                                            evidence.verifiedEvidence.discriminator}
+                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}
                                     </div>
                                 </div>
                             </div>
@@ -585,9 +595,9 @@
                         <DatePickerInput labelText={$_("guilds.casedialog.punisheduntil")} placeholder={$currentLanguage?.dateFormat ?? "m/d/Y"} />
                     </DatePicker>
                     <TimePicker
-                        class="!grow-0"
+                    class="min-w-[10rem]"
                         bind:value={inputPunishedUntilTime}
-                        invalid={!!inputPunishedUntilTime && !/([01][012]|[1-9]):[0-5][0-9](\\s)?/.test(inputPunishedUntilTime)}
+                        invalid={!!inputPunishedUntilTime && !/^([01]\d|2[0-3]):[0-5]\d$/.test(inputPunishedUntilTime)}
                         invalidText={$_("guilds.casedialog.formatisrequired", { values: { format: $currentLanguage?.timeFormat ?? "hh:MM"} })}
                         labelText={$_("guilds.casedialog.punisheduntil")}
                         placeholder={$currentLanguage?.timeFormat ?? "hh:MM"} />
@@ -624,7 +634,7 @@
                                     #{evidence.verifiedEvidence.id}
                                 </div>
                                 <div class="mr-2">
-                                    {evidence.verifiedEvidence.username}#{evidence.verifiedEvidence.discriminator}
+                                    {evidence.verifiedEvidence.username}
                                 </div>
                                 <div class="grow truncate">
                                     {evidence.verifiedEvidence.reportedContent}

@@ -1,0 +1,855 @@
+{
+    "dialog": {
+        "confirm": {
+            "title": "Bevestigen",
+            "message": "Weet je het zeker?",
+            "confirm": "Bevestigen",
+            "cancel": "Annuleren"
+        }
+    },
+    "login": {
+        "title": "Inloggen",
+        "noaccount": "Heb je geen account?",
+        "createaccount": "Maak een Discord-account aan",
+        "terms": "Voorwaarden",
+        "and": "en",
+        "privacy": "Privacybeleid"
+    },
+    "settings": {
+        "base": "Instellingen",
+        "basedetails": "Pas jouw MASZ instellingen aan.",
+        "theme": "Thema",
+        "themedetails": "Kies hoe MASZ er voor jou uitziet.",
+        "language": "Taal",
+        "languagedetails": "Wijzig de taal",
+        "autosave": "Alle instellingen worden automatisch opgeslagen."
+    },
+    "nav": {
+        "allguilds": "Alle gildes",
+        "patchnotes": "Wijzigingsnotities",
+        "patchnotesdetails": "Bekijk de laatste wijzigingsnotities van MASZ.",
+        "credits": "Credits",
+        "creditsdetails": "Bekijk de credits van MASZ.",
+        "community": "Community",
+        "communitydetails": "Bezoek de Discord Community van MASZ.",
+        "reportabug": "Rapporteer een bug",
+        "reportabugdetails": "Rapporteer bugs op GitHub",
+        "terms": "Voorwaarden",
+        "privacy": "Privacybeleid",
+        "admin": {
+            "base": "Beheerder",
+            "searchdescription": "Bekijk inzichten van uw applicatie",
+            "dashboard": "Dashboard",
+            "settings": "Instellingen",
+            "tokens": "Tokens"
+        },
+        "guild": {
+            "base": "Gilde",
+            "dashboard": "Dashboard",
+            "cases": "Zaken",
+            "evidence": "Bewijs",
+            "automods": "Automods",
+            "appeals": "Beroepen",
+            "usernotes": "Gebruikersnotities",
+            "usermaps": "Gebruikerskaarten",
+            "messages": "Berichten",
+            "settings": {
+                "motd": "MotD",
+                "auditlog": "Auditlog",
+                "zalgo": "Zalgo",
+                "automod": "Automod",
+                "base": "Instellingen",
+                "search": "Gilde Instellingen",
+                "searchdetails": "Bewerk de instellingen van deze gilde."
+            }
+        },
+        "logout": "Uitloggen"
+    },
+    "widgets": {
+        "latestcases": {
+            "title": "Laatste zaken",
+            "widgetdescription": "Toont de laatste zaken in jouw gilde.",
+            "empty": "Geen zaken gevonden."
+        },
+        "latestappeals": {
+            "title": "Laatste Beroepen",
+            "widgetdescription": "Toont de laatste beroepen in jouw gilde.",
+            "empty": "Geen beroepen gevonden."
+        },
+        "guildmoderatorcases": {
+            "title": "Zaken per moderator",
+            "widgetdescription": "Toont alle zaken per moderator in jouw gilde.",
+            "cases": "Zaken",
+            "empty": "Geen zaken gevonden."
+        },
+        "guildstats": {
+            "title": "Gilde statistieken",
+            "widgetdescription": "Toont de gilde statistieken.",
+            "automods": "Automods",
+            "invites": "Uitnodigingen",
+            "usernotes": "Gebruikersnotities",
+            "usermaps": "Gebruikerskaarten",
+            "banappeals": "Ban Beroepen",
+            "empty": "Geen statistieken gevonden."
+        },
+        "guildautomodsplit": {
+            "title": "Automatische moderatie splitsen",
+            "widgetdescription": "Toont de automatische moderatie splitsing van jouw gilde.",
+            "empty": "Geen automatische moderatie splitsing gevonden."
+        },
+        "guildmodcasecountchart": {
+            "title": "Zaak overzicht",
+            "widgetdescription": "Toont het overzicht van zaken in jouw gilde.",
+            "empty": "Geen zaak gevonden."
+        },
+        "guildappealcountchart": {
+            "title": "Beroep overzicht",
+            "widgetdescription": "Toont het overzicht van beroepen in jouw gilde.",
+            "empty": "Geen beroepen gevonden."
+        },
+        "guildautomodcountchart": {
+            "title": "Automatische moderatie overzicht",
+            "widgetdescription": "Toont het automatische moderatie overzicht van jouw gilde.",
+            "empty": "Geen automatische moderatie gevonden."
+        },
+        "guildpendingmessages": {
+            "title": "In afwachting van geplande berichten",
+            "widgetdescription": "Toont de berichten die in afwachting zijn van planning in jouw gilde.",
+            "empty": "Geen berichten in afwachting van planning gevonden."
+        },
+        "guildpunishmentstats": {
+            "title": "Bestraffing Statistieken",
+            "widgetdescription": "Toont de bestraffing statistieken van jouw gilde.",
+            "activemutes": "Actieve gedempende",
+            "activebans": "Actieve bans",
+            "empty": "Geen straffen gevonden."
+        },
+        "guildquicksearch": {
+            "title": "Snelzoeken",
+            "widgetdescription": "Hiermee kan snel worden gezocht naar zaken, gebruikers of andere bronnen.",
+            "placeholder": "Quicksearch gebruikers, zaken en straffen...",
+            "searchhistory": "Zoekgeschiedenis",
+            "clearhistory": "Geschiedenis wissen",
+            "noresults": "Geen resultaten gevonden.",
+            "searching": "Zoeken...",
+            "searchfailed": "Zoeken is mislukt."
+        },
+        "guildmotd": {
+            "title": "MotD",
+            "widgetdescription": "Toont het huidige bericht van de dag.",
+            "empty": "Geen bericht van de dag."
+        },
+        "adminversion": {
+            "title": "Versie info",
+            "widgetdescription": "Deze widget toont de huidig geïnstalleerde versie en beschikbare updates",
+            "current": "Huidige versie",
+            "new": "Beschikbare update",
+            "empty": "Geen update beschikbaar"
+        },
+        "admindiscordinvite": {
+            "title": "Discord uitnodiging",
+            "widgetdescription": "Deze widget toont een invite link voor de MASZ community Discord.",
+            "message": "Word lid van de MASZ gemeenschap Discord!"
+        },
+        "adminstatus": {
+            "title": "Status",
+            "widgetdescription": "Deze widget toont de huidige ping van MASZ' componenten",
+            "offline": "Offline",
+            "bot": "Bot",
+            "db": "Databank",
+            "cache": "Cache",
+            "empty": "Geen status beschikbaar"
+        },
+        "adminloggedin": {
+            "title": "Aangemelde gebruikers",
+            "widgetdescription": "Deze widget toont de momenteel ingelogde gebruikers",
+            "empty": "Geen ingelogde gebruikers"
+        },
+        "adminresources": {
+            "title": "Middelen",
+            "widgetdescription": "Deze widget toont het huidige aantal aangemaakte resources in je databank.",
+            "guilds": "Gilden",
+            "cases": "Gevallen",
+            "automods": "Automod",
+            "usernotes": "Gebruiksaanwijzingen",
+            "usermaps": "Gebruikskaarten",
+            "invites": "uitnodigingen",
+            "empty": "Geen middelen"
+        },
+        "admincache": {
+            "title": "Cache",
+            "widgetdescription": "Deze widget toont de huidige hoeveelheid bronnen in de cache.",
+            "users": "Gebruikers",
+            "guilds": "Gilden",
+            "bans": "Bans",
+            "members": "Leden",
+            "dmchannels": "DM-kanalen",
+            "tokens": "Token logins",
+            "empty": "Geen bronnen"
+        },
+        "dashboardconfig": {
+            "title": "Dashboard configuratie",
+            "widgetdescription": "Helpt u bij de configuratie van uw dashboard.",
+            "available": "Beschikbare widgets",
+            "enabled": "Geactiveerde widgets",
+            "enabledragging": "Slepen mogelijk maken",
+            "clearcache": "Cache wissen",
+            "clearcacheconfirm": "Weet je zeker dat je de cache wilt wissen? Dit kan de prestaties van je dashboard beïnvloeden.",
+            "clearcachesuccess": "{count} cachevermeldingen gewist.",
+            "configurewidgets": "Widgets configureren"
+        }
+    },
+    "guilds": {
+        "add": {
+            "button": "Gilde toevoegen",
+            "add": "Toevoegen",
+            "name": "Naam",
+            "id": "ID",
+            "invitefirst": "Nodig de bot eerst uit voor deze gilde",
+            "windowfailed": "Openen van venster gefaald"
+        },
+        "list": {
+            "admin": "Admin gilden",
+            "mod": "Gilde Moderatoren",
+            "guild": "Gilden",
+            "banned": "Verbannen gilden"
+        },
+        "caseview": {
+            "verifiedevidence": "Dit bewijs wordt geverifieerd",
+            "unlinked": "Caselink verwijderd",
+            "unlinkfailed": "Ontkoppeling van zaak mislukt",
+            "linked": "Caselink aangemaakt",
+            "linkfailed": "Zaak niet gekoppeld",
+            "linkcase": "Link zaak",
+            "search": "Zoeken",
+            "nocasesfound": "Geen gevallen gevonden",
+            "attachmentuploadfailed": "Het uploaden van bijlagen is mislukt",
+            "casenotfound": "Zaak niet gevonden",
+            "filedeleted": "Bestand verwijderd",
+            "filedeletefailed": "Faalde om bestand te verwijderen",
+            "commentdeleted": "Commentaar verwijderd",
+            "commentdeletefailed": "Gefaald om commentaar te verwijderen",
+            "commentadded": "Commentaar toegevoegd",
+            "commentaddfailed": "Geen commentaar toegevoegd",
+            "linkcopied": "Link gekopieerd naar klembord",
+            "fileuploaded": "Bestand geupload",
+            "fileuploadfailed": "Kan geen bestand uploaden",
+            "punishmentactivated": "Straf geactiveerd",
+            "punishmentdeactivated": "Straf gedeactiveerd",
+            "punishmentactivatefailed": "Mislukt om straf te activeren",
+            "punishmentdeactivatefailed": "Mislukt om straf te deactiveren",
+            "commentslocked": "Reacties op slot",
+            "commentslockfailed": "Reacties niet vergrendeld",
+            "commentsunlocked": "Opmerkingen ontgrendeld",
+            "commentsunlockfailed": "Reacties niet ontgrendeld",
+            "deletedcase": "Zaak verwijderd",
+            "markeddeletecase": "Zaak gemarkeerd voor verwijdering",
+            "deletecasefailed": "Kan zaak niet verwijderen",
+            "caserestored": "Zaak hersteld",
+            "caserestorefailed": "Kan zaak niet herstellen",
+            "commentedited": "Commentaar aangepast",
+            "commenteditfailed": "Kan opmerking niet bewerken",
+            "deletecase": "Zaak verwijderen",
+            "sendpublicnotification": "Verzend openbare notificatie",
+            "forcedelete": "Geforceerd verwijderen",
+            "editcomment": "Opmerking bewerken",
+            "editcommentfield": "Commentaar",
+            "editcommentfieldinvalid": "Het commentaar moet minder dan 300 tekens bevatten",
+            "sharecase": "Deel zaak",
+            "uploadfile": "Bestand uploaden",
+            "activate": "Activeer",
+            "deactivate": "Deactiveer",
+            "unlockcomments": "Ontgrendel opmerkingen",
+            "lockcomments": "Vergrendel opmerkingen",
+            "edit": "Bewerk",
+            "delete": "Verwijder",
+            "restore": "Herstel",
+            "markedtodelete": "Deze zaak is gemarkeerd om te worden verwijderd op {time}",
+            "markedtodeletesubtitle": "Verwijderd door {user}",
+            "attachments": "Bijlagen",
+            "comments": "Opmerkingen",
+            "addacomment": "Voeg een opmerking toe... (max. 300 tekens)",
+            "addacommenterror": "Reacties mogen niet langer zijn dan 300 tekens!",
+            "caseislocked": "U kunt geen commentaar geven omdat deze zaak op slot zit.",
+            "violator": "Overtreder",
+            "punishment": "straf",
+            "punishmentinactive": "inactief",
+            "labels": "Labels",
+            "punisheduntil": "Gestraft tot",
+            "usernote": "Gebruiksaanwijzing",
+            "moderator": "Moderator",
+            "lasteditmoderator": "Laatst bijgewerkt door moderator",
+            "moderatorunknown": "Onbekend of verborgen",
+            "created": "aangemaakt op",
+            "updated": "Bijgewerkt op",
+            "unknown": "onbekend",
+            "linkevidence": "Link bewijs",
+            "noevidencefound": "Geen bewijs gevonden",
+            "evidencelinkfailed": "Bewijs link mislukt"
+        },
+        "casedialog": {
+            "createcase": "Maak zaak aan",
+            "editcase": "Bewerk zaak",
+            "caseexplain": "Gebruik zaak om overtredingen en bestraffingen in jouw gilde te registreren.",
+            "caseexplain2": "Als jouw gilde is geconfigureerd, zal MASZ automatisch jouw bestraffingen beheren en zowel jouw gilde als de gebruiker op de hoogte stellen.",
+            "importtemplate": "Sjabloon importeren",
+            "templateexplain": "Geen sjabloon gevonden dat aan jouw eisen voldoet? Maak er één aan het einde van de dialoog!",
+            "selecttemplate": "Selecteer sjabloon",
+            "notemplatesfound": "Geen sjablonen gevonden",
+            "member": "Selecteer lid",
+            "memberexplain": "Selecteer het lid die je wenst te straffen of voeg een ID toe, als het lid niet in de lijst staat",
+            "nomembersfound": "Geen leden gevonden",
+            "reason": "Reden",
+            "title": "Titel",
+            "titleplaceholder": "Titel (maximaal 100 tekens)",
+            "titleinvalid": "Titelveld is vereist en kan slechts 100 tekens lang zijn.",
+            "descriptionfield": "Beschrijving",
+            "labels": "Labels",
+            "clearlabel": "Label verwijderen",
+            "labelsplaceholder": "Nieuw label",
+            "punishment": "Straf",
+            "punishmentexplained": "MASZ zal automatisch jouw straf beheren en deze na de opgegeven tijd verwijderen. Je kunt de straf ook wijzigen indien nodig.",
+            "punishmentexplained2": "De straf zal permanent zijn als er geen tijd is ingevoegd.",
+            "punisheduntil": "Gestraft tot",
+            "quickactions": {
+                "title": "Snelle selectie",
+                "permanent": "Permanent",
+                "1hour": "1 uur",
+                "24hours": "24 uur",
+                "3days": "3 dagen",
+                "7days": "7 dagen",
+                "14days": "14 dagen",
+                "28days": "28 dagen",
+                "3months": "3 maanden"
+            },
+            "formatisrequired": "Gelieve het formaat te respecteren: {format}",
+            "senddmnotification": "Stuur DM-melding",
+            "executepunishment": "Straf uitvoeren",
+            "sendpublicnotification": "Zend openbare notificatie",
+            "files": "Bestanden",
+            "filesexplain": "Je kunt bestanden uploaden naar MASZ als bewijs. Let op dat iedereen ze zal kunnen zien!",
+            "filesbutton": "Selecteer bestanden",
+            "createtemplate": "Maak sjabloon",
+            "submitting": "Bezig met verzenden...",
+            "casecreated": "Zaak #{id} aangemaakt",
+            "casecreatefailed": "Aanmaken van zaak mislukt",
+            "caseedited": "Zaak #{id} bewerkt",
+            "caseeditfailed": "Bewerken van zaak gefaald",
+            "templateapplied": "Sjabloon toegepast",
+            "templatesaved": "Sjabloon opgeslagen",
+            "templatesavefailed": "Opslaan van sjabloon mislukt",
+            "visibility": "Zichtbaarheid",
+            "evidenceexplained": "Kun je niet vinden wat je zoekt? Maak je geen zorgen, je kunt altijd later bewijsmateriaal maken en koppelen!"
+        },
+        "modcasetable": {
+            "selectmembers": "Leden",
+            "selectmoderators": "Moderatoren",
+            "selectcreationtypes": "Creatie typen",
+            "selectpunishments": "Straffen",
+            "selectedited": "Status bewerken",
+            "selectlocked": "Vergrendel status",
+            "selectdelete": "Status verwijderen",
+            "selectactive": "Actieve status",
+            "filtersince": "Gemaakt sinds",
+            "filteruntil": "Gemaakt tot",
+            "executesearch": "Zoeken",
+            "useadvancedfilter": "Schakel geavanceerd filter in.",
+            "createnewcase": "Nieuwe zaak aanmaken",
+            "search": "Zoeken (gebruiker, id, beschrijving...)",
+            "failedtoload": "Kan zaken niet laden.",
+            "nomatches": "Geen cases gevonden die overeenkomen met je zoekopdracht!",
+            "nomatchesdescription": "Probeer uw filters hierboven aan te passen om dit op te lossen."
+        },
+        "evidencetable": {
+            "create": "Maak bewijs aan",
+            "createinstruction": "Plak de link naar het discord-bericht in het onderstaande tekstveld om het bewijs te maken",
+            "createplaceholder": "Discord link hier",
+            "badcreate": "De berichtlink klopt niet",
+            "badguild": "Het guild-ID in de berichtlink komt niet overeen met het guild-ID van deze server",
+            "created": "Bewijs succesvol aangemaakt",
+            "createerror": "Er is iets dat het bewijsmateriaal belet heeft om aangemaakt te worden"
+        },
+        "evidenceview": {
+            "evidencenotfound": "Bewijs bestaat niet",
+            "linktocase": "Link naar zaak",
+            "evidence": "Bewijs",
+            "goto": "Bekijk in Discord",
+            "reportedcontent": "Gerapporteerde inhoud",
+            "sent": "Verzonden op",
+            "reported": "Geraporteerd op",
+            "shareevidence": "Delen",
+            "deleted": "Bewijs verwijderd",
+            "deletefailed": "Verwijderen van bewijsmateriaal mislukt",
+            "unknown": "Onbekend"
+        },
+        "automodtable": {
+            "selectmembers": "Leden",
+            "selecttypes": "Moderatie typen",
+            "selectactions": "Acties",
+            "executesearch": "Zoeken",
+            "useadvancedfilter": "Schakel geavanceerde filter in/uit.",
+            "failedtoload": "Laden van automoderatie is mislukt.",
+            "nomatches": "Er komen geen zaken overeen met je zoekopdracht!",
+            "nomatchesdescription": "Probeer je filters hierboven aan te passen om dit op te lossen."
+        },
+        "appealtable": {
+            "createnewappeal": "Nieuw beroep aanmaken",
+            "disabledexplained": "Je mag geen nieuw bezwaar maken omdat je recentelijk je laatste bezwaar hebt gemaakt, je straf recent was of deze gilde nog geen beroep op verbannen heeft geconfigureerd",
+            "configureappeal": "Beroep configureren",
+            "useadvancedfilter": "Schakel geavanceerde filter in/uit.",
+            "selectmembers": "Selecteer leden",
+            "statustype": "Status",
+            "executesearch": "Voer zoekopdracht uit",
+            "nomatches": "Geen beroepen gevonden!",
+            "nomatchesdescription": "Probeer je filters hierboven aan te passen om dit op te lossen.",
+            "failedtoload": "Laden van beroepen is mislukt",
+            "hasanswered": "Gebruiker heeft {count} vragen beantwoord"
+        },
+        "appealconfig": {
+            "title": "Structuur van een ban beroep",
+            "explain": "Configureer het formulier voor het ban beroep van de server.",
+            "explain2": "Gebruikers kunnen vragen overslaan als ze dat willen.",
+            "explain3": "Het verwijderen van een vraag zal nog steeds zichtbaar zijn in bestaande ban beroepen.",
+            "explain4": "Gebruikers kunnen geen ban beroepen indienen als er geen vragen zijn geconfigureerd.",
+            "failedtoreorder": "Kan vragen niet opnieuw ordenen.",
+            "deleted": "Vraag verwijderd",
+            "failedtodelete": "Kan vraag niet verwijderen.",
+            "saved": "Vraag opgeslagen",
+            "failedtosave": "Kan vraag niet opslaan.",
+            "editquestion": "Vraag bewerken",
+            "question": "Vraag",
+            "addquestion": "voeg vraag toe"
+        },
+        "appealview": {
+            "saved": "Keuze opgeslagen",
+            "noanswer": "Geen antwoord",
+            "failedtosave": "Kan beslissing niet opslaan.",
+            "createdat": "Gemaakt op",
+            "updatedat": "Bijgewerkt op",
+            "decisionat": "Keuze op",
+            "moderatorcomment": "Moderator opmerking",
+            "newappeal": "Nieuw beroep",
+            "newappealnever": "Geen nieuwe beroepen kunnen worden gecreëerd door deze gebruiker!",
+            "newappealat": "Gebruiker kan een nieuw beroep opmaken op",
+            "edit": "Bewerken"
+        },
+        "appealnew": {
+            "answer": "Beantwoord deze vragen om je ban-bezwaar te voltooien.",
+            "skip": "U kunt vragen overslaan als u dat wilt.",
+            "view": "U kunt telkens de status van uw beroep op deze website bekijken.",
+            "saved": "Uw beroep is opgeslagen.",
+            "failedtosave": "Uw beroep kon niet worden opgeslagen.",
+            "save": "Opslaan",
+            "answerplaceholder": "Antwoord"
+        },
+        "usernote": {
+            "createusernote": "Gebruikersnotitie aanmaken",
+            "createusernotedescription": "Beschrijving",
+            "member": "Lid",
+            "nomembersfound": "Geen leden gevonden",
+            "usernotecreated": "Gebruikersnotitie aangemaakt",
+            "usernotecreatefailed": "Gefaald bij het opmaken van een gebruikersnotitie",
+            "usernoteupdated": "Gebruikersnotitie bijgewerkt",
+            "usernotedeleted": "Gebruikersnotitie verwijderd",
+            "usernotedeletefailed": "",
+            "nomatches": "Er zijn geen gebruikersnotities die overeenkomen met uw zoekopdracht!",
+            "nomatchesdescription": "Er zijn mogelijk nog geen gebruikersnotities in deze server. Maak er een aan door op de knop hierboven te klikken."
+        },
+        "usermap": {
+            "createusermap": "Gebruikerskaart aanmaken",
+            "createusermapdescription": "Beschrijving",
+            "member": "Lid",
+            "nomembersfound": "Geen leden gevonden",
+            "usermapcreated": "Gebruikerskaart aangemaakt",
+            "usermapcreatefailed": "Gebruikerskaart kon niet worden aangemaakt",
+            "usermapupdated": "Gebruikerskaart bijgewerkt",
+            "usermapdeleted": "Gebruikerskaart verwijderd",
+            "usermapdeletefailed": "Gebruikerskaart kon niet worden verwijderd",
+            "nomatches": "Er zijn geen gebruikerskaarten gevonden die overeenkomen met uw zoekopdracht!",
+            "nomatchesdescription": "Er zijn geen gebruikerskaarten in deze gilde! Maak er een aan via de knop hierboven."
+        },
+        "messages": {
+            "createnew": "Nieuw bericht maken",
+            "nomessages": "Geen resultaten gevonden!",
+            "nomessagesdescription": "Er zijn geen berichten gepland in deze server! Maak er een aan door op de knop hierboven te klikken.",
+            "title": "Titel",
+            "channel": "Kanaal",
+            "content": "bericht",
+            "savemessage": "Sla bericht op",
+            "editmessage": "Bewerk bericht",
+            "savedmessage": "opgeslagen bericht",
+            "failedtosavemessage": "Opslaan van bericht mislukt",
+            "failedtoload": "Laden van berichten mislukt",
+            "messagedeleted": "Bericht verwijderd",
+            "failedtodelete": "Bericht kon niet worden verwijderd"
+        },
+        "motd": {
+            "title": "Bericht van de dag",
+            "explain": "Gebruik een MotD om een bericht vast te zetten op het dashboard van de server dat alle moderators zullen zien.",
+            "explain2": "Dit kan instructies bevatten over hoe je gevallen moet formatteren of afbeeldingen moet uploaden als bewijs.",
+            "noresult": "Kan MotD niet laden.",
+            "enabled": "MotD inschakelen in serverdashboard",
+            "message": "Bericht van de dag",
+            "save": "Opslaan",
+            "submitting": "Bezig met verzenden...",
+            "saved": "Bericht van de dag is opgeslagen",
+            "failedtosave": "Kan bericht van de dag niet opslaan"
+        },
+        "auditlog": {
+            "title": "AuditLog",
+            "explain": "Gebruik auditlogs om bepaalde gebeurtenissen in je gilde te loggen.",
+            "explain2": "Op bepaalde gebeurtenissen kunt u filteren op basis van kanalen of rollen.",
+            "targetchannel": "Doelkanaal",
+            "pingrole": "Ping rol",
+            "excluderoles": "Uitgesloten rollen",
+            "excludechannels": "Uitgesloten kanalen",
+            "saved": "AuditLog opgeslagen",
+            "failedtosave": "Auditlogboek niet opgeslagen"
+        },
+        "automods": {
+            "title": "Automod configuratie",
+            "explain": "Gebruik automoderatie om automatisch berichten in bepaalde kanalen te verwijderen of leden te straffen voor bepaalde gebeurtenissen",
+            "explain2": "U kunt ook filters definiëren voor elke gebeurtenis om uw automatisering te verfijnen.",
+            "timelimitfield": "Tijdslimiet (seconden)",
+            "limitfield": "Bovengrens",
+            "config": "Configuratie",
+            "filter": "Filter",
+            "filterchannels": "Filterkanalen",
+            "filterroles": "Filterrollen",
+            "punishmentduration": "Duur (minuten)",
+            "action": "Actie",
+            "saved": "Automod configuratie opgeslagen",
+            "failedtosave": "Kan automod-configuratie niet opslaan",
+            "deactivated": "Automod gedeactiveerd",
+            "failedtodeactivate": "Automod niet gedeactiveerd",
+            "invites": {
+                "details": "Een bericht op je gilde komt overeen met het uitnodigingspatroon. Uitnodigingen aan dit gilde worden genegeerd.",
+                "customwordfield": "Negeer gilden (voer ID's in gedeeld door newlines)"
+            },
+            "emotes": {
+                "details": "Een bericht op je gilde bevat te veel emotes."
+            },
+            "mentions": {
+                "details": "Een bericht op je gilde bevat te veel vermeldingen."
+            },
+            "attachments": {
+                "details": "Een bericht op je gilde bevat te veel bijlagen."
+            },
+            "embeds": {
+                "details": "Een bericht op je gilde bevat te veel embeds."
+            },
+            "automoderations": {
+                "details": "Een gebruiker triggert te veel automatiseringen in een bepaalde tijdspanne."
+            },
+            "customfilter": {
+                "title": "Aangepaste filter",
+                "details": "Een gebruiker gebruikt te veel woorden in uw lijst.",
+                "tooltip": "Woorden worden regel voor regel gecontroleerd op hoofdlettergevoeligheid.",
+                "linktext": "Voorbeeld",
+                "customwordfield": "Aangepaste woorden (regex-patroon gedeeld door nieuwe regel)"
+            },
+            "spam": {
+                "details": "Een gebruiker van je gilde stuurt te veel berichten in een tijdspanne.",
+                "timelimitmessage": "Tijdslimiet (seconden)"
+            },
+            "duplicatedchars": {
+                "details": "Een bericht op je gilde bevat te veel ingewikkelde tekens."
+            },
+            "link": {
+                "details": "Een bericht over je gilde bevat te veel links.",
+                "customwordfield": "Links negeren (regexpatronen invoeren gedeeld door newlines)",
+                "linktext": "Voorbeeld"
+            },
+            "phishinglink": {
+                "details": "Een bericht op je gilde bevat te veel phishing links."
+            }
+        },
+        "zalgo": {
+            "title": "Zalgo",
+            "explain": "Gebruik deze functie om gebruikers die zalgo gebruiken in hun gebruikersnaam of nickname automatisch te hernoemen.",
+            "enable": "Schakel zalgo moderatie in deze gilde in",
+            "renamenormal": "Probeer gebruikers met zalgo te hernoemen naar normale tekst die nog steeds klinkt als hun gebruikersnaam",
+            "renamefallback": "Terugval naar deze string als hernoemingsoptie",
+            "allowedpercentage": "Toegestaan percentage zalgo-tekens in een gebruikersnaam of bijnaam",
+            "logtomodchannel": "Log alle zalgo moderaties naar de interne webhook",
+            "simulate": "Simuleer",
+            "simulateresults": "Simulatieresultaten",
+            "noresult": "Zalgo configuratie niet geladen",
+            "save": "Opslaan",
+            "submitting": "Bezig met verzenden...",
+            "saved": "Zalgo config opgeslagen",
+            "failedtosave": "Mislukt om zalgo config op te slaan"
+        },
+        "config": {
+            "title": "Gilde configuratie",
+            "permissions": {
+                "title": "Toestemming",
+                "explain": "Hier kunt u definiëren welke rollen verder toegang moeten hebben in MASZ.",
+                "adminroles": "Admin rollen",
+                "modroles": "Moderator rollen",
+                "appealafterxdays": "Beroep tegen verbanning toestaan ​​na x dagen",
+                "strictpermissions": "Strikte toestemmingscontrole",
+                "strictpermissionsexplained": "Indien ingeschakeld, hebben moderators een discord rol met ban toestemming nodig om ban modcases te maken."
+            },
+            "mutedroles": {
+                "title": "Gedempte rollen",
+                "explain": "Hier kunt u bepalen welke rollen moeten worden gebruikt om gebruikers te dempen.",
+                "explain2": "Als er geen zijn gedefinieerd, zal MASZ de time-out functionaliteit van Discord gebruiken."
+            },
+            "notifications": {
+                "title": "Notificatie",
+                "explain": "Gebruik deze webhooks om gebruikers of personeel op de hoogte te stellen van MASZ-evenementen",
+                "internal": "Interne webhook",
+                "public": "Openbare webhook",
+                "invalid": "Ongeldige webhook"
+            },
+            "information": {
+                "title": "Informatie",
+                "publicembedmode": "Openbare embed mode",
+                "publicembedmodeexplained": "Deze modus maakt gedetailleerde embeds mogelijk bij het linken van modcases in discord. Dit zal privé informatie onthullen zoals de verdachte, straffen etc.",
+                "publishmod": "Informatie over de moderator publiceren",
+                "publishmodexplained": "Een verdachte zal kunnen zien welke moderator hem heeft gestraft."
+            },
+            "misc": {
+                "title": "Divers",
+                "whois": "Voer whois uit op lid worden",
+                "whoisexplained": "Stuurt automatisch informatie over de verbonden gebruiker naar uw interne webhook.",
+                "importbans": "Invoer van bestaande verboden",
+                "importbansexplained": "Dit zal Zaken creëren voor elk van je bestaande bans. Dit kan even duren.",
+                "language": "Taal"
+            },
+            "save": "Opslaan",
+            "submitting": "Bezig met verzenden...",
+            "saved": "Opgeslagen",
+            "failedtosave": "Opslaan mislukt",
+            "deleteguild": "Verwijder Gilde",
+            "deleted": "Gilde verwijderd",
+            "failedtodelete": "Gefaald met verwijderen",
+            "deleteconfirm": "Bevestig verwijdering",
+            "deleteresources": "Verwijder alle data (overtredingen, configuraties, gebeurtenis, bestanden)",
+            "deleteundone": "Deze actie is niet omkeerbaar. De gilde wordt onmiddellijk verwijderd."
+        }
+    },
+    "admin": {
+        "settings": {
+            "failedtoload": "",
+            "title": "Instellingen",
+            "save": "Opslaan",
+            "submitting": "Bezig met verzenden...",
+            "failedtosave": "Opslaan mislukt",
+            "saved": "Opgeslagen",
+            "embed": {
+                "title": "Embed",
+                "explained": "Deze instelling verandert de inhoud van de embed wanneer uw MASZ-instantie is gekoppeld in Discord.",
+                "explained2": "Houd er rekening mee dat het tot een uur kan duren om te updaten in discord.",
+                "titlefield": "Titel",
+                "descriptionfield": "Beschrijving",
+                "titleinvalid": "Het titelveld is vereist en moet minder dan 256 tekens lang zijn.",
+                "descriptioninvalid": "Het beschrijvingsveld is verplicht en moet minder dan 4096 tekens lang zijn.",
+                "iconfield": "Toon het pictogram van de applicatie in de embed."
+            },
+            "infrastructure": {
+                "title": "Infrastructuur",
+                "explained": "MASZ gebruikt deze taal als de standaardtaal wanneer dat mogelijk is. Mogelijk is echter alleen een Engelse versie beschikbaar voor bepaalde teksten. Instellingen specifiek voor de server overschrijven deze instelling.",
+                "languagefield": "Standaardtaal",
+                "explained2": "Gebruik een privé-webhook die alleen toegankelijk is voor sitebeheerders, aangezien hier mogelijk gevoelige informatie in wordt gelogd.",
+                "webhookfield": "Auditlog Webhook URL",
+                "invalidwebhook": "De webhook URL is ongeldig.",
+                "explained3": "Schakel dit in om openbare toegang tot alle geüploade bestanden toe te staan.",
+                "filemodefield": "Openbaar bestandsmodus"
+            }
+        },
+        "tokens": {
+            "title": "Tokens",
+            "tabledescription": "Als sitebeheerder kunt u de MASZ API gebruiken om uw eigen aangepaste scripts te laten communiceren met MASZ en zaken te automatiseren. Maak hieronder een API-sleutel aan om uzelf te autoriseren voor de API bij het maken van webverzoeken. Voeg tokens toe aan de \"Authorization\" header met een \"Bearer\" voorvoegsel.",
+            "createnew": "Maak nieuwe token aan",
+            "documentation": "Documentatie",
+            "support": "Support",
+            "deleteall": "Verwijder alle tokens",
+            "delete": "Verwijder",
+            "deleted": "Token verwijderd",
+            "failedtodelete": "Verwijderen gefaald",
+            "failedtoload": "Laden mislukt",
+            "name": "Naam",
+            "createdat": "Gemaakt op",
+            "validuntil": "Geldig tot",
+            "action": "Actie",
+            "copy": "Kopiëren",
+            "cancel": "Annuleren",
+            "powerful": "Een API-sleutel is zeer krachtig en kan alles op MASZ besturen!",
+            "generate": "Genereer",
+            "unique": "Dit is uw unieke sleutel en deze is niet herstelbaar. Als u deze API-sleutel verliest, moet u deze opnieuw instellen.",
+            "onlyone": "Momenteel kun je enkel één token aanmaken."
+        }
+    },
+    "error": "Fout",
+    "warns": "Waarschuwingen",
+    "mutes": "Dempers",
+    "kicks": "Kicks",
+    "bans": "Bans",
+    "core": {
+        "copiedtoclipboard": "Gekopieerd naar het klembord",
+        "edit": "Bijwerken",
+        "delete": "Verwijderen",
+        "pagination": {
+            "forwardtext": "Volgende pagina",
+            "backwardtext": "Vorige pagina",
+            "itemrangetext": "{min}-{max} van {total} items",
+            "pagerangetext": "van {total} pagina",
+            "pagerangetextplural": "van {total} pagina's"
+        }
+    },
+    "feedback": {
+        "title": "Wat vind je van MASZ?",
+        "experience": "Beoordeel je ervaring",
+        "comment": "Laat een reactie achter (optioneel)",
+        "commenttoolong": "Je reactie moet 4096 tekens of minder zijn",
+        "cancel": "Annuleren",
+        "submit": "Verzenden",
+        "thanks": "Bedankt voor jouw feedback!"
+    },
+    "supportme": "Steun mij",
+    "enums": {
+        "punishmenttype": {
+            "mute": "Dempen",
+            "ban": "Ban",
+            "kick": "Kick",
+            "warn": "Waarschuwen"
+        },
+        "viewpermission": {
+            "self": "Privé",
+            "guild": "Gilde",
+            "global": "Globaal"
+        },
+        "automoderationaction": {
+            "none": "Geen actie",
+            "contentdeleted": "Inhoud verwijderd",
+            "casecreated": "Zaak aangemaakt",
+            "contentdeletedandcasecreated": "Inhoud verwijderd en zaak aangemaakt",
+            "timeout": "Timeout"
+        },
+        "automoderationtype": {
+            "inviteposted": "Uitnodiging geplaatst",
+            "toomanyemotes": "Te veel emoji's gebruikt",
+            "toomanymentions": "Te veel gebruikers vermeld",
+            "toomanyattachments": "Te veel bijlagen gebruikt",
+            "toomanyembeds": "Te veel ingesloten inhoud gebruikt",
+            "toomanyautomoderations": "Te veel automatische moderaties",
+            "customwordfilter": "Aangepaste woordenfilter geactiveerd",
+            "toomanymessages": "Te veel berichten",
+            "toomanyduplicatedcharacters": "Te veel gedupliceerde karakters gebruikt",
+            "toomanylinks": "Te veel links gebruikt",
+            "toomanyphishinglinks": "Te veel phishing links gebruikt"
+        },
+        "apierror": {
+            "unknown": "Onbekende fout",
+            "invaliddiscorduser": "Ongeldige Discord-gebruiker",
+            "protectedmodcasesuspect": "Gebruiker is beschermd",
+            "protectedmodcasesuspectisbot": "Gebruiker is beschermd. Hij is een robot.",
+            "protectedmodcasesuspectissiteadmin": "Gebruiker is beschermd. Hij is een sitebeheerder.",
+            "protectedmodcasesuspectisteam": "Gebruiker is beschermd. Hij is een teamlid.",
+            "resourcenotfound": "Bron niet gevonden",
+            "invalididentity": "Ongeldige identiteit",
+            "guildunregistered": "Gilde is niet geregistreerd",
+            "unauthorized": "Onbevoegd",
+            "guildundefinedmutedroles": "Er zijn geen rollen gedefinieerd voor te dempen straffen in deze gilde",
+            "modcaseismarkedtobedeleted": "Modcase is gemarkeerd om te worden verwijderd",
+            "modcaseisnotmarkedtobedeleted": "Modcase is niet gemarkeerd om te worden verwijderd",
+            "guildalreadyregistered": "Deze gilde is al geregistreerd",
+            "notallowedindemomode": "Deze actie is niet toegestaan in de demo-modus",
+            "rolenotfound": "Rol niet gevonden",
+            "tokencannotmanagethisresource": "Tokens kunnen deze bron niet beheren",
+            "tokenalreadyregistered": "Token is al geregistreerd",
+            "cannotbesameuser": "Beide gebruikers zijn hetzelfde.",
+            "resourcealreadyexists": "Bron bestaat al",
+            "modcasedoesnotallowcomments": "Reacties zijn vergrendeld voor deze modcase",
+            "lastcommentalreadyfromsuspect": "De laatste opmerking was al van de verdachte",
+            "invalidautomoderationaction": "Ongeldige automoderatie actie",
+            "invalidautomoderationtype": "Ongeldige automoderatie type",
+            "toomanytemplates": "De gebruiker heeft het maximale aantal sjablonen bereikt",
+            "invalidfilepath": "Ongeldig bestandspad",
+            "noguildsregistered": "Er zijn geen gilde's geregistreerd",
+            "onlyusableinaguild": "Deze actie kan enkel gebruikt worden in een gilde",
+            "invalidauditlogevent": "Ongeldig auditlogevent type",
+            "protectedscheduledmessage": "Het geplande bericht is beschermd en kan niet worden verwijderd.",
+            "invaliddateforscheduledmessage": "De uitvoeringsdatum moet minstens één minuut in de toekomst liggen."
+        },
+        "casecreationtype": {
+            "default": "Standaard",
+            "automoderation": "Zaak is automatisch gemodereerd",
+            "imported": "Zaak is geïmporteerd",
+            "bycommand": "Zaak aangemaakt door opdracht."
+        },
+        "language": {
+            "en": "Engels",
+            "de": "Duits",
+            "fr": "Frans",
+            "es": "Spaans",
+            "it": "Italiaans",
+            "at": "Oostenrijks",
+            "ru": "Russisch",
+            "nl": "Nederlands"
+        },
+        "automoderationchannelnotificationbehavior": {
+            "sendnotification": "Kanaalnotificatie",
+            "sendnotificationanddelete": "Voorlopige kanaalnotificatie",
+            "nonotification": "Geen kanaalnotificatie"
+        },
+        "editstatus": {
+            "none": "Geen",
+            "unedited": "Niet aangepast",
+            "edited": "Aangepast"
+        },
+        "lockedcommentstatus": {
+            "none": "Geen",
+            "locked": "Vergrendeld",
+            "unlocked": "Ontgrendeld"
+        },
+        "markedtodeletestatus": {
+            "none": "Geen",
+            "marked": "Gemarkeerd om te verwijderen",
+            "unmarked": "Niet gemarkeerd om te verwijderen"
+        },
+        "punishmentactivestatus": {
+            "none": "Geen",
+            "active": "Actief",
+            "inactive": "niet actief"
+        },
+        "guildauditlogevent": {
+            "messagesent": "Bericht verzonden",
+            "messageupdated": "Bericht bijgewerkt",
+            "messagedeleted": "Bericht verwijderd",
+            "usernameupdated": "Gebruikersnaam bijgewerkt",
+            "avatarupdated": "Avatar bijgewerkt",
+            "nicknameupdated": "Nickame bijgewerkt",
+            "memberrolesupdated": "Lidrollen bijgewerkt",
+            "memberjoined": "Lid toegetreden",
+            "memberremoved": "Lid verwijderd",
+            "banadded": "Lid geband",
+            "banremoved": "Lid onbannen",
+            "invitecreated": "Uitnodiging aangemaakt",
+            "invitedeleted": "Uitnodiging verwijderd",
+            "threadcreated": "Thread aangemaakt",
+            "voicejoined": "Lid aangesloten bij spraakkanaal",
+            "voiceleft": "Lid verliet spraakkanaal",
+            "voicemoved": "Lid veranderde van spraakkanaal",
+            "reactionadded": "Reactie toegevoegd",
+            "reactionremoved": "Reactie verwijderd"
+        },
+        "scheduledmessagefailurereason": {
+            "unknown": "Onbekende fout",
+            "channelnotfound": "Kanaal niet gevonden",
+            "insufficientpermission": "Onvoldoende toestemming"
+        },
+        "scheduledmessagestatus": {
+            "pending": "In afwachting",
+            "sent": "Verzonden",
+            "failed": "Gefaald"
+        },
+        "appealstatus": {
+            "pending": "In afwachting",
+            "approved": "Aanvaard",
+            "declined": "Geweigerd"
+        }
+    }
+}

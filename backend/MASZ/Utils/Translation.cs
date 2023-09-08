@@ -26,6 +26,7 @@ namespace MASZ.Utils
                 Language.es => "Antiraid",
                 Language.ru => "Антирайд",
                 Language.it => "Antiraid",
+                Language.nl => "Antiraid",
                 _ => "Antiraid",
             };
         }
@@ -39,6 +40,7 @@ namespace MASZ.Utils
                 Language.es => "Ponga en silencio a un usuario específico y elimine todos sus mensajes de las últimas 2 horas.",
                 Language.ru => "Заглушите определенного пользователя и удалите все его сообщения за последние 2 часа.",
                 Language.it => "Disattiva un utente specifico e elimina tutti i suoi messaggi negli ultimi 2 ore.",
+                Language.nl => "Timeout een specifieke gebruiker en verwijder al zijn berichten in de laatste 2 uur.",
                 _ => "Timeout a specific user and delete all his messages in the last 2 hours.",
             };
         }
@@ -52,6 +54,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -65,6 +68,7 @@ namespace MASZ.Utils
                 Language.es => "usuario a castigar",
                 Language.ru => "пользователь для наказания",
                 Language.it => "utente da punire",
+                Language.nl => "te straffen gebruiker",
                 _ => "user to punish",
             };
         }
@@ -78,6 +82,7 @@ namespace MASZ.Utils
                 Language.es => "Avatar",
                 Language.ru => "Аватар",
                 Language.it => "Avatar",
+                Language.nl => "Avatar",
                 _ => "Avatar",
             };
         }
@@ -91,6 +96,7 @@ namespace MASZ.Utils
                 Language.es => "Obtenga el avatar de alta resolución de un usuario.",
                 Language.ru => "Получите высокое разрешение аватара пользователя.",
                 Language.it => "Ottieni l'avatar ad alta risoluzione di un utente.",
+                Language.nl => "Krijg de hoge resolutie avatar van een gebruiker",
                 _ => "Get the high resolution avatar of a user.",
             };
         }
@@ -104,6 +110,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -117,6 +124,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario del que desea obtener el avatar",
                 Language.ru => "Пользователь, аватар которого вы хотите получить",
                 Language.it => "Utente di cui si desidera ottenere l'avatar",
+                Language.nl => "Gebruiker om de avatar van te nemen",
                 _ => "User to get the avatar from",
             };
         }
@@ -130,6 +138,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibir",
                 Language.ru => "Запретить",
                 Language.it => "Bandire",
+                Language.nl => "Ban",
                 _ => "Ban",
             };
         }
@@ -143,6 +152,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibir a un usuario y crear un caso de moderación",
                 Language.ru => "Запретить пользователя и создать модкейс",
                 Language.it => "Bandire un utente e creare un caso di moderazione",
+                Language.nl => "Ban een gebruiker en maak een modcase aan",
                 _ => "Ban a user and create a modcase",
             };
         }
@@ -156,6 +166,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -169,6 +180,7 @@ namespace MASZ.Utils
                 Language.es => "usuario a castigar",
                 Language.ru => "пользователь для наказания",
                 Language.it => "utente da punire",
+                Language.nl => "gebruiker om te straffen",
                 _ => "user to punish",
             };
         }
@@ -182,6 +194,7 @@ namespace MASZ.Utils
                 Language.es => "Título",
                 Language.ru => "Заголовок",
                 Language.it => "Titolo",
+                Language.nl => "Titel",
                 _ => "Title",
             };
         }
@@ -195,6 +208,7 @@ namespace MASZ.Utils
                 Language.es => "Título del caso de moderación",
                 Language.ru => "Заголовок модкейса",
                 Language.it => "Titolo del caso di moderazione",
+                Language.nl => "Titel van de modcase",
                 _ => "Title of the modcase",
             };
         }
@@ -208,6 +222,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles",
                 Language.ru => "Детали",
                 Language.it => "Dettagli",
+                Language.nl => "Details",
                 _ => "Details",
             };
         }
@@ -221,6 +236,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles del caso de moderación",
                 Language.ru => "Детали модкейса",
                 Language.it => "Dettagli del caso di moderazione",
+                Language.nl => "Details van de modcase",
                 _ => "Details of the modcase",
             };
         }
@@ -234,6 +250,7 @@ namespace MASZ.Utils
                 Language.es => "Horas",
                 Language.ru => "Часы",
                 Language.it => "Ore",
+                Language.nl => "Uur",
                 _ => "Hours",
             };
         }
@@ -247,6 +264,7 @@ namespace MASZ.Utils
                 Language.es => "Horas para prohibir al usuario",
                 Language.ru => "Часы, чтобы запретить пользователю",
                 Language.it => "Ore per bandire l'utente",
+                Language.nl => "Uur om de geruiker te verbannen",
                 _ => "Hours to ban the user",
             };
         }
@@ -260,6 +278,7 @@ namespace MASZ.Utils
                 Language.es => "Ilimitado",
                 Language.ru => "Неограниченный",
                 Language.it => "Illimitato",
+                Language.nl => "Oneindig",
                 _ => "Unlimited",
             };
         }
@@ -273,6 +292,7 @@ namespace MASZ.Utils
                 Language.es => "1 hora",
                 Language.ru => "1 час",
                 Language.it => "1 ora",
+                Language.nl => "1 Uur",
                 _ => "1 Hour",
             };
         }
@@ -286,6 +306,7 @@ namespace MASZ.Utils
                 Language.es => "1 día",
                 Language.ru => "1 день",
                 Language.it => "1 giorno",
+                Language.nl => "1 Dag",
                 _ => "1 Day",
             };
         }
@@ -299,6 +320,7 @@ namespace MASZ.Utils
                 Language.es => "1 semana",
                 Language.ru => "1 неделя",
                 Language.it => "1 settimana",
+                Language.nl => "1 Week",
                 _ => "1 Week",
             };
         }
@@ -312,6 +334,7 @@ namespace MASZ.Utils
                 Language.es => "1 mes",
                 Language.ru => "1 месяц",
                 Language.it => "1 mese",
+                Language.nl => "1 Maand",
                 _ => "1 Month",
             };
         }
@@ -325,6 +348,7 @@ namespace MASZ.Utils
                 Language.es => "DM",
                 Language.ru => "DM",
                 Language.it => "DM",
+                Language.nl => "DM",
                 _ => "DM",
             };
         }
@@ -338,6 +362,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
                 Language.it => "Se inviare una notifica DM",
+                Language.nl => "Of een DM melding moet worden verzonden",
                 _ => "Whether to send a dm notification",
             };
         }
@@ -351,6 +376,7 @@ namespace MASZ.Utils
                 Language.es => "público",
                 Language.ru => "общественный",
                 Language.it => "pubblico",
+                Language.nl => "openbaar",
                 _ => "public",
             };
         }
@@ -364,6 +390,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación pública",
                 Language.ru => "Отправлять ли общественное уведомление",
                 Language.it => "Se inviare una notifica pubblica",
+                Language.nl => "Of een openbare melding moet worden verzonden",
                 _ => "Whether to send a public notification",
             };
         }
@@ -377,6 +404,7 @@ namespace MASZ.Utils
                 Language.es => "ejecutar",
                 Language.ru => "выполнить",
                 Language.it => "eseguire",
+                Language.nl => "uitvoeren",
                 _ => "execute",
             };
         }
@@ -390,6 +418,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe ejecutar el castigo",
                 Language.ru => "Выполнить ли наказание",
                 Language.it => "Se eseguire la punizione",
+                Language.nl => "Of de straf moet uitgevoerd worden",
                 _ => "Whether to execute the punishment",
             };
         }
@@ -403,6 +432,7 @@ namespace MASZ.Utils
                 Language.es => "Limpieza",
                 Language.ru => "Очистка",
                 Language.it => "Pulizia",
+                Language.nl => "Opruimen",
                 _ => "Cleanup",
             };
         }
@@ -416,6 +446,7 @@ namespace MASZ.Utils
                 Language.es => "Limpie datos específicos del servidor y / o del canal.",
                 Language.ru => "Очистите определенные данные с сервера и / или канала.",
                 Language.it => "Pulisci dati specifici dal server e / o dal canale.",
+                Language.nl => "Ruim specifieke data van de server en/of kanaal op.",
                 _ => "Cleanup specific data from the server and/or channel.",
             };
         }
@@ -429,6 +460,7 @@ namespace MASZ.Utils
                 Language.es => "modo",
                 Language.ru => "режим",
                 Language.it => "modo",
+                Language.nl => "modus",
                 _ => "mode",
             };
         }
@@ -442,6 +474,7 @@ namespace MASZ.Utils
                 Language.es => "los datos que desea eliminar",
                 Language.ru => "какие данные вы хотите удалить",
                 Language.it => "i dati che si desidera eliminare",
+                Language.nl => "welke data wenst u te verwijderen",
                 _ => "which data you want to delete",
             };
         }
@@ -455,6 +488,7 @@ namespace MASZ.Utils
                 Language.es => "canal",
                 Language.ru => "канал",
                 Language.it => "canale",
+                Language.nl => "kanaal",
                 _ => "channel",
             };
         }
@@ -468,6 +502,7 @@ namespace MASZ.Utils
                 Language.es => "dónde eliminar, por defecto en el actual.",
                 Language.ru => "куда удалять, по умолчанию - текущий.",
                 Language.it => "dove eliminare, di default corrente.",
+                Language.nl => "waar te verwijderen, staat standaard ingesteld op huidig.",
                 _ => "where to delete, defaults to current.",
             };
         }
@@ -481,6 +516,7 @@ namespace MASZ.Utils
                 Language.es => "contar",
                 Language.ru => "считать",
                 Language.it => "contare",
+                Language.nl => "tel",
                 _ => "count",
             };
         }
@@ -494,6 +530,7 @@ namespace MASZ.Utils
                 Language.es => "cuántos mensajes eliminar, por defecto en 100.",
                 Language.ru => "сколько сообщений удалять, по умолчанию - 100.",
                 Language.it => "quanti messaggi eliminare, di default 100.",
+                Language.nl => "hoeveel berichten te verwijderen, standaard ingesteld op 100.",
                 _ => "how many messages to delete, defaults to 100.",
             };
         }
@@ -507,6 +544,7 @@ namespace MASZ.Utils
                 Language.es => "usuario",
                 Language.ru => "пользователь",
                 Language.it => "utente",
+                Language.nl => "gebruiker",
                 _ => "user",
             };
         }
@@ -520,6 +558,7 @@ namespace MASZ.Utils
                 Language.es => "filtro adicional en este usuario",
                 Language.ru => "дополнительный фильтр на этого пользователя",
                 Language.it => "filtro aggiuntivo su questo utente",
+                Language.nl => "extra filter op deze gebruiker",
                 _ => "additional filter on this user",
             };
         }
@@ -533,6 +572,7 @@ namespace MASZ.Utils
                 Language.es => "características",
                 Language.ru => "особенности",
                 Language.it => "caratteristiche",
+                Language.nl => "functies",
                 _ => "features",
             };
         }
@@ -546,6 +586,7 @@ namespace MASZ.Utils
                 Language.es => "Comprueba si se necesita más configuración para usar las características de MASZ.",
                 Language.ru => "Проверяет, нужна ли дополнительная конфигурация для использования функций MASZ.",
                 Language.it => "Controlla se è necessaria ulteriore configurazione per utilizzare le funzionalità di MASZ.",
+                Language.nl => "Bekijkt of verdere configuratie nodig is om gebruik te maken van MASZ functies.",
                 _ => "Checks if further configuration is needed to use MASZ features.",
             };
         }
@@ -559,6 +600,7 @@ namespace MASZ.Utils
                 Language.es => "github",
                 Language.ru => "github",
                 Language.it => "github",
+                Language.nl => "github",
                 _ => "github",
             };
         }
@@ -572,6 +614,7 @@ namespace MASZ.Utils
                 Language.es => "Muestra el enlace al repositorio de github.",
                 Language.ru => "Отображает ссылку на репозиторий github.",
                 Language.it => "Mostra il link al repository github.",
+                Language.nl => "Toont de link naar de github-repository.",
                 _ => "Displays the link to the github repository.",
             };
         }
@@ -585,6 +628,7 @@ namespace MASZ.Utils
                 Language.es => "invitar",
                 Language.ru => "пригласить",
                 Language.it => "invitare",
+                Language.nl => "uitnodigen",
                 _ => "invite",
             };
         }
@@ -598,6 +642,7 @@ namespace MASZ.Utils
                 Language.es => "Cómo invitar a este bot.",
                 Language.ru => "Как пригласить этого бота.",
                 Language.it => "Come invitare questo bot.",
+                Language.nl => "Hoe nodig je deze bot uit.",
                 _ => "How to invite this bot.",
             };
         }
@@ -611,6 +656,7 @@ namespace MASZ.Utils
                 Language.es => "Patada",
                 Language.ru => "Кик",
                 Language.it => "Calcio",
+                Language.nl => "Kick",
                 _ => "Kick",
             };
         }
@@ -624,6 +670,7 @@ namespace MASZ.Utils
                 Language.es => "Expulsa a un usuario y crea un caso de moderación",
                 Language.ru => "Выгнать пользователя и создать модкейс",
                 Language.it => "Espelli un utente e crea un caso di moderazione",
+                Language.nl => "Kick een gebruiker en maak een modcase aan",
                 _ => "Kick a user and create a modcase",
             };
         }
@@ -637,6 +684,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -650,6 +698,7 @@ namespace MASZ.Utils
                 Language.es => "usuario a castigar",
                 Language.ru => "пользователь для наказания",
                 Language.it => "utente da punire",
+                Language.nl => "te straffen gebruiker",
                 _ => "user to punish",
             };
         }
@@ -663,6 +712,7 @@ namespace MASZ.Utils
                 Language.es => "Título",
                 Language.ru => "Заголовок",
                 Language.it => "Titolo",
+                Language.nl => "Titel",
                 _ => "Title",
             };
         }
@@ -676,6 +726,7 @@ namespace MASZ.Utils
                 Language.es => "Título del caso de moderación",
                 Language.ru => "Заголовок модкейса",
                 Language.it => "Titolo del caso di moderazione",
+                Language.nl => "Titel van de modcase",
                 _ => "Title of the modcase",
             };
         }
@@ -689,6 +740,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles",
                 Language.ru => "Детали",
                 Language.it => "Dettagli",
+                Language.nl => "Details",
                 _ => "Details",
             };
         }
@@ -702,6 +754,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles del caso de moderación",
                 Language.ru => "Детали модкейса",
                 Language.it => "Dettagli del caso di moderazione",
+                Language.nl => "Details van de modcase",
                 _ => "Details of the modcase",
             };
         }
@@ -715,6 +768,7 @@ namespace MASZ.Utils
                 Language.es => "DM",
                 Language.ru => "DM",
                 Language.it => "DM",
+                Language.nl => "DM",
                 _ => "DM",
             };
         }
@@ -728,6 +782,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
                 Language.it => "Se inviare una notifica DM",
+                Language.nl => "Of een DM melding moet worden verzonden",
                 _ => "Whether to send a dm notification",
             };
         }
@@ -741,6 +796,7 @@ namespace MASZ.Utils
                 Language.es => "público",
                 Language.ru => "общественный",
                 Language.it => "pubblico",
+                Language.nl => "openbaar",
                 _ => "public",
             };
         }
@@ -754,6 +810,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación pública",
                 Language.ru => "Отправлять ли общественное уведомление",
                 Language.it => "Se inviare una notifica pubblica",
+                Language.nl => "Of een openbare melding moet worden verzonden",
                 _ => "Whether to send a public notification",
             };
         }
@@ -767,6 +824,7 @@ namespace MASZ.Utils
                 Language.es => "ejecutar",
                 Language.ru => "выполнить",
                 Language.it => "eseguire",
+                Language.nl => "uitvoeren",
                 _ => "execute",
             };
         }
@@ -780,6 +838,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe ejecutar el castigo",
                 Language.ru => "Выполнить ли наказание",
                 Language.it => "Se eseguire la punizione",
+                Language.nl => "Of de straf moet uitgevoerd worden",
                 _ => "Whether to execute the punishment",
             };
         }
@@ -793,6 +852,7 @@ namespace MASZ.Utils
                 Language.es => "Silenciar",
                 Language.ru => "Заглушить",
                 Language.it => "Silenzia",
+                Language.nl => "Dempen",
                 _ => "Mute",
             };
         }
@@ -806,6 +866,7 @@ namespace MASZ.Utils
                 Language.es => "Silencia a un usuario y crea un caso de moderación",
                 Language.ru => "Заглушить пользователя и создать модкейс",
                 Language.it => "Silenzia un utente e crea un caso di moderazione",
+                Language.nl => "Demp een gebruiker en maak een modcase aan",
                 _ => "Mute a user and create a modcase",
             };
         }
@@ -819,6 +880,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -832,6 +894,7 @@ namespace MASZ.Utils
                 Language.es => "usuario a castigar",
                 Language.ru => "пользователь для наказания",
                 Language.it => "utente da punire",
+                Language.nl => "te straffen gebruiker",
                 _ => "user to punish",
             };
         }
@@ -845,6 +908,7 @@ namespace MASZ.Utils
                 Language.es => "Título",
                 Language.ru => "Заголовок",
                 Language.it => "Titolo",
+                Language.nl => "Titel",
                 _ => "Title",
             };
         }
@@ -858,6 +922,7 @@ namespace MASZ.Utils
                 Language.es => "Título del caso de moderación",
                 Language.ru => "Заголовок модкейса",
                 Language.it => "Titolo del caso di moderazione",
+                Language.nl => "Titel van de modcase",
                 _ => "Title of the modcase",
             };
         }
@@ -871,6 +936,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles",
                 Language.ru => "Детали",
                 Language.it => "Dettagli",
+                Language.nl => "Details",
                 _ => "Details",
             };
         }
@@ -884,6 +950,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles del caso de moderación",
                 Language.ru => "Детали модкейса",
                 Language.it => "Dettagli del caso di moderazione",
+                Language.nl => "Details van de modcase",
                 _ => "Details of the modcase",
             };
         }
@@ -897,6 +964,7 @@ namespace MASZ.Utils
                 Language.es => "Horas",
                 Language.ru => "Часы",
                 Language.it => "Ore",
+                Language.nl => "Uur",
                 _ => "Hours",
             };
         }
@@ -910,6 +978,7 @@ namespace MASZ.Utils
                 Language.es => "Horas para silenciar al usuario",
                 Language.ru => "Часы для заглушения пользователя",
                 Language.it => "Ore per silenziare l'utente",
+                Language.nl => "Uur om de gebruiker te dempen",
                 _ => "Hours to mute the user",
             };
         }
@@ -923,6 +992,7 @@ namespace MASZ.Utils
                 Language.es => "Ilimitado",
                 Language.ru => "Неограниченный",
                 Language.it => "Illimitato",
+                Language.nl => "oneindig",
                 _ => "Unlimited",
             };
         }
@@ -936,6 +1006,7 @@ namespace MASZ.Utils
                 Language.es => "1 hora",
                 Language.ru => "1 час",
                 Language.it => "1 ora",
+                Language.nl => "1 Uur",
                 _ => "1 Hour",
             };
         }
@@ -949,6 +1020,7 @@ namespace MASZ.Utils
                 Language.es => "1 día",
                 Language.ru => "1 день",
                 Language.it => "1 giorno",
+                Language.nl => "1 Dag",
                 _ => "1 Day",
             };
         }
@@ -962,6 +1034,7 @@ namespace MASZ.Utils
                 Language.es => "1 semana",
                 Language.ru => "1 неделя",
                 Language.it => "1 settimana",
+                Language.nl => "1 Week",
                 _ => "1 Week",
             };
         }
@@ -975,6 +1048,7 @@ namespace MASZ.Utils
                 Language.es => "1 mes",
                 Language.ru => "1 месяц",
                 Language.it => "1 mese",
+                Language.nl => "1 Maand",
                 _ => "1 Month",
             };
         }
@@ -988,6 +1062,7 @@ namespace MASZ.Utils
                 Language.es => "DM",
                 Language.ru => "DM",
                 Language.it => "DM",
+                Language.nl => "DM",
                 _ => "DM",
             };
         }
@@ -1001,6 +1076,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
                 Language.it => "Se inviare una notifica DM",
+                Language.nl => "Of een DM melding moet worden verzonden",
                 _ => "Whether to send a dm notification",
             };
         }
@@ -1014,6 +1090,7 @@ namespace MASZ.Utils
                 Language.es => "público",
                 Language.ru => "общественный",
                 Language.it => "pubblico",
+                Language.nl => "openbaar",
                 _ => "public",
             };
         }
@@ -1027,6 +1104,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación pública",
                 Language.ru => "Отправлять ли общественное уведомление",
                 Language.it => "Se inviare una notifica pubblica",
+                Language.nl => "Of een openbare melding moet worden verzonden",
                 _ => "Whether to send a public notification",
             };
         }
@@ -1040,6 +1118,7 @@ namespace MASZ.Utils
                 Language.es => "ejecutar",
                 Language.ru => "выполнить",
                 Language.it => "eseguire",
+                Language.nl => "uitvoeren",
                 _ => "execute",
             };
         }
@@ -1053,6 +1132,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe ejecutar el castigo",
                 Language.ru => "Выполнить ли наказание",
                 Language.it => "Se eseguire la punizione",
+                Language.nl => "Of de straf moet uitgevoerd worden",
                 _ => "Whether to execute the punishment",
             };
         }
@@ -1066,6 +1146,7 @@ namespace MASZ.Utils
                 Language.es => "Reportar a los moderadores",
                 Language.ru => "Сообщить модераторам",
                 Language.it => "Segnala ai moderatori",
+                Language.nl => "Rapporteer aan moderatoren",
                 _ => "Report to moderators",
             };
         }
@@ -1079,6 +1160,7 @@ namespace MASZ.Utils
                 Language.es => "Reportar a los moderadores",
                 Language.ru => "Сообщить модераторам",
                 Language.it => "Segnala ai moderatori",
+                Language.nl => "Rapporteer aan moderatoren",
                 _ => "Report to moderators",
             };
         }
@@ -1092,6 +1174,7 @@ namespace MASZ.Utils
                 Language.es => "Decir",
                 Language.ru => "Сказать",
                 Language.it => "Dire",
+                Language.nl => "Zeg",
                 _ => "Say",
             };
         }
@@ -1105,6 +1188,7 @@ namespace MASZ.Utils
                 Language.es => "Deja que el bot envíe un mensaje.",
                 Language.ru => "Позволяет боту отправить сообщение.",
                 Language.it => "Permetti al bot di inviare un messaggio.",
+                Language.nl => "Laat de bot een bericht sturen.",
                 _ => "Let the bot send a message.",
             };
         }
@@ -1118,6 +1202,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje",
                 Language.ru => "Сообщение",
                 Language.it => "Messaggio",
+                Language.nl => "Bericht",
                 _ => "Message",
             };
         }
@@ -1131,6 +1216,7 @@ namespace MASZ.Utils
                 Language.es => "El mensaje a enviar.",
                 Language.ru => "Сообщение для отправки.",
                 Language.it => "Il messaggio da inviare.",
+                Language.nl => "Te verzenden bericht.",
                 _ => "The message to send.",
             };
         }
@@ -1144,6 +1230,7 @@ namespace MASZ.Utils
                 Language.es => "Canal",
                 Language.ru => "Канал",
                 Language.it => "Canale",
+                Language.nl => "Kanaal",
                 _ => "Channel",
             };
         }
@@ -1157,6 +1244,7 @@ namespace MASZ.Utils
                 Language.es => "canal en el que escribir el mensaje, predeterminado actual",
                 Language.ru => "канал для записи сообщения, по умолчанию текущий",
                 Language.it => "canale in cui scrivere il messaggio, predefinito corrente",
+                Language.nl => "Kanaal om het bericht in te sturen, staat standaard ingesteld op huidig",
                 _ => "channel to write the message in, defaults to current",
             };
         }
@@ -1170,6 +1258,7 @@ namespace MASZ.Utils
                 Language.es => "Estado",
                 Language.ru => "Статус",
                 Language.it => "Stato",
+                Language.nl => "Status",
                 _ => "Status",
             };
         }
@@ -1183,6 +1272,7 @@ namespace MASZ.Utils
                 Language.es => "Ver el estado actual de su aplicación.",
                 Language.ru => "Посмотрите текущий статус вашего приложения.",
                 Language.it => "Vedi lo stato attuale della tua applicazione.",
+                Language.nl => "Bekijk de huidige status van uw aanvraag.",
                 _ => "See the current status of your application.",
             };
         }
@@ -1196,6 +1286,7 @@ namespace MASZ.Utils
                 Language.es => "Pista",
                 Language.ru => "Дорожка",
                 Language.it => "Traccia",
+                Language.nl => "Volgen",
                 _ => "Track",
             };
         }
@@ -1209,6 +1300,7 @@ namespace MASZ.Utils
                 Language.es => "Rastree una invitación, su creador y sus usuarios.",
                 Language.ru => "Отслеживайте приглашение, его создателя и его пользователей.",
                 Language.it => "Traccia un invito, il suo creatore e i suoi utenti.",
+                Language.nl => "Volg een uitnodiging, de maker en de gebruikers ervan.",
                 _ => "Track an invite, its creator and its users.",
             };
         }
@@ -1222,6 +1314,7 @@ namespace MASZ.Utils
                 Language.es => "Invitar",
                 Language.ru => "Приглашать",
                 Language.it => "Invitare",
+                Language.nl => "Uitnodiging",
                 _ => "Invite",
             };
         }
@@ -1235,6 +1328,7 @@ namespace MASZ.Utils
                 Language.es => "Ingrese el código de invitación o la URL",
                 Language.ru => "Введите код приглашения или URL",
                 Language.it => "Inserisci il codice di invito o l'URL",
+                Language.nl => "Voeg de uitnodigingscode of de URL toe",
                 _ => "Either enter the invite code or the url",
             };
         }
@@ -1248,6 +1342,7 @@ namespace MASZ.Utils
                 Language.es => "Desbanear",
                 Language.ru => "Разбанить",
                 Language.it => "Sbannare",
+                Language.nl => "onbannen",
                 _ => "Unban",
             };
         }
@@ -1261,6 +1356,7 @@ namespace MASZ.Utils
                 Language.es => "Desbanea a un usuario desactivando todos sus modcases.",
                 Language.ru => "Разбаньте пользователя, отключив все его модкейсы.",
                 Language.it => "Sbanna un utente disattivando tutti i suoi modcase.",
+                Language.nl => "Maak een gebruiker weer actief door al zijn modcases te deactiveren.",
                 _ => "Unban a user by deactivating all his modcases.",
             };
         }
@@ -1274,6 +1370,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -1287,6 +1384,7 @@ namespace MASZ.Utils
                 Language.es => "El usuario a desbanear",
                 Language.ru => "Пользователь, которого нужно разбанить",
                 Language.it => "L'utente da sbannare",
+                Language.nl => "De gebruiker die moet worden onbannen",
                 _ => "The user to unban",
             };
         }
@@ -1300,6 +1398,7 @@ namespace MASZ.Utils
                 Language.es => "Desmutear",
                 Language.ru => "Размутить",
                 Language.it => "Smutare",
+                Language.nl => "Dempenopheffen",
                 _ => "Unmute",
             };
         }
@@ -1313,6 +1412,7 @@ namespace MASZ.Utils
                 Language.es => "Desbanea a un usuario desactivando todos sus modcases.",
                 Language.ru => "Разбаньте пользователя, отключив все его модкейсы.",
                 Language.it => "Sbanna un utente disattivando tutti i suoi modcase.",
+                Language.nl => "Dempen van een gebruiker ongedaan maken door al zijn modcases te deactiveren.",
                 _ => "Unmute a user by deactivating all his modcases.",
             };
         }
@@ -1326,6 +1426,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -1339,6 +1440,7 @@ namespace MASZ.Utils
                 Language.es => "El usuario a desbanear",
                 Language.ru => "Пользователь, которого нужно разбанить",
                 Language.it => "L'utente da sbannare",
+                Language.nl => "De gebruiker om te onbannen",
                 _ => "The user to unban",
             };
         }
@@ -1352,6 +1454,7 @@ namespace MASZ.Utils
                 Language.es => "URL",
                 Language.ru => "URL",
                 Language.it => "URL",
+                Language.nl => "URL",
                 _ => "URL",
             };
         }
@@ -1365,6 +1468,7 @@ namespace MASZ.Utils
                 Language.es => "Muestra la URL en la que se implementa MASZ.",
                 Language.ru => "Отображает URL, на котором развернут MASZ.",
                 Language.it => "Mostra l'URL su cui è installato MASZ.",
+                Language.nl => "Geeft de URL weer waarop MASZ is geimplementeerd.",
                 _ => "Displays the URL MASZ is deployed on.",
             };
         }
@@ -1378,6 +1482,7 @@ namespace MASZ.Utils
                 Language.es => "Ver",
                 Language.ru => "Посмотреть",
                 Language.it => "Vedere",
+                Language.nl => "Bekijken",
                 _ => "View",
             };
         }
@@ -1391,6 +1496,7 @@ namespace MASZ.Utils
                 Language.es => "Ver un modcase.",
                 Language.ru => "Посмотреть модкейс.",
                 Language.it => "Visualizza un modcase.",
+                Language.nl => "Bekijk een modcase",
                 _ => "View a modcase.",
             };
         }
@@ -1404,6 +1510,7 @@ namespace MASZ.Utils
                 Language.es => "Id",
                 Language.ru => "Id",
                 Language.it => "Id",
+                Language.nl => "Id",
                 _ => "Id",
             };
         }
@@ -1417,6 +1524,7 @@ namespace MASZ.Utils
                 Language.es => "El id del modcase a ver.",
                 Language.ru => "Идентификатор просматриваемого модкейса.",
                 Language.it => "L'id del modcase da visualizzare.",
+                Language.nl => "Het ID van de modcase om te bekijken.",
                 _ => "The id of the modcase to view.",
             };
         }
@@ -1430,6 +1538,7 @@ namespace MASZ.Utils
                 Language.es => "Guildid",
                 Language.ru => "Guildid",
                 Language.it => "Guildid",
+                Language.nl => "Guildid",
                 _ => "Guildid",
             };
         }
@@ -1443,6 +1552,7 @@ namespace MASZ.Utils
                 Language.es => "El id de la guilda en la que está el modcase.",
                 Language.ru => "Идентификатор гильдии, в которой находится модкейс.",
                 Language.it => "L'id della gilda in cui si trova il modcase.",
+                Language.nl => "De Id van de gilde waarin de modcase zich bevindt.",
                 _ => "The id of the guild the modcase is in.",
             };
         }
@@ -1456,6 +1566,7 @@ namespace MASZ.Utils
                 Language.es => "Advertir",
                 Language.ru => "Предупредить",
                 Language.it => "Avvertire",
+                Language.nl => "Waarschuwen",
                 _ => "Warn",
             };
         }
@@ -1469,6 +1580,7 @@ namespace MASZ.Utils
                 Language.es => "Advertir a un usuario y crear un modcase",
                 Language.ru => "Предупредить пользователя и создать модкейс",
                 Language.it => "Avvertire un utente e creare un modcase",
+                Language.nl => "Waarschuw een gebruiker en maak een modcase aan",
                 _ => "Warn a user and create a modcase",
             };
         }
@@ -1482,6 +1594,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -1495,6 +1608,7 @@ namespace MASZ.Utils
                 Language.es => "usuario a castigar",
                 Language.ru => "пользователь для наказания",
                 Language.it => "utente da punire",
+                Language.nl => "Te straffen gebruiker",
                 _ => "user to punish",
             };
         }
@@ -1508,6 +1622,7 @@ namespace MASZ.Utils
                 Language.es => "Título",
                 Language.ru => "Заголовок",
                 Language.it => "Titolo",
+                Language.nl => "Titel",
                 _ => "Title",
             };
         }
@@ -1521,6 +1636,7 @@ namespace MASZ.Utils
                 Language.es => "Título del caso de moderación",
                 Language.ru => "Заголовок модкейса",
                 Language.it => "Titolo del caso di moderazione",
+                Language.nl => "Titel van de modcase",
                 _ => "Title of the modcase",
             };
         }
@@ -1534,6 +1650,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles",
                 Language.ru => "Детали",
                 Language.it => "Dettagli",
+                Language.nl => "Details",
                 _ => "Details",
             };
         }
@@ -1547,6 +1664,7 @@ namespace MASZ.Utils
                 Language.es => "Detalles del caso de moderación",
                 Language.ru => "Детали модкейса",
                 Language.it => "Dettagli del caso di moderazione",
+                Language.nl => "Details van de modcase",
                 _ => "Details of the modcase",
             };
         }
@@ -1560,6 +1678,7 @@ namespace MASZ.Utils
                 Language.es => "DM",
                 Language.ru => "DM",
                 Language.it => "DM",
+                Language.nl => "DM",
                 _ => "DM",
             };
         }
@@ -1573,6 +1692,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación DM",
                 Language.ru => "Отправлять ли уведомление DM",
                 Language.it => "Se inviare una notifica DM",
+                Language.nl => "Of een DM-melding moet worden verzonden",
                 _ => "Whether to send a dm notification",
             };
         }
@@ -1586,6 +1706,7 @@ namespace MASZ.Utils
                 Language.es => "público",
                 Language.ru => "общественный",
                 Language.it => "pubblico",
+                Language.nl => "openbaar",
                 _ => "public",
             };
         }
@@ -1599,6 +1720,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe enviar una notificación pública",
                 Language.ru => "Отправлять ли общественное уведомление",
                 Language.it => "Se inviare una notifica pubblica",
+                Language.nl => "Of een openbare melding moet worden verzonden",
                 _ => "Whether to send a public notification",
             };
         }
@@ -1612,6 +1734,7 @@ namespace MASZ.Utils
                 Language.es => "ejecutar",
                 Language.ru => "выполнить",
                 Language.it => "eseguire",
+                Language.nl => "uitvoeren",
                 _ => "execute",
             };
         }
@@ -1625,6 +1748,7 @@ namespace MASZ.Utils
                 Language.es => "Si se debe ejecutar el castigo",
                 Language.ru => "Выполнить ли наказание",
                 Language.it => "Se eseguire la punizione",
+                Language.nl => "of de straf moet uitgevoerd worden",
                 _ => "Whether to execute the punishment",
             };
         }
@@ -1638,6 +1762,7 @@ namespace MASZ.Utils
                 Language.es => "Whois",
                 Language.ru => "Whois",
                 Language.it => "Whois",
+                Language.nl => "Whois",
                 _ => "Whois",
             };
         }
@@ -1651,6 +1776,7 @@ namespace MASZ.Utils
                 Language.es => "Muestra información sobre un usuario",
                 Language.ru => "Показывает информацию о пользователе",
                 Language.it => "Mostra informazioni su un utente",
+                Language.nl => "Toont informatie over een gebruiker",
                 _ => "Shows information about a user",
             };
         }
@@ -1664,6 +1790,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -1677,6 +1804,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario para mostrar información",
                 Language.ru => "Пользователь для отображения информации",
                 Language.it => "Utente per mostrare le informazioni",
+                Language.nl => "Gebruiker om informatie van te tonen",
                 _ => "User to show information for",
             };
         }
@@ -1690,6 +1818,7 @@ namespace MASZ.Utils
                 Language.es => "Características",
                 Language.ru => "Функции",
                 Language.it => "Caratteristiche",
+                Language.nl => "Functies",
                 _ => "Features",
             };
         }
@@ -1703,6 +1832,7 @@ namespace MASZ.Utils
                 Language.es => "Automoderación",
                 Language.ru => "Автомобильная промышленность",
                 Language.it => "Automoderazione",
+                Language.nl => "Automatische moderatie",
                 _ => "Automoderation",
             };
         }
@@ -1716,6 +1846,7 @@ namespace MASZ.Utils
                 Language.es => "Acción",
                 Language.ru => "Действие",
                 Language.it => "Azione",
+                Language.nl => "Actie",
                 _ => "Action",
             };
         }
@@ -1729,6 +1860,7 @@ namespace MASZ.Utils
                 Language.es => "Extraviado.",
                 Language.ru => "Не найден.",
                 Language.it => "Non trovato.",
+                Language.nl => "Niet gevonden",
                 _ => "Not found.",
             };
         }
@@ -1742,6 +1874,7 @@ namespace MASZ.Utils
                 Language.es => "Autor",
                 Language.ru => "Автор",
                 Language.it => "Autore",
+                Language.nl => "Auteur",
                 _ => "Author",
             };
         }
@@ -1755,6 +1888,7 @@ namespace MASZ.Utils
                 Language.es => "Contenido del mensaje",
                 Language.ru => "Содержание сообщения",
                 Language.it => "Contenuto del messaggio",
+                Language.nl => "Berichtinhoud",
                 _ => "Message content",
             };
         }
@@ -1768,6 +1902,7 @@ namespace MASZ.Utils
                 Language.es => $"Ver detalles en: {url}",
                 Language.ru => $"Подробнее о: {url}",
                 Language.it => $"Visualizza dettagli su: {url}",
+                Language.nl => $"Bekijk details op: {url}",
                 _ => $"View details on: {url}",
             };
         }
@@ -1781,6 +1916,7 @@ namespace MASZ.Utils
                 Language.es => "Archivos adjuntos",
                 Language.ru => "Вложения",
                 Language.it => "Allegati",
+                Language.nl => "Bijlagen",
                 _ => "Attachments",
             };
         }
@@ -1794,6 +1930,7 @@ namespace MASZ.Utils
                 Language.es => "Adjunto",
                 Language.ru => "Вложение",
                 Language.it => "allegato",
+                Language.nl => "Bijlage",
                 _ => "Attachment",
             };
         }
@@ -1807,6 +1944,7 @@ namespace MASZ.Utils
                 Language.es => $"y {count} más ...",
                 Language.ru => $"и еще {count} ...",
                 Language.it => $"e {count} altro...",
+                Language.nl => $"en nog {count}...",
                 _ => $"and {count} more...",
             };
         }
@@ -1820,6 +1958,7 @@ namespace MASZ.Utils
                 Language.es => "Canal",
                 Language.ru => "Канал",
                 Language.it => "Canale",
+                Language.nl => "Kanaal",
                 _ => "Channel",
             };
         }
@@ -1833,6 +1972,7 @@ namespace MASZ.Utils
                 Language.es => "Algo salió mal.",
                 Language.ru => "Что-то пошло не так.",
                 Language.it => "Qualcosa è andato storto.",
+                Language.nl => "Er is iets misgegaan.",
                 _ => "Something went wrong.",
             };
         }
@@ -1846,6 +1986,7 @@ namespace MASZ.Utils
                 Language.es => "Código",
                 Language.ru => "Код",
                 Language.it => "Codice",
+                Language.nl => "Code",
                 _ => "Code",
             };
         }
@@ -1859,6 +2000,7 @@ namespace MASZ.Utils
                 Language.es => "Idioma",
                 Language.ru => "Язык",
                 Language.it => "Lingua",
+                Language.nl => "Taal",
                 _ => "Language",
             };
         }
@@ -1872,6 +2014,7 @@ namespace MASZ.Utils
                 Language.es => "Marcas de tiempo",
                 Language.ru => "Отметки времени",
                 Language.it => "Timestamp",
+                Language.nl => "Tijdstempels",
                 _ => "Timestamps",
             };
         }
@@ -1885,6 +2028,7 @@ namespace MASZ.Utils
                 Language.es => "Apoyo",
                 Language.ru => "Служба поддержки",
                 Language.it => "Supporto",
+                Language.nl => "Support",
                 _ => "Support",
             };
         }
@@ -1898,6 +2042,7 @@ namespace MASZ.Utils
                 Language.es => "Castigo",
                 Language.ru => "Наказание",
                 Language.it => "Punizione",
+                Language.nl => "Straf",
                 _ => "Punishment",
             };
         }
@@ -1911,6 +2056,7 @@ namespace MASZ.Utils
                 Language.es => "Hasta que",
                 Language.ru => "до",
                 Language.it => "fino a",
+                Language.nl => "Tot",
                 _ => "until",
             };
         }
@@ -1924,6 +2070,7 @@ namespace MASZ.Utils
                 Language.es => "Castigado hasta",
                 Language.ru => "Наказан до",
                 Language.it => "Punito fino a",
+                Language.nl => "Straf tot",
                 _ => "Punished until",
             };
         }
@@ -1937,6 +2084,7 @@ namespace MASZ.Utils
                 Language.es => "Descripción",
                 Language.ru => "Описание",
                 Language.it => "Descrizione",
+                Language.nl => "Beschrijving",
                 _ => "Description",
             };
         }
@@ -1950,6 +2098,7 @@ namespace MASZ.Utils
                 Language.es => "Etiquetas",
                 Language.ru => "Этикетки",
                 Language.it => "etichette",
+                Language.nl => "Labels",
                 _ => "Labels",
             };
         }
@@ -1963,6 +2112,7 @@ namespace MASZ.Utils
                 Language.es => "Nombre del archivo",
                 Language.ru => "Имя файла",
                 Language.it => "Nome del file",
+                Language.nl => "Bestandnaam",
                 _ => "Filename",
             };
         }
@@ -1976,6 +2126,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje",
                 Language.ru => "Сообщение",
                 Language.it => "Messaggio",
+                Language.nl => "Bericht",
                 _ => "Message",
             };
         }
@@ -1989,6 +2140,7 @@ namespace MASZ.Utils
                 Language.es => "UserNote",
                 Language.ru => "UserNote",
                 Language.it => "Nota utente",
+                Language.nl => "Gebruikersnotitie",
                 _ => "UserNote",
             };
         }
@@ -2002,6 +2154,7 @@ namespace MASZ.Utils
                 Language.es => "Notas de usuario",
                 Language.ru => "UserNotes",
                 Language.it => "Note utente",
+                Language.nl => "Gebruikersnotities",
                 _ => "UserNotes",
             };
         }
@@ -2015,6 +2168,7 @@ namespace MASZ.Utils
                 Language.es => "Casos",
                 Language.ru => "Случаи",
                 Language.it => "casi",
+                Language.nl => "Zaken",
                 _ => "Cases",
             };
         }
@@ -2028,6 +2182,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje del día",
                 Language.ru => "Послание дня",
                 Language.it => "Messaggio del giorno",
+                Language.nl => "Bericht van de dag",
                 _ => "Message of the Day",
             };
         }
@@ -2041,6 +2196,7 @@ namespace MASZ.Utils
                 Language.es => "Castigos activos",
                 Language.ru => "Активные наказания",
                 Language.it => "punizioni attive",
+                Language.nl => "Actieve straffen",
                 _ => "Active punishments",
             };
         }
@@ -2054,6 +2210,7 @@ namespace MASZ.Utils
                 Language.es => "UserMap",
                 Language.ru => "UserMap",
                 Language.it => "Mappa utente",
+                Language.nl => "Gebruikersmap",
                 _ => "UserMap",
             };
         }
@@ -2067,6 +2224,7 @@ namespace MASZ.Utils
                 Language.es => "UserMaps",
                 Language.ru => "UserMaps",
                 Language.it => "Mappe utente",
+                Language.nl => "Gebruikersmappen",
                 _ => "UserMaps",
             };
         }
@@ -2080,6 +2238,7 @@ namespace MASZ.Utils
                 Language.es => $"UserMap entre <@{userMap.UserA}> y <@{userMap.UserB}>.",
                 Language.ru => $"UserMap между <@{userMap.UserA}> и <@{userMap.UserB}>.",
                 Language.it => $"UserMap tra <@{userMap.UserA}> e <@{userMap.UserB}>.",
+                Language.nl => $"Gebruikersmap tussen <@{userMap.UserA}> en <@{userMap.UserB}>.",
                 _ => $"UserMap between <@{userMap.UserA}> and <@{userMap.UserB}>.",
             };
         }
@@ -2093,6 +2252,7 @@ namespace MASZ.Utils
                 Language.es => "Importado",
                 Language.ru => "Импортный",
                 Language.it => "importato",
+                Language.nl => "Geïmporteerd",
                 _ => "Imported",
             };
         }
@@ -2106,6 +2266,7 @@ namespace MASZ.Utils
                 Language.es => "Importado de prohibiciones existentes",
                 Language.ru => "Импортировано из существующих банов",
                 Language.it => "Importato da divieti esistenti",
+                Language.nl => "Geïmporteerd van bestaande bans",
                 _ => "Imported from existing bans",
             };
         }
@@ -2119,6 +2280,7 @@ namespace MASZ.Utils
                 Language.es => "Escribe",
                 Language.ru => "Тип",
                 Language.it => "Tipo",
+                Language.nl => "Type",
                 _ => "Type",
             };
         }
@@ -2132,6 +2294,7 @@ namespace MASZ.Utils
                 Language.es => "Unido",
                 Language.ru => "Присоединился",
                 Language.it => "Partecipato",
+                Language.nl => "Toegetreden",
                 _ => "Joined",
             };
         }
@@ -2145,6 +2308,7 @@ namespace MASZ.Utils
                 Language.es => "Registrado",
                 Language.ru => "Зарегистрировано",
                 Language.it => "Registrato",
+                Language.nl => "Geregistreerd",
                 _ => "Registered",
             };
         }
@@ -2152,78 +2316,84 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.",
-                Language.es => $"Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.",
-                Language.it => $"È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde erstellt.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is erstöt woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé.",
+                Language.es => $"Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан.",
+                Language.it => $"È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created.",
             };
         }
         public string NotificationModcaseCreateInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) erstellt.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) woad fo <@{moderator.Id}> ({moderator.Username}) erstöt.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido creado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato creato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}) door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseUpdatePublic(ModCase modCase)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.",
-                Language.es => $"Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.",
-                Language.it => $"È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde aktualisiert.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is aktualisiert woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour.",
+                Language.es => $"Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен.",
+                Language.it => $"È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt.",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated.",
             };
         }
         public string NotificationModcaseUpdateInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) aktualisiert.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is fo <@{moderator.Id}> ({moderator.Username}) aktualisiert woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseDeletePublic(ModCase modCase)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.",
-                Language.es => $"Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato.",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde gelöscht.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is glescht woan",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé.",
+                Language.es => $"Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален.",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato.",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd.",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted.",
             };
         }
         public string NotificationModcaseDeleteInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) gelöscht.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is vo <@{moderator.Id}> ({moderator.Username}) glescht woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseCommentsShortCreate()
@@ -2236,6 +2406,7 @@ namespace MASZ.Utils
                 Language.es => "Comentario creado",
                 Language.ru => "Комментарий создан",
                 Language.it => "Commento creato",
+                Language.nl => "Reactie gemaakt",
                 _ => "Comment created",
             };
         }
@@ -2249,6 +2420,7 @@ namespace MASZ.Utils
                 Language.es => "Comentario actualizado",
                 Language.ru => "Комментарий обновлен",
                 Language.it => "Commento aggiornato",
+                Language.nl => "Reactie bijgewerkt",
                 _ => "Comment updated",
             };
         }
@@ -2262,6 +2434,7 @@ namespace MASZ.Utils
                 Language.es => "Comentario borrado",
                 Language.ru => "Комментарий удален",
                 Language.it => "Commento cancellato",
+                Language.nl => "Reactie verwijderd",
                 _ => "Comment deleted",
             };
         }
@@ -2275,6 +2448,7 @@ namespace MASZ.Utils
                 Language.es => $"<@{actor.Id}> ha creado un **comentario**.",
                 Language.ru => $"**комментарий** был создан <@{actor.Id}>.",
                 Language.it => $"Un **commento** è stato creato da <@{actor.Id}>.",
+                Language.nl => $"Er is een **reactie** gemaakt door <@{actor.Id}>.",
                 _ => $"A **comment** has been created by <@{actor.Id}>.",
             };
         }
@@ -2288,6 +2462,7 @@ namespace MASZ.Utils
                 Language.es => $"<@{actor.Id}> ha actualizado un **comentario **.",
                 Language.ru => $"**комментарий ** был обновлен пользователем <@{actor.Id}>.",
                 Language.it => $"Un **commento** è stato aggiornato da <@{actor.Id}>.",
+                Language.nl => $"Een **reactie** is bijgewerkt door <@{actor.Id}>.",
                 _ => $"A **comment** has been updated by <@{actor.Id}>.",
             };
         }
@@ -2301,6 +2476,7 @@ namespace MASZ.Utils
                 Language.es => $"<@{actor.Id}> ha eliminado un **comentario **.",
                 Language.ru => $"**комментарий** был удален <@{actor.Id}>.",
                 Language.it => $"Un **commento** è stato eliminato da <@{actor.Id}>.",
+                Language.nl => $"Een **reactie** is verwijderd door <@{actor.Id}>.",
                 _ => $"A **comment** has been deleted by <@{actor.Id}>.",
             };
         }
@@ -2308,39 +2484,42 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
-                Language.at => $"A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn.",
-                Language.fr => $"Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).",
-                Language.ru => $"**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) hochgeladen.",
+                Language.at => $"A **Datei** woad vo <@{actor.Id}> ({actor.Username}) hochglodn.",
+                Language.fr => $"Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username} ha subido un **archivo**).",
+                Language.ru => $"**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseFileDelete(IUser actor)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
-                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan.",
-                Language.fr => $"Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.",
-                Language.ru => $"**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) gelöscht.",
+                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}) glescht woan.",
+                Language.fr => $"Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username}) ha eliminado un **archivo**.",
+                Language.ru => $"**файл** был удален <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseFileUpdate(IUser actor)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
-                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.",
-                Language.ru => $"**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) aktualisiert.",
+                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}) aktualisiert woan.",
+                Language.fr => $"Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username}) ha actualizado un **archivo**.",
+                Language.ru => $"**файл** был обновлен <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been updated by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseDMWarn(IGuild guild, string serviceBaseUrl)
@@ -2353,6 +2532,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han advertido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` вас предупредили.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno avvisato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"De moderators van server `{guild.Name}` hebben je gewaarschuwd. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have warned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2366,6 +2546,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado temporalmente hasta {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` временно отключили ваш звук до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente disattivato l'audio fino a {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily muted you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2379,6 +2560,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han silenciado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` отключили вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno disattivato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"De moderators van server `{guild.Name}` hebben je gedempt. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have muted you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2392,6 +2574,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han baneado temporalmente hasta el {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` временно заблокировали вас до {modCase.PunishedUntil.Value.ToDiscordTS ()}.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno temporaneamente bannato fino al {modCase.PunishedUntil.Value.ToDiscordTS()}.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"De moderators van server `{guild.Name}` hebben je tijdelijk verbannen tot {modCase.PunishedUntil.Value.ToDiscordTS()}. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have temporarily banned you until {modCase.PunishedUntil.Value.ToDiscordTS()}.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2405,6 +2588,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han prohibido.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` забанили вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno bannato.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"De moderators van server `{guild.Name}` hebben je verbannen. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have banned you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2418,6 +2602,7 @@ namespace MASZ.Utils
                 Language.es => $"Los moderadores del gremio `{guild.Name}` te han pateado.\nPara obtener más información o rehabilitación, visite: {serviceBaseUrl}",
                 Language.ru => $"Модераторы гильдии `{guild.Name}` выгнали вас.\nДля получения дополнительной информации или реабилитации посетите: {serviceBaseUrl}",
                 Language.it => $"I moderatori della gilda `{guild.Name}` ti hanno espulso.\nPer maggiori informazioni o visita riabilitativa: {serviceBaseUrl}",
+                Language.nl => $"De moderators van server `{guild.Name}` hebben je gekickt. \nVoor meer informatie of rehabilitatie bezoek: {serviceBaseUrl}",
                 _ => $"The moderators of guild `{guild.Name}` have kicked you.\nFor more information or rehabilitation visit: {serviceBaseUrl}",
             };
         }
@@ -2431,6 +2616,7 @@ namespace MASZ.Utils
                 Language.es => "Archivo subido",
                 Language.ru => "Файл загружен",
                 Language.it => "File caricato",
+                Language.nl => "Bestand geüpload",
                 _ => "File uploaded",
             };
         }
@@ -2444,6 +2630,7 @@ namespace MASZ.Utils
                 Language.es => "Archivo eliminado",
                 Language.ru => "Файл удален",
                 Language.it => "File cancellato",
+                Language.nl => "Bestand verwijderd",
                 _ => "File deleted",
             };
         }
@@ -2457,6 +2644,7 @@ namespace MASZ.Utils
                 Language.es => "Archivo actualizado",
                 Language.ru => "Файл обновлен",
                 Language.it => "File aggiornato",
+                Language.nl => "Bestand bijgewerkt",
                 _ => "File updated",
             };
         }
@@ -2470,6 +2658,7 @@ namespace MASZ.Utils
                 Language.es => $"Un **apelación de prohibición** ha sido creado por <@{actorId}>.",
                 Language.ru => $"Заявка на **бан** создана пользователем <@{actorId}>.",
                 Language.it => $"Un **appello al ban** è stato creato da <@{actorId}>.",
+                Language.nl => $"Er is een **ban appeal** aangemaakt door <@{actorId}>.",
                 _ => $"A **ban appeal** has been created by <@{actorId}>.",
             };
         }
@@ -2483,6 +2672,7 @@ namespace MASZ.Utils
                 Language.es => $"Un **apelación de prohibición** para <@{userId}> ha sido actualizado por <@{actorId}>.",
                 Language.ru => $"Заявка на **бан** для <@{userId}> была обновлена пользователем <@{actorId}>.",
                 Language.it => $"Un **appello al ban** per <@{userId}> è stato aggiornato da <@{actorId}>.",
+                Language.nl => $"Een **ban beroep** voor <@{userId}> is bijgewerkt door <@{actorId}>.",
                 _ => $"A **ban appeal** for <@{userId}> has been updated by <@{actorId}>.",
             };
         }
@@ -2496,6 +2686,7 @@ namespace MASZ.Utils
                 Language.es => "Estado",
                 Language.ru => "статус",
                 Language.it => "Stato",
+                Language.nl => "Status",
                 _ => "Status",
             };
         }
@@ -2509,6 +2700,7 @@ namespace MASZ.Utils
                 Language.es => "Razón",
                 Language.ru => "причина",
                 Language.it => "Motivo",
+                Language.nl => "Reden",
                 _ => "Reason",
             };
         }
@@ -2522,6 +2714,7 @@ namespace MASZ.Utils
                 Language.es => "apelación de prohibición",
                 Language.ru => "заявка на бан",
                 Language.it => "appello al ban",
+                Language.nl => "Ban beroep",
                 _ => "Ban appeal",
             };
         }
@@ -2535,6 +2728,7 @@ namespace MASZ.Utils
                 Language.es => "¡Bienvenido a MASZ!",
                 Language.ru => "Добро пожаловать в МАСЗ!",
                 Language.it => "Benvenuto in MASZ!",
+                Language.nl => "Welkom bij MASZ!",
                 _ => "Welcome to MASZ!",
             };
         }
@@ -2548,6 +2742,7 @@ namespace MASZ.Utils
                 Language.es => "Gracias por registrar tu gremio.\nA continuación, aprenderá algunos consejos útiles para configurar y usar **MASZ**.",
                 Language.ru => "Спасибо за регистрацию вашей гильдии.\nДалее вы получите несколько полезных советов по настройке и использованию **MASZ**.",
                 Language.it => "Grazie per aver registrato la tua gilda.\nDi seguito imparerai alcuni suggerimenti utili per impostare e utilizzare **MASZ**.",
+                Language.nl => "Bedankt voor het registreren van je gilde. \nIn het volgende leer je een aantal nuttige tips voor het opzetten en gebruiken van **MASZ**.",
                 _ => "Thanks for registering your guild.\nIn the following you will learn some useful tips for setting up and using **MASZ**.",
             };
         }
@@ -2561,6 +2756,7 @@ namespace MASZ.Utils
                 Language.es => "Usa el comando `/ features` para probar si la configuración de tu gremio actual es compatible con todas las características de **MASZ**.",
                 Language.ru => "Используйте команду `/ features`, чтобы проверить, поддерживает ли ваша текущая настройка гильдии все функции **MASZ**.",
                 Language.it => "Usa il comando `/features` per verificare se l'attuale configurazione della gilda supporta tutte le funzionalità di **MASZ**.",
+                Language.nl => "Gebruik het `/features` commando om te testen of je huidige gilde setup alle features van **MASZ** ondersteunt.",
                 _ => "Use the `/features` command to test if your current guild setup supports all features of **MASZ**.",
             };
         }
@@ -2574,6 +2770,7 @@ namespace MASZ.Utils
                 Language.es => $"MASZ usará `{language}` como idioma predeterminado para este gremio siempre que sea posible.",
                 Language.ru => $"MASZ будет использовать `{language}` как язык по умолчанию для этой гильдии, когда это возможно.",
                 Language.it => $"MASZ utilizzerà `{language}` come lingua predefinita per questa gilda ogni volta che sarà possibile.",
+                Language.nl => $"",
                 _ => $"MASZ will use `{language}` as default language for this guild whenever possible.",
             };
         }
@@ -2587,6 +2784,7 @@ namespace MASZ.Utils
                 Language.es => "Las zonas horarias pueden resultar confusas.\nMASZ usa una función de Discord para mostrar marcas de tiempo en la zona horaria local de su computadora / teléfono.",
                 Language.ru => "Часовые пояса могут сбивать с толку.\nMASZ использует функцию Discord для отображения меток времени в местном часовом поясе вашего компьютера / телефона.",
                 Language.it => "I fusi orari possono creare confusione.\nMASZ utilizza una funzione Discord per visualizzare i timestamp nel fuso orario locale del tuo computer/telefono.",
+                Language.nl => "Tijdzones kunnen verwarrend zijn. \nMASZ maakt gebruikt van een Discord functie om Tijdstempels in de lokale tijdzone te tonen van jouw computer/telefoon.",
                 _ => "Timezones can be confusing.\nMASZ uses a Discord feature to display timestamps in the local timezone of your computer/phone.",
             };
         }
@@ -2600,6 +2798,7 @@ namespace MASZ.Utils
                 Language.es => "Consulte el [servidor de soporte MASZ] (https://discord.gg/5zjpzw6h3S) si tiene más preguntas.",
                 Language.ru => "Дополнительные вопросы можно найти на [сервере поддержки MASZ] (https://discord.gg/5zjpzw6h3S).",
                 Language.it => "Fare riferimento al [Server di supporto MASZ] (https://discord.gg/5zjpzw6h3S) per ulteriori domande.",
+                Language.nl => "Raadpleeg [MASZ Support Server] (https://discord.gg/5zjpzw6h3S) voor verdere vragen.",
                 _ => "Please refer to the [MASZ Support Server](https://discord.gg/5zjpzw6h3S) for further questions.",
             };
         }
@@ -2613,6 +2812,7 @@ namespace MASZ.Utils
                 Language.es => $"{user.Mention} activó la automoderación.",
                 Language.ru => $"{user.Mention} запустил автомодерацию.",
                 Language.it => $"{user.Mention} ha attivato la moderazione automatica.",
+                Language.nl => $"{user.Mention} activeerde automatisering.",
                 _ => $"{user.Mention} triggered automoderation.",
             };
         }
@@ -2620,13 +2820,14 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
-                Language.at => $"{user.Username}#{user.Discriminator} hot de Automodaration ausglest.",
-                Language.fr => $"{user.Username}#{user.Discriminator} a déclenché la modération automatique.",
-                Language.es => $"{user.Username}#{user.Discriminator} desencadenó la automoderación.",
-                Language.ru => $"{user.Username}#{user.Discriminator} запускает автомодерацию.",
-                Language.it => $"{user.Username}#{user.Discriminator} ha attivato la moderazione automatica.",
-                _ => $"{user.Username}#{user.Discriminator} triggered automoderation.",
+                Language.de => $"{user.Username} hat die Automoderation ausgelöst.",
+                Language.at => $"{user.Username} hot de Automodaration ausglest.",
+                Language.fr => $"{user.Username} a déclenché la modération automatique.",
+                Language.es => $"{user.Username} desencadenó la automoderación.",
+                Language.ru => $"{user.Username} запускает автомодерацию.",
+                Language.it => $"{user.Username} ha attivato la moderazione automatica.",
+                Language.nl => $"{user.Username} leidde tot automatisering.",
+                _ => $"{user.Username} triggered automoderation.",
             };
         }
         public string NotificationAutomoderationDM(IUser user, IMentionable channel, string reason, string action)
@@ -2639,6 +2840,7 @@ namespace MASZ.Utils
                 Language.es => $"Hola, {user.Mention}:\n\nActivó la automoderación en {channel.Mention}.\nMotivo: {reason}\nAcción: {action}",
                 Language.ru => $"Привет, {user.Mention}!\n\nВы активировали автомодерацию в {channel.Mention}.\nПричина: {reason}\nДействие: {action}",
                 Language.it => $"Ciao {user.Mention},\n\nHai attivato la moderazione automatica in {channel.Mention}.\nMotivo: {reason}\nAzione: {action}",
+                Language.nl => $"Hallo {user.Mention},\n\nJe hebt de automatisering geactiveerd in {channel.Mention}.\nReason: {reason}\nAction: {action}",
                 _ => $"Hi {user.Mention},\n\nYou triggered automoderation in {channel.Mention}.\nReason: {reason}\nAction: {action}",
             };
         }
@@ -2652,6 +2854,7 @@ namespace MASZ.Utils
                 Language.es => $"{user.Mention} has activado la automoderación. Razón: {reason}. Su mensaje ha sido eliminado.",
                 Language.ru => $"{user.Mention} вы запустили автомодерацию. Причина: {reason}. Ваше сообщение было удалено.",
                 Language.it => $"{user.Mention} hai attivato la moderazione automatica. reason: {reason}. Il tuo messaggio è stato cancellato.",
+                Language.nl => $"{user.Mention} u heeft de automatisering geactiveerd. Reden: {reason}. Uw bericht is verwijderd.",
                 _ => $"{user.Mention} you triggered automoderation. Reason: {reason}. Your message has been deleted.",
             };
         }
@@ -2665,6 +2868,7 @@ namespace MASZ.Utils
                 Language.es => $"El nuevo MotD ha sido creado por {actor.Mention}.",
                 Language.ru => $"Новый MotD был создан {actor.Mention}.",
                 Language.it => $"Il nuovo MotD è stato creato da {actor.Mention}.",
+                Language.nl => $"Nieuwe MotD is aangemaakt door {actor.Mention}.",
                 _ => $"New MotD has been created by {actor.Mention}.",
             };
         }
@@ -2678,6 +2882,7 @@ namespace MASZ.Utils
                 Language.es => $"MotD ha sido editado por {actor.Mention}.",
                 Language.ru => $"MotD редактировал {actor.Mention}.",
                 Language.it => $"MotD è stato modificato da {actor.Mention}.",
+                Language.nl => $"MotD is bewerkt door {actor.Mention}.",
                 _ => $"MotD has been edited by {actor.Mention}.",
             };
         }
@@ -2691,6 +2896,7 @@ namespace MASZ.Utils
                 Language.es => "Show",
                 Language.ru => "Показывать",
                 Language.it => "Spettacolo",
+                Language.nl => "Toon",
                 _ => "Show",
             };
         }
@@ -2704,6 +2910,7 @@ namespace MASZ.Utils
                 Language.es => $"Automodconfig creado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig, созданный для {eventType} пользователем {actor.Mention}.",
                 Language.it => $"Automodconfig creato per {eventType} da {actor.Mention}.",
+                Language.nl => $"Automodconfiguratie gemaakt voor {eventType} door {actor.Mention}.",
                 _ => $"Automodconfig created for {eventType} by {actor.Mention}.",
             };
         }
@@ -2717,6 +2924,7 @@ namespace MASZ.Utils
                 Language.es => $"Automodconfig actualizado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig обновлен для {eventType} пользователем {actor.Mention}.",
                 Language.it => $"Automodconfig aggiornato per {eventType} da {actor.Mention}.",
+                Language.nl => $"Automodconfiguratie bijgewerkt voor {eventType} door {actor.Mention}.",
                 _ => $"Automodconfig updated for {eventType} by {actor.Mention}.",
             };
         }
@@ -2730,6 +2938,7 @@ namespace MASZ.Utils
                 Language.es => $"Automodconfig eliminado para {eventType} por {actor.Mention}.",
                 Language.ru => $"Automodconfig удален для {eventType} пользователем {actor.Mention}.",
                 Language.it => $"Automodconfig eliminato per {eventType} da {actor.Mention}.",
+                Language.nl => $"Automodconfiguratie verwijderd voor {eventType} door {actor.Mention}.",
                 _ => $"Automodconfig deleted for {eventType} by {actor.Mention}.",
             };
         }
@@ -2743,6 +2952,7 @@ namespace MASZ.Utils
                 Language.es => "Límite",
                 Language.ru => "Предел",
                 Language.it => "Limite",
+                Language.nl => "Limiet",
                 _ => "Limit",
             };
         }
@@ -2756,6 +2966,7 @@ namespace MASZ.Utils
                 Language.es => "Límite de tiempo",
                 Language.ru => "Лимит времени",
                 Language.it => "Limite di tempo",
+                Language.nl => "Tijdsbeperking",
                 _ => "Time limit",
             };
         }
@@ -2769,6 +2980,7 @@ namespace MASZ.Utils
                 Language.es => "Roles ignorados",
                 Language.ru => "Игнорируемые роли",
                 Language.it => "Ruoli ignorati",
+                Language.nl => "Genegeerde rollen",
                 _ => "Ignored roles",
             };
         }
@@ -2782,6 +2994,7 @@ namespace MASZ.Utils
                 Language.es => "Canales ignorados",
                 Language.ru => "Игнорируемые каналы",
                 Language.it => "Canali ignorati",
+                Language.nl => "Genegeerde kanalen",
                 _ => "Ignored channels",
             };
         }
@@ -2795,6 +3008,7 @@ namespace MASZ.Utils
                 Language.es => "Duración",
                 Language.ru => "Продолжительность",
                 Language.it => "Durata",
+                Language.nl => "Duur",
                 _ => "Duration",
             };
         }
@@ -2808,6 +3022,7 @@ namespace MASZ.Utils
                 Language.es => "Borrar mensaje",
                 Language.ru => "Удаленное сообщение",
                 Language.it => "Cancella il messaggio",
+                Language.nl => "Verwijder bericht",
                 _ => "Delete message",
             };
         }
@@ -2821,6 +3036,7 @@ namespace MASZ.Utils
                 Language.es => "Enviar notificación pública",
                 Language.ru => "Отправить публичное уведомление",
                 Language.it => "Invia notifica pubblica",
+                Language.nl => "Verzend openbare notificatie",
                 _ => "Send public notification",
             };
         }
@@ -2834,6 +3050,7 @@ namespace MASZ.Utils
                 Language.es => "Enviar notificación DM",
                 Language.ru => "Отправить уведомление в прямом эфире",
                 Language.it => "Invia notifica DM",
+                Language.nl => "Verzend DM notificatie",
                 _ => "Send DM notification",
             };
         }
@@ -2847,6 +3064,7 @@ namespace MASZ.Utils
                 Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS ()}) se unió con la invitación `{invite}`.",
                 Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS ()}) присоединился с приглашением `{invite}`.",
                 Language.it => $"{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito con l'invito `{invite}`.",
+                Language.nl => $"{user.Mention} (geregistreerd {registered.ToDiscordTS()}) is lid geworden met uitnodiging `{invite}`.",
                 _ => $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}`.",
             };
         }
@@ -2860,6 +3078,7 @@ namespace MASZ.Utils
                 Language.es => $"{user.Mention} (registrado {registered.ToDiscordTS()}) se unió con la invitación `{invite}` (creado {createdAt.ToDiscordTS()}) por <@{by}>.",
                 Language.ru => $"{user.Mention} (зарегистрированный {registered.ToDiscordTS()}) присоединился с помощью приглашения `{invite}` (created {createdAt.ToDiscordTS()}) пользователем <@{by}>.",
                 Language.it => $"{user.Mention} (registrato {registered.ToDiscordTS()}) si è unito all'invito `{invite}` (creato {createdAt.ToDiscordTS()}) da <@{by}>.",
+                Language.nl => $"{user.Mention} (geregistreerd {registered.ToDiscordTS()}) is lid geworden met uitnodiging `{invite}` (gemaakt op {createdAt.ToDiscordTS()}) door <@{by}>.",
                 _ => $"{user.Mention} (registered {registered.ToDiscordTS()}) joined with invite `{invite}` (created {createdAt.ToDiscordTS()}) by <@{by}>.",
             };
         }
@@ -2873,6 +3092,7 @@ namespace MASZ.Utils
                 Language.es => $"Castigo por ModCase # {caseId} por el moderador {modId} ejecutado: \"{reason} \"",
                 Language.ru => $"Наказание за ModCase # {caseId} модератором {modId} выполнено: \"{reason} \"",
                 Language.it => $"Punizione per ModCase #{caseId} eseguita dal moderatore {modId}: \"{reason}\"",
+                Language.nl => $"Straf voor ModCase #{caseId} uitgevoerd door moderator {modId}: \"{reason}\".",
                 _ => $"Punishment for ModCase #{caseId} by moderator {modId} executed: \"{reason}\"",
             };
         }
@@ -2886,6 +3106,7 @@ namespace MASZ.Utils
                 Language.es => $"Castigo para Automod {autoModEvent} ejecutado.",
                 Language.ru => $"Наказание за Automod {autoModEvent} выполнено.",
                 Language.it => $"Punizione per Automod {autoModEvent} eseguita.",
+                Language.nl => $"Straf voor Automod {autoModEvent} uitgevoerd.",
                 _ => $"Punishment for Automod {autoModEvent} executed.",
             };
         }
@@ -2899,6 +3120,7 @@ namespace MASZ.Utils
                 Language.es => $"Castigo por ModCase # {caseId} deshecho: \"{reason} \"",
                 Language.ru => $"Наказание за ModCase # {caseId} отменено: \"{reason} \"",
                 Language.it => $"Punizione per ModCase #{caseId} annullata: \"{reason}\"",
+                Language.nl => $"Straf voor ModCase #{caseId} ongedaan gemaakt: \"{reason}\".",
                 _ => $"Punishment for ModCase #{caseId} undone: \"{reason}\"",
             };
         }
@@ -2912,6 +3134,7 @@ namespace MASZ.Utils
                 Language.es => $"Solicitud de prohibición # {appealId} aprobada: \"{reason} \"",
                 Language.ru => $"Обжалование забанения # {appealId} одобрено: \"{reason} \"",
                 Language.it => $"Appello per Ban Appeal #{appealId} approvato: \"{reason}\"",
+                Language.nl => $"Ban-beroep #{appealId} goedgekeurd: \"{reason}\".",
                 _ => $"Ban Appeal #{appealId} approved: \"{reason}\"",
             };
         }
@@ -2925,6 +3148,7 @@ namespace MASZ.Utils
                 Language.es => $"{actor.Mention} ha configurado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` был создан {actor.Mention}.",
                 Language.it => $"Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato impostato da {actor.Mention}.",
+                Language.nl => $"Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is opgezet door {actor.Mention}.",
                 _ => $"Guild-level audit log for event `{eventName}` has been set up by {actor.Mention}.",
             };
         }
@@ -2938,6 +3162,7 @@ namespace MASZ.Utils
                 Language.es => $"{actor.Mention} ha editado el registro de auditoría a nivel de gremio para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` отредактировал {actor.Mention}.",
                 Language.it => $"Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato modificato da {actor.Mention}.",
+                Language.nl => $"Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is bewerkt door {actor.Mention}.",
                 _ => $"Guild-level audit log for event `{eventName}` has been edited by {actor.Mention}.",
             };
         }
@@ -2951,6 +3176,7 @@ namespace MASZ.Utils
                 Language.es => $"{actor.Mention} ha eliminado el registro de auditoría a nivel de hermandad para el evento `{eventName}`.",
                 Language.ru => $"Журнал аудита на уровне гильдии для события `{eventName}` был удален {actor.Mention}.",
                 Language.it => $"Il registro di controllo a livello di gilda per l'evento `{eventName}` è stato eliminato da {actor.Mention}.",
+                Language.nl => $"Auditlogboek op gilde niveau voor gebeurtenis `{eventName}` is verwijderd door {actor.Mention}.",
                 _ => $"Guild-level audit log for event `{eventName}` has been deleted by {actor.Mention}.",
             };
         }
@@ -2964,6 +3190,7 @@ namespace MASZ.Utils
                 Language.es => "Mencionar rol (s)",
                 Language.ru => "Упоминание ролей",
                 Language.it => "Menzione ruolo/i",
+                Language.nl => "Noem rol(len)",
                 _ => "Mention role(s)",
             };
         }
@@ -2977,6 +3204,7 @@ namespace MASZ.Utils
                 Language.es => "Excluir roles",
                 Language.ru => "Исключить роли",
                 Language.it => "Escludi ruoli",
+                Language.nl => "Uitgezonderde rollen",
                 _ => "Exclude roles",
             };
         }
@@ -2990,6 +3218,7 @@ namespace MASZ.Utils
                 Language.es => "Excluir canales",
                 Language.ru => "Исключить каналы",
                 Language.it => "Escludi canali",
+                Language.nl => "Uitgesloten kanalen",
                 _ => "Exclude channels",
             };
         }
@@ -3003,6 +3232,7 @@ namespace MASZ.Utils
                 Language.es => "Registro de auditoría a nivel de gremio",
                 Language.ru => "Журнал аудита на уровне гильдии",
                 Language.it => "Registro di controllo a livello di gilda",
+                Language.nl => "Auditlogboek op gilde niveau",
                 _ => "Guild-level audit log",
             };
         }
@@ -3016,6 +3246,7 @@ namespace MASZ.Utils
                 Language.es => $"El usuario <@{id}> ha sido renombrado de '{oldName}' a '{newName}'.",
                 Language.ru => $"Пользователь <@{id}> был переименован '{oldName}' на '{newName}'.",
                 Language.it => $"L'utente <@{id}> è stato rinominato da '{oldName}' a '{newName}'.",
+                Language.nl => $"Gebruiker <@{id}> is hernoemd van '{oldName}' naar '{newName}'.",
                 _ => $"User <@{id}> has been renamed from '{oldName}' to '{newName}'.",
             };
         }
@@ -3029,6 +3260,7 @@ namespace MASZ.Utils
                 Language.es => "Solo se permiten canales de texto.",
                 Language.ru => "Разрешены только текстовые каналы.",
                 Language.it => "Sono consentiti solo canali di testo.",
+                Language.nl => "Alleen tekstkanalen zijn toegestaan.",
                 _ => "Only text channels are allowed.",
             };
         }
@@ -3042,6 +3274,7 @@ namespace MASZ.Utils
                 Language.es => "¡No puedo ver ni borrar mensajes en este canal!",
                 Language.ru => "Мне не разрешено просматривать или удалять сообщения на этом канале!",
                 Language.it => "Non sono autorizzato a visualizzare o eliminare i messaggi in questo canale!",
+                Language.nl => "Ik mag geen berichten bekijken of verwijderen in dit kanaal!",
                 _ => "I'm not allowed to view or delete messages in this channel!",
             };
         }
@@ -3055,6 +3288,7 @@ namespace MASZ.Utils
                 Language.es => "URL de avatar",
                 Language.ru => "URL аватара",
                 Language.it => "l'URL dell'avatar",
+                Language.nl => "Avatar-URL",
                 _ => "Avatar URL",
             };
         }
@@ -3068,6 +3302,7 @@ namespace MASZ.Utils
                 Language.es => "User ID",
                 Language.ru => "ID пользователя",
                 Language.it => "ID utente",
+                Language.nl => "Gebruikers-ID",
                 _ => "User ID",
             };
         }
@@ -3081,6 +3316,7 @@ namespace MASZ.Utils
                 Language.es => "No se puede encontrar el canal.",
                 Language.ru => "Не могу найти канал.",
                 Language.it => "Impossibile trovare il canale.",
+                Language.nl => "Kan kanaal niet vinden.",
                 _ => "Cannot find channel.",
             };
         }
@@ -3094,6 +3330,7 @@ namespace MASZ.Utils
                 Language.es => "Este gremio no tiene configurado ningún webhook para notificaciones internas.",
                 Language.ru => "У этой гильдии нет настроенного веб-перехватчика для внутренних уведомлений.",
                 Language.it => "Questa gilda non ha webhook per le notifiche interne configurate.",
+                Language.nl => "Dit gilde heeft geen webhook geconfigureerd voor interne meldingen.",
                 _ => "This guild has no webhook for internal notifications configured.",
             };
         }
@@ -3107,6 +3344,7 @@ namespace MASZ.Utils
                 Language.es => $"Se eliminaron {count} mensajes en {channel.Mention}.",
                 Language.ru => $"Удалено {count} сообщений в {channel.Mention}.",
                 Language.it => $"Eliminati {count} messaggi in {channel.Mention}.",
+                Language.nl => $"{count} berichten verwijderd in {channel.Mention}.",
                 _ => $"Deleted {count} messages in {channel.Mention}.",
             };
         }
@@ -3120,6 +3358,7 @@ namespace MASZ.Utils
                 Language.es => $"Se eliminaron {count} mensajes.",
                 Language.ru => $"Удалено {count} сообщений.",
                 Language.it => $"Eliminati {count} messaggi.",
+                Language.nl => $"{count} berichten verwijderd.",
                 _ => $"Deleted {count} messages.",
             };
         }
@@ -3133,6 +3372,7 @@ namespace MASZ.Utils
                 Language.es => "Permiso de patada concedido.",
                 Language.ru => "Разрешение на удар предоставлено.",
                 Language.it => "Autorizzazione calci concessa.",
+                Language.nl => "Kick-toestemming verleend.",
                 _ => "Kick permission granted.",
             };
         }
@@ -3146,6 +3386,7 @@ namespace MASZ.Utils
                 Language.es => "Permiso de patada no concedido.",
                 Language.ru => "Разрешение на удар не предоставлено.",
                 Language.it => "Autorizzazione calcio non concessa.",
+                Language.nl => "Kick-toestemming niet verleend.",
                 _ => "Kick permission not granted.",
             };
         }
@@ -3159,6 +3400,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibición concedida.",
                 Language.ru => "Получено разрешение на запрет.",
                 Language.it => "Autorizzazione al divieto concessa.",
+                Language.nl => "Ban-toestemming verleend.",
                 _ => "Ban permission granted.",
             };
         }
@@ -3172,6 +3414,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibir permiso no concedido.",
                 Language.ru => "Разрешение на запрет не предоставлено.",
                 Language.it => "Autorizzazione al divieto non concessa.",
+                Language.nl => "Ban-toestemming niet verleend.",
                 _ => "Ban permission not granted.",
             };
         }
@@ -3185,6 +3428,7 @@ namespace MASZ.Utils
                 Language.es => "Administrar el permiso de función otorgado.",
                 Language.ru => "Разрешение на управление ролью предоставлено.",
                 Language.it => "Gestire l'autorizzazione del ruolo concessa.",
+                Language.nl => "Toestemming voor rol beheren verleend.",
                 _ => "Manage role permission granted.",
             };
         }
@@ -3198,6 +3442,7 @@ namespace MASZ.Utils
                 Language.es => "Administrar el permiso de función no concedido.",
                 Language.ru => "Не предоставлено разрешение на управление ролью.",
                 Language.it => "Autorizzazione di gestione del ruolo non concessa.",
+                Language.nl => "Toestemming voor rol beheren niet verleend.",
                 _ => "Manage role permission not granted.",
             };
         }
@@ -3211,6 +3456,7 @@ namespace MASZ.Utils
                 Language.es => "Función silenciada definida.",
                 Language.ru => "Определена приглушенная роль.",
                 Language.it => "Ruolo disattivato definito.",
+                Language.nl => "Gedempte rol gedefinieerd.",
                 _ => "Muted role defined.",
             };
         }
@@ -3224,6 +3470,7 @@ namespace MASZ.Utils
                 Language.es => "Función silenciada definida pero demasiado alta en la jerarquía de funciones.",
                 Language.ru => "Определена приглушенная роль, но иерархия ролей слишком высока.",
                 Language.it => "Ruolo disattivato definito ma troppo alto nella gerarchia dei ruoli.",
+                Language.nl => "Gedempte rol gedefinieerd maar te hoog in rollenhiërarchie.",
                 _ => "Muted role defined but too high in role hierarchy.",
             };
         }
@@ -3237,6 +3484,7 @@ namespace MASZ.Utils
                 Language.es => "Función silenciada definida pero no válida.",
                 Language.ru => "Роль без звука определена, но недействительна.",
                 Language.it => "Ruolo disattivato definito ma non valido.",
+                Language.nl => "Gedempte rol gedefinieerd maar ongeldig.",
                 _ => "Muted role defined but invalid.",
             };
         }
@@ -3250,6 +3498,7 @@ namespace MASZ.Utils
                 Language.es => "Rol silenciado indefinido.",
                 Language.ru => "Отключенная роль не определена.",
                 Language.it => "Ruolo disattivato non definito.",
+                Language.nl => "Gedempte rol niet gedefinieerd.",
                 _ => "Muted role undefined.",
             };
         }
@@ -3263,6 +3512,7 @@ namespace MASZ.Utils
                 Language.es => "Ejecución del castigo",
                 Language.ru => "Казнь",
                 Language.it => "Esecuzione della punizione",
+                Language.nl => "Uitvoering van de straf",
                 _ => "Punishment execution",
             };
         }
@@ -3276,6 +3526,7 @@ namespace MASZ.Utils
                 Language.es => "Deje que MASZ maneje los castigos (por ejemplo, tempbans, mudos, etc.).",
                 Language.ru => "Позвольте MASZ заниматься наказаниями (например, временным запретом, отключением звука и т. Д.).",
                 Language.it => "Lascia che MASZ gestisca le punizioni (ad esempio tempban, mute, ecc.).",
+                Language.nl => "Laat MASZ straffen afhandelen (bijv. Tempbans, mutes, etc.).",
                 _ => "Let MASZ handle punishments (e.g. tempbans, mutes, etc.).",
             };
         }
@@ -3289,6 +3540,7 @@ namespace MASZ.Utils
                 Language.es => "Solicitudes de anulación de la prohibición",
                 Language.ru => "Запросы на разблокировку",
                 Language.it => "Riattiva richieste",
+                Language.nl => "Unban verzoeken",
                 _ => "Unban requests",
             };
         }
@@ -3302,6 +3554,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.",
                 Language.ru => "Позволяет заблокированным участникам просматривать свои дела и комментировать их для запросов на разблокировку.",
                 Language.it => "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban.",
+                Language.nl => "Laat gebande gerbruikers toe om hun zaken te zien en erop te reageren voor unban verzoeken.",
                 _ => "Allows banned members to see their cases and comment on it for unban requests.",
             };
         }
@@ -3315,6 +3568,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a los miembros prohibidos ver sus casos y comentarlos para las solicitudes de deshabilitación.\nOtorga a este bot el permiso de prohibición para usar esta función.",
                 Language.ru => "Позволяет заблокированным участникам просматривать свои дела и комментировать их для запросов на разблокировку.\nПредоставьте этому боту разрешение на использование этой функции.",
                 Language.it => "Consente ai membri bannati di vedere i loro casi e commentarli per le richieste di sban.\nConcedi a questo bot il permesso di ban per utilizzare questa funzione.",
+                Language.nl => "Laat gebande gerbruikers toe om hun zaken te zien en erop te reageren voor unban verzoeken.\nGeef deze bot toestemming om deze functie te gebruiken.",
                 _ => "Allows banned members to see their cases and comment on it for unban requests.\nGrant this bot the ban permission to use this feature.",
             };
         }
@@ -3328,6 +3582,7 @@ namespace MASZ.Utils
                 Language.es => "Comando de informe",
                 Language.ru => "Команда отчета",
                 Language.it => "Comando di rapporto",
+                Language.nl => "Opdracht rapporteren",
                 _ => "Report command",
             };
         }
@@ -3341,6 +3596,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a los miembros informar mensajes.",
                 Language.ru => "Позволяет участникам сообщать о сообщениях.",
                 Language.it => "Consente ai membri di segnalare i messaggi.",
+                Language.nl => "Geef toestemming aan gebruikers om berichten te rapporteren.",
                 _ => "Allows members to report messages.",
             };
         }
@@ -3354,6 +3610,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a los miembros informar mensajes.\nDefina un webhook de personal interno para utilizar esta función.",
                 Language.ru => "Позволяет участникам сообщать о сообщениях.\nОпределите внутренний веб-перехватчик персонала, чтобы использовать эту функцию.",
                 Language.it => "Consente ai membri di segnalare i messaggi.\nDefinire un webhook personale interno per utilizzare questa funzione.",
+                Language.nl => "Geef toestemming aan gebruikers om berichten te rapporteren.\nDefinieer een interne personeelswebhook om deze functie te gebruiken.",
                 _ => "Allows members to report messages.\nDefine a internal staff webhook to use this feature.",
             };
         }
@@ -3367,6 +3624,7 @@ namespace MASZ.Utils
                 Language.es => "Seguimiento de invitaciones",
                 Language.ru => "Отслеживание приглашений",
                 Language.it => "Invita il monitoraggio",
+                Language.nl => "Uitnodiging volgen",
                 _ => "Invite tracking",
             };
         }
@@ -3380,6 +3638,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.",
                 Language.ru => "Позволяет MASZ отслеживать приглашения, которые используют новые участники.",
                 Language.it => "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri.",
+                Language.nl => "Hiermee kan MASZ de uitnodigingen bijhouden die nieuwe leden gebruiken.",
                 _ => "Allows MASZ to track the invites new members are using.",
             };
         }
@@ -3393,6 +3652,7 @@ namespace MASZ.Utils
                 Language.es => "Permite a MASZ realizar un seguimiento de las invitaciones que están utilizando los nuevos miembros.\nOtorga a este bot el permiso de gestión del gremio para usar esta función.",
                 Language.ru => "Позволяет MASZ отслеживать приглашения, которые используют новые участники.\nПредоставьте этому боту разрешение на управление гильдией на использование этой функции.",
                 Language.it => "Consente a MASZ di tenere traccia degli inviti utilizzati dai nuovi membri.\nConcedi a questo bot il permesso di gestione della gilda per utilizzare questa funzione.",
+                Language.nl => "Hiermee kan MASZ de uitnodigingen bijhouden die nieuwe leden gebruiken.\nGeef deze bot de machtiging gilde beheren om deze functie te gebruiken.",
                 _ => "Allows MASZ to track the invites new members are using.\nGrant this bot the manage guild permission to use this feature.",
             };
         }
@@ -3406,6 +3666,7 @@ namespace MASZ.Utils
                 Language.es => "Tu bot en este gremio está configurado correctamente.",
                 Language.ru => "Ваш бот в этой гильдии настроен правильно.",
                 Language.it => "Il tuo bot in questa gilda è configurato correttamente.",
+                Language.nl => "Jouw bot op deze gilde is correct geconfigureerd.",
                 _ => "Your bot on this guild is configured correctly.",
             };
         }
@@ -3419,6 +3680,7 @@ namespace MASZ.Utils
                 Language.es => "Se pueden utilizar todas las funciones de MASZ.",
                 Language.ru => "Можно использовать все возможности MASZ.",
                 Language.it => "Tutte le funzionalità di MASZ possono essere utilizzate.",
+                Language.nl => "Alle functies van MASZ kunnen gebruikt worden.",
                 _ => "All features of MASZ can be used.",
             };
         }
@@ -3432,6 +3694,7 @@ namespace MASZ.Utils
                 Language.es => "Hay funciones de MASZ que no puede utilizar en este momento.",
                 Language.ru => "Есть функции MASZ, которые вы не можете использовать прямо сейчас.",
                 Language.it => "Ci sono funzionalità di MASZ che non puoi usare in questo momento.",
+                Language.nl => "Er zijn functies van MASZ die u momenteel niet kunt gebruiken.",
                 _ => "There are features of MASZ that you cannot use right now.",
             };
         }
@@ -3445,6 +3708,7 @@ namespace MASZ.Utils
                 Language.es => "Tendrá que alojar su propia instancia de MASZ en su servidor o PC.\nPagar https://github.com/zaanposni/discord-masz#hosting",
                 Language.ru => "Вам нужно будет разместить свой собственный экземпляр MASZ на вашем сервере или компьютере.\nОформить заказ https://github.com/zaanposni/discord-masz#hosting",
                 Language.it => "Dovrai ospitare la tua istanza di MASZ sul tuo server o PC.\nAcquista https://github.com/zaanposni/discord-masz#hosting",
+                Language.nl => "U zult uw eigen instantie van MASZ op uw server of pc moeten hosten.\nBekijk https://github.com/zaanposni/discord-masz#hosting",
                 _ => "You will have to host your own instance of MASZ on your server or pc.\nCheck out https://github.com/zaanposni/discord-masz#hosting",
             };
         }
@@ -3458,6 +3722,7 @@ namespace MASZ.Utils
                 Language.es => $"Caso `# {caseId}` creado: {caseLink}",
                 Language.ru => $"Обращение `# {caseId}` создано: {caseLink}",
                 Language.it => $"Caso `#{caseId}` creato: {caseLink}",
+                Language.nl => $"Zaak `#{caseId}` aangemaakt: {caseLink}",
                 _ => $"Case `#{caseId}` created: {caseLink}",
             };
         }
@@ -3471,6 +3736,7 @@ namespace MASZ.Utils
                 Language.es => $"Un administrador de sitio puede registrar un gremio en: {url}",
                 Language.ru => $"Администратор сайта может зарегистрировать гильдию по адресу: {url}",
                 Language.it => $"Un amministratore del sito può registrare una gilda su: {url}",
+                Language.nl => $"Een sitebeheerder kan een gilde registreren op: {url}",
                 _ => $"A siteadmin can register a guild at: {url}",
             };
         }
@@ -3484,6 +3750,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo enviar una notificación interna a los moderadores para el comando de informe.",
                 Language.ru => "Не удалось отправить внутреннее уведомление модераторам для команды отчета.",
                 Language.it => "Impossibile inviare una notifica interna ai moderatori per il comando di segnalazione.",
+                Language.nl => "Kan geen interne melding naar moderators sturen voor rapportopdracht.",
                 _ => "Failed to send internal notification to moderators for report command.",
             };
         }
@@ -3497,6 +3764,7 @@ namespace MASZ.Utils
                 Language.es => "Reporte enviado.",
                 Language.ru => "Отчет отправлен.",
                 Language.it => "Rapporto inviato.",
+                Language.nl => "Rapport verzonden",
                 _ => "Report sent.",
             };
         }
@@ -3510,6 +3778,7 @@ namespace MASZ.Utils
                 Language.es => $"{user.Mention} informó un mensaje de {message.Author.Mention} en {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.ru => $"{user.Mention} сообщил о сообщении от {message.Author.Mention} в {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.it => $"{user.Mention} ha segnalato un messaggio da {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.nl => $"{user.Mention} heeft een bericht van {message.Author.Mention} in {channel.Mention} gerapporteerd.\n{message.GetJumpUrl()}",
                 _ => $"{user.Mention} reported a message from {message.Author.Mention} in {channel.Mention}.\n{message.GetJumpUrl()}",
             };
         }
@@ -3523,6 +3792,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo enviar el mensaje",
                 Language.ru => "Не удалось отправить сообщение",
                 Language.it => "Impossibile inviare il messaggio",
+                Language.nl => "Bericht versturen mislukt",
                 _ => "Failed to send message",
             };
         }
@@ -3536,6 +3806,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje enviado.",
                 Language.ru => "Сообщение отправлено.",
                 Language.it => "Messaggio inviato.",
+                Language.nl => "Bericht verstuurd.",
                 _ => "Message sent.",
             };
         }
@@ -3545,10 +3816,11 @@ namespace MASZ.Utils
             {
                 Language.de => $"{user.Mention} verwendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
                 Language.at => $"{user.Mention} vawendete den Say-Befehl in {channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.fr => $"{user.Mention} a utilisé la commande « dire » dans{channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.es => $"{user.Mention} usó el comando «decir» en {channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.ru => $"{user.Mention} использовал команду «сказать» в {channel.Mention}.\n{message.GetJumpUrl()}",
-                Language.it => $"{user.Mention} ha usato il comando \"dire\" in {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.fr => $"{user.Mention} a utilisé la commande  dans{channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.es => $"{user.Mention} usó el comando  en {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.ru => $"{user.Mention} использовал команду  в {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.it => $"{user.Mention} ha usato il comando  in {channel.Mention}.\n{message.GetJumpUrl()}",
+                Language.nl => $"{user.Mention} heeft het zeg commando gebruikt in {channel.Mention}.\n{message.GetJumpUrl()}",
                 _ => $"{user.Mention} used the say command in {channel.Mention}.\n{message.GetJumpUrl()}",
             };
         }
@@ -3562,6 +3834,7 @@ namespace MASZ.Utils
                 Language.es => "La invitación no es de este gremio.",
                 Language.ru => "Приглашение не из этой гильдии.",
                 Language.it => "L'invito non è di questa gilda.",
+                Language.nl => "De uitnodiging is niet van deze gilde.",
                 _ => "The invite is not from this guild.",
             };
         }
@@ -3575,6 +3848,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo encontrar la invitación en la base de datos o en este gremio.",
                 Language.ru => "Не удалось найти инвайт в базе данных или в этой гильдии.",
                 Language.it => "Impossibile trovare l'invito nel database o in questa gilda.",
+                Language.nl => "Kon uitnodiging niet vinden in de database of op deze gilde.",
                 _ => "Could not find invite in database or in this guild.",
             };
         }
@@ -3588,6 +3862,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo recuperar la invitación.",
                 Language.ru => "Не удалось получить приглашение.",
                 Language.it => "Impossibile recuperare l'invito.",
+                Language.nl => "Kon de uitnodiging niet ophalen.",
                 _ => "Failed to fetch invite.",
             };
         }
@@ -3601,6 +3876,7 @@ namespace MASZ.Utils
                 Language.es => $"`{inviteCode}` creado en {createdAt.ToDiscordTS ()}.",
                 Language.ru => $"`{inviteCode}` создан в {createdAt.ToDiscordTS ()}.",
                 Language.it => $"`{inviteCode}` creato su {createdAt.ToDiscordTS()}.",
+                Language.nl => $"`{inviteCode}` gemaakt op {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created at {createdAt.ToDiscordTS()}.",
             };
         }
@@ -3614,6 +3890,7 @@ namespace MASZ.Utils
                 Language.es => $"`{inviteCode}` creado por {createdBy.Mention}.",
                 Language.ru => $"`{inviteCode}` создан {createdBy.Mention}.",
                 Language.it => $"`{inviteCode}` creato da {createdBy.Mention}.",
+                Language.nl => $"`{inviteCode}` gemaakt door {createdBy.Mention}.",
                 _ => $"`{inviteCode}` created by {createdBy.Mention}.",
             };
         }
@@ -3627,6 +3904,7 @@ namespace MASZ.Utils
                 Language.es => $"`{inviteCode}` creado por {createdBy.Mention} en {createdAt.ToDiscordTS ()}.",
                 Language.ru => $"`{inviteCode}` создан {createdBy.Mention} в {createdAt.ToDiscordTS ()}.",
                 Language.it => $"`{inviteCode}` creato da {createdBy.Mention} su {createdAt.ToDiscordTS()}.",
+                Language.nl => $"{inviteCode} gecreëerd door {createdBy.Mention} op {createdAt.ToDiscordTS()}.",
                 _ => $"`{inviteCode}` created by {createdBy.Mention} at {createdAt.ToDiscordTS()}.",
             };
         }
@@ -3640,6 +3918,7 @@ namespace MASZ.Utils
                 Language.es => "MASZ aún no ha realizado el seguimiento de esta invitación.",
                 Language.ru => "Это приглашение еще не отслежено MASZ.",
                 Language.it => "Questo invito non è stato ancora monitorato da MASZ.",
+                Language.nl => "Deze uitnodiging is nog niet gevolgd door MASZ.",
                 _ => "This invite has not been tracked by MASZ yet.",
             };
         }
@@ -3653,6 +3932,7 @@ namespace MASZ.Utils
                 Language.es => $"Usado por [{count}]",
                 Language.ru => $"Используется [{count}]",
                 Language.it => $"Utilizzato da [{count}]",
+                Language.nl => $"Gebruikt door [{count}]",
                 _ => $"Used by [{count}]",
             };
         }
@@ -3666,6 +3946,7 @@ namespace MASZ.Utils
                 Language.es => "Por favor, especifique un guildid válido.",
                 Language.ru => "Укажите действующего гильдида.",
                 Language.it => "Si prega di specificare un ID gilda valido.",
+                Language.nl => "Gelieve een geldige guildid te specifiëren.",
                 _ => "Please specify a valid guildid.",
             };
         }
@@ -3679,6 +3960,7 @@ namespace MASZ.Utils
                 Language.es => "No se le permite ver este caso.",
                 Language.ru => "Вам не разрешено просматривать это дело.",
                 Language.it => "Non sei autorizzato a visualizzare questo caso.",
+                Language.nl => "U bent niet gemachtigd om deze zaak te bekijken.",
                 _ => "You are not allowed to view this case.",
             };
         }
@@ -3692,6 +3974,7 @@ namespace MASZ.Utils
                 Language.es => $"Invitación usada `{inviteCode}`.",
                 Language.ru => $"Использовал инвайт `{inviteCode}`.",
                 Language.it => $"Invito usato `{inviteCode}`.",
+                Language.nl => $"Gebruikte uitnodiging `{inviteCode}`.",
                 _ => $"Used invite `{inviteCode}`.",
             };
         }
@@ -3705,6 +3988,7 @@ namespace MASZ.Utils
                 Language.es => $"Por <@{user}>.",
                 Language.ru => $"Автор <@{user}>.",
                 Language.it => $"Da <@{user}>.",
+                Language.nl => $"Door <@{user}>.",
                 _ => $"By <@{user}>.",
             };
         }
@@ -3718,6 +4002,7 @@ namespace MASZ.Utils
                 Language.es => "No hay casos para este usuario.",
                 Language.ru => "Для этого пользователя нет случаев.",
                 Language.it => "Non ci sono casi per questo utente.",
+                Language.nl => "Er zijn geen zaken voor deze gebruiker.",
                 _ => "There are no cases for this user.",
             };
         }
@@ -3731,6 +4016,7 @@ namespace MASZ.Utils
                 Language.es => "Resultado",
                 Language.ru => "Результат",
                 Language.it => "Risultato",
+                Language.nl => "Resultaat",
                 _ => "Result",
             };
         }
@@ -3744,6 +4030,7 @@ namespace MASZ.Utils
                 Language.es => "A la espera de la aprobación.",
                 Language.ru => "Ожидание подтверждения.",
                 Language.it => "In attesa di approvazione.",
+                Language.nl => "Wachten op goedkeuring.",
                 _ => "Waiting for approval.",
             };
         }
@@ -3757,6 +4044,7 @@ namespace MASZ.Utils
                 Language.es => "Caducado",
                 Language.ru => "Время вышло",
                 Language.it => "Fuori tempo",
+                Language.nl => "Tijd verstreken.",
                 _ => "Timed out",
             };
         }
@@ -3770,6 +4058,7 @@ namespace MASZ.Utils
                 Language.es => "Cancelado",
                 Language.ru => "Отменено",
                 Language.it => "Annullato",
+                Language.nl => "Geannuleerd.",
                 _ => "Canceled",
             };
         }
@@ -3783,6 +4072,7 @@ namespace MASZ.Utils
                 Language.es => "Notificación pública",
                 Language.ru => "Публичное уведомление",
                 Language.it => "Notifica pubblica",
+                Language.nl => "Openbare kennisgeving.",
                 _ => "Public notification",
             };
         }
@@ -3796,6 +4086,7 @@ namespace MASZ.Utils
                 Language.es => "¿Enviar una notificación pública?",
                 Language.ru => "Отправить публичное уведомление?",
                 Language.it => "Inviare una notifica pubblica?",
+                Language.nl => "Een openbare kennisgeving versturen?",
                 _ => "Send a public notification?",
             };
         }
@@ -3809,6 +4100,7 @@ namespace MASZ.Utils
                 Language.es => "Cancelar",
                 Language.ru => "Отмена",
                 Language.it => "Annulla",
+                Language.nl => "Annuleer",
                 _ => "Cancel",
             };
         }
@@ -3822,6 +4114,7 @@ namespace MASZ.Utils
                 Language.es => "Notificación pública",
                 Language.ru => "Публичное уведомление",
                 Language.it => "Notifica pubblica",
+                Language.nl => "Openbare kennisgeving.",
                 _ => "Public notification",
             };
         }
@@ -3835,6 +4128,7 @@ namespace MASZ.Utils
                 Language.es => "Sin notificación pública",
                 Language.ru => "Нет публичного уведомления",
                 Language.it => "Nessuna notifica pubblica",
+                Language.nl => "Geen openbare notificatie",
                 _ => "No public notification",
             };
         }
@@ -3848,6 +4142,7 @@ namespace MASZ.Utils
                 Language.es => "Creado en.",
                 Language.ru => "Создано в.",
                 Language.it => "Creato a.",
+                Language.nl => "Gemaakt bij.",
                 _ => "Created at.",
             };
         }
@@ -3861,6 +4156,7 @@ namespace MASZ.Utils
                 Language.es => "No se han encontrado casos de modulación activos.",
                 Language.ru => "Активных модкейсов не обнаружено.",
                 Language.it => "Nessun modcase attivo è stato trovato.",
+                Language.nl => "Er zijn geen actieve moderatiezaken gevonden.",
                 _ => "No active modcases have been found.",
             };
         }
@@ -3874,6 +4170,7 @@ namespace MASZ.Utils
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para dejar de silenciar al usuario?",
                 Language.ru => $"Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы включить микрофон для пользователя?",
                 Language.it => $"Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riattivare l'audio dell'utente?",
+                Language.nl => $"{caseCount} actieve zaken gevonden. Wil je ze allemaal deactiveren of verwijderen om de gebruiker te dempen?",
                 _ => $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unmute the user?",
             };
         }
@@ -3887,6 +4184,7 @@ namespace MASZ.Utils
                 Language.es => "Silenciados eliminados",
                 Language.ru => "Без звука удалено",
                 Language.it => "Disattiva audio cancellato",
+                Language.nl => "Dempen verwijderd",
                 _ => "Mutes deleted",
             };
         }
@@ -3900,6 +4198,7 @@ namespace MASZ.Utils
                 Language.es => "Silencios desactivados",
                 Language.ru => "Отключение звука отключено",
                 Language.it => "Mute disattivate",
+                Language.nl => "Dempen gedeactiveerd.",
                 _ => "Mutes deactivated",
             };
         }
@@ -3913,6 +4212,7 @@ namespace MASZ.Utils
                 Language.es => "Eliminar silencios",
                 Language.ru => "Удалить отключение звука",
                 Language.it => "Elimina mute",
+                Language.nl => "Dempen verwijderen.",
                 _ => "Delete Mutes",
             };
         }
@@ -3926,6 +4226,7 @@ namespace MASZ.Utils
                 Language.es => "Silenciar desactivados",
                 Language.ru => "Отключить отключение звука",
                 Language.it => "Disattiva sordina",
+                Language.nl => "Deactiveer Dempen",
                 _ => "Deativate Mutes",
             };
         }
@@ -3939,6 +4240,7 @@ namespace MASZ.Utils
                 Language.es => $"Se encontraron casos activos `{caseCount}`. ¿Quieres desactivarlos o eliminarlos todos para desbloquear al usuario?",
                 Language.ru => $"Обнаружены активные обращения `{caseCount}`. Вы хотите деактивировать или удалить их все, чтобы разблокировать пользователя?",
                 Language.it => $"Trovati casi attivi di `{caseCount}`. Vuoi disattivarli o eliminarli tutti per riabilitare l'utente?",
+                Language.nl => $"{caseCount} actieve zaken gevonden. Wil je ze allemaal deactiveren of verwijderen om de gebruiker te unbannen?",
                 _ => $"Found `{caseCount}` active cases. Do you want to deactivate or delete all of them to unban the user?",
             };
         }
@@ -3952,6 +4254,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibiciones eliminadas",
                 Language.ru => "Баны удалены",
                 Language.it => "Divieti cancellati",
+                Language.nl => "Bans verwijderd.",
                 _ => "Bans deleted",
             };
         }
@@ -3965,6 +4268,7 @@ namespace MASZ.Utils
                 Language.es => "Prohibiciones desactivadas",
                 Language.ru => "Баны отключены",
                 Language.it => "Divieti disattivati",
+                Language.nl => "Bans gedeactiveerd",
                 _ => "Bans deactivated",
             };
         }
@@ -3978,6 +4282,7 @@ namespace MASZ.Utils
                 Language.es => "Eliminar prohibiciones",
                 Language.ru => "Удалить баны",
                 Language.it => "Elimina ban",
+                Language.nl => "Verwijder bans",
                 _ => "Delete Bans",
             };
         }
@@ -3991,7 +4296,8 @@ namespace MASZ.Utils
                 Language.es => "Prohibiciones de desactivación",
                 Language.ru => "Деактивировать баны",
                 Language.it => "Divieti di disattivazione",
-                _ => "Deativate Bans",
+                Language.nl => "Bans deactiveren.",
+                _ => "Deactivate Bans",
             };
         }
         public string CmdStatusTitle()
@@ -4004,6 +4310,7 @@ namespace MASZ.Utils
                 Language.es => "Estado",
                 Language.ru => "Статус",
                 Language.it => "Stato",
+                Language.nl => "Status",
                 _ => "Status",
             };
         }
@@ -4017,6 +4324,7 @@ namespace MASZ.Utils
                 Language.es => "Bot",
                 Language.ru => "Бот",
                 Language.it => "Bot",
+                Language.nl => "Bot",
                 _ => "Bot",
             };
         }
@@ -4030,6 +4338,7 @@ namespace MASZ.Utils
                 Language.es => "Base de datos",
                 Language.ru => "База данных",
                 Language.it => "Database",
+                Language.nl => "Databank",
                 _ => "Database",
             };
         }
@@ -4043,6 +4352,7 @@ namespace MASZ.Utils
                 Language.es => "Cache interno",
                 Language.ru => "Внутренний кеш",
                 Language.it => "Cache interno",
+                Language.nl => "Interne cache",
                 _ => "Internal Cache",
             };
         }
@@ -4056,6 +4366,7 @@ namespace MASZ.Utils
                 Language.es => "Usuarios actualmente conectados",
                 Language.ru => "Пользователи, в настоящее время в системе",
                 Language.it => "Utenti attualmente collegati",
+                Language.nl => "Momenteel ingelogd in gebruikers",
                 _ => "Currently logged in users",
             };
         }
@@ -4069,6 +4380,7 @@ namespace MASZ.Utils
                 Language.es => $"Última desconexión en {time}.",
                 Language.ru => $"Последнее отключение: {time}.",
                 Language.it => $"Ultima disconnessione a {time}.",
+                Language.nl => $"Laatste keer verbroken om {time}.",
                 _ => $"Experienced last disconnect at {time}.",
             };
         }
@@ -4082,6 +4394,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo registrar la evidencia.",
                 Language.ru => "Не удалось зарегистрировать доказательство.",
                 Language.it => "Impossibile registrare la prova.",
+                Language.nl => "Kan geen bewijs registreren.",
                 _ => "Failed to register evidence.",
             };
         }
@@ -4095,6 +4408,7 @@ namespace MASZ.Utils
                 Language.es => "Evidencia registrada con éxito",
                 Language.ru => "Доказательство успешно зарегистрировано",
                 Language.it => "Prova registrata con successo",
+                Language.nl => "Bewijs succesvol geregistreerd.",
                 _ => "Successfully registered evidence",
             };
         }
@@ -4108,6 +4422,7 @@ namespace MASZ.Utils
                 Language.es => "Canal",
                 Language.ru => "Канал",
                 Language.it => "Canale",
+                Language.nl => "Kanaal",
                 _ => "Channel",
             };
         }
@@ -4121,6 +4436,7 @@ namespace MASZ.Utils
                 Language.es => "Canal antes",
                 Language.ru => "Канал до",
                 Language.it => "Canale prima",
+                Language.nl => "Kanaal voor",
                 _ => "Channel before",
             };
         }
@@ -4134,6 +4450,7 @@ namespace MASZ.Utils
                 Language.es => "Canal después",
                 Language.ru => "Канал после",
                 Language.it => "Canale dopo",
+                Language.nl => "Kanaal na",
                 _ => "Channel after",
             };
         }
@@ -4147,6 +4464,7 @@ namespace MASZ.Utils
                 Language.es => "Canal ID",
                 Language.ru => "ChannelId",
                 Language.it => "Canale ID",
+                Language.nl => "KanaalID",
                 _ => "ChannelId",
             };
         }
@@ -4160,6 +4478,7 @@ namespace MASZ.Utils
                 Language.es => "IDENTIFICACIÓN",
                 Language.ru => "Я БЫ",
                 Language.it => "ID",
+                Language.nl => "ID",
                 _ => "ID",
             };
         }
@@ -4173,6 +4492,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje",
                 Language.ru => "Сообщение",
                 Language.it => "Messaggio",
+                Language.nl => "Bericht",
                 _ => "Message",
             };
         }
@@ -4186,6 +4506,7 @@ namespace MASZ.Utils
                 Language.es => "User ID",
                 Language.ru => "ID пользователя",
                 Language.it => "ID utente",
+                Language.nl => "Gebruikers-ID",
                 _ => "User ID",
             };
         }
@@ -4199,6 +4520,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario",
                 Language.ru => "Пользователь",
                 Language.it => "Utente",
+                Language.nl => "Gebruiker",
                 _ => "User",
             };
         }
@@ -4212,6 +4534,7 @@ namespace MASZ.Utils
                 Language.es => "Emoción",
                 Language.ru => "Эмоция",
                 Language.it => "Emote",
+                Language.nl => "Emoticon",
                 _ => "Emote",
             };
         }
@@ -4225,6 +4548,7 @@ namespace MASZ.Utils
                 Language.es => "Autor",
                 Language.ru => "Автор",
                 Language.it => "Autore",
+                Language.nl => "Auteur",
                 _ => "Author",
             };
         }
@@ -4238,6 +4562,7 @@ namespace MASZ.Utils
                 Language.es => "Creado",
                 Language.ru => "Созданный",
                 Language.it => "Creato",
+                Language.nl => "Gemaakt",
                 _ => "Created",
             };
         }
@@ -4251,6 +4576,7 @@ namespace MASZ.Utils
                 Language.es => "No se pudo recuperar.",
                 Language.ru => "Не удалось получить.",
                 Language.it => "Impossibile recuperare.",
+                Language.nl => "Kon niet ophalen.",
                 _ => "Could not fetch.",
             };
         }
@@ -4264,6 +4590,7 @@ namespace MASZ.Utils
                 Language.es => "Información no almacenada en caché.",
                 Language.ru => "Информация не кешируется.",
                 Language.it => "Informazioni non memorizzate nella cache.",
+                Language.nl => "Informatie niet in cache.",
                 _ => "Information not cached.",
             };
         }
@@ -4277,6 +4604,7 @@ namespace MASZ.Utils
                 Language.es => "Viejo",
                 Language.ru => "Старый",
                 Language.it => "Vecchio",
+                Language.nl => "Oud",
                 _ => "Old",
             };
         }
@@ -4290,6 +4618,7 @@ namespace MASZ.Utils
                 Language.es => "Nuevo",
                 Language.ru => "Новый",
                 Language.it => "Nuovo",
+                Language.nl => "Nieuw",
                 _ => "New",
             };
         }
@@ -4303,6 +4632,7 @@ namespace MASZ.Utils
                 Language.es => "Vacío",
                 Language.ru => "Пустой",
                 Language.it => "Vuoto",
+                Language.nl => "Leeg",
                 _ => "Empty",
             };
         }
@@ -4316,6 +4646,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje enviado",
                 Language.ru => "Сообщение отправлено",
                 Language.it => "Messaggio inviato",
+                Language.nl => "Bericht Verzonden",
                 _ => "Message sent",
             };
         }
@@ -4329,6 +4660,7 @@ namespace MASZ.Utils
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
                 Language.it => "Contenuto",
+                Language.nl => "Inhoud",
                 _ => "Content",
             };
         }
@@ -4342,6 +4674,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje editado",
                 Language.ru => "Сообщение отредактировано",
                 Language.it => "Messaggio modificato",
+                Language.nl => "Bericht bewerkt",
                 _ => "Message edited",
             };
         }
@@ -4355,6 +4688,7 @@ namespace MASZ.Utils
                 Language.es => "Antes",
                 Language.ru => "До",
                 Language.it => "Prima",
+                Language.nl => "Voor",
                 _ => "Before",
             };
         }
@@ -4368,6 +4702,7 @@ namespace MASZ.Utils
                 Language.es => "Nuevo",
                 Language.ru => "Новый",
                 Language.it => "Nuovo",
+                Language.nl => "Nieuw",
                 _ => "New",
             };
         }
@@ -4381,6 +4716,7 @@ namespace MASZ.Utils
                 Language.es => "Fijado",
                 Language.ru => "Закрепленный",
                 Language.it => "In evidenza",
+                Language.nl => "Vastgezet",
                 _ => "Pinned",
             };
         }
@@ -4394,6 +4730,7 @@ namespace MASZ.Utils
                 Language.es => "Mensaje borrado",
                 Language.ru => "Сообщение удалено",
                 Language.it => "Messaggio cancellato",
+                Language.nl => "Bericht verwijderd",
                 _ => "Message deleted",
             };
         }
@@ -4407,6 +4744,7 @@ namespace MASZ.Utils
                 Language.es => "Contenido",
                 Language.ru => "Содержание",
                 Language.it => "Contenuto",
+                Language.nl => "Inhoud",
                 _ => "Content",
             };
         }
@@ -4420,6 +4758,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario baneado",
                 Language.ru => "Пользователь забанен",
                 Language.it => "Utente bannato",
+                Language.nl => "Gebruiker verbannen",
                 _ => "User banned",
             };
         }
@@ -4433,6 +4772,7 @@ namespace MASZ.Utils
                 Language.es => "Usuario no prohibido",
                 Language.ru => "Пользователь разблокирован",
                 Language.it => "Utente non bannato",
+                Language.nl => "Gebruiker unbanned",
                 _ => "User unbanned",
             };
         }
@@ -4446,6 +4786,7 @@ namespace MASZ.Utils
                 Language.es => "Invitación creada",
                 Language.ru => "Приглашение создано",
                 Language.it => "Invito creato",
+                Language.nl => "uitnodiging aangemaakt",
                 _ => "Invite created",
             };
         }
@@ -4459,6 +4800,7 @@ namespace MASZ.Utils
                 Language.es => "URL",
                 Language.ru => "URL",
                 Language.it => "URL",
+                Language.nl => "URL",
                 _ => "URL",
             };
         }
@@ -4472,6 +4814,7 @@ namespace MASZ.Utils
                 Language.es => "Usos máximos",
                 Language.ru => "Макс использует",
                 Language.it => "Usi massimi",
+                Language.nl => "Maximale gebruiken",
                 _ => "Max uses",
             };
         }
@@ -4485,6 +4828,7 @@ namespace MASZ.Utils
                 Language.es => "Fecha de caducidad",
                 Language.ru => "Срок хранения",
                 Language.it => "Data di scadenza",
+                Language.nl => "Vervaldatum",
                 _ => "Expiration date",
             };
         }
@@ -4498,6 +4842,7 @@ namespace MASZ.Utils
                 Language.es => "Canal objetivo",
                 Language.ru => "Целевой канал",
                 Language.it => "Canale di destinazione",
+                Language.nl => "Doelkanaal",
                 _ => "Target channel",
             };
         }
@@ -4511,6 +4856,7 @@ namespace MASZ.Utils
                 Language.es => "Invitación eliminada",
                 Language.ru => "Приглашение удалено",
                 Language.it => "Invito cancellato",
+                Language.nl => "uitnodiging verwijderd",
                 _ => "Invite deleted",
             };
         }
@@ -4524,6 +4870,7 @@ namespace MASZ.Utils
                 Language.es => "Miembro se unió",
                 Language.ru => "Участник присоединился",
                 Language.it => "Membro iscritto",
+                Language.nl => "Lid is toegetreden",
                 _ => "Member joined",
             };
         }
@@ -4537,6 +4884,7 @@ namespace MASZ.Utils
                 Language.es => "Registrado",
                 Language.ru => "Зарегистрировано",
                 Language.it => "Registrato",
+                Language.nl => "Geregistreerd",
                 _ => "Registered",
             };
         }
@@ -4550,6 +4898,7 @@ namespace MASZ.Utils
                 Language.es => "Miembro eliminado",
                 Language.ru => "Участник удален",
                 Language.it => "Membro rimosso",
+                Language.nl => "Lid verwijderd",
                 _ => "Member removed",
             };
         }
@@ -4563,6 +4912,7 @@ namespace MASZ.Utils
                 Language.es => "Hilo creado",
                 Language.ru => "Тема создана",
                 Language.it => "Discussione creata",
+                Language.nl => "Thread gemaakt",
                 _ => "Thread created",
             };
         }
@@ -4576,6 +4926,7 @@ namespace MASZ.Utils
                 Language.es => "Padre",
                 Language.ru => "Родитель",
                 Language.it => "Genitore",
+                Language.nl => "Ouder",
                 _ => "Parent",
             };
         }
@@ -4589,6 +4940,7 @@ namespace MASZ.Utils
                 Language.es => "Creador",
                 Language.ru => "Создатель",
                 Language.it => "Creatore",
+                Language.nl => "Maker",
                 _ => "Creator",
             };
         }
@@ -4602,6 +4954,7 @@ namespace MASZ.Utils
                 Language.es => "Nombre de usuario actualizado",
                 Language.ru => "Имя пользователя обновлено",
                 Language.it => "Nome utente aggiornato",
+                Language.nl => "Gebruikersnaam bijgewerkt",
                 _ => "Username updated",
             };
         }
@@ -4615,6 +4968,7 @@ namespace MASZ.Utils
                 Language.es => "Avatar actualizado",
                 Language.ru => "Аватар обновлен",
                 Language.it => "Avatar aggiornato",
+                Language.nl => "Avatar bijgewerkt",
                 _ => "Avatar updated",
             };
         }
@@ -4628,6 +4982,7 @@ namespace MASZ.Utils
                 Language.es => "Se actualizó el apodo",
                 Language.ru => "Псевдоним обновлен",
                 Language.it => "Nickname aggiornato",
+                Language.nl => "Bijnaam bijgewerkt",
                 _ => "Nickname updated",
             };
         }
@@ -4641,6 +4996,7 @@ namespace MASZ.Utils
                 Language.es => "Funciones actualizadas",
                 Language.ru => "Роли обновлены",
                 Language.it => "Ruoli aggiornati",
+                Language.nl => "Rollen bijgewerkt",
                 _ => "Roles updated",
             };
         }
@@ -4654,6 +5010,7 @@ namespace MASZ.Utils
                 Language.es => "Adicional",
                 Language.ru => "Добавлен",
                 Language.it => "Aggiunto",
+                Language.nl => "Toegevoegd",
                 _ => "Added",
             };
         }
@@ -4667,6 +5024,7 @@ namespace MASZ.Utils
                 Language.es => "Remoto",
                 Language.ru => "Удаленный",
                 Language.it => "RIMOSSO",
+                Language.nl => "Verwijderd",
                 _ => "Removed",
             };
         }
@@ -4680,6 +5038,7 @@ namespace MASZ.Utils
                 Language.es => "Reacción añadida",
                 Language.ru => "Реакция добавлена",
                 Language.it => "Risposta aggiunta",
+                Language.nl => "Reactie toegevoegd",
                 _ => "Reaction added",
             };
         }
@@ -4693,6 +5052,7 @@ namespace MASZ.Utils
                 Language.es => "Reacción eliminada",
                 Language.ru => "Реакция удалена",
                 Language.it => "Risposta rimossa",
+                Language.nl => "Reactie verwijderd",
                 _ => "Reaction removed",
             };
         }
@@ -4706,6 +5066,7 @@ namespace MASZ.Utils
                 Language.es => "Canal de voz unido",
                 Language.ru => "Голосовой канал присоединился",
                 Language.it => "Canale vocale unito",
+                Language.nl => "Spraakkanaal is toegetreden",
                 _ => "Voicechannel joined",
             };
         }
@@ -4719,6 +5080,7 @@ namespace MASZ.Utils
                 Language.es => "Canal de voz abandonado",
                 Language.ru => "Голосовой канал покинул",
                 Language.it => "Canale vocale lasciato",
+                Language.nl => "Spraakkanaal links",
                 _ => "Voicechannel left",
             };
         }
@@ -4732,6 +5094,7 @@ namespace MASZ.Utils
                 Language.es => "Canal de voz cambiado",
                 Language.ru => "Переключен голосовой канал",
                 Language.it => "Canale vocale cambiato",
+                Language.nl => "Gewisseld spraakkanaal",
                 _ => "Switched voicechannel",
             };
         }
@@ -5060,6 +5423,7 @@ namespace MASZ.Utils
                     Language.es => "Silencio",
                     Language.ru => "Немой",
                     Language.it => "Muto",
+                    Language.nl => "Dempen",
                     _ => "Mute",
                 },
                 PunishmentType.Ban => PreferredLanguage switch
@@ -5070,6 +5434,7 @@ namespace MASZ.Utils
                     Language.es => "Prohibición",
                     Language.ru => "Запретить",
                     Language.it => "Bandire",
+                    Language.nl => "Ban",
                     _ => "Ban",
                 },
                 PunishmentType.Kick => PreferredLanguage switch
@@ -5080,6 +5445,7 @@ namespace MASZ.Utils
                     Language.es => "Patear",
                     Language.ru => "Пинать",
                     Language.it => "Calcio",
+                    Language.nl => "Kick",
                     _ => "Kick",
                 },
                 PunishmentType.Warn => PreferredLanguage switch
@@ -5090,6 +5456,7 @@ namespace MASZ.Utils
                     Language.es => "Advertir",
                     Language.ru => "Предупреждать",
                     Language.it => "Avvisare",
+                    Language.nl => "Waarschuwen",
                     _ => "Warn",
                 },
                 _ => "Unknown",
@@ -5107,6 +5474,7 @@ namespace MASZ.Utils
                     Language.es => "Uno mismo",
                     Language.ru => "Себя",
                     Language.it => "Se stesso",
+                    Language.nl => "Privé",
                     _ => "Self",
                 },
                 ViewPermission.Guild => PreferredLanguage switch
@@ -5117,6 +5485,7 @@ namespace MASZ.Utils
                     Language.es => "Gremio",
                     Language.ru => "Гильдия",
                     Language.it => "Gilda",
+                    Language.nl => "Gilde",
                     _ => "Guild",
                 },
                 ViewPermission.Global => PreferredLanguage switch
@@ -5127,6 +5496,7 @@ namespace MASZ.Utils
                     Language.es => "Global",
                     Language.ru => "Глобальный",
                     Language.it => "Globale",
+                    Language.nl => "Globaal",
                     _ => "Global",
                 },
                 _ => "Unknown",
@@ -5144,6 +5514,7 @@ namespace MASZ.Utils
                     Language.es => "Ninguna acción",
                     Language.ru => "Бездействие",
                     Language.it => "Nessuna azione",
+                    Language.nl => "Geen actie",
                     _ => "No action",
                 },
                 AutoModerationAction.ContentDeleted => PreferredLanguage switch
@@ -5154,6 +5525,7 @@ namespace MASZ.Utils
                     Language.es => "Contenido eliminado",
                     Language.ru => "Контент удален",
                     Language.it => "Contenuto eliminato",
+                    Language.nl => "Inhoud verwijderd",
                     _ => "Content deleted",
                 },
                 AutoModerationAction.CaseCreated => PreferredLanguage switch
@@ -5164,6 +5536,7 @@ namespace MASZ.Utils
                     Language.es => "Caso creado",
                     Language.ru => "Дело создано",
                     Language.it => "Caso creato",
+                    Language.nl => "Zaak aangemaakt",
                     _ => "Case created",
                 },
                 AutoModerationAction.ContentDeletedAndCaseCreated => PreferredLanguage switch
@@ -5174,6 +5547,7 @@ namespace MASZ.Utils
                     Language.es => "Contenido eliminado y caso creado",
                     Language.ru => "Контент удален, а дело создано",
                     Language.it => "Contenuto eliminato e caso creato",
+                    Language.nl => "Inhoud verwijderd en zaak aangemaakt",
                     _ => "Content deleted and case created",
                 },
                 AutoModerationAction.Timeout => PreferredLanguage switch
@@ -5184,6 +5558,7 @@ namespace MASZ.Utils
                     Language.es => "Timeout",
                     Language.ru => "Таймаут",
                     Language.it => "Timeout",
+                    Language.nl => "Timeout",
                     _ => "Timeout",
                 },
                 _ => "Unknown",
@@ -5201,6 +5576,7 @@ namespace MASZ.Utils
                     Language.es => "Invitación publicada",
                     Language.ru => "Приглашение опубликовано",
                     Language.it => "Invito pubblicato",
+                    Language.nl => "Uitnodiging geplaatst",
                     _ => "Invite posted",
                 },
                 AutoModerationType.TooManyEmotes => PreferredLanguage switch
@@ -5211,6 +5587,7 @@ namespace MASZ.Utils
                     Language.es => "Demasiados emotes usados",
                     Language.ru => "Использовано слишком много эмоций",
                     Language.it => "Troppe emoticon usate",
+                    Language.nl => "Te veel emoji's gebruikt",
                     _ => "Too many emotes used",
                 },
                 AutoModerationType.TooManyMentions => PreferredLanguage switch
@@ -5221,6 +5598,7 @@ namespace MASZ.Utils
                     Language.es => "Demasiados usuarios mencionados",
                     Language.ru => "Упомянуто слишком много пользователей",
                     Language.it => "Troppi utenti citati",
+                    Language.nl => "Te veel gebruikers vermeld",
                     _ => "Too many users mentioned",
                 },
                 AutoModerationType.TooManyAttachments => PreferredLanguage switch
@@ -5231,6 +5609,7 @@ namespace MASZ.Utils
                     Language.es => "Se han utilizado demasiados archivos adjuntos",
                     Language.ru => "Использовано слишком много вложений",
                     Language.it => "Troppi allegati utilizzati",
+                    Language.nl => "Te veel bijlagen gebruikt",
                     _ => "Too many attachments used",
                 },
                 AutoModerationType.TooManyEmbeds => PreferredLanguage switch
@@ -5241,6 +5620,7 @@ namespace MASZ.Utils
                     Language.es => "Se han utilizado demasiados elementos incrustados",
                     Language.ru => "Использовано слишком много закладных",
                     Language.it => "Troppi incorporamenti utilizzati",
+                    Language.nl => "Te veel ingesloten inhoud gebruikt",
                     _ => "Too many embeds used",
                 },
                 AutoModerationType.TooManyAutoModerations => PreferredLanguage switch
@@ -5251,6 +5631,7 @@ namespace MASZ.Utils
                     Language.es => "Demasiadas moderaciones automáticas",
                     Language.ru => "Слишком много автоматических модераций",
                     Language.it => "Troppe moderazioni automatiche",
+                    Language.nl => "Te veel automatische moderaties",
                     _ => "Too many auto-moderations",
                 },
                 AutoModerationType.CustomWordFilter => PreferredLanguage switch
@@ -5261,6 +5642,7 @@ namespace MASZ.Utils
                     Language.es => "Filtro de palabras personalizado activado",
                     Language.ru => "Пользовательский фильтр слов активирован",
                     Language.it => "Filtro parole personalizzato attivato",
+                    Language.nl => "Aangepaste woordenfilter geactiveerd",
                     _ => "Custom wordfilter triggered",
                 },
                 AutoModerationType.TooManyMessages => PreferredLanguage switch
@@ -5271,6 +5653,7 @@ namespace MASZ.Utils
                     Language.es => "Demasiados mensajes",
                     Language.ru => "Слишком много сообщений",
                     Language.it => "Troppi messaggi",
+                    Language.nl => "Te veel berichten",
                     _ => "Too many messages",
                 },
                 AutoModerationType.TooManyDuplicatedCharacters => PreferredLanguage switch
@@ -5281,6 +5664,7 @@ namespace MASZ.Utils
                     Language.es => "Se han utilizado demasiados caracteres duplicados",
                     Language.ru => "Использовано слишком много повторяющихся символов",
                     Language.it => "Troppi caratteri duplicati utilizzati",
+                    Language.nl => "Te veel gedupliceerde karakters gebruikt",
                     _ => "Too many duplicated characters used",
                 },
                 AutoModerationType.TooManyLinks => PreferredLanguage switch
@@ -5291,6 +5675,7 @@ namespace MASZ.Utils
                     Language.es => "Se han utilizado demasiados enlaces",
                     Language.ru => "Использовано слишком много ссылок",
                     Language.it => "Troppi link utilizzati",
+                    Language.nl => "Te veel links gebruikt",
                     _ => "Too many links used",
                 },
                 AutoModerationType.TooManyPhishingLinks => PreferredLanguage switch
@@ -5301,6 +5686,7 @@ namespace MASZ.Utils
                     Language.es => "Se han utilizado demasiados enlaces de phishing",
                     Language.ru => "Использовано слишком много ссылок на фишинг",
                     Language.it => "Troppi link di phishing utilizzati",
+                    Language.nl => "Te veel phishing links gebruikt",
                     _ => "Too many phishing links used",
                 },
                 _ => "Unknown",
@@ -5318,6 +5704,7 @@ namespace MASZ.Utils
                     Language.es => "Error desconocido",
                     Language.ru => "Неизвестная ошибка",
                     Language.it => "Errore sconosciuto",
+                    Language.nl => "Onbekende fout",
                     _ => "Unknown error",
                 },
                 APIError.InvalidDiscordUser => PreferredLanguage switch
@@ -5328,6 +5715,7 @@ namespace MASZ.Utils
                     Language.es => "Usuario de discordia no válido",
                     Language.ru => "Недействительный пользователь Discord",
                     Language.it => "Utente discord non valido",
+                    Language.nl => "Ongeldige Discord-gebruiker",
                     _ => "Invalid discord user",
                 },
                 APIError.ProtectedModCaseSuspect => PreferredLanguage switch
@@ -5338,6 +5726,7 @@ namespace MASZ.Utils
                     Language.es => "El usuario está protegido",
                     Language.ru => "Пользователь защищен",
                     Language.it => "L'utente è protetto",
+                    Language.nl => "Gebruiker is beschermd",
                     _ => "User is protected",
                 },
                 APIError.ProtectedModCaseSuspectIsBot => PreferredLanguage switch
@@ -5348,6 +5737,7 @@ namespace MASZ.Utils
                     Language.es => "El usuario está protegido. El es un bot.",
                     Language.ru => "Пользователь защищен. Он бот.",
                     Language.it => "L'utente è protetto. Lui è un bot.",
+                    Language.nl => "Gebruiker is beschermd. Hij is een robot.",
                     _ => "User is protected. He is a bot.",
                 },
                 APIError.ProtectedModCaseSuspectIsSiteAdmin => PreferredLanguage switch
@@ -5358,6 +5748,7 @@ namespace MASZ.Utils
                     Language.es => "El usuario está protegido. Es administrador de un sitio.",
                     Language.ru => "Пользователь защищен. Он администратор сайта.",
                     Language.it => "L'utente è protetto. È un amministratore del sito.",
+                    Language.nl => "Gebruiker is beschermd. Hij is een sitebeheerder.",
                     _ => "User is protected. He is a site admin.",
                 },
                 APIError.ProtectedModCaseSuspectIsTeam => PreferredLanguage switch
@@ -5368,6 +5759,7 @@ namespace MASZ.Utils
                     Language.es => "El usuario está protegido. Es un miembro del equipo.",
                     Language.ru => "Пользователь защищен. Он член команды.",
                     Language.it => "L'utente è protetto. È un membro della squadra.",
+                    Language.nl => "Gebruiker is beschermd. Hij is een teamlid.",
                     _ => "User is protected. He is a team member.",
                 },
                 APIError.ResourceNotFound => PreferredLanguage switch
@@ -5378,6 +5770,7 @@ namespace MASZ.Utils
                     Language.es => "Recurso no encontrado",
                     Language.ru => "Ресурс не найден",
                     Language.it => "Risorsa non trovata",
+                    Language.nl => "Bron niet gevonden",
                     _ => "Resource not found",
                 },
                 APIError.InvalidIdentity => PreferredLanguage switch
@@ -5388,6 +5781,7 @@ namespace MASZ.Utils
                     Language.es => "Identidad inválida",
                     Language.ru => "Неверная личность",
                     Language.it => "Identità non valida",
+                    Language.nl => "Ongeldige identiteit",
                     _ => "Invalid identity",
                 },
                 APIError.GuildUnregistered => PreferredLanguage switch
@@ -5398,6 +5792,7 @@ namespace MASZ.Utils
                     Language.es => "El gremio no está registrado",
                     Language.ru => "Гильдия не зарегистрирована",
                     Language.it => "La gilda non è registrata",
+                    Language.nl => "Gilde is niet geregistreerd",
                     _ => "Guild is not registered",
                 },
                 APIError.Unauthorized => PreferredLanguage switch
@@ -5408,6 +5803,7 @@ namespace MASZ.Utils
                     Language.es => "No autorizado",
                     Language.ru => "Неавторизованный",
                     Language.it => "non autorizzato",
+                    Language.nl => "Onbevoegd",
                     _ => "Unauthorized",
                 },
                 APIError.GuildUndefinedMutedRoles => PreferredLanguage switch
@@ -5418,6 +5814,7 @@ namespace MASZ.Utils
                     Language.es => "El gremio no tiene roles definidos para el castigo mudo.",
                     Language.ru => "У гильдии нет определенных ролей для немого наказания.",
                     Language.it => "La gilda non ha ruoli definiti per la punizione muta.",
+                    Language.nl => "Er zijn geen rollen gedefinieerd voor te dempen straffen in deze gilde",
                     _ => "Guild has no roles for mute punishment defined.",
                 },
                 APIError.ModCaseIsMarkedToBeDeleted => PreferredLanguage switch
@@ -5428,6 +5825,7 @@ namespace MASZ.Utils
                     Language.es => "Modcase está marcado para ser eliminado",
                     Language.ru => "Modcase отмечен для удаления",
                     Language.it => "Modcase è contrassegnato per essere eliminato",
+                    Language.nl => "Modcase is gemarkeerd om te worden verwijderd",
                     _ => "Modcase is marked to be deleted",
                 },
                 APIError.ModCaseIsNotMarkedToBeDeleted => PreferredLanguage switch
@@ -5438,6 +5836,7 @@ namespace MASZ.Utils
                     Language.es => "Modcase no está marcado para ser eliminado",
                     Language.ru => "Modcase не отмечен для удаления",
                     Language.it => "Modcase non è contrassegnato per essere eliminato",
+                    Language.nl => "Modcase is niet gemarkeerd om te worden verwijderd",
                     _ => "Modcase is not marked to be deleted",
                 },
                 APIError.GuildAlreadyRegistered => PreferredLanguage switch
@@ -5448,6 +5847,7 @@ namespace MASZ.Utils
                     Language.es => "El gremio ya está registrado",
                     Language.ru => "Гильдия уже зарегистрирована",
                     Language.it => "La gilda è già registrata",
+                    Language.nl => "Deze gilde is al geregistreerd",
                     _ => "Guild is already registered",
                 },
                 APIError.NotAllowedInDemoMode => PreferredLanguage switch
@@ -5458,6 +5858,7 @@ namespace MASZ.Utils
                     Language.es => "Esta acción no está permitida en el modo de demostración.",
                     Language.ru => "Это действие запрещено в демонстрационном режиме.",
                     Language.it => "Questa azione non è consentita in modalità demo",
+                    Language.nl => "Deze actie is niet toegestaan in de demo-modus",
                     _ => "This action is not allowed in demo mode",
                 },
                 APIError.RoleNotFound => PreferredLanguage switch
@@ -5468,6 +5869,7 @@ namespace MASZ.Utils
                     Language.es => "Rol no encontrado",
                     Language.ru => "Роль не найдена",
                     Language.it => "Ruolo non trovato",
+                    Language.nl => "Rol niet gevonden",
                     _ => "Role not found",
                 },
                 APIError.TokenCannotManageThisResource => PreferredLanguage switch
@@ -5478,6 +5880,7 @@ namespace MASZ.Utils
                     Language.es => "Los tokens no pueden administrar este recurso",
                     Language.ru => "Лексемы не могут управлять этим ресурсом",
                     Language.it => "I token non possono gestire questa risorsa",
+                    Language.nl => "Tokens kunnen deze bron niet beheren",
                     _ => "Tokens cannot manage this resource",
                 },
                 APIError.TokenAlreadyRegistered => PreferredLanguage switch
@@ -5488,6 +5891,7 @@ namespace MASZ.Utils
                     Language.es => "El token ya está registrado",
                     Language.ru => "Токен уже зарегистрирован",
                     Language.it => "Il token è già registrato",
+                    Language.nl => "Token is al geregistreerd",
                     _ => "Token is already registered",
                 },
                 APIError.CannotBeSameUser => PreferredLanguage switch
@@ -5498,6 +5902,7 @@ namespace MASZ.Utils
                     Language.es => "Ambos usuarios son iguales.",
                     Language.ru => "Оба пользователя одинаковые.",
                     Language.it => "Entrambi gli utenti sono gli stessi.",
+                    Language.nl => "Beide gebruikers zijn hetzelfde.",
                     _ => "Both users are the same.",
                 },
                 APIError.ResourceAlreadyExists => PreferredLanguage switch
@@ -5508,6 +5913,7 @@ namespace MASZ.Utils
                     Language.es => "El recurso ya existe",
                     Language.ru => "Ресурс уже существует",
                     Language.it => "La risorsa esiste già",
+                    Language.nl => "Bron bestaat al",
                     _ => "Resource already exists",
                 },
                 APIError.ModCaseDoesNotAllowComments => PreferredLanguage switch
@@ -5518,6 +5924,7 @@ namespace MASZ.Utils
                     Language.es => "Los comentarios están bloqueados para este modcase",
                     Language.ru => "Комментарии заблокированы для этого мода",
                     Language.it => "I commenti sono bloccati per questo modcase",
+                    Language.nl => "Reacties zijn vergrendeld voor deze modcase",
                     _ => "Comments are locked for this modcase",
                 },
                 APIError.LastCommentAlreadyFromSuspect => PreferredLanguage switch
@@ -5528,6 +5935,7 @@ namespace MASZ.Utils
                     Language.es => "El último comentario ya era del sospechoso.",
                     Language.ru => "Последний комментарий уже был от подозреваемого.",
                     Language.it => "L'ultimo commento era già del sospettato.",
+                    Language.nl => "De laatste opmerking was al van de verdachte",
                     _ => "The last comment was already from the suspect.",
                 },
                 APIError.InvalidAutomoderationAction => PreferredLanguage switch
@@ -5538,6 +5946,7 @@ namespace MASZ.Utils
                     Language.es => "Acción de automoderación no válida",
                     Language.ru => "Недопустимое действие автомодерации",
                     Language.it => "Azione di moderazione automatica non valida",
+                    Language.nl => "Ongeldige automoderatie actie",
                     _ => "Invalid automoderation action",
                 },
                 APIError.InvalidAutomoderationType => PreferredLanguage switch
@@ -5548,6 +5957,7 @@ namespace MASZ.Utils
                     Language.es => "Tipo de automoderación no válido",
                     Language.ru => "Неверный тип автомодерации.",
                     Language.it => "Tipo di moderazione automatica non valido",
+                    Language.nl => "Ongeldige automoderatie type",
                     _ => "Invalid automoderation type",
                 },
                 APIError.TooManyTemplates => PreferredLanguage switch
@@ -5558,6 +5968,7 @@ namespace MASZ.Utils
                     Language.es => "El usuario ha alcanzado el límite máximo de plantillas",
                     Language.ru => "Пользователь достиг максимального предела шаблонов",
                     Language.it => "L'utente ha raggiunto il limite massimo di modelli",
+                    Language.nl => "De gebruiker heeft het maximale aantal sjablonen bereikt",
                     _ => "User has reached the max limit of templates",
                 },
                 APIError.InvalidFilePath => PreferredLanguage switch
@@ -5568,6 +5979,7 @@ namespace MASZ.Utils
                     Language.es => "Ruta de archivo no válida",
                     Language.ru => "Неверный путь к файлу",
                     Language.it => "Percorso file non valido",
+                    Language.nl => "Ongeldig bestandspad",
                     _ => "Invalid file path",
                 },
                 APIError.NoGuildsRegistered => PreferredLanguage switch
@@ -5578,6 +5990,7 @@ namespace MASZ.Utils
                     Language.es => "No hay gremios registrados",
                     Language.ru => "Нет зарегистрированных гильдий",
                     Language.it => "Non ci sono gilde registrate",
+                    Language.nl => "Er zijn geen gilde's geregistreerd",
                     _ => "There are no guilds registered",
                 },
                 APIError.OnlyUsableInAGuild => PreferredLanguage switch
@@ -5588,6 +6001,7 @@ namespace MASZ.Utils
                     Language.es => "Esta acción solo se puede usar en un gremio.",
                     Language.ru => "Это действие доступно только в гильдии.",
                     Language.it => "Questa azione è utilizzabile solo in una gilda",
+                    Language.nl => "Deze actie kan enkel gebruikt worden in een gilde",
                     _ => "This action is only usable in a guild",
                 },
                 APIError.InvalidAuditLogEvent => PreferredLanguage switch
@@ -5598,6 +6012,7 @@ namespace MASZ.Utils
                     Language.es => "Tipo de evento de auditoría no válido",
                     Language.ru => "Неверный тип auditlogevent",
                     Language.it => "Tipo di evento auditlog non valido",
+                    Language.nl => "Ongeldig auditlogevent type",
                     _ => "Invalid auditlogevent type",
                 },
                 APIError.ProtectedScheduledMessage => PreferredLanguage switch
@@ -5608,6 +6023,7 @@ namespace MASZ.Utils
                     Language.es => "El mensaje programado está protegido y no se puede eliminar.",
                     Language.ru => "Запланированное сообщение защищено и не может быть удалено.",
                     Language.it => "Il messaggio programmato è protetto e non può essere eliminato.",
+                    Language.nl => "Het geplande bericht is beschermd en kan niet worden verwijderd.",
                     _ => "The scheduled message is protected and cannot be deleted.",
                 },
                 APIError.InvalidDateForScheduledMessage => PreferredLanguage switch
@@ -5618,6 +6034,7 @@ namespace MASZ.Utils
                     Language.es => "La fecha de ejecución debe ser al menos un minuto en el futuro.",
                     Language.ru => "Дата выполнения должна быть не менее одной минуты в будущем.",
                     Language.it => "La data di esecuzione deve essere almeno un minuto nel futuro.",
+                    Language.nl => "De uitvoeringsdatum moet minstens één minuut in de toekomst liggen.",
                     _ => "The execution date has to be at least one minute in the future.",
                 },
                 _ => "Unknown",
@@ -5635,6 +6052,7 @@ namespace MASZ.Utils
                     Language.es => "Defecto",
                     Language.ru => "Дефолт",
                     Language.it => "Predefinito",
+                    Language.nl => "Standaard",
                     _ => "Default",
                 },
                 CaseCreationType.AutoModeration => PreferredLanguage switch
@@ -5645,6 +6063,7 @@ namespace MASZ.Utils
                     Language.es => "El caso está autoderado.",
                     Language.ru => "Корпус автоматический.",
                     Language.it => "Il caso è moderato automaticamente.",
+                    Language.nl => "Zaak is automatisch gemodereerd",
                     _ => "Case is automoderated.",
                 },
                 CaseCreationType.Imported => PreferredLanguage switch
@@ -5655,6 +6074,7 @@ namespace MASZ.Utils
                     Language.es => "El caso es importado.",
                     Language.ru => "Корпус импортный.",
                     Language.it => "Il caso è importato.",
+                    Language.nl => "Zaak is geïmporteerd",
                     _ => "Case is imported.",
                 },
                 CaseCreationType.ByCommand => PreferredLanguage switch
@@ -5665,6 +6085,7 @@ namespace MASZ.Utils
                     Language.es => "Caso creado por comando.",
                     Language.ru => "Дело создано командой.",
                     Language.it => "Caso creato da comando.",
+                    Language.nl => "Zaak aangemaakt door opdracht.",
                     _ => "Case created by command.",
                 },
                 _ => "Unknown",
@@ -5682,6 +6103,7 @@ namespace MASZ.Utils
                     Language.es => "inglés",
                     Language.ru => "английский",
                     Language.it => "inglese",
+                    Language.nl => "Engels",
                     _ => "English",
                 },
                 Language.de => PreferredLanguage switch
@@ -5692,6 +6114,7 @@ namespace MASZ.Utils
                     Language.es => "alemán",
                     Language.ru => "Немецкий",
                     Language.it => "Tedesco",
+                    Language.nl => "Duits",
                     _ => "German",
                 },
                 Language.fr => PreferredLanguage switch
@@ -5702,6 +6125,7 @@ namespace MASZ.Utils
                     Language.es => "francés",
                     Language.ru => "французкий язык",
                     Language.it => "francese",
+                    Language.nl => "Frans",
                     _ => "French",
                 },
                 Language.es => PreferredLanguage switch
@@ -5712,6 +6136,7 @@ namespace MASZ.Utils
                     Language.es => "Español",
                     Language.ru => "испанский",
                     Language.it => "spagnolo",
+                    Language.nl => "Spaans",
                     _ => "Spanish",
                 },
                 Language.it => PreferredLanguage switch
@@ -5722,6 +6147,7 @@ namespace MASZ.Utils
                     Language.es => "italiano",
                     Language.ru => "Итальянский",
                     Language.it => "italiano",
+                    Language.nl => "Italiaans",
                     _ => "Italian",
                 },
                 Language.at => PreferredLanguage switch
@@ -5732,6 +6158,7 @@ namespace MASZ.Utils
                     Language.es => "austriaco",
                     Language.ru => "Австрийский",
                     Language.it => "austriaco",
+                    Language.nl => "Oostenrijks",
                     _ => "Austrian",
                 },
                 Language.ru => PreferredLanguage switch
@@ -5742,7 +6169,19 @@ namespace MASZ.Utils
                     Language.es => "Ruso",
                     Language.ru => "Русский",
                     Language.it => "Russo",
+                    Language.nl => "Russisch",
                     _ => "Russian",
+                },
+                Language.nl => PreferredLanguage switch
+                {
+                    Language.de => "Niederländisch",
+                    Language.at => "Niederländisch",
+                    Language.fr => "Néerlandais",
+                    Language.es => "Neerlandés",
+                    Language.ru => "Голландский",
+                    Language.it => "Olandese",
+                    Language.nl => "Nederlands",
+                    _ => "Dutch",
                 },
                 _ => "Unknown",
             };
@@ -5759,6 +6198,7 @@ namespace MASZ.Utils
                     Language.es => "Notificación de canal",
                     Language.ru => "Уведомление канала",
                     Language.it => "Notifica del canale",
+                    Language.nl => "Kanaalnotificatie",
                     _ => "Channel notification",
                 },
                 AutoModerationChannelNotificationBehavior.SendNotificationAndDelete => PreferredLanguage switch
@@ -5769,6 +6209,7 @@ namespace MASZ.Utils
                     Language.es => "Notificación de canal temporal",
                     Language.ru => "Уведомление о временном канале",
                     Language.it => "Notifica temporanea del canale",
+                    Language.nl => "Voorlopige kanaalnotificatie",
                     _ => "Temporary channel notification",
                 },
                 AutoModerationChannelNotificationBehavior.NoNotification => PreferredLanguage switch
@@ -5779,6 +6220,7 @@ namespace MASZ.Utils
                     Language.es => "Sin notificación de canal",
                     Language.ru => "Уведомление о канале отсутствует",
                     Language.it => "Nessuna notifica del canale",
+                    Language.nl => "Geen kanaalnotificatie",
                     _ => "No channel notification",
                 },
                 _ => "Unknown",
@@ -5796,6 +6238,7 @@ namespace MASZ.Utils
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
                     Language.it => "Nessuno",
+                    Language.nl => "Geen",
                     _ => "None",
                 },
                 EditStatus.Unedited => PreferredLanguage switch
@@ -5806,6 +6249,7 @@ namespace MASZ.Utils
                     Language.es => "No editado",
                     Language.ru => "Не редактировалось",
                     Language.it => "Non modificato",
+                    Language.nl => "Niet aangepast",
                     _ => "Not edited",
                 },
                 EditStatus.Edited => PreferredLanguage switch
@@ -5816,6 +6260,7 @@ namespace MASZ.Utils
                     Language.es => "Editado",
                     Language.ru => "Отредактировано",
                     Language.it => "Modificato",
+                    Language.nl => "Aangepast",
                     _ => "Edited",
                 },
                 _ => "Unknown",
@@ -5833,6 +6278,7 @@ namespace MASZ.Utils
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
                     Language.it => "Nessuno",
+                    Language.nl => "Geen",
                     _ => "None",
                 },
                 LockedCommentStatus.Locked => PreferredLanguage switch
@@ -5843,6 +6289,7 @@ namespace MASZ.Utils
                     Language.es => "Bloqueado",
                     Language.ru => "Заблокировано",
                     Language.it => "bloccato",
+                    Language.nl => "Vergrendeld",
                     _ => "Locked",
                 },
                 LockedCommentStatus.Unlocked => PreferredLanguage switch
@@ -5853,6 +6300,7 @@ namespace MASZ.Utils
                     Language.es => "Desbloqueado",
                     Language.ru => "Разблокирован",
                     Language.it => "sbloccato",
+                    Language.nl => "Ontgrendeld",
                     _ => "Unlocked",
                 },
                 _ => "Unknown",
@@ -5870,6 +6318,7 @@ namespace MASZ.Utils
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
                     Language.it => "Nessuno",
+                    Language.nl => "Geen",
                     _ => "None",
                 },
                 MarkedToDeleteStatus.Marked => PreferredLanguage switch
@@ -5880,6 +6329,7 @@ namespace MASZ.Utils
                     Language.es => "Marcado para eliminar",
                     Language.ru => "Отмечено для удаления",
                     Language.it => "Contrassegnato per eliminare",
+                    Language.nl => "Gemarkeerd om te verwijderen",
                     _ => "Marked to delete",
                 },
                 MarkedToDeleteStatus.Unmarked => PreferredLanguage switch
@@ -5890,6 +6340,7 @@ namespace MASZ.Utils
                     Language.es => "No marcado para eliminar",
                     Language.ru => "Не отмечен для удаления",
                     Language.it => "Non contrassegnato per l'eliminazione",
+                    Language.nl => "Niet gemarkeerd om te verwijderen",
                     _ => "Not marked to delete",
                 },
                 _ => "Unknown",
@@ -5907,6 +6358,7 @@ namespace MASZ.Utils
                     Language.es => "Ninguna",
                     Language.ru => "Никто",
                     Language.it => "Nessuno",
+                    Language.nl => "Geen",
                     _ => "None",
                 },
                 PunishmentActiveStatus.Active => PreferredLanguage switch
@@ -5917,6 +6369,7 @@ namespace MASZ.Utils
                     Language.es => "Activo",
                     Language.ru => "Активный",
                     Language.it => "Attivo",
+                    Language.nl => "Actief",
                     _ => "Active",
                 },
                 PunishmentActiveStatus.Inactive => PreferredLanguage switch
@@ -5927,6 +6380,7 @@ namespace MASZ.Utils
                     Language.es => "Inactivo",
                     Language.ru => "Неактивный",
                     Language.it => "Non attivo",
+                    Language.nl => "niet actief",
                     _ => "Inactive",
                 },
                 _ => "Unknown",
@@ -5944,6 +6398,7 @@ namespace MASZ.Utils
                     Language.es => "Mensaje enviado",
                     Language.ru => "Сообщение отправлено",
                     Language.it => "Messaggio inviato",
+                    Language.nl => "Bericht verzonden",
                     _ => "Message sent",
                 },
                 GuildAuditLogEvent.MessageUpdated => PreferredLanguage switch
@@ -5954,6 +6409,7 @@ namespace MASZ.Utils
                     Language.es => "Mensaje actualizado",
                     Language.ru => "Сообщение обновлено",
                     Language.it => "Messaggio aggiornato",
+                    Language.nl => "Bericht bijgewerkt",
                     _ => "Message updated",
                 },
                 GuildAuditLogEvent.MessageDeleted => PreferredLanguage switch
@@ -5964,6 +6420,7 @@ namespace MASZ.Utils
                     Language.es => "Mensaje borrado",
                     Language.ru => "Сообщение удалено",
                     Language.it => "Messaggio cancellato",
+                    Language.nl => "Bericht verwijderd",
                     _ => "Message deleted",
                 },
                 GuildAuditLogEvent.UsernameUpdated => PreferredLanguage switch
@@ -5974,6 +6431,7 @@ namespace MASZ.Utils
                     Language.es => "Nombre de usuario actualizado",
                     Language.ru => "Имя пользователя обновлено",
                     Language.it => "Nome utente aggiornato",
+                    Language.nl => "Gebruikersnaam bijgewerkt",
                     _ => "Username updated",
                 },
                 GuildAuditLogEvent.AvatarUpdated => PreferredLanguage switch
@@ -5984,6 +6442,7 @@ namespace MASZ.Utils
                     Language.es => "Avatar actualizado",
                     Language.ru => "Аватар обновлен",
                     Language.it => "Avatar aggiornato",
+                    Language.nl => "Avatar bijgewerkt",
                     _ => "Avatar updated",
                 },
                 GuildAuditLogEvent.NicknameUpdated => PreferredLanguage switch
@@ -5994,6 +6453,7 @@ namespace MASZ.Utils
                     Language.es => "Se actualizó el apodo",
                     Language.ru => "Псевдоним обновлен",
                     Language.it => "Nickname aggiornato",
+                    Language.nl => "Nickame bijgewerkt",
                     _ => "Nickname updated",
                 },
                 GuildAuditLogEvent.MemberRolesUpdated => PreferredLanguage switch
@@ -6004,6 +6464,7 @@ namespace MASZ.Utils
                     Language.es => "Se actualizaron las funciones de los miembros",
                     Language.ru => "Роли участников обновлены",
                     Language.it => "Ruoli dei membri aggiornati",
+                    Language.nl => "Lidrollen bijgewerkt",
                     _ => "Member roles updated",
                 },
                 GuildAuditLogEvent.MemberJoined => PreferredLanguage switch
@@ -6014,6 +6475,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro se unió",
                     Language.ru => "Участник присоединился",
                     Language.it => "Membro iscritto",
+                    Language.nl => "Lid toegetreden",
                     _ => "Member joined",
                 },
                 GuildAuditLogEvent.MemberRemoved => PreferredLanguage switch
@@ -6024,6 +6486,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro eliminado",
                     Language.ru => "Участник удален",
                     Language.it => "Membro rimosso",
+                    Language.nl => "Lid verwijderd",
                     _ => "Member removed",
                 },
                 GuildAuditLogEvent.BanAdded => PreferredLanguage switch
@@ -6034,6 +6497,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro prohibido",
                     Language.ru => "Участник забанен",
                     Language.it => "Membro bannato",
+                    Language.nl => "Lid geband",
                     _ => "Member banned",
                 },
                 GuildAuditLogEvent.BanRemoved => PreferredLanguage switch
@@ -6044,6 +6508,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro no prohibido",
                     Language.ru => "Участник разблокирован",
                     Language.it => "Membro non bannato",
+                    Language.nl => "Lid onbannen",
                     _ => "Member unbanned",
                 },
                 GuildAuditLogEvent.InviteCreated => PreferredLanguage switch
@@ -6054,6 +6519,7 @@ namespace MASZ.Utils
                     Language.es => "Invitación creada",
                     Language.ru => "Приглашение создано",
                     Language.it => "Invito creato",
+                    Language.nl => "Uitnodiging aangemaakt",
                     _ => "Invite created",
                 },
                 GuildAuditLogEvent.InviteDeleted => PreferredLanguage switch
@@ -6064,6 +6530,7 @@ namespace MASZ.Utils
                     Language.es => "Invitación eliminada",
                     Language.ru => "Приглашение удалено",
                     Language.it => "Invito cancellato",
+                    Language.nl => "Uitnodiging verwijderd",
                     _ => "Invite deleted",
                 },
                 GuildAuditLogEvent.ThreadCreated => PreferredLanguage switch
@@ -6074,6 +6541,7 @@ namespace MASZ.Utils
                     Language.es => "Hilo creado",
                     Language.ru => "Тема создана",
                     Language.it => "Discussione creata",
+                    Language.nl => "Thread aangemaakt",
                     _ => "Thread created",
                 },
                 GuildAuditLogEvent.VoiceJoined => PreferredLanguage switch
@@ -6084,6 +6552,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro se unió al canal de voz",
                     Language.ru => "Участник присоединился к голосовому каналу",
                     Language.it => "Membro entrato nel canale vocale",
+                    Language.nl => "Lid aangesloten bij spraakkanaal",
                     _ => "Member joined voice channel",
                 },
                 GuildAuditLogEvent.VoiceLeft => PreferredLanguage switch
@@ -6094,6 +6563,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro dejó el canal de voz",
                     Language.ru => "Участник покинул голосовой канал",
                     Language.it => "Membro uscito dal canale vocale",
+                    Language.nl => "Lid verliet spraakkanaal",
                     _ => "Member left voice channel",
                 },
                 GuildAuditLogEvent.VoiceMoved => PreferredLanguage switch
@@ -6104,6 +6574,7 @@ namespace MASZ.Utils
                     Language.es => "Miembro movió al canal de voz",
                     Language.ru => "Участник переместился в другой голосовой канал",
                     Language.it => "Membro spostato nel canale vocale",
+                    Language.nl => "Lid veranderde van spraakkanaal",
                     _ => "Member moved voice channel",
                 },
                 GuildAuditLogEvent.ReactionAdded => PreferredLanguage switch
@@ -6114,6 +6585,7 @@ namespace MASZ.Utils
                     Language.es => "Reacción añadida",
                     Language.ru => "Реакция добавлена",
                     Language.it => "Risposta aggiunta",
+                    Language.nl => "Reactie toegevoegd",
                     _ => "Reaction added",
                 },
                 GuildAuditLogEvent.ReactionRemoved => PreferredLanguage switch
@@ -6124,6 +6596,7 @@ namespace MASZ.Utils
                     Language.es => "Reacción eliminada",
                     Language.ru => "Реакция удалена",
                     Language.it => "Risposta rimossa",
+                    Language.nl => "Reactie verwijderd",
                     _ => "Reaction removed",
                 },
                 _ => "Unknown",
@@ -6141,6 +6614,7 @@ namespace MASZ.Utils
                     Language.es => "Error desconocido",
                     Language.ru => "Неизвестная ошибка",
                     Language.it => "Errore sconosciuto",
+                    Language.nl => "Onbekende fout",
                     _ => "Unknown error",
                 },
                 ScheduledMessageFailureReason.ChannelNotFound => PreferredLanguage switch
@@ -6151,6 +6625,7 @@ namespace MASZ.Utils
                     Language.es => "Canal no encontrado",
                     Language.ru => "Канал не найден",
                     Language.it => "Canale non trovato",
+                    Language.nl => "Kanaal niet gevonden",
                     _ => "Channel not found",
                 },
                 ScheduledMessageFailureReason.InsufficientPermission => PreferredLanguage switch
@@ -6161,6 +6636,7 @@ namespace MASZ.Utils
                     Language.es => "Permiso insuficiente",
                     Language.ru => "Недостаточно прав",
                     Language.it => "Permessi insufficienti",
+                    Language.nl => "Onvoldoende toestemming",
                     _ => "Insufficient permission",
                 },
                 _ => "Unknown",
@@ -6178,6 +6654,7 @@ namespace MASZ.Utils
                     Language.es => "Pendiente",
                     Language.ru => "Ожидается",
                     Language.it => "In attesa",
+                    Language.nl => "In afwachting",
                     _ => "Pending",
                 },
                 ScheduledMessageStatus.Sent => PreferredLanguage switch
@@ -6188,6 +6665,7 @@ namespace MASZ.Utils
                     Language.es => "Enviado",
                     Language.ru => "Отправлено",
                     Language.it => "Inviato",
+                    Language.nl => "Verzonden",
                     _ => "Sent",
                 },
                 ScheduledMessageStatus.Failed => PreferredLanguage switch
@@ -6198,6 +6676,7 @@ namespace MASZ.Utils
                     Language.es => "Falló",
                     Language.ru => "Не удалось отправить",
                     Language.it => "Invio fallito",
+                    Language.nl => "Gefaald",
                     _ => "Failed",
                 },
                 _ => "Unknown",
@@ -6215,6 +6694,7 @@ namespace MASZ.Utils
                     Language.es => "Pendiente",
                     Language.ru => "Ожидается",
                     Language.it => "In attesa",
+                    Language.nl => "In afwachting",
                     _ => "Pending",
                 },
                 AppealStatus.Approved => PreferredLanguage switch
@@ -6225,6 +6705,7 @@ namespace MASZ.Utils
                     Language.es => "Aprobado",
                     Language.ru => "Утвержден",
                     Language.it => "Approvato",
+                    Language.nl => "Aanvaard",
                     _ => "Approved",
                 },
                 AppealStatus.Declined => PreferredLanguage switch
@@ -6235,6 +6716,7 @@ namespace MASZ.Utils
                     Language.es => "Denegado",
                     Language.ru => "Отклонен",
                     Language.it => "Rifiutato",
+                    Language.nl => "Geweigerd",
                     _ => "Declined",
                 },
                 _ => "Unknown",

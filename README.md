@@ -3,7 +3,7 @@
 ![LatestVersion](https://maszindex.zaanposni.com/api/v1/views/version/current/readme?)
 [![https://github.com/users/zaanposni/packages/container/package/masz_backend](https://img.shields.io/badge/using-docker-blue?style=for-the-badge)](https://github.com/users/zaanposni/packages/container/package/masz_backend)
 [![https://discord.gg/5zjpzw6h3S](https://img.shields.io/discord/779262870016884756?logo=discord&style=for-the-badge)](https://discord.gg/5zjpzw6h3S)
-[![SupportedLanguages](https://img.shields.io/badge/translated-7%20languages-brightgreen?style=for-the-badge)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
+[![SupportedLanguages](https://img.shields.io/badge/translated-8%20languages-brightgreen?style=for-the-badge)](https://github.com/zaanposni/discord-masz/blob/master/translations/supported_languages.json)
 
 ⭐ **Infractions and managed (temporary) punishments** - to moderate your server\
 ⭐ **Quicksearch** - to reliably search for any infractions or notes a user has\
@@ -12,6 +12,11 @@
 ⭐ **Ban appeals and webhook notifications** - to moderate your server transparently\
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API and plugin support** - for custom scripts and automations
+
+## 🤝 Maintainers
+
+This project is stable to use. However, it is no longer actively maintained by me.\
+**If you want to become a maintainer**, please contact me via [Mail](mailto:masz@zaanposni.com) or [Discord](https://discord.gg/5zjpzw6h3S).
 
 ## 👀 Preview
 

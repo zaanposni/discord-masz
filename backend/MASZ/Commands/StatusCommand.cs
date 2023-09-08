@@ -71,7 +71,7 @@ namespace MASZ.Commands
                 var user = item.GetCurrentUser();
                 if (user != null)
                 {
-                    loggedInString.AppendLine($"{user.Username}#{user.Discriminator}");
+                    loggedInString.AppendLine($"{user.Username}");
                     loggedInCount++;
                 }
             }

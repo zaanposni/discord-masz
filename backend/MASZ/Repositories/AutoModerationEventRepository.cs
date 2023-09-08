@@ -37,7 +37,6 @@ namespace MASZ.Repositories
             if (user != null)
             {
                 modEvent.Username = user.Username;
-                modEvent.Discriminator = user.Discriminator;
             }
 
             modEvent.CreatedAt = DateTime.UtcNow;
@@ -58,7 +57,6 @@ namespace MASZ.Repositories
                     ModId = DiscordAPI.GetCurrentBotInfo().Id,
                     UserId = user.Id,
                     Username = user.Username,
-                    Discriminator = user.Discriminator,
                 };
 
                 StringBuilder description = new();
@@ -187,7 +185,7 @@ namespace MASZ.Repositories
 
                 evidence = await repo.CreateEvidence(evidence);
 
-                await repo.Link(evidence.GuildId, evidence.Id, modCase.Id);
+                await repo.Link(evidence.GuildId, evidence.Id, modCase.CaseId);
             } catch(Exception e)
             {
                 Logger.LogError(e, $"Failed to create evidence link for modevent modcasecase {evidence.GuildId}/{evidence.UserId}/{modCase.Id}");

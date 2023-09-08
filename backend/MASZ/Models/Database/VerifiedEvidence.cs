@@ -15,7 +15,6 @@ namespace MASZ.Models.Database
         public ulong UserId { get; set; }
         public string Username { get; set; }
         public string? Nickname { get; set; }
-        public string Discriminator { get; set; }
         public ulong ModId { get; set; }
         public DateTime SentAt { get; set; }
         public DateTime ReportedAt { get; set; }
@@ -28,7 +27,7 @@ namespace MASZ.Models.Database
                     "<head>" +
                         $"<meta name=\"theme-color\" content=\"#3498db\">" +
                         $"<meta property=\"og:site_name\" content=\"MASZ by zaanposni\" />" +
-                        $"<meta property=\"og:title\" content=\"#{user.Username}#{user.Discriminator} at {this.SentAt.ToString("yyyy.MM.dd")}\" />" +
+                        $"<meta property=\"og:title\" content=\"#{user.Username} at {this.SentAt.ToString("yyyy.MM.dd")}\" />" +
                         $"<meta property=\"og:url\" content=\"{baseUrl}/guilds/{this.GuildId}/evidence/{this.Id}\" />" +
                         $"<meta property=\"og:description\" content=\"{this.ReportedContent}\" />" +
                         ( user != null ? $"<meta property=\"og:image\" content=\"{user.GetAvatarOrDefaultUrl()}\" />" : "") +

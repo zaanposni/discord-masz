@@ -16,7 +16,7 @@ export const LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY = "__masz-guild-quickse
 export const FEEDBACK_COOKIE_NAME = "__masz-feedback";
 
 export const APP_NAME = "MASZ";
-export const APP_VERSION = "v3.4.1";
+export const APP_VERSION = "v3.5.0";
 
 export const GUILD_QUICKSEARCH_MAX_HISTORY_ENTRIES = 10;
 
@@ -94,5 +94,15 @@ export const LANGUAGES: ILanguageSelect[] = [
         momentTimeFormat: "HH:mm",
         momentDateTimeFormat: "DD.MM.YYYY HH:mm",
         apiValue: 6,
+    },
+    {
+        language: "nl",
+        displayName: "Dutch (nederlands)",
+        dateFormat: "d.m.Y",
+        momentDateFormat: "DD.MM.YYYY",
+        timeFormat: "hh:MM",
+        momentTimeFormat: "HH:mm",
+        momentDateTimeFormat: "DD.MM.YYYY HH:mm",
+        apiValue: 7,
     },
 ];

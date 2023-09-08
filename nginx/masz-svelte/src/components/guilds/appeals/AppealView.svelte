@@ -107,7 +107,7 @@
                 {:else}
                     <div class="flex flex-col md:flex-row md:items-center">
                         <h2 class="font-black" style="word-wrap: anywhere">
-                            {$appeal?.user?.username ?? $appeal?.username}#{$appeal?.user?.discriminator ?? $appeal?.discriminator}
+                            {$appeal?.user?.username ?? $appeal?.username}
                         </h2>
                         <div class="md:ml-2">
                             <AppealStatusTag appeal={$appeal} />

@@ -16,13 +16,19 @@ namespace MASZ.Services
     {
         private readonly static string CHECK = "\u2705";
         private readonly static string X_CHECK = "\u274C";
+        private readonly ILogger<GuildAuditLogger> _logger;
+        private readonly InternalConfiguration _config;
         private readonly DiscordSocketClient _client;
         private readonly IServiceProvider _serviceProvider;
+        private readonly DiscordAPIInterface _discordAPIInterface;
 
-        public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider)
+        public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider, DiscordAPIInterface discordAPIInterface, InternalConfiguration config, ILogger<GuildAuditLogger> logger)
         {
+            _logger = logger;
+            _config = config;
             _client = client;
             _serviceProvider = serviceProvider;
+            _discordAPIInterface = discordAPIInterface;
         }
 
         public void RegisterEvents()
@@ -212,7 +218,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
@@ -242,7 +248,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
@@ -271,7 +277,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
 
             var embed = new EmbedBuilder()
@@ -316,7 +322,7 @@ namespace MASZ.Services
                     await translator.SetContext(guild.Id);
 
                     StringBuilder description = new();
-                    description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
                     var embed = new EmbedBuilder()
@@ -371,7 +377,7 @@ namespace MASZ.Services
             await translator.SetContext(guildChannel.GuildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username} - {reaction.User.Value.Mention}");
             if (message.HasValue)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
@@ -423,7 +429,7 @@ namespace MASZ.Services
             await translator.SetContext(guildChannel.GuildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username} - {reaction.User.Value.Mention}");
             if (message.HasValue)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
@@ -503,7 +509,7 @@ namespace MASZ.Services
             }
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             if (eventType == GuildAuditLogEvent.VoiceJoined)
             {
@@ -552,7 +558,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             var embed = new EmbedBuilder()
                 .WithTitle(translator.T().GuildAuditLogBanAddedTitle())
@@ -571,7 +577,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             var embed = new EmbedBuilder()
                 .WithTitle(translator.T().GuildAuditLogBanRemovedTitle())
@@ -595,7 +601,7 @@ namespace MASZ.Services
             description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {invite}");
             if (invite.Inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {invite.Inviter.Username}#{invite.Inviter.Discriminator} - {invite.Inviter.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {invite.Inviter.Username} - {invite.Inviter.Mention}");
                 embed.WithAuthor(invite.Inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {invite.Inviter.Id}");
             }
@@ -646,7 +652,7 @@ namespace MASZ.Services
 
             if (inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {inviter.Username}#{inviter.Discriminator} - {inviter.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {inviter.Username} - {inviter.Mention}");
                 embed.WithAuthor(inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {inviter.Id}");
             }
@@ -674,7 +680,7 @@ namespace MASZ.Services
             await translator.SetContext(user.Guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
             description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
@@ -695,7 +701,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
             description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
@@ -710,7 +716,31 @@ namespace MASZ.Services
 
         public async Task HandleMessageDeleted(Cacheable<IMessage, ulong> messageCached, Cacheable<IMessageChannel, ulong> channel)
         {
-            var message = await messageCached.GetOrDownloadAsync();
+            IMessage message = null;
+            if (_config.IsExperimentalMessageCacheEnabled())
+            {
+                try
+                {
+                    message = _discordAPIInterface.GetFromCache<IMessage>(CacheKey.IMessage(channel.Id, messageCached.Id));
+                }
+                catch (NotFoundInCacheException ex)
+                {
+                    _logger.LogError(ex, "Error while trying to get message from experimental cache");
+                }
+            }
+
+            if (message == null)
+            {
+                try
+                {
+                    message = await messageCached.GetOrDownloadAsync();
+                }
+                catch (HttpException) { }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while trying to get message from cache");
+                }
+            }
 
             if (message == null)
             {
@@ -745,7 +775,7 @@ namespace MASZ.Services
 
                 if (message.Author != null)
                 {
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username} - {message.Author.Mention}");
                     embed.WithAuthor(message.Author)
                          .WithFooter($"{translator.T().GuildAuditLogUserID()}: {message.Author.Id}");
                 }
@@ -805,6 +835,14 @@ namespace MASZ.Services
             {
                 if (message.Channel is ITextChannel tchannel)
                 {
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        _discordAPIInterface.AddOrUpdateCache(
+                            CacheKey.IMessage(tchannel.Id, message.Id),
+                            new CacheApiResponse(message, 60 * 24 * 31 * 12)
+                        );
+                    }
+
                     if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tchannel))
                     {
                         return;
@@ -826,7 +864,7 @@ namespace MASZ.Services
                     StringBuilder description = new();
                     description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{message.Id}]({message.GetJumpUrl()})");
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username} - {message.Author.Mention}");
 
                     var embed = new EmbedBuilder()
                          .WithTitle(translator.T().GuildAuditLogMessageSentTitle())
@@ -875,12 +913,20 @@ namespace MASZ.Services
             }
         }
 
-        public async Task HandleMessageUpdated(Cacheable<IMessage, ulong> messageBefore, SocketMessage messageAfter, ISocketMessageChannel channel)
+        public async Task HandleMessageUpdated(Cacheable<IMessage, ulong> _messageBefore, SocketMessage messageAfter, ISocketMessageChannel channel)
         {
             if (!messageAfter.Author.IsBot && !messageAfter.Author.IsWebhook)
             {
                 if (channel is ITextChannel tchannel)
                 {
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        _discordAPIInterface.AddOrUpdateCache(
+                            CacheKey.IMessage(tchannel.Id, messageAfter.Id),
+                            new CacheApiResponse(messageAfter, 60 * 24 * 31 * 12)
+                        );
+                    }
+
                     if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel))
                     {
                         return;
@@ -902,7 +948,7 @@ namespace MASZ.Services
                     StringBuilder description = new();
                     description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{messageAfter.Id}]({messageAfter.GetJumpUrl()})");
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username}#{messageAfter.Author.Discriminator} - {messageAfter.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username} - {messageAfter.Author.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {messageAfter.CreatedAt.UtcDateTime.ToDiscordTS()}");
 
                     var embed = new EmbedBuilder()
@@ -913,21 +959,45 @@ namespace MASZ.Services
 
                     embed.AddField(translator.T().GuildAuditLogMessageUpdatedPinned(), messageAfter.IsPinned ? CHECK : X_CHECK, false);
 
-                    var before = await messageBefore.GetOrDownloadAsync();
+                    IMessage messageBefore = null;
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        try
+                        {
+                            messageBefore = _discordAPIInterface.GetFromCache<IMessage>(CacheKey.IMessage(channel.Id, _messageBefore.Id));
+                        }
+                        catch (NotFoundInCacheException ex)
+                        {
+                            _logger.LogError(ex, "Error while trying to get message from experimental cache");
+                        }
+                    }
 
-                    if (before == null)
+                    if (messageBefore == null)
+                    {
+                        try
+                        {
+                            messageBefore = await _messageBefore.GetOrDownloadAsync();
+                        }
+                        catch (HttpException) { }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error while trying to get message from cache");
+                        }
+                    }
+
+                    if (messageBefore == null)
                     {
                         embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), translator.T().GuildAuditLogNotFoundInCache());
                     }
                     else
                     {
-                        if (string.Equals(before.Content, messageAfter.Content) && before.Embeds.Count != messageAfter.Embeds.Count)
+                        if (string.Equals(messageBefore.Content, messageAfter.Content) && messageBefore.Embeds.Count != messageAfter.Embeds.Count)
                         {
                             return;
                         }
-                        if (!string.IsNullOrEmpty(before.Content))
+                        if (!string.IsNullOrEmpty(messageBefore.Content))
                         {
-                            embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), before.Content.Truncate(1024));
+                            embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), messageBefore.Content.Truncate(1024));
                         }
                     }
 

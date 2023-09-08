@@ -12,7 +12,6 @@ namespace MASZ.Models
         public string Description { get; set; }
         public string UserId { get; set; }
         public string Username { get; set; }
-        public string Discriminator { get; set; }
         public string Nickname { get; set; }
         public string ModId { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -40,7 +39,6 @@ namespace MASZ.Models
             Description = modCase.Description;
             UserId = modCase.UserId.ToString();
             Username = modCase.Username;
-            Discriminator = modCase.Discriminator;
             Nickname = modCase.Nickname;
             ModId = modCase.ModId.ToString();
             CreatedAt = modCase.CreatedAt;

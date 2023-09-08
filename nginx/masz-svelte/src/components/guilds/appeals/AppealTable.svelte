@@ -94,7 +94,7 @@
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
             members = response.map((x) => ({
                 id: x.id,
-                text: `${x.username}#${x.discriminator}`,
+                text: x.username,
             }));
         });
     }
@@ -257,7 +257,7 @@
                                             <div class="flex flex-row items-center">
                                                 <AppealStatusTag class="grow-0 shrink-0 !ml-0 mr-1" {appeal} />
                                                 <div class="font-bold" style="word-wrap: anywhere">
-                                                    {appeal.user?.username ?? appeal.username}#{appeal.user?.discriminator ?? appeal.discriminator}
+                                                    {appeal.user?.username ?? appeal.username}
                                                 </div>
                                             </div>
                                             <div>

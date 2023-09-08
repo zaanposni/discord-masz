@@ -37,6 +37,9 @@
     register("ru", () => {
         return API.getAsset("/i18n/ru.json");
     });
+    register("nl", () => {
+        return API.getAsset("/i18n/nl.json");
+    });
 
     setTimeout(() => {
         const html = document.getElementsByTagName("html");

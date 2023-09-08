@@ -9,7 +9,6 @@ export interface ICase {
     description: string;
     userId: string;
     username: string;
-    discriminator?: string;
     nickname?: string;
     modId?: string;
     createdAt: moment.Moment;

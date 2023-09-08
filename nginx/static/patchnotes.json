@@ -1,4 +1,65 @@
 [
+    {
+      "title": "Version 3.5.0",
+      "version": "v3.5.0",
+      "released_at": "2023-09-08",
+      "contributors": [
+        {
+          "name": "UponAnonymous",
+          "link": "https://github.com/UponAnonymous",
+          "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+        },
+        {
+          "name": "Allan Efendic",
+          "link": "https://github.com/alefDev-prog",
+          "icon": "https://avatars.githubusercontent.com/u/114575583?v=4"
+        }
+      ],
+      "breaking": [
+        {
+            "title": "Removed discriminators",
+            "description": "Discriminators have been removed from the codebase in favor of Discords username change."
+        }
+      ],
+      "features": [
+        {
+          "title": "Added experimental message cache.",
+          "description": "This new message cache should reduce the number of missing message content in the auditlog on deleted and updated messages. Use ENABLE_EXPERIMENTAL_MESSAGE_CACHE=true to enable it."
+        },
+        {
+          "title": "Added dutch translations.",
+          "description": "Added dutch (NL) translations for MASZ."
+        }
+      ],
+      "fixes": [
+        {
+          "title": "Fixed time input validation in case creation.",
+          "description": "29:xx is no longer a valid time input. 20:xx is now a valid time input."
+        },
+        {
+          "title": "Fixed wrong punishment duration in case creation.",
+          "description": "If you entered a wrong time input, the punishment duration was set to permanent. This has been fixed."
+        },
+        {
+          "title": "Fixed automod logging.",
+          "description": "If the message content was too large, some automod embeds failed to be sent. This has been fixed."
+        },
+        {
+          "title": "Correctly link evidence.",
+          "description": "The linking of evidence for automods and via the frontend has been fixed."
+        },
+        {
+          "title": "Fixed invite automod for markdown.",
+          "description": "Invites sent within the new markdown syntax are now correctly parsed and no longer trigger a false positive on whitelisted guilds."
+        }
+      ],
+      "technical": [
+        {
+            "title": "Last release.",
+            "description": "This is the last release of MASZ for the foreseeable future. If you want to step in as a maintainer, please contact me via Discord. If you want to support me, you can do so on ko-fi: https://ko-fi.com/zaanposni"
+        }
+      ]
+    },
   {
     "title": "Version 3.4.1",
     "version": "v3.4.1",

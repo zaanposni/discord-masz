@@ -9,7 +9,6 @@ export interface IVerifiedEvidence {
     userId: string;
     username: string;
     nickname?: string;
-    discriminator: string;
     modId: string;
     sentAt: moment.Moment;
     reportedAt: moment.Moment;

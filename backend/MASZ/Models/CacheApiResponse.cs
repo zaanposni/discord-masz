@@ -19,5 +19,9 @@ namespace MASZ.Models
         {
             return DateTime.Now > ExpiresAt;
         }
+        public DateTime GetExpiresAt()
+        {
+            return ExpiresAt;
+        }
     }
 }

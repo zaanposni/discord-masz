@@ -368,7 +368,7 @@
                                                 </div>
                                             {/if}
                                             <div class="font-bold mr-2" style="word-wrap: anywhere">
-                                                {message.lastEdited?.username}#{message.lastEdited?.discriminator}
+                                                {message.lastEdited?.username}
                                             </div>
                                             <div style="word-wrap: anywhere">
                                                 {message.scheduledFor

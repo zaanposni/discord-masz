@@ -98,7 +98,7 @@
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
             members = response.map((x) => ({
                 id: x.id,
-                text: `${x.username}#${x.discriminator}`,
+                text: x.username,
             }));
         });
     }
@@ -268,7 +268,7 @@
                                         <div class="flex flex-row flex-wrap items-center">
                                             <svelte:component this={getIconByAutomodType(event.autoModerationType)} />
                                             <div class="mx-2 font-bold" style="word-wrap: anywhere">
-                                                {event.username}#{event.discriminator}
+                                                {event.username}
                                             </div>
                                             <div>
                                                 {event.createdAt?.format($currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss")}

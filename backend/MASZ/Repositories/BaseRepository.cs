@@ -68,7 +68,6 @@ namespace MASZ.Repositories
                    Contains(obj.Description, search) ||
                    Contains(obj.GetPunishment(_translator), search) ||
                    Contains(obj.Username, search) ||
-                   Contains(obj.Discriminator, search) ||
                    Contains(obj.Nickname, search) ||
                    Contains(obj.UserId, search) ||
                    Contains(obj.ModId, search) ||
@@ -88,7 +87,6 @@ namespace MASZ.Repositories
                    Contains(obj.Description, search) ||
                    Contains(obj.GetPunishment(_translator), search) ||
                    Contains(obj.Username, search) ||
-                   Contains(obj.Discriminator, search) ||
                    Contains(obj.Nickname, search) ||
                    Contains(obj.UserId, search) ||
                    Contains(obj.ModId, search) ||
@@ -107,7 +105,6 @@ namespace MASZ.Repositories
             return Contains(obj.AutoModerationAction.ToString(), search) ||
                    Contains(obj.AutoModerationType.ToString(), search) ||
                    Contains(obj.CreatedAt, search) ||
-                   Contains(obj.Discriminator, search) ||
                    Contains(obj.Username, search) ||
                    Contains(obj.Nickname, search) ||
                    Contains(obj.UserId, search) ||
@@ -141,13 +138,13 @@ namespace MASZ.Repositories
         protected bool Contains(IUser obj, string search)
         {
             if (obj == null) return false;
-            return Contains($"{obj.Username}#{obj.Discriminator}", search);
+            return Contains(obj.Username, search);
         }
 
         protected bool Contains(DiscordUserView obj, string search)
         {
             if (obj == null) return false;
-            return Contains($"{obj.Username}#{obj.Discriminator}", search);
+            return Contains(obj.Username, search);
         }
     }
 }

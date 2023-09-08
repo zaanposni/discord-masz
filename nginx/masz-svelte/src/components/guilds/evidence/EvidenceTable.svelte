@@ -74,7 +74,7 @@
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
             members = response.map((x) => ({
                 id: x.id,
-                text: `${x.username}#${x.discriminator}`,
+                text: x.username,
             }));
         });
     }
@@ -235,8 +235,7 @@
                                         <div class="flex flex-col flex-shrink">
                                             <div class="flex flex-row items-center">
                                                 <div class="font-bold" style="word-wrap: anywhere">
-                                                    {evidenceView.reported?.username ?? evidenceView.reported.username}#{evidenceView.reported?.discriminator ??
-                                                        evidenceView.verifiedEvidence.discriminator}
+                                                    {evidenceView.reported?.username ?? evidenceView.reported.username}
                                                 </div>
                                             </div>
                                             <div class="mt-1">

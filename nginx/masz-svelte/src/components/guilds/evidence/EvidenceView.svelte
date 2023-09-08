@@ -393,8 +393,7 @@
                                     <UserIcon class="mr-2" user={$evidence.reported} />
                                     <div class="flex flex-row flex-wrap items-center">
                                         <div class="mr-2">
-                                            {$evidence.reported?.username ?? $evidence.evidence.username}#{$evidence.reported?.discriminator ??
-                                                $evidence.evidence.discriminator}
+                                            {$evidence.reported?.username ?? $evidence.evidence.username}
                                         </div>
                                         <div class="mr-2" style="color: var(--cds-text-02)">
                                             ({$evidence.evidence.userId})
@@ -414,7 +413,7 @@
                                         <div class="flex flex-row flex-wrap">
                                             {#if $evidence.moderator}
                                                 <div class="mr-2">
-                                                    {$evidence.moderator?.username}#{$evidence.moderator?.discriminator}
+                                                    {$evidence.moderator?.username}
                                                 </div>
                                             {/if}
                                             <div class="mr-2" style="color: var(--cds-text-02)">
