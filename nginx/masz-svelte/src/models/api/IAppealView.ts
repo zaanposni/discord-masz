@@ -10,7 +10,6 @@ export interface IAppealView {
     user?: IDiscordUser;
     userId: string;
     username: string;
-    discriminator: string;
     mail?: string;
     guildId: number;
     status: AppealStatus;

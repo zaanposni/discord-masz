@@ -218,7 +218,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
@@ -248,7 +248,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
             var embed = new EmbedBuilder()
@@ -277,7 +277,7 @@ namespace MASZ.Services
             await translator.SetContext(guildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
 
             var embed = new EmbedBuilder()
@@ -322,7 +322,7 @@ namespace MASZ.Services
                     await translator.SetContext(guild.Id);
 
                     StringBuilder description = new();
-                    description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username}#{newU.Discriminator} - {newU.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {newU.Username} - {newU.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{newU.Id}`");
 
                     var embed = new EmbedBuilder()
@@ -377,7 +377,7 @@ namespace MASZ.Services
             await translator.SetContext(guildChannel.GuildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username} - {reaction.User.Value.Mention}");
             if (message.HasValue)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
@@ -429,7 +429,7 @@ namespace MASZ.Services
             await translator.SetContext(guildChannel.GuildId);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username}#{reaction.User.Value.Discriminator} - {reaction.User.Value.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {reaction.User.Value.Username} - {reaction.User.Value.Mention}");
             if (message.HasValue)
             {
                 description.AppendLine($"> **{translator.T().GuildAuditLogMessage()}:** [{message.Id}]({message.Value.GetJumpUrl()})");
@@ -509,7 +509,7 @@ namespace MASZ.Services
             }
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             if (eventType == GuildAuditLogEvent.VoiceJoined)
             {
@@ -558,7 +558,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             var embed = new EmbedBuilder()
                 .WithTitle(translator.T().GuildAuditLogBanAddedTitle())
@@ -577,7 +577,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
 
             var embed = new EmbedBuilder()
                 .WithTitle(translator.T().GuildAuditLogBanRemovedTitle())
@@ -601,7 +601,7 @@ namespace MASZ.Services
             description.AppendLine($"> **{translator.T().GuildAuditLogInviteCreatedURL()}:** {invite}");
             if (invite.Inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {invite.Inviter.Username}#{invite.Inviter.Discriminator} - {invite.Inviter.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {invite.Inviter.Username} - {invite.Inviter.Mention}");
                 embed.WithAuthor(invite.Inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {invite.Inviter.Id}");
             }
@@ -652,7 +652,7 @@ namespace MASZ.Services
 
             if (inviter != null)
             {
-                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {inviter.Username}#{inviter.Discriminator} - {inviter.Mention}");
+                description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {inviter.Username} - {inviter.Mention}");
                 embed.WithAuthor(inviter)
                      .WithFooter($"{translator.T().GuildAuditLogUserID()}: {inviter.Id}");
             }
@@ -680,7 +680,7 @@ namespace MASZ.Services
             await translator.SetContext(user.Guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
             description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
@@ -701,7 +701,7 @@ namespace MASZ.Services
             await translator.SetContext(guild.Id);
 
             StringBuilder description = new();
-            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username}#{user.Discriminator} - {user.Mention}");
+            description.AppendLine($"> **{translator.T().GuildAuditLogUser()}:** {user.Username} - {user.Mention}");
             description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** `{user.Id}`");
             description.AppendLine($"> **{translator.T().GuildAuditLogMemberJoinedRegistered()}:** {user.CreatedAt.DateTime.ToDiscordTS()}");
 
@@ -775,7 +775,7 @@ namespace MASZ.Services
 
                 if (message.Author != null)
                 {
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username} - {message.Author.Mention}");
                     embed.WithAuthor(message.Author)
                          .WithFooter($"{translator.T().GuildAuditLogUserID()}: {message.Author.Id}");
                 }
@@ -864,7 +864,7 @@ namespace MASZ.Services
                     StringBuilder description = new();
                     description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{message.Id}]({message.GetJumpUrl()})");
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username}#{message.Author.Discriminator} - {message.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {message.Author.Username} - {message.Author.Mention}");
 
                     var embed = new EmbedBuilder()
                          .WithTitle(translator.T().GuildAuditLogMessageSentTitle())
@@ -948,7 +948,7 @@ namespace MASZ.Services
                     StringBuilder description = new();
                     description.AppendLine($"> **{translator.T().GuildAuditLogChannel()}:** {tchannel.Name} - {tchannel.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogID()}:** [{messageAfter.Id}]({messageAfter.GetJumpUrl()})");
-                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username}#{messageAfter.Author.Discriminator} - {messageAfter.Author.Mention}");
+                    description.AppendLine($"> **{translator.T().GuildAuditLogAuthor()}:** {messageAfter.Author.Username} - {messageAfter.Author.Mention}");
                     description.AppendLine($"> **{translator.T().GuildAuditLogCreated()}:** {messageAfter.CreatedAt.UtcDateTime.ToDiscordTS()}");
 
                     var embed = new EmbedBuilder()

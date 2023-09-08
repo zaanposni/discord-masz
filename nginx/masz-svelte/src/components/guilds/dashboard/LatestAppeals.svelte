@@ -47,7 +47,7 @@
                     <AppealStatusTag class="grow shrink-0 mr-1" {appeal} />
                 {/if}
                 <Truncate title={appeal.userId}>
-                    {appeal.user?.username || appeal.username}#{appeal.user?.discriminator || appeal.discriminator}
+                    {appeal.user?.username || appeal.username}
                 </Truncate>
                 <Link href={`/guilds/${appeal.guildId}/appeals/${appeal.id}`} icon={Launch20} class="align-end" />
             </div>

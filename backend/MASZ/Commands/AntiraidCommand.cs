@@ -72,7 +72,7 @@ namespace MASZ.Commands
                     if (toDelete.Count >= 2)
                     {
                         RequestOptions options = new();
-                        options.AuditLogReason = $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).";
+                        options.AuditLogReason = $"Bulkdelete by {currentActor.Username} ({currentActor.Id}).";
 
                         await channel.DeleteMessagesAsync(toDelete, options);
                         toDelete.Clear();
@@ -120,7 +120,7 @@ namespace MASZ.Commands
                 if (toDelete.Count >= 2)
                 {
                     RequestOptions options = new();
-                    options.AuditLogReason = $"Bulkdelete by {currentActor.Username}#{currentActor.Discriminator} ({currentActor.Id}).";
+                    options.AuditLogReason = $"Bulkdelete by {currentActor.Username} ({currentActor.Id}).";
 
                     await channel.DeleteMessagesAsync(toDelete, options);
                     toDelete.Clear();

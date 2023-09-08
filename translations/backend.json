@@ -1960,14 +1960,14 @@
                     "var_types": {
                         "modCase": "ModCase"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan.",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.",
-                    "es": "Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.",
-                    "it": "È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator})."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is erstöt woan.",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé.",
+                    "es": "Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан.",
+                    "it": "È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username})."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase creation. This does disclose information about the moderator.",
@@ -1975,14 +1975,14 @@
                         "modCase": "ModCase",
                         "moderator": "IUser"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt.",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created by <@{moderator.Id}> ({moderator.Username}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) erstellt.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) woad fo <@{moderator.Id}> ({moderator.Username}) erstöt.",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé par <@{moderator.Id}> ({moderator.Username}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido creado por <@{moderator.Id}> ({moderator.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан <@{moderator.Id}> ({moderator.Username}).",
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato creato da <@{moderator.Id}> ({moderator.Username}).",
+                    "nl": "Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}) door <@{moderator.Id}> ({moderator.Username})."
                 }
             },
             "Update": {
@@ -1991,14 +1991,14 @@
                     "var_types": {
                         "modCase": "ModCase"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan.",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.",
-                    "es": "Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.",
-                    "it": "È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is aktualisiert woan.",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour.",
+                    "es": "Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен.",
+                    "it": "È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase update. This does disclose information about the moderator.",
@@ -2006,14 +2006,14 @@
                         "modCase": "ModCase",
                         "moderator": "IUser"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated by <@{moderator.Id}> ({moderator.Username}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) aktualisiert.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is fo <@{moderator.Id}> ({moderator.Username}) aktualisiert woan.",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен <@{moderator.Id}> ({moderator.Username}).",
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username})."
                 }
             },
             "Delete": {
@@ -2022,14 +2022,14 @@
                     "var_types": {
                         "modCase": "ModCase"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.",
-                    "es": "Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato.",
-                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted.",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is glescht woan",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé.",
+                    "es": "Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален.",
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato.",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd."
                 },
                 "Internal": {
                     "description": "Webhook notification for modcase deletion. This does disclose information about the moderator.",
@@ -2037,14 +2037,14 @@
                         "modCase": "ModCase",
                         "moderator": "IUser"
                     },
-                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
-                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
-                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator})."
+                    "en": "A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted by <@{moderator.Id}> ({moderator.Username}).",
+                    "de": "Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) gelöscht.",
+                    "at": "A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is vo <@{moderator.Id}> ({moderator.Username}) glescht woan.",
+                    "fr": "Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé par <@{moderator.Id}> ({moderator.Username}).",
+                    "es": "Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}).",
+                    "ru": "**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален <@{moderator.Id}> ({moderator.Username}).",
+                    "it": "Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}).",
+                    "nl": "Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd door <@{moderator.Id}> ({moderator.Username})."
                 }
             },
             "Comments": {
@@ -2132,42 +2132,42 @@
                     "var_types": {
                         "actor": "IUser"
                     },
-                    "en": "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
-                    "at": "A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn.",
-                    "fr": "Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).",
-                    "ru": "**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "nl": "Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "en": "A **file** has been uploaded by <@{actor.Id}> ({actor.Username}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) hochgeladen.",
+                    "at": "A **Datei** woad vo <@{actor.Id}> ({actor.Username}) hochglodn.",
+                    "fr": "Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}).",
+                    "es": "<@{actor.Id}> ({actor.Username} ha subido un **archivo**).",
+                    "ru": "**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}).",
+                    "it": "Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}).",
+                    "nl": "Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username})."
                 },
                 "Delete": {
                     "description": "Webhook notification for modcase file deletion.",
                     "var_types": {
                         "actor": "IUser"
                     },
-                    "en": "A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
-                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan.",
-                    "fr": "Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.",
-                    "ru": "**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "nl": "Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "en": "A **file** has been deleted by <@{actor.Id}> ({actor.Username}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) gelöscht.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}) glescht woan.",
+                    "fr": "Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}).",
+                    "es": "<@{actor.Id}> ({actor.Username}) ha eliminado un **archivo**.",
+                    "ru": "**файл** был удален <@{actor.Id}> ({actor.Username}).",
+                    "it": "Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}).",
+                    "nl": "Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username})."
                 },
                 "Update": {
                     "description": "Webhook notification for modcase file update.",
                     "var_types": {
                         "actor": "IUser"
                     },
-                    "en": "A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
-                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan.",
-                    "fr": "Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "es": "<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.",
-                    "ru": "**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "it": "Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                    "nl": "Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username}#{actor.Discriminator})."
+                    "en": "A **file** has been updated by <@{actor.Id}> ({actor.Username}).",
+                    "de": "Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) aktualisiert.",
+                    "at": "A **Datei** is vo <@{actor.Id}> ({actor.Username}) aktualisiert woan.",
+                    "fr": "Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}).",
+                    "es": "<@{actor.Id}> ({actor.Username}) ha actualizado un **archivo**.",
+                    "ru": "**файл** был обновлен <@{actor.Id}> ({actor.Username}).",
+                    "it": "Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}).",
+                    "nl": "Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username})."
                 }
             },
             "DM": {
@@ -2459,14 +2459,14 @@
                 "var_types": {
                     "user": "IUser"
                 },
-                "en": "{user.Username}#{user.Discriminator} triggered automoderation.",
-                "de": "{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
-                "at": "{user.Username}#{user.Discriminator} hot de Automodaration ausglest.",
-                "fr": "{user.Username}#{user.Discriminator} a déclenché la modération automatique.",
-                "es": "{user.Username}#{user.Discriminator} desencadenó la automoderación.",
-                "ru": "{user.Username}#{user.Discriminator} запускает автомодерацию.",
-                "it": "{user.Username}#{user.Discriminator} ha attivato la moderazione automatica.",
-                "nl": "{user.Username}#{user.Discriminator} leidde tot automatisering."
+                "en": "{user.Username} triggered automoderation.",
+                "de": "{user.Username} hat die Automoderation ausgelöst.",
+                "at": "{user.Username} hot de Automodaration ausglest.",
+                "fr": "{user.Username} a déclenché la modération automatique.",
+                "es": "{user.Username} desencadenó la automoderación.",
+                "ru": "{user.Username} запускает автомодерацию.",
+                "it": "{user.Username} ha attivato la moderazione automatica.",
+                "nl": "{user.Username} leidde tot automatisering."
             },
             "DM": {
                 "description": "DM description for automod event",

@@ -128,7 +128,6 @@ namespace MASZ.Repositories
             }
 
             modCase.Username = currentReportedUser.Username;
-            modCase.Discriminator = currentReportedUser.Discriminator;
 
             IGuildUser currentReportedMember = await DiscordAPI.FetchMemberInfo(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedMember != null)
@@ -272,7 +271,6 @@ namespace MASZ.Repositories
             }
 
             modCase.Username = currentReportedUser.Username;
-            modCase.Discriminator = currentReportedUser.Discriminator;
 
             IGuildUser currentReportedMember = await DiscordAPI.FetchMemberInfo(modCase.GuildId, modCase.UserId, CacheBehavior.IgnoreButCacheOnError);
             if (currentReportedMember != null)

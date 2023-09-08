@@ -185,9 +185,6 @@
         .replace(/\n/gm, "<br/>")
         .replace(/#([\d]+)/gm, (match) => {
             const id = match.substring(1);
-            if (id == $modCase.modCase.discriminator || id == ($modCase.suspect?.discriminator ?? '')) {
-                return match;
-            }
             return `<a href=/guilds/${$currentParams.guildId}/cases/${id}>#${id}</a>`
         });
     }
@@ -716,8 +713,7 @@
                                 <div class="flex flex-row flex-wrap items-center">
                                     <UserIcon class="self-start mr-2" user={evidence.reported}/>
                                     <div class="mr-2">
-                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}#{evidence.reported?.discriminator ??
-                                            evidence.verifiedEvidence.discriminator}
+                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}
                                     </div>
                                 </div>
                             </div>
@@ -986,7 +982,7 @@
                         subtitle={$modCase?.deletedBy
                             ? $_("guilds.caseview.markedtodeletesubtitle", {
                                   values: {
-                                      user: $modCase?.deletedBy?.username + "#" + $modCase?.deletedBy?.discriminator,
+                                      user: $modCase?.deletedBy?.username,
                                   },
                               })
                             : ""} />
@@ -1135,7 +1131,7 @@
                                     <div class="flex flex-row grow-0 w-full max-w-full items-center">
                                         <Box24 class="shrink-0 mr-2"/>
                                         <div class="flex flex-col shrink-0 mr-2" style="color: var(--cds-text-02)">
-                                            <div class="mb-1">{evidence.username}#{evidence.discriminator}</div>
+                                            <div class="mb-1">{evidence.username}</div>
                                             <div>{evidence.sentAt.format(
                                                 $currentLanguage?.momentDateTimeFormat ?? "MMMM Do YYYY, h:mm:ss"
                                             )}</div>
@@ -1198,7 +1194,7 @@
                                         <div class="flex flex-col grow" style="min-width: 0;">
                                             <div class="flex flex-col md:flex-row grow mb-2">
                                                 {#if comment.commentor}
-                                                    <div class="font-bold">{comment.commentor.username}#{comment.commentor.discriminator}</div>
+                                                    <div class="font-bold">{comment.commentor.username}</div>
                                                 {:else}
                                                     <div class="font-bold">The moderators</div>
                                                 {/if}
@@ -1312,8 +1308,7 @@
                                     <UserIcon class="mr-2" user={$modCase.suspect} />
                                     <div class="flex flex-row flex-wrap items-center">
                                         <div class="mr-2">
-                                            {$modCase.suspect?.username ?? $modCase.modCase.username}#{$modCase.suspect?.discriminator ??
-                                                $modCase.modCase.discriminator}
+                                            {$modCase.suspect?.username ?? $modCase.modCase.username}
                                         </div>
                                         <div class="mr-2" style="color: var(--cds-text-02)">
                                             ({$modCase.modCase.userId})
@@ -1378,7 +1373,7 @@
                                         <div class="flex flex-row flex-wrap">
                                             {#if $modCase.moderator}
                                                 <div class="mr-2">
-                                                    {$modCase.moderator?.username}#{$modCase.moderator?.discriminator}
+                                                    {$modCase.moderator?.username}
                                                 </div>
                                             {/if}
                                             <div class="mr-2" style="color: var(--cds-text-02)">
@@ -1403,7 +1398,7 @@
                                             <div class="flex flex-row flex-wrap">
                                                 {#if $modCase.lastModerator}
                                                     <div class="mr-2">
-                                                        {$modCase.lastModerator?.username}#{$modCase.lastModerator?.discriminator}
+                                                        {$modCase.lastModerator?.username}
                                                     </div>
                                                 {/if}
                                                 <div class="mr-2" style="color: var(--cds-text-02)">

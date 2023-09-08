@@ -2316,84 +2316,84 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde erstellt.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is erstöt woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé.",
-                Language.es => $"Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан.",
-                Language.it => $"È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde erstellt.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is erstöt woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé.",
+                Language.es => $"Se ha creado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан.",
+                Language.it => $"È stato creato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created.",
             };
         }
         public string NotificationModcaseCreateInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstellt.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) woad fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) erstöt.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été créé par <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido creado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был создан <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato creato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been created by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) erstellt.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) woad fo <@{moderator.Id}> ({moderator.Username}) erstöt.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été créé par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido creado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был создан <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato creato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Er is een **Modcase** gemaakt voor <@{modCase.UserId}> ({modCase.Username}) door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been created by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseUpdatePublic(ModCase modCase)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde aktualisiert.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour.",
-                Language.es => $"Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен.",
-                Language.it => $"È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt.",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde aktualisiert.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is aktualisiert woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour.",
+                Language.es => $"Se ha actualizado **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен.",
+                Language.it => $"È stato aggiornato un **Modcase** per <@{modCase.UserId}> ({modCase.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt.",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated.",
             };
         }
         public string NotificationModcaseUpdateInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is fo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был обновлен <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been updated by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) aktualisiert.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is fo <@{moderator.Id}> ({moderator.Username}) aktualisiert woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été mis à jour par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido actualizado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был обновлен <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato aggiornato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is bijgewerkt door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been updated by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseDeletePublic(ModCase modCase)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde gelöscht.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is glescht woan",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé.",
-                Language.es => $"Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален.",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato.",
-                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd.",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted.",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde gelöscht.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is glescht woan",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé.",
+                Language.es => $"Se ha eliminado un **Modcase** para <@{modCase.UserId}> ({modCase.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален.",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato.",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd.",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted.",
             };
         }
         public string NotificationModcaseDeleteInternal(ModCase modCase, IUser moderator)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) wurde von <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) gelöscht.",
-                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is vo <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}) glescht woan.",
-                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) a été supprimé par <@{moderator.Id}> ({moderator.Username}#{moderator. Discriminator}).",
-                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) был удален <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) is verwijderd door <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
-                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}#{modCase.Discriminator}) has been deleted by <@{moderator.Id}> ({moderator.Username}#{moderator.Discriminator}).",
+                Language.de => $"Ein **Vorfall** für <@{modCase.UserId}> ({modCase.Username}) wurde von <@{moderator.Id}> ({moderator.Username}) gelöscht.",
+                Language.at => $"A **Vorfoi** fia <@{modCase.UserId}> ({modCase.Username}) is vo <@{moderator.Id}> ({moderator.Username}) glescht woan.",
+                Language.fr => $"Un **Modcase** pour <@{modCase.UserId}> ({modCase.Username}) a été supprimé par <@{moderator.Id}> ({moderator.Username}).",
+                Language.es => $"Un **Modcase** para <@{modCase.UserId}> ({modCase.Username}) ha sido eliminado por <@{moderator.Id}> ({moderator.Username}).",
+                Language.ru => $"**Modcase** для <@{modCase.UserId}> ({modCase.Username}) был удален <@{moderator.Id}> ({moderator.Username}).",
+                Language.it => $"Un **Modcase** per <@{modCase.UserId}> ({modCase.Username}) è stato eliminato da <@{moderator.Id}> ({moderator.Username}).",
+                Language.nl => $"Een **Modcase** voor <@{modCase.UserId}> ({modCase.Username}) is verwijderd door <@{moderator.Id}> ({moderator.Username}).",
+                _ => $"A **Modcase** for <@{modCase.UserId}> ({modCase.Username}) has been deleted by <@{moderator.Id}> ({moderator.Username}).",
             };
         }
         public string NotificationModcaseCommentsShortCreate()
@@ -2484,42 +2484,42 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochgeladen.",
-                Language.at => $"A **Datei** woad vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) hochglodn.",
-                Language.fr => $"Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator} ha subido un **archivo**).",
-                Language.ru => $"**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.nl => $"Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) hochgeladen.",
+                Language.at => $"A **Datei** woad vo <@{actor.Id}> ({actor.Username}) hochglodn.",
+                Language.fr => $"Un **fichier** a été téléchargé par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username} ha subido un **archivo**).",
+                Language.ru => $"**файл** был загружен пользователем <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato caricato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Er is een **bestand** geüpload door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been uploaded by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseFileDelete(IUser actor)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) gelöscht.",
-                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) glescht woan.",
-                Language.fr => $"Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha eliminado un **archivo**.",
-                Language.ru => $"**файл** был удален <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.nl => $"Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) gelöscht.",
+                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}) glescht woan.",
+                Language.fr => $"Un **fichier** a été supprimé par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username}) ha eliminado un **archivo**.",
+                Language.ru => $"**файл** был удален <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato eliminato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Een **bestand** is verwijderd door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been deleted by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseFileUpdate(IUser actor)
         {
             return PreferredLanguage switch
             {
-                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert.",
-                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}#{actor.Discriminator}) aktualisiert woan.",
-                Language.fr => $"Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.es => $"<@{actor.Id}> ({actor.Username}#{actor.Discriminator}) ha actualizado un **archivo**.",
-                Language.ru => $"**файл** был обновлен <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.it => $"Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                Language.nl => $"Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
-                _ => $"A **file** has been updated by <@{actor.Id}> ({actor.Username}#{actor.Discriminator}).",
+                Language.de => $"Eine **Datei** wurde von <@{actor.Id}> ({actor.Username}) aktualisiert.",
+                Language.at => $"A **Datei** is vo <@{actor.Id}> ({actor.Username}) aktualisiert woan.",
+                Language.fr => $"Un **fichier** a été mis à jour par <@{actor.Id}> ({actor.Username}).",
+                Language.es => $"<@{actor.Id}> ({actor.Username}) ha actualizado un **archivo**.",
+                Language.ru => $"**файл** был обновлен <@{actor.Id}> ({actor.Username}).",
+                Language.it => $"Un **file** è stato aggiornato da <@{actor.Id}> ({actor.Username}).",
+                Language.nl => $"Een **bestand** is bijgewerkt door <@{actor.Id}> ({actor.Username}).",
+                _ => $"A **file** has been updated by <@{actor.Id}> ({actor.Username}).",
             };
         }
         public string NotificationModcaseDMWarn(IGuild guild, string serviceBaseUrl)
@@ -2820,14 +2820,14 @@ namespace MASZ.Utils
         {
             return PreferredLanguage switch
             {
-                Language.de => $"{user.Username}#{user.Discriminator} hat die Automoderation ausgelöst.",
-                Language.at => $"{user.Username}#{user.Discriminator} hot de Automodaration ausglest.",
-                Language.fr => $"{user.Username}#{user.Discriminator} a déclenché la modération automatique.",
-                Language.es => $"{user.Username}#{user.Discriminator} desencadenó la automoderación.",
-                Language.ru => $"{user.Username}#{user.Discriminator} запускает автомодерацию.",
-                Language.it => $"{user.Username}#{user.Discriminator} ha attivato la moderazione automatica.",
-                Language.nl => $"{user.Username}#{user.Discriminator} leidde tot automatisering.",
-                _ => $"{user.Username}#{user.Discriminator} triggered automoderation.",
+                Language.de => $"{user.Username} hat die Automoderation ausgelöst.",
+                Language.at => $"{user.Username} hot de Automodaration ausglest.",
+                Language.fr => $"{user.Username} a déclenché la modération automatique.",
+                Language.es => $"{user.Username} desencadenó la automoderación.",
+                Language.ru => $"{user.Username} запускает автомодерацию.",
+                Language.it => $"{user.Username} ha attivato la moderazione automatica.",
+                Language.nl => $"{user.Username} leidde tot automatisering.",
+                _ => $"{user.Username} triggered automoderation.",
             };
         }
         public string NotificationAutomoderationDM(IUser user, IMentionable channel, string reason, string action)

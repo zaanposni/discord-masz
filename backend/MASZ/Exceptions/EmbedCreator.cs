@@ -528,7 +528,7 @@ namespace MASZ.Services
                 embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
             }
             embed.Description = translator.T().NotificationAppealsCreate(appeal.UserId);
-            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {actor.Username}#{actor.Discriminator}";
+            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {actor.Username}";
 
             // Footer
             embed.WithFooter($"UserId: {appeal.UserId} | AppealId: {appeal.Id}");
@@ -549,7 +549,7 @@ namespace MASZ.Services
                 embed.WithThumbnailUrl(actor.GetAvatarOrDefaultUrl());
             }
             embed.Description = translator.T().NotificationAppealsUpdate(appeal.UserId, actor.Id);
-            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {user?.Username ?? appeal.Username}#{user?.Discriminator ?? appeal.Discriminator}";
+            embed.Title = $"**{translator.T().NotificationAppealsAppeal().ToUpper()}** - {user?.Username ?? appeal.Username}";
 
             embed.AddField(translator.T().NotificationAppealsStatus(), translator.T().Enum(appeal.Status), false);
 

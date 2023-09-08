@@ -37,7 +37,7 @@ namespace MASZ.Controllers
                         }
                         else
                         {
-                            currentLogins.Add($"{user.Username}#{user.Discriminator}");
+                            currentLogins.Add($"{user.Username}");
                         }
                     }
                     catch (Exception e)

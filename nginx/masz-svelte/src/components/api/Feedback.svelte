@@ -31,7 +31,7 @@
                 rating: 1,
                 comment: "",
                 remote: window.location.host,
-                user: $authUser.discordUser.username + "#" + $authUser.discordUser.discriminator,
+                user: $authUser.discordUser.username,
             });
         }, 200);
     }
@@ -40,7 +40,7 @@
         submitting.set(true);
         API.post("/meta/feedback", {
             ...$feedback,
-            user: $authUser.discordUser.username + "#" + $authUser.discordUser.discriminator,
+            user: $authUser.discordUser.username,
         }).finally(() => {
             toastSuccess($_("feedback.thanks"));
             onModalClear();

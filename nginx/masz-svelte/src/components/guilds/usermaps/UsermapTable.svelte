@@ -70,7 +70,7 @@
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
             members = response.map((x) => ({
                 id: x.id,
-                text: `${x.username}#${x.discriminator}`,
+                text: x.username,
             }));
         });
     }
@@ -252,7 +252,7 @@
                                     <div class="flex flex-col md:flex-row">
                                         <div class="font-bold mr-2">
                                             {#if usermap.userA}
-                                                {usermap.userA.username}#{usermap.userA.discriminator}
+                                                {usermap.userA.username}
                                             {:else}
                                                 {usermap.userMapping.userA}
                                             {/if}
@@ -260,7 +260,7 @@
                                         </div>
                                         <div class="font-bold mr-2">
                                             {#if usermap.userB}
-                                                {usermap.userB.username}#{usermap.userB.discriminator}
+                                                {usermap.userB.username}
                                             {:else}
                                                 {usermap.userMapping.userB}
                                             {/if}

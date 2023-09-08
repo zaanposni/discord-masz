@@ -37,7 +37,6 @@ namespace MASZ.Repositories
             if (user != null)
             {
                 modEvent.Username = user.Username;
-                modEvent.Discriminator = user.Discriminator;
             }
 
             modEvent.CreatedAt = DateTime.UtcNow;
@@ -58,7 +57,6 @@ namespace MASZ.Repositories
                     ModId = DiscordAPI.GetCurrentBotInfo().Id,
                     UserId = user.Id,
                     Username = user.Username,
-                    Discriminator = user.Discriminator,
                 };
 
                 StringBuilder description = new();

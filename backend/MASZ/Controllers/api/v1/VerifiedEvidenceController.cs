@@ -108,7 +108,6 @@ namespace MASZ.Controllers.api.v1
                 ReportedContent = message.Content,
                 UserId = message.Author.Id,
                 Username = message.Author.Username,
-                Discriminator = message.Author.Discriminator,
                 Nickname = nickname,
             };
 

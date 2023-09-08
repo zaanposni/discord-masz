@@ -10,7 +10,6 @@ export interface IAutomodEntry {
     userId: string;
     username: string;
     nickname?: any;
-    discriminator: string;
     messageId: string;
     messageContent: string;
     createdAt: moment.Moment;

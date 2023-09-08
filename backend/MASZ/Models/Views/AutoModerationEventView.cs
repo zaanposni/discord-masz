@@ -11,7 +11,6 @@ namespace MASZ.Models
         public string UserId { get; set; }
         public string Username { get; set; }
         public string Nickname { get; set; }
-        public string Discriminator { get; set; }
         public string MessageId { get; set; }
         public string MessageContent { get; set; }
         public DateTime CreatedAt { get; set; }
@@ -26,7 +25,6 @@ namespace MASZ.Models
             UserId = autoModerationEvent.UserId.ToString();
             Username = autoModerationEvent.Username;
             Nickname = autoModerationEvent.Nickname;
-            Discriminator = autoModerationEvent.Discriminator;
             MessageId = autoModerationEvent.MessageId.ToString();
             MessageContent = autoModerationEvent.MessageContent;
             CreatedAt = autoModerationEvent.CreatedAt;

@@ -30,7 +30,6 @@ namespace MASZ.Commands
                     UserId = reportedUser.Id,
                     Username = reportedUser.Username,
                     Nickname = reportedUser.Nickname,
-                    Discriminator = reportedUser.Discriminator,
                     ModId = Context.User.Id
                 };
 

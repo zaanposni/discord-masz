@@ -113,7 +113,7 @@ namespace MASZ.Commands
                 if (invitees.ContainsKey(invite.JoinedUserId))
                 {
                     IUser user = invitees[invite.JoinedUserId];
-                    usedBy.Append($"`{user.Username}#{user.Discriminator}` ");
+                    usedBy.Append($"`{user.Username}` ");
                 }
                 usedBy.AppendLine($"`{invite.JoinedUserId}` - {invite.JoinedAt.ToDiscordTS()}");
             }

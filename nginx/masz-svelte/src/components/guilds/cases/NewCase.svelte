@@ -146,7 +146,7 @@
             .then((response: IDiscordUser[]) => {
                 members = response.map((x) => ({
                     id: x.id,
-                    text: `${x.username}#${x.discriminator}`,
+                    text: x.username,
                 }));
                 membersLoading = false;
             })
@@ -157,7 +157,7 @@
             .then((response: ITemplateView[]) => {
                 templates = response.map((x) => ({
                     id: x.caseTemplate.id.toString(),
-                    text: `"${x.caseTemplate.templateName}" by ${x.creator.username}#${x.creator.discriminator} from ${
+                    text: `"${x.caseTemplate.templateName}" by ${x.creator.username} from ${
                         x.guild?.name ?? "Unknown guild"
                     }`,
                     obj: x,
@@ -456,8 +456,7 @@
                                 <div class="flex flex-row flex-wrap items-center">
                                     <UserIcon class="self-start mr-2" user={evidence.reported}/>
                                     <div class="mr-2">
-                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}#{evidence.reported?.discriminator ??
-                                            evidence.verifiedEvidence.discriminator}
+                                        {evidence.reported?.username ?? evidence.verifiedEvidence.username}
                                     </div>
                                 </div>
                             </div>
@@ -635,7 +634,7 @@
                                     #{evidence.verifiedEvidence.id}
                                 </div>
                                 <div class="mr-2">
-                                    {evidence.verifiedEvidence.username}#{evidence.verifiedEvidence.discriminator}
+                                    {evidence.verifiedEvidence.username}
                                 </div>
                                 <div class="grow truncate">
                                     {evidence.verifiedEvidence.reportedContent}

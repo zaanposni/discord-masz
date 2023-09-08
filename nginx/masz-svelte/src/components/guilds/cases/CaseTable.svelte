@@ -105,7 +105,7 @@
         API.get(`/discord/guilds/${$currentParams.guildId}/members`, CacheMode.PREFER_CACHE, true).then((response: IDiscordUser[]) => {
             members = response.map((x) => ({
                 id: x.id,
-                text: `${x.username}#${x.discriminator}`,
+                text: x.username,
             }));
         });
     }
@@ -323,8 +323,7 @@
                                             <div class="flex flex-row items-center">
                                                 <PunishmentTag class="grow-0 shrink-0 !ml-0 mr-1" modCase={caseView.modCase} />
                                                 <div class="font-bold" style="word-wrap: anywhere">
-                                                    {caseView.suspect?.username ?? caseView.modCase.username}#{caseView.suspect?.discriminator ??
-                                                        caseView.modCase.discriminator}
+                                                    {caseView.suspect?.username ?? caseView.modCase.username}
                                                 </div>
                                             </div>
                                             <div class="font-bold" style="word-wrap: anywhere" title={caseView.modCase.title}>

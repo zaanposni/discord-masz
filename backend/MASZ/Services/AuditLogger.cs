@@ -262,7 +262,7 @@ namespace MASZ.Services
             if (identity is DiscordOAuthIdentity dOauth)
             {
                 IUser currentUser = dOauth.GetCurrentUser();
-                string userDefinition = $"`{currentUser.Username}#{currentUser.Discriminator}` (`{currentUser.Id}`)";
+                string userDefinition = $"`{currentUser.Username}` (`{currentUser.Id}`)";
                 QueueLog($"{userDefinition} **logged in** using OAuth.");
             }
 

@@ -66,7 +66,6 @@ namespace MASZ.Services
                         UserId = ban.User.Id,
                         Username = ban.User.Username,
                         Labels = new[] { translator.T().Imported() },
-                        Discriminator = ban.User.Discriminator,
                         CreationType = CaseCreationType.Imported,
                         PunishmentType = PunishmentType.Ban,
                         PunishedUntil = null

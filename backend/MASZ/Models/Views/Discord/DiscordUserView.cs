@@ -7,7 +7,6 @@ namespace MASZ.Models.Views
     {
         public string Id { get; set; }
         public string Username { get; set; }
-        public string Discriminator { get; set; }
         public string ImageUrl { get; set; }
         public string Locale { get; set; }
         public string Avatar { get; set; }
@@ -18,7 +17,6 @@ namespace MASZ.Models.Views
             if (user == null) return;
             Id = user.Id.ToString();
             Username = user.Username;
-            Discriminator = user.Discriminator;
             ImageUrl = user.GetAvatarOrDefaultUrl(size: 512);
             Locale = user is ISelfUser sUser ? sUser.Locale : "en-US";
             Avatar = user.AvatarId;

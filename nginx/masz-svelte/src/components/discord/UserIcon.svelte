@@ -12,7 +12,7 @@
 
     function calculateImage(newUser) {
         if (newUser && typeof newUser === "object") {
-            alt = `${newUser.username}#${newUser.discriminator}`;
+            alt = newUser.username;
             src = newUser.imageUrl;
         } else {
             alt = "user avatar";

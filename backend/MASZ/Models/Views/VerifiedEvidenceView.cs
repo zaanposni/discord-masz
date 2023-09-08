@@ -12,7 +12,6 @@ namespace MASZ.Models.Views
         public string UserId { get; set; }
         public string Username { get; set; }
         public string? Nickname { get; set; }
-        public string Discriminator { get; set; }
         public string ModId { get; set; }
         public DateTime SentAt { get; set; }
         public DateTime ReportedAt { get; set; }
@@ -27,7 +26,6 @@ namespace MASZ.Models.Views
             UserId = evidence.UserId.ToString();
             Username = evidence.Username;
             Nickname = evidence.Nickname;
-            Discriminator = evidence.Discriminator;
             ModId = evidence.ModId.ToString();
             SentAt = evidence.SentAt;
             ReportedAt = evidence.ReportedAt;

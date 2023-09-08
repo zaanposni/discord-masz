@@ -67,7 +67,7 @@ namespace MASZ.Controllers.api.v1.Views
                 table = table.Where(t =>
                     Contains(t.VerifiedEvidence.ReportedContent, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.UserId, search.CustomTextFilter) ||
-                    Contains(t.VerifiedEvidence.Username + "#" + t.VerifiedEvidence.Discriminator, search.CustomTextFilter) ||
+                    Contains(t.VerifiedEvidence.Username, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.Nickname, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.ModId, search.CustomTextFilter) ||
                     Contains(t.VerifiedEvidence.ChannelId, search.CustomTextFilter) ||
@@ -124,7 +124,7 @@ namespace MASZ.Controllers.api.v1.Views
             {
                 return false;
             }
-            return Contains(obj.Username, search) || Contains(obj.Discriminator, search);
+            return Contains(obj.Username, search);
         }
     }
 }

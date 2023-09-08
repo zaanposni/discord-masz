@@ -104,7 +104,6 @@ namespace MASZ.Controllers
                     Contains(t.ModCase.Description, search.CustomTextFilter) ||
                     Contains(t.ModCase.GetPunishment(_translator), search.CustomTextFilter) ||
                     Contains(t.ModCase.Username, search.CustomTextFilter) ||
-                    Contains(t.ModCase.Discriminator, search.CustomTextFilter) ||
                     Contains(t.ModCase.Nickname, search.CustomTextFilter) ||
                     Contains(t.ModCase.UserId, search.CustomTextFilter) ||
                     Contains(t.ModCase.ModId, search.CustomTextFilter) ||
@@ -209,7 +208,7 @@ namespace MASZ.Controllers
             {
                 return false;
             }
-            return Contains(obj.Username, search) || Contains(obj.Discriminator, search);
+            return Contains(obj.Username, search);
         }
     }
 }
