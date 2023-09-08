@@ -13,6 +13,11 @@
 ⭐ **A website and a discord bot** - to use MASZ\
 ⭐ **Full API and plugin support** - for custom scripts and automations
 
+## 🤝 Maintainers
+
+This project is stable to use. However, it is no longer actively maintained by me.\
+**If you want to become a maintainer**, please contact me via [Mail](mailto:masz@zaanposni.com) or [Discord](https://discord.gg/5zjpzw6h3S).
+
 ## 👀 Preview
 
 ![dashboard preview](/docs/dashboard.png)
