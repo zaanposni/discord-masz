@@ -295,7 +295,7 @@
     function linkEvidence(evidence: IVerifiedEvidence) {
         linkEvidenceSubmitting.set(true);
 
-        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${evidence.id}/${$modCase.modCase.id}`, {}, CacheMode.API_ONLY, false)
+        API.post(`/guilds/${$currentParams.guildId}/evidencemapping/${evidence.id}/${$modCase.modCase.caseId}`, {}, CacheMode.API_ONLY, false)
             .then(() => {
                 modCase.update((n) => {
                     n.linkedEvidence.push(evidence);

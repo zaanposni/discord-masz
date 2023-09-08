@@ -187,7 +187,7 @@ namespace MASZ.Repositories
 
                 evidence = await repo.CreateEvidence(evidence);
 
-                await repo.Link(evidence.GuildId, evidence.Id, modCase.Id);
+                await repo.Link(evidence.GuildId, evidence.Id, modCase.CaseId);
             } catch(Exception e)
             {
                 Logger.LogError(e, $"Failed to create evidence link for modevent modcasecase {evidence.GuildId}/{evidence.UserId}/{modCase.Id}");
