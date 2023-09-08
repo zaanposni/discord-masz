@@ -919,6 +919,14 @@ namespace MASZ.Services
             {
                 if (channel is ITextChannel tchannel)
                 {
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        _discordAPIInterface.AddOrUpdateCache(
+                            CacheKey.IMessage(tchannel.Id, messageAfter.Id),
+                            new CacheApiResponse(messageAfter, 60 * 24 * 31 * 12)
+                        );
+                    }
+
                     if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageUpdated, tchannel))
                     {
                         return;
