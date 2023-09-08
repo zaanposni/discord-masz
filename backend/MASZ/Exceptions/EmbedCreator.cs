@@ -332,7 +332,7 @@ namespace MASZ.Services
             {
                 embed.AddField(
                     translator.T().MessageContent(),
-                    autoModerationEvent.MessageContent,
+                    autoModerationEvent.MessageContent.Truncate(1000),
                     false
                 );
             }
