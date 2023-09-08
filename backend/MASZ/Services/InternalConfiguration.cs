@@ -23,6 +23,7 @@ namespace MASZ.Services
         private string _deployMode;
         private string _discordBotStatus;
         private bool _lowMemoryPhishingListEnabled;
+        private bool _experimentalMessageCacheEnabled;
 
         public InternalConfiguration(ILogger<InternalConfiguration> logger)
         {
@@ -58,6 +59,7 @@ namespace MASZ.Services
             _deployMode = Environment.GetEnvironmentVariable("DEPLOY_MODE");
             _discordBotStatus = Environment.GetEnvironmentVariable("DISCORD_BOT_STATUS");
             _lowMemoryPhishingListEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_LOW_MEMORY_PHISHING_LIST"));
+            _experimentalMessageCacheEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_EXPERIMENTAL_MESSAGE_CACHE"));
         }
 
         public string GetBaseUrl()
@@ -157,7 +159,7 @@ namespace MASZ.Services
 
         public string GetVersion()
         {
-            return "v3.4.1";
+            return "v3.4.2";
         }
 
         public string GetDiscordBotStatus()
@@ -168,6 +170,11 @@ namespace MASZ.Services
         public bool IsLowMemoryPhishingListEnabled()
         {
             return _lowMemoryPhishingListEnabled;
+        }
+
+        public bool IsExperimentalMessageCacheEnabled()
+        {
+            return _experimentalMessageCacheEnabled;
         }
     }
 }

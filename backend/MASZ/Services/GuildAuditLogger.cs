@@ -16,13 +16,19 @@ namespace MASZ.Services
     {
         private readonly static string CHECK = "\u2705";
         private readonly static string X_CHECK = "\u274C";
+        private readonly ILogger<GuildAuditLogger> _logger;
+        private readonly InternalConfiguration _config;
         private readonly DiscordSocketClient _client;
         private readonly IServiceProvider _serviceProvider;
+        private readonly DiscordAPIInterface _discordAPIInterface;
 
-        public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider)
+        public GuildAuditLogger(DiscordSocketClient client, IServiceProvider serviceProvider, DiscordAPIInterface discordAPIInterface, InternalConfiguration config, ILogger<GuildAuditLogger> logger)
         {
+            _logger = logger;
+            _config = config;
             _client = client;
             _serviceProvider = serviceProvider;
+            _discordAPIInterface = discordAPIInterface;
         }
 
         public void RegisterEvents()
@@ -710,7 +716,31 @@ namespace MASZ.Services
 
         public async Task HandleMessageDeleted(Cacheable<IMessage, ulong> messageCached, Cacheable<IMessageChannel, ulong> channel)
         {
-            var message = await messageCached.GetOrDownloadAsync();
+            IMessage message = null;
+            if (_config.IsExperimentalMessageCacheEnabled())
+            {
+                try
+                {
+                    message = _discordAPIInterface.GetFromCache<IMessage>(CacheKey.IMessage(channel.Id, messageCached.Id));
+                }
+                catch (NotFoundInCacheException ex)
+                {
+                    _logger.LogError(ex, "Error while trying to get message from experimental cache");
+                }
+            }
+
+            if (message == null)
+            {
+                try
+                {
+                    message = await messageCached.GetOrDownloadAsync();
+                }
+                catch (HttpException) { }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error while trying to get message from cache");
+                }
+            }
 
             if (message == null)
             {
@@ -805,6 +835,14 @@ namespace MASZ.Services
             {
                 if (message.Channel is ITextChannel tchannel)
                 {
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        _discordAPIInterface.AddOrUpdateCache(
+                            CacheKey.IMessage(tchannel.Id, message.Id),
+                            new CacheApiResponse(message, 60 * 24 * 31 * 12)
+                        );
+                    }
+
                     if (await CheckForIgnoredChannel(tchannel.GuildId, GuildAuditLogEvent.MessageSent, tchannel))
                     {
                         return;
@@ -875,7 +913,7 @@ namespace MASZ.Services
             }
         }
 
-        public async Task HandleMessageUpdated(Cacheable<IMessage, ulong> messageBefore, SocketMessage messageAfter, ISocketMessageChannel channel)
+        public async Task HandleMessageUpdated(Cacheable<IMessage, ulong> _messageBefore, SocketMessage messageAfter, ISocketMessageChannel channel)
         {
             if (!messageAfter.Author.IsBot && !messageAfter.Author.IsWebhook)
             {
@@ -913,21 +951,45 @@ namespace MASZ.Services
 
                     embed.AddField(translator.T().GuildAuditLogMessageUpdatedPinned(), messageAfter.IsPinned ? CHECK : X_CHECK, false);
 
-                    var before = await messageBefore.GetOrDownloadAsync();
+                    IMessage messageBefore = null;
+                    if (_config.IsExperimentalMessageCacheEnabled())
+                    {
+                        try
+                        {
+                            messageBefore = _discordAPIInterface.GetFromCache<IMessage>(CacheKey.IMessage(channel.Id, _messageBefore.Id));
+                        }
+                        catch (NotFoundInCacheException ex)
+                        {
+                            _logger.LogError(ex, "Error while trying to get message from experimental cache");
+                        }
+                    }
 
-                    if (before == null)
+                    if (messageBefore == null)
+                    {
+                        try
+                        {
+                            messageBefore = await _messageBefore.GetOrDownloadAsync();
+                        }
+                        catch (HttpException) { }
+                        catch (Exception ex)
+                        {
+                            _logger.LogError(ex, "Error while trying to get message from cache");
+                        }
+                    }
+
+                    if (messageBefore == null)
                     {
                         embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), translator.T().GuildAuditLogNotFoundInCache());
                     }
                     else
                     {
-                        if (string.Equals(before.Content, messageAfter.Content) && before.Embeds.Count != messageAfter.Embeds.Count)
+                        if (string.Equals(messageBefore.Content, messageAfter.Content) && messageBefore.Embeds.Count != messageAfter.Embeds.Count)
                         {
                             return;
                         }
-                        if (!string.IsNullOrEmpty(before.Content))
+                        if (!string.IsNullOrEmpty(messageBefore.Content))
                         {
-                            embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), before.Content.Truncate(1024));
+                            embed.AddField(translator.T().GuildAuditLogMessageUpdatedContentBefore(), messageBefore.Content.Truncate(1024));
                         }
                     }
 
