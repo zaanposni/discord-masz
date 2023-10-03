@@ -411,11 +411,11 @@ namespace MASZ.Services
 
             ModCase modCase = new()
             {
-                Title = "Imported Ban",
+                Title = string.IsNullOrEmpty(reason) ? "Imported Ban" : reason,
                 GuildId = guild.Id,
                 UserId = user.Id,
                 ModId = moderator.Value,
-                Description = reason ?? "None",
+                Description = string.IsNullOrEmpty(reason) ? "None" : reason,
                 PunishmentType = PunishmentType.Ban,
                 PunishmentActive = true,
                 PunishedUntil = null,
