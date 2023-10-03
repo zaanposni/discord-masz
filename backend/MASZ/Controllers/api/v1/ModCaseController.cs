@@ -102,7 +102,7 @@ namespace MASZ.Controllers
                 Title = modCaseDto.Title,
                 Description = modCaseDto.Description,
                 GuildId = guildId,
-                ModId = currentIdentity.GetCurrentUser().Id,
+                ModId = modCaseDto.ModId.HasValue ? modCaseDto.ModId.Value : currentIdentity.GetCurrentUser().Id,
                 UserId = modCaseDto.UserId,
                 Labels = modCaseDto.Labels.Distinct().ToArray(),
                 Others = modCaseDto.Others

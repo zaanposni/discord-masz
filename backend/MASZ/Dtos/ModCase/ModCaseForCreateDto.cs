@@ -21,5 +21,6 @@ namespace MASZ.Dtos.ModCase
         public PunishmentType PunishmentType { get; set; }
         public DateTime? PunishedUntil { get; set; }
         public bool PunishmentActive { get; set; } = false;
+        public ulong? ModId { get; set; } = null;
     }
 }
