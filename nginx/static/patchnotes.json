@@ -6,8 +6,12 @@
         "features": [
             {
                 "title": "Punishment via modals.",
-                "description": "You can now quickly select default punishment durations while creating or editing a case.",
+                "description": "You can now create modcases in Discord using Modals. Use a right click on a user to open the context menu and select the punishment you want to apply.",
                 "link": "https://github.com/zaanposni/discord-masz/issues/555"
+            },
+            {
+                "title": "Sync new punishments.",
+                "description": "You can now choose to sync new bans into MASZ that were not created by MASZ. MASZ uses details in the auditlog to create a valid mocase."
             }
         ],
         "fixes": [
