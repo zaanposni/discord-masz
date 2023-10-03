@@ -375,12 +375,16 @@ namespace MASZ.Services
             }
 
             // Create dummy modcase
-            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
-
-            if (!guildConfig.SyncPunishments)
+            try
             {
-                return;
+                GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
+
+                if (!guildConfig.SyncPunishments)
+                {
+                    return;
+                }
             }
+            catch (UnregisteredGuildException) { return; }
 
             var auditLogs = guild.GetAuditLogsAsync(10, actionType: ActionType.Ban);
             ulong? moderator = null;
@@ -398,7 +402,8 @@ namespace MASZ.Services
                 }
             }
 
-            if (!moderator.HasValue || moderator.Value == _client.CurrentUser.Id) {
+            if (!moderator.HasValue || moderator.Value == _client.CurrentUser.Id)
+            {
                 return;
             }
 

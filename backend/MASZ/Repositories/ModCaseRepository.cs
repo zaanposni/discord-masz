@@ -114,7 +114,7 @@ namespace MASZ.Repositories
             if (currentReportedUser == null)
             {
                 Logger.LogError("Failed to fetch modcase suspect.");
-                throw new InvalidIUserException(modCase.ModId);
+                throw new InvalidIUserException(modCase.UserId);
             }
             if (currentReportedUser.IsBot)
             {
