@@ -9,6 +9,12 @@
                 "description": "You can now quickly select default punishment durations while creating or editing a case.",
                 "link": "https://github.com/zaanposni/discord-masz/issues/555"
             }
+        ],
+        "fixes": [
+            {
+                "title": "Switch primary and secondary button for unmute dialog.",
+                "description": "The primary and secondary button for the unmute dialog were switched to improve usability."
+            }
         ]
     },
     {
