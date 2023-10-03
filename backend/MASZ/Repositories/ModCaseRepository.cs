@@ -147,9 +147,8 @@ namespace MASZ.Repositories
             {
                 modCase.OccuredAt = modCase.CreatedAt;
             }
-            modCase.ModId = _currentUser.Id;
             modCase.LastEditedAt = modCase.CreatedAt;
-            modCase.LastEditedByModId = _currentUser.Id;
+            modCase.LastEditedByModId = modCase.ModId;
             if (modCase.Labels != null)
             {
                 modCase.Labels = modCase.Labels.Distinct().ToArray();

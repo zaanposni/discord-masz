@@ -67,6 +67,7 @@ namespace MASZ.Repositories
                 //description.AppendLine(_translator.T().MessageContent() + ": " + modEvent.MessageContent);
 
                 modCase.Description = description.ToString();
+                modCase.ModId = DiscordAPI.GetCurrentBotInfo().Id;
 
                 modCase.Labels = new List<string>() { "automoderation", modEvent.AutoModerationType.ToString() }.ToArray();
                 modCase.CreationType = CaseCreationType.AutoModeration;
