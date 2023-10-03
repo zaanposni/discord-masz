@@ -22,7 +22,7 @@ public class PunishModal
 
         modalBuilder.AddTextInput("Reason", PunishModalKey.Reason, placeholder: "Reason", maxLength: 250);
         if (showDuration) modalBuilder.AddTextInput("Duration", PunishModalKey.Duration, placeholder: "Duration", value: "2w", required: false);
-        modalBuilder.AddTextInput("Description", PunishModalKey.Description, placeholder: "No description provided", required: false, maxLength: 1000);
+        modalBuilder.AddTextInput("Description", PunishModalKey.Description, style: TextInputStyle.Paragraph, placeholder: "No description provided", required: false, maxLength: 1000);
         modalBuilder.AddTextInput("Send DM Notification", PunishModalKey.DmNotification, value: "true", required: false);
         modalBuilder.AddTextInput("Send Public Notification", PunishModalKey.PublicNotification, value: "false", required: false);
 
