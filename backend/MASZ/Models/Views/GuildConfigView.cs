@@ -18,6 +18,7 @@ namespace MASZ.Models.Views
         public Language PreferredLanguage { get; set; }
         public int AllowBanAppealAfterDays { get; set; }
         public bool PublicEmbedMode { get; set; }
+        public bool SyncPunishments { get; set; }
 
 
         public GuildConfigView() { }
@@ -37,6 +38,7 @@ namespace MASZ.Models.Views
             PreferredLanguage = config.PreferredLanguage;
             AllowBanAppealAfterDays = config.AllowBanAppealAfterDays;
             PublicEmbedMode = config.PublicEmbedMode;
+            SyncPunishments = config.SyncPunishments;
         }
     }
 }

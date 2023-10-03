@@ -18,6 +18,7 @@ namespace MASZ.Models
         public Language PreferredLanguage { get; set; }
         public int AllowBanAppealAfterDays { get; set; }
         public bool PublicEmbedMode { get; set; }
+        public bool SyncPunishments { get; set; }
 
         public object Clone()
         {
@@ -35,7 +36,8 @@ namespace MASZ.Models
                 ExecuteWhoisOnJoin = ExecuteWhoisOnJoin,
                 PreferredLanguage = PreferredLanguage,
                 AllowBanAppealAfterDays = AllowBanAppealAfterDays,
-                PublicEmbedMode = PublicEmbedMode
+                PublicEmbedMode = PublicEmbedMode,
+                SyncPunishments = SyncPunishments
             };
         }
     }

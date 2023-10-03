@@ -1,6 +1,7 @@
 using Discord;
 using Discord.Interactions;
 using Discord.Net;
+using Discord.Rest;
 using Discord.WebSocket;
 using MASZ.AutoModeration;
 using MASZ.Commands;
@@ -372,6 +373,51 @@ namespace MASZ.Services
                     identity.RemoveGuildMembership(guild.Id);
                 }
             }
+
+            // Create dummy modcase
+            GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
+
+            if (!guildConfig.SyncPunishments)
+            {
+                return;
+            }
+
+            var auditLogs = guild.GetAuditLogsAsync(10, actionType: ActionType.Ban);
+            ulong? moderator = null;
+            string reason = null;
+            foreach (var log in await auditLogs.FlattenAsync())
+            {
+                if (log.Data is BanAuditLogData banData)
+                {
+                    if (banData.Target?.Id == user.Id)
+                    {
+                        moderator = log.User.Id;
+                        reason = log.Reason;
+                        break;
+                    }
+                }
+            }
+
+            if (!moderator.HasValue || moderator.Value == _client.CurrentUser.Id) {
+                return;
+            }
+
+            _logger.LogInformation($"Syncing ban for user {user.Id} in guild {guild.Id}.");
+
+            ModCase modCase = new()
+            {
+                Title = "Imported Ban",
+                GuildId = guild.Id,
+                UserId = user.Id,
+                ModId = moderator.Value,
+                Description = reason ?? "None",
+                PunishmentType = PunishmentType.Ban,
+                PunishmentActive = true,
+                PunishedUntil = null,
+                CreationType = CaseCreationType.Imported
+            };
+
+            await ModCaseRepository.CreateWithBotIdentity(scope.ServiceProvider).CreateModCase(modCase, false, false, false);
         }
 
         private Task GuildUserRemoved(SocketGuild guild, SocketUser usr)

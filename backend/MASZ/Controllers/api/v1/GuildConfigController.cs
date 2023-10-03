@@ -70,6 +70,7 @@ namespace MASZ.Controllers
                 PreferredLanguage = guildConfigForCreateDto.PreferredLanguage ?? _config.GetDefaultLanguage(),
                 AllowBanAppealAfterDays = guildConfigForCreateDto.AllowBanAppealAfterDays,
                 PublicEmbedMode = guildConfigForCreateDto.PublicEmbedMode,
+                SyncPunishments = guildConfigForCreateDto.SyncPunishments,
             };
 
             guildConfig = await GuildConfigRepository.CreateDefault(_serviceProvider, await GetIdentity()).CreateGuildConfig(guildConfig, importExistingBans);
@@ -111,6 +112,7 @@ namespace MASZ.Controllers
             guildConfig.PreferredLanguage = newValue.PreferredLanguage ?? _config.GetDefaultLanguage();
             guildConfig.AllowBanAppealAfterDays = newValue.AllowBanAppealAfterDays;
             guildConfig.PublicEmbedMode = newValue.PublicEmbedMode;
+            guildConfig.SyncPunishments = newValue.SyncPunishments;
 
             return Ok(await GuildConfigRepository.CreateDefault(_serviceProvider, await GetIdentity()).UpdateGuildConfig(guildConfig));
         }

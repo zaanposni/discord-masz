@@ -31,5 +31,7 @@ namespace MASZ.Dtos.GuildConfig
         public int AllowBanAppealAfterDays { get; set; }
         [Required(ErrorMessage = "PublicEmbedMode field is required")]
         public bool PublicEmbedMode { get; set; }
+        [Required(ErrorMessage = "SyncPunishments field is required")]
+        public bool SyncPunishments { get; set; }
     }
 }
