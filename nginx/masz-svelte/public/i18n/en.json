@@ -612,6 +612,8 @@
             },
             "misc": {
                 "title": "Miscellaneous",
+                "sync": "Sync new punishments to MASZ",
+                "syncexplained": "Automatically sync new punishments that were not created by MASZ into MASZ' database.",
                 "whois": "Execute whois on member join",
                 "whoisexplained": "Automatically sends information about the joined user to your internal webhook.",
                 "importbans": "Import existing bans",

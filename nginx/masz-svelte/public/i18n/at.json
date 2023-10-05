@@ -612,6 +612,8 @@
             },
             "misc": {
                 "title": "Vaschiedenes",
+                "sync": "Neie Strofn mit MASZ synchronisiern",
+                "syncexplained": "Synchronisiere automatisch neue Strofn, die ned von MASZ erstellt wuan, in de Datenbank von MASZ.",
                 "whois": "Whois bei Mitgliedabeitritt ausfüan",
                 "whoisexplained": "Tua automatisch Infos üba an neichn Nutza on dein internan Webhook schickn.",
                 "importbans": "Importiere existierende Banns",

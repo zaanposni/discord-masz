@@ -543,6 +543,23 @@
                     <div />
                 {/if}
 
+                <div>
+                    <div class="flex flex-row items-center">
+                        <div class="shrink-0">
+                            <Checkbox disabled={$submitting} labelText={$_("guilds.config.misc.sync")} bind:checked={$data.syncPunishments} />
+                        </div>
+                        <div class="grow" />
+                        <div class="shrink-0">
+                            <Tooltip>
+                                <p>{$_("guilds.config.misc.syncexplained")}</p>
+                            </Tooltip>
+                        </div>
+                    </div>
+                </div>
+                {#if matches}
+                    <div />
+                {/if}
+
                 {#if addMode}
                     <div>
                         <div class="flex flex-row items-center">

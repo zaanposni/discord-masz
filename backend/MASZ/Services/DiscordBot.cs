@@ -1,8 +1,10 @@
 using Discord;
 using Discord.Interactions;
 using Discord.Net;
+using Discord.Rest;
 using Discord.WebSocket;
 using MASZ.AutoModeration;
+using MASZ.Commands;
 using MASZ.Enums;
 using MASZ.Exceptions;
 using MASZ.InviteTracking;
@@ -63,10 +65,13 @@ namespace MASZ.Services
             if (string.IsNullOrWhiteSpace(botStatus))
             {
                 await _client.SetGameAsync(_internalConfiguration.GetBaseUrl(), type: ActivityType.Watching);
-            } else if (botStatus == "none")
+            }
+            else if (botStatus == "none")
             {
                 await _client.SetGameAsync(null);
-            } else {
+            }
+            else
+            {
                 await _client.SetGameAsync(botStatus);
             }
         }
@@ -106,8 +111,73 @@ namespace MASZ.Services
 
             _interactions.Log += (logLevel) => Log(logLevel, interactions_logger);
 
+            _client.ModalSubmitted += async (modal) =>
+            {
+                try
+                {
+                    await HandleModalSubmitted(modal);
+                }
+                catch (BaseAPIException ex)
+                {
+                    _logger.LogError($"Modal '{modal.Data.CustomId}' invoked by '{modal.User.Username}' failed: {ex.Error}");
+
+                    using var scope = _serviceProvider.CreateScope();
+                    Translator translator = scope.ServiceProvider.GetRequiredService<Translator>();
+                    if (modal.GuildId.HasValue && ex is not UnregisteredGuildException)
+                    {
+                        await translator.SetContext(modal.GuildId.Value);
+                    }
+
+                    string errorCode = "#" + ((int)ex.Error).ToString("D4");
+
+                    EmbedBuilder builder = new EmbedBuilder()
+                        .WithTitle(translator.T().SomethingWentWrong())
+                        .WithColor(Color.Red)
+                        .WithDescription(translator.T().Enum(ex.Error))
+                        .WithCurrentTimestamp()
+                        .WithFooter($"{translator.T().Code()} {errorCode}");
+
+                    try
+                    {
+                        await modal.RespondAsync(embed: builder.Build(), ephemeral: true);
+                    }
+                    catch (TimeoutException)
+                    {
+                        await modal.Channel.SendMessageAsync(embed: builder.Build());
+                    }
+                    catch (InvalidOperationException)
+                    {
+                        await modal.ModifyOriginalResponseAsync(m =>
+                        {
+                            m.Content = "";
+                            m.Embed = builder.Build();
+                        });
+                    }
+                }
+            };
+
             _eventHandler.OnGuildRegistered += GuildRegisteredHandler;
             _eventHandler.OnGuildDeleted += GuildDeletedHandler;
+        }
+
+        private async Task HandleModalSubmitted(SocketModal modal)
+        {
+            string[] modalIdParts = modal.Data.CustomId.Split(":");
+            switch (string.Join(":", modalIdParts.Take(2)))
+            {
+                case "punish:warn":
+                case "punish:mute":
+                case "punish:kick":
+                case "punish:ban":
+                    using (var scope = _serviceProvider.CreateScope())
+                    {
+                        Commands.PunishModal punishModal = new(scope.ServiceProvider, modal.User);
+                        await punishModal.CheckRequirementsAsync(modal, scope.ServiceProvider);
+                        await punishModal.BeforeExecute();
+                        await punishModal.HandleModal(modal);
+                    }
+                    break;
+            }
         }
 
         private async Task HandleInteraction(SocketInteraction arg)
@@ -303,6 +373,56 @@ namespace MASZ.Services
                     identity.RemoveGuildMembership(guild.Id);
                 }
             }
+
+            // Create dummy modcase
+            try
+            {
+                GuildConfig guildConfig = await GuildConfigRepository.CreateDefault(scope.ServiceProvider).GetGuildConfig(guild.Id);
+
+                if (!guildConfig.SyncPunishments)
+                {
+                    return;
+                }
+            }
+            catch (UnregisteredGuildException) { return; }
+
+            var auditLogs = guild.GetAuditLogsAsync(10, actionType: ActionType.Ban);
+            ulong? moderator = null;
+            string reason = null;
+            foreach (var log in await auditLogs.FlattenAsync())
+            {
+                if (log.Data is BanAuditLogData banData)
+                {
+                    if (banData.Target?.Id == user.Id)
+                    {
+                        moderator = log.User.Id;
+                        reason = log.Reason;
+                        break;
+                    }
+                }
+            }
+
+            if (!moderator.HasValue || moderator.Value == _client.CurrentUser.Id)
+            {
+                return;
+            }
+
+            _logger.LogInformation($"Syncing ban for user {user.Id} in guild {guild.Id}.");
+
+            ModCase modCase = new()
+            {
+                Title = string.IsNullOrEmpty(reason) ? "Imported Ban" : reason,
+                GuildId = guild.Id,
+                UserId = user.Id,
+                ModId = moderator.Value,
+                Description = string.IsNullOrEmpty(reason) ? "None" : reason,
+                PunishmentType = PunishmentType.Ban,
+                PunishmentActive = true,
+                PunishedUntil = null,
+                CreationType = CaseCreationType.Imported
+            };
+
+            await ModCaseRepository.CreateWithBotIdentity(scope.ServiceProvider).CreateModCase(modCase, false, false, false);
         }
 
         private Task GuildUserRemoved(SocketGuild guild, SocketUser usr)
@@ -523,7 +643,8 @@ namespace MASZ.Services
                 var vanityInvite = await guild.GetVanityInviteAsync();
                 invites.Add(new TrackedInvite(guild.Id, vanityInvite.Code, vanityInvite.Uses.GetValueOrDefault()));
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 _logger.LogError(ex, $"Failed to fetch vanity url for guild {guild.Id}.");
             }
             return invites;
@@ -751,7 +872,7 @@ namespace MASZ.Services
 
                         try
                         {
-                            await context.Interaction.RespondAsync(embed: builder.Build());
+                            await context.Interaction.RespondAsync(embed: builder.Build(), ephemeral: true);
                         }
                         catch (TimeoutException)
                         {

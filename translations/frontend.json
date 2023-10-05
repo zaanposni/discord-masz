@@ -5453,6 +5453,28 @@
                     "it": "Varie",
                     "nl": "Divers"
                 },
+                "sync": {
+                    "description": "title of the sync field",
+                    "en": "Sync new punishments to MASZ",
+                    "de": "Neue Strafen mit MASZ synchronisieren",
+                    "at": "Neie Strofn mit MASZ synchronisiern",
+                    "fr": "Synchroniser les nouvelles punitions avec MASZ",
+                    "es": "Sincronizar nuevos castigos con MASZ",
+                    "ru": "Синхронизировать новые наказания MASZ",
+                    "it": "Sincronizza le nuove punizioni con MASZ",
+                    "nl": "Nieuwe straffen synchroniseren met MASZ"
+                },
+                "syncexplained": {
+                    "description": "description of the sync field",
+                    "en": "Automatically sync new punishments that were not created by MASZ into MASZ' database.",
+                    "de": "Synchronisiere automatisch neue Strafen, die nicht von MASZ erstellt wurden, in die Datenbank von MASZ.",
+                    "at": "Synchronisiere automatisch neue Strofn, die ned von MASZ erstellt wuan, in de Datenbank von MASZ.",
+                    "fr": "Synchronisez automatiquement les nouvelles punitions qui n'ont pas été créées par MASZ dans la base de données de MASZ.",
+                    "es": "Sincroniza automáticamente nuevos castigos que no fueron creados por MASZ en la base de datos de MASZ.",
+                    "ru": "Автоматически синхронизировать новые наказания, которые не были созданы MASZ, в базу данных MASZ.",
+                    "it": "Sincronizza automaticamente le nuove punizioni che non sono state create da MASZ nel database di MASZ.",
+                    "nl": "Automatisch nieuwe straffen synchroniseren die niet zijn gemaakt door MASZ in de database van MASZ."
+                },
                 "whois": {
                     "description": "description of the whois field",
                     "en": "Execute whois on member join",

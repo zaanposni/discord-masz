@@ -612,6 +612,8 @@
             },
             "misc": {
                 "title": "Divers",
+                "sync": "Nieuwe straffen synchroniseren met MASZ",
+                "syncexplained": "Automatisch nieuwe straffen synchroniseren die niet zijn gemaakt door MASZ in de database van MASZ.",
                 "whois": "Voer whois uit op lid worden",
                 "whoisexplained": "Stuurt automatisch informatie over de verbonden gebruiker naar uw interne webhook.",
                 "importbans": "Invoer van bestaande verboden",

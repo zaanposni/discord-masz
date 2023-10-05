@@ -114,7 +114,7 @@ namespace MASZ.Repositories
             if (currentReportedUser == null)
             {
                 Logger.LogError("Failed to fetch modcase suspect.");
-                throw new InvalidIUserException(modCase.ModId);
+                throw new InvalidIUserException(modCase.UserId);
             }
             if (currentReportedUser.IsBot)
             {
@@ -147,9 +147,8 @@ namespace MASZ.Repositories
             {
                 modCase.OccuredAt = modCase.CreatedAt;
             }
-            modCase.ModId = _currentUser.Id;
             modCase.LastEditedAt = modCase.CreatedAt;
-            modCase.LastEditedByModId = _currentUser.Id;
+            modCase.LastEditedByModId = modCase.ModId;
             if (modCase.Labels != null)
             {
                 modCase.Labels = modCase.Labels.Distinct().ToArray();

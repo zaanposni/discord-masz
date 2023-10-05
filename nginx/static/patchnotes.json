@@ -1,1748 +1,1772 @@
 [
     {
-      "title": "Version 3.5.0",
-      "version": "v3.5.0",
-      "released_at": "2023-09-08",
-      "contributors": [
-        {
-          "name": "UponAnonymous",
-          "link": "https://github.com/UponAnonymous",
-          "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-        },
-        {
-          "name": "Allan Efendic",
-          "link": "https://github.com/alefDev-prog",
-          "icon": "https://avatars.githubusercontent.com/u/114575583?v=4"
-        }
-      ],
-      "breaking": [
-        {
-            "title": "Removed discriminators",
-            "description": "Discriminators have been removed from the codebase in favor of Discords username change."
-        }
-      ],
-      "features": [
-        {
-          "title": "Added experimental message cache.",
-          "description": "This new message cache should reduce the number of missing message content in the auditlog on deleted and updated messages. Use ENABLE_EXPERIMENTAL_MESSAGE_CACHE=true to enable it."
-        },
-        {
-          "title": "Added dutch translations.",
-          "description": "Added dutch (NL) translations for MASZ."
-        }
-      ],
-      "fixes": [
-        {
-          "title": "Fixed time input validation in case creation.",
-          "description": "29:xx is no longer a valid time input. 20:xx is now a valid time input."
-        },
-        {
-          "title": "Fixed wrong punishment duration in case creation.",
-          "description": "If you entered a wrong time input, the punishment duration was set to permanent. This has been fixed."
-        },
-        {
-          "title": "Fixed automod logging.",
-          "description": "If the message content was too large, some automod embeds failed to be sent. This has been fixed."
-        },
-        {
-          "title": "Correctly link evidence.",
-          "description": "The linking of evidence for automods and via the frontend has been fixed."
-        },
-        {
-          "title": "Fixed invite automod for markdown.",
-          "description": "Invites sent within the new markdown syntax are now correctly parsed and no longer trigger a false positive on whitelisted guilds."
-        }
-      ],
-      "technical": [
-        {
-            "title": "Last release.",
-            "description": "This is the last release of MASZ for the foreseeable future. If you want to step in as a maintainer, please contact me via Discord. If you want to support me, you can do so on ko-fi: https://ko-fi.com/zaanposni"
-        }
-      ]
+        "title": "Version 3.6.0",
+        "version": "v3.6.0",
+        "released_at": "2023-10-05",
+        "features": [
+            {
+                "title": "Punishment via modals.",
+                "description": "You can now create modcases in Discord using Modals. Use a right click on a user to open the context menu and select the punishment you want to apply.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/555"
+            },
+            {
+                "title": "Sync new punishments.",
+                "description": "You can now choose to sync new bans into MASZ that were not created by MASZ. MASZ uses details in the auditlog to create a valid mocase."
+            },
+            {
+                "title": "Added more content to the whois embed.",
+                "description": "The whois embed now contains the case punishment types for all cases and not just the active ones."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Switch primary and secondary button for unmute dialog.",
+                "description": "The primary and secondary button for the unmute dialog were switched to improve usability."
+            }
+        ]
     },
-  {
-    "title": "Version 3.4.1",
-    "version": "v3.4.1",
-    "released_at": "2023-03-04",
-    "features": [
-      {
-        "title": "Quick select for punishment durations.",
-        "description": "You can now quickly select default punishment durations while creating or editing a case."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Unified action buttons in table views.",
-        "description": "All action buttons in table views now have a unified style."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.4.0",
-    "version": "v3.4.0",
-    "released_at": "2023-01-09",
-    "contributors": [
-      {
-        "name": "Simply-Cods",
-        "link": "https://github.com/Simply-Cods",
-        "icon": "https://avatars.githubusercontent.com/u/79521176?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "Verified Evidence.",
-        "description": "You can now save Discord messages in MASZ. They can be linked to multiple cases as verified evidence.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/562"
-      },
-      {
-        "title": "Whois as user context command.",
-        "description": "You can now use the whois command as a user context command."
-      },
-      {
-        "title": "Import existing bans.",
-        "description": "You can now choose again to import existing bans from your guild while registering it."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.3.0",
-    "version": "v3.3.0",
-    "released_at": "2022-12-28",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      },
-      {
-        "name": "Kye",
-        "link": "https://github.com/UponAnonymous",
-        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-      },
-      {
-        "name": "Sai-Tamazaki",
-        "link": "https://github.com/Sai-Tamazaki",
-        "icon": "https://avatars.githubusercontent.com/u/121161129?v=4"
-      },
-      {
-        "name": "Simply-Cods",
-        "link": "https://github.com/Simply-Cods",
-        "icon": "https://avatars.githubusercontent.com/u/79521176?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "Filter guilds on \"register guild\" dialog.",
-        "description": "The \"register guild\" dialog now has a search bar to filter guilds by name.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/547"
-      },
-      {
-        "title": "Better application command handling for unregistered guilds.",
-        "description": "Application commands are now only registered for registered guilds. If you cannot use your application commands, try to readd the bot to your discord guild.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/551"
-      },
-      {
-        "title": "Translated slash commands.",
-        "description": "The slash commands are now translated to the guilds language.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/556"
-      },
-      {
-        "title": "Custom bot status.",
-        "description": "The server admin can now configure a custom bot status in their env file.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/563"
-      },
-      {
-        "title": "Added Phishing automod.",
-        "description": "Uses a popular phishing link collection and pihole lists to filter links in your guild. Not yet tested, use at your own risk, please report any problems to the MASZ developers.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/557"
-      },
-      {
-        "title": "Mentions in case description.",
-        "description": "You can now mention users, channels and roles in case description like you would in Discord.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/566"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed public notification webhook when editing a modcase.",
-        "description": "Fixed a bug where the public notification would always be send when editing a modcase.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/550"
-      },
-      {
-        "title": "Fixed css bugs in auditlog configuration.",
-        "description": "Fixed a content shift css bug in the auditlog configuration.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/552"
-      },
-      {
-        "title": "Discord links are now whitelisted from the invite automod.",
-        "description": "Discord resources like \"discord.com/terms\" are now whitelisted from the invite automod.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/559"
-      },
-      {
-        "title": "Fixed timestamp for deleted and updated messages guildauditlog.",
-        "description": "MASZ now correctly uses the UTC timestamp to display the message creation datetime.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/565"
-      },
-      {
-        "title": "Improved german translations.",
-        "description": "The german translations have been greatly improved.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/569"
-      }
-    ],
-    "technical": [
-      {
-        "title": "Added telemetry service.",
-        "description": "This release adds a opt-in telemetry data collection. Data is collected anonymously and only used to improve MASZ. The server admin can opt-in to this by using \"ENABLE_TELEMETRY=true\" in their environment file."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.2.1",
-    "version": "v3.2.1",
-    "released_at": "2022-11-12",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed internal server error for channel API.",
-        "description": "A bug has been fixed that caused channel lists to be empty or fail, if the guild has a forum channel."
-      },
-      {
-        "title": "Fixed reaction added guild auditlog filter.",
-        "description": "The reaction added guild auditlog did not correctly respect the filtered channels."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Correctly request message content intent.",
-        "description": "MASZ will now correctly use the message content intent when connecting to the Discord API."
-      },
-      {
-        "title": "Removed demo instance from readme and website.",
-        "description": "The demo instance of MASZ will be shut down soon. The links to the demo instance have been removed from the readme and website."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.2.0",
-    "version": "v3.2.0",
-    "released_at": "2022-09-01",
-    "contributors": [ ],
-    "features": [
-      {
-        "title": "Support for voice text channels.",
-        "description": "MASZ now supports voice text channels for automoderation and audit logging.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/543"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Correctly handle missing vanity url.",
-        "description": "In some cases, a missing vanity invite url, caused the invite tracking to fail. This has been fixed."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Discord message content intent.",
-        "description": "Discords message content intent has been enabled today. MASZ should handle blank messages correctly, but if you want to use message related features just as audit logging or automoderation, make sure to enable the message content intent in your bots settings.",
-        "link": "https://discord.com/developers/applications"
-      }
-    ]
-  },
-  {
-    "title": "Version 3.1.3",
-    "version": "v3.1.3",
-    "released_at": "2022-08-20",
-    "contributors": [ ],
-    "features": [
-      {
-        "title": "Add the current guild to the header.",
-        "description": "The current guild is now displayed in the header while navigating through the dashboard.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/540"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed templates endpoint.",
-        "description": "Templates failed to load if there was an unregistered guild in the database."
-      },
-      {
-        "title": "Too many attachments automod webhook failed.",
-        "description": "If the automoderated message had no content, the generated embed was invalid and thus the internal webhook failed.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/539"
-      }
-    ]
-  },
-  {
-    "title": "Version 3.1.2",
-    "version": "v3.1.2",
-    "released_at": "2022-07-16",
-    "contributors": [ ],
-    "technical": [
-      {
-        "title": "Upgraded svelte package.",
-        "description": "Upgraded the npm svelte package to a newer version to fix a vulnerability."
-      },
-      {
-        "title": "Upgraded moment package.",
-        "description": "Upgraded the npm moment package to a newer version to fix a vulnerability."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.1.1",
-    "version": "v3.1.1",
-    "released_at": "2022-06-26",
-    "contributors": [ ],
-    "fixes": [
-      {
-        "title": "Improve invite tracking.",
-        "description": "Failed invite tracking should now result in better logging."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.1.0",
-    "version": "v3.1.0",
-    "released_at": "2022-06-25",
-    "contributors": [ ],
-    "features": [
-      {
-        "title": "Delete files in case creation",
-        "description": "You can now remove files if you choose to upload them accidentally.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/530"
-      },
-      {
-        "title": "Added zalgo mode",
-        "description": "Guild admins can enable the zalgo mode. This mode will automatically rename everyone with zalgo characters to improve readability on your server.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/524"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Improved error message on empty state of dashboard widgets.",
-        "description": "Dashboard widgets will now show a detailed error instead of \"This is not the widget you are looking for\".",
-        "link": "https://github.com/zaanposni/discord-masz/issues/529"
-      },
-      {
-        "title": "Update cache on channel updates.",
-        "description": "Even more changes in Discord (channel create, channel update, channel delete) are now transferred to MASZ' cache.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/527"
-      }
-    ]
-  },
-  {
-    "title": "Version 3.0.3",
-    "version": "v3.0.3",
-    "released_at": "2022-06-07",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Correctly respond to slash commands.",
-        "description": "A bug has been fixed that caused slash command responses to fail."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.0.2",
-    "version": "v3.0.2",
-    "released_at": "2022-06-05",
-    "contributors": [
-      {
-        "name": "Kye",
-        "link": "https://github.com/UponAnonymous",
-        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Use correct date format.",
-        "description": "A bug has been fixed that caused a wrong date format in case creation/edit, scheduled message dialog and appeal edit."
-      },
-      {
-        "title": "Filter and sort channels in scheduled message dialog.",
-        "description": "Guild channels are now filtered and sorted correctly. It could happen that voice channels were selectable in the scheduled message dialog."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.0.1",
-    "version": "v3.0.1",
-    "released_at": "2022-06-05",
-    "contributors": [
-      {
-        "name": "Kye",
-        "link": "https://github.com/UponAnonymous",
-        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed a breaking bug in the creation and editing of cases.",
-        "description": "A bug that could have rendered the case creation useless has been fixed."
-      }
-    ]
-  },
-  {
-    "title": "Version 3.0.0",
-    "version": "v3.0.0",
-    "released_at": "2022-06-04",
-    "contributors": [
-      {
-        "name": "Kye",
-        "link": "https://github.com/UponAnonymous",
-        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-      },
-      {
-        "name": "Bricksmaster",
-        "link": "https://github.com/Bricksmaster",
-        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Admins can delete cases.",
-        "description": "Guild admins can now perma delete cases."
-      }
-    ],
-    "features": [
-      {
-        "title": "Completely reworked the frontend.",
-        "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here.",
-        "link": "https://ko-fi.com/zaanposni"
-      },
-      {
-        "title": "Added timeouts.",
-        "description": "If no mute roles are defined, MASZ will use discords timeout functionality.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/476"
-      },
-      {
-        "title": "Paste images from clipboard to case.",
-        "description": "You can now paste files in your clipboard during case creation.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/519"
-      },
-      {
-        "title": "Filter for automods.",
-        "description": "You can now use filters in the automods table."
-      },
-      {
-        "title": "Antiraid command.",
-        "description": "The slash command /antiraid allows you to quickly timeout a user and delete all his recent messages from the server.",
-        "link": "https://github.com/zaanposni/discord-masz/issues/487"
-      }
-    ]
-  },
-  {
-    "title": "Version 2.7.0",
-    "version": "v2.7.0",
-    "released_at": "2022-03-12",
-    "contributors": [
-      {
-        "name": "Bricksmaster",
-        "link": "https://github.com/Bricksmaster",
-        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
-      },
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      },
-      {
-        "name": "FeroxFoxxo",
-        "link": "https://github.com/FeroxFoxxo",
-        "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
-      },
-      {
-        "name": "Kye",
-        "link": "https://github.com/UponAnonymous",
-        "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "Show full message in guild auditlog,",
-        "description": "The auditlog now shows the full message of the audit log entry, instead of just the first few words."
-      },
-      {
-        "title": "Use application name in tab title.",
-        "description": "The tab title now shows the application name instead of the default \"MASZ\".",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/492"
-      },
-      {
-        "title": "Added more guild auditlog scopes.",
-        "description": "You can now create auditlogs for voice activity and message reactions."
-      },
-      {
-        "title": "Show icon in discord embed.",
-        "description": "The discord embed now shows the icon of the application if configured.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/503"
-      },
-      {
-        "title": "Ban appeals.",
-        "description": "The ability to create and manage ban appeals is now available. You can create a ban appeal questionnaire in your guild settings. You can also define how long a user has to wait before creating ban appeals in your guildconfig."
-      },
-      {
-        "title": "Added public embed mode for guilds.",
-        "description": "When activated, linking a modcase in discord will now display some general information about this modcase in the embed.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/502"
-      },
-      {
-        "title": "Ignore rules on guild auditlogs.",
-        "description": "You can now ignore certain roles or channels in the guild auditlog similiar to the filters in automods.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/504"
-      },
-      {
-        "title": "Timeout in automod.",
-        "description": "You can now choose a timeout for the punishment of automods. This is useful if you want to punish a user without creating a modcase."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed webhook validator.",
-        "description": "The webhook validator was not working properly. It was causing the webhook to fail to validate."
-      },
-      {
-        "title": "Fixed automod and guildtips embed.",
-        "description": "The automod and guildtips embeds were not showing the correct information."
-      },
-      {
-        "title": "Fixed max upload size.",
-        "description": "The max upload size was not being disabled correctly. Please remember that you need to limit it in your own reverse proxy.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/498"
-      },
-      {
-        "title": "Fix userscan for \"ghost\" guilds.",
-        "description": "If the bot was not in a guild that was registered in MASZ, the userscan crashed.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/497"
-      },
-      {
-        "title": "Scheduled messages deleted on guild delete.",
-        "description": "When deleting a guild, MASZ will now correctly remove scheduled messages as well."
-      },
-      {
-        "title": "Fixed search in usernote and usermap.",
-        "description": "The search in usernote and usermap was not working properly when used more than one time.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/491"
-      },
-      {
-        "title": "Improved alginment of guild names and edit buttons in the toolbar.",
-        "description": "The alignment of the guild names and edit buttons in the toolbar was not correct.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/493"
-      },
-      {
-        "title": "Mention user in usermap embed.",
-        "description": "The usermap embed now mentions the user in the embed.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/500"
-      },
-      {
-        "title": "Fixed invite autmod for events.",
-        "description": "The invite autmod for events now works as intended."
-      },
-      {
-        "title": "Fixed text breaking and alignment in automod table.",
-        "description": "The text breaking and alignment in the automod table was not correct and overflowed in the right border of your screen."
-      },
-      {
-        "title": "Fixed duplicated guild tabs.",
-        "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Node docker image.",
-        "description": "The frontend docker image was updated to the LTS version of node."
-      },
-      {
-        "title": "Adjust linking to container in nginx.",
-        "description": "Nginx now redirects requests to http://backend instead of http://masz_backend. If you have a locally adjusted MASZ setup, this might be an issue for you.",
-        "icon": "visiblity",
-        "link": "https://github.com/zaanposni/discord-masz/commit/92f569bbb0130e8d236d3040a24df4c7b960b3af"
-      }
-    ]
-  },
-  {
-    "title": "Version 2.6.0",
-    "version": "v2.6.0",
-    "released_at": "2022-01-23",
-    "contributors": [
-      {
-        "name": "Bricksmaster",
-        "link": "https://github.com/Bricksmaster",
-        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
-      },
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      },
-      {
-        "name": "TrissieTheHusky",
-        "link": "https://github.com/TrissieTheHusky",
-        "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Some env vars have been moved to the appsettings tab.",
-        "description": "The default language, auditlog webhook url and public file mode settings have been moved to the appsettings tab. The env vars will be ignored."
-      }
-    ],
-    "features": [
-      {
-        "title": "Internal notification for say command.",
-        "description": "The bot will now send a notification to the internal webhook when a moderator uses the say command.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/479"
-      },
-      {
-        "title": "Add more parameters to the appsettings.",
-        "description": "Default language, auditlog webhoook url and public file mode are now adjustable through the appsettings tab. Please note that this is a breaking change and may require reconfiguration by a siteadmin."
-      },
-      {
-        "title": "Added status command.",
-        "description": "A status command has been added that displays the current state of the application, similiar to the insights tab.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/486"
-      },
-      {
-        "title": "Added scheduled message announcements.",
-        "description": "A scheduled message announcement has been added that allows you to send a message to a channel at a specific time. This is useful for announcing events.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/479"
-      },
-      {
-        "title": "Added case label autocompletion.",
-        "description": "While creating or editing cases MASZ will now display choices for case labels based on already existing case labels.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/489"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Delete auditlog config on guild delete.",
-        "description": "If you delete a guild and choose to delete its content, the guilds auditlog config will be deleted as well.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/482"
-      },
-      {
-        "title": "Fixed duplicated guild tabs.",
-        "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
-      },
-      {
-        "title": "Fixed case template access permissions.",
-        "description": "Fixed a bug that prevented users from accessing their own case templates.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/485"
-      },
-      {
-        "title": "Fixed case template search.",
-        "description": "Fixed a bug that caused case template searching to fail.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/485"
-      },
-      {
-        "title": "Fixed case template creation permissions.",
-        "description": "Fixed a case where some users could create case templates eventhough they were no moderator and thus not allowed to do that."
-      },
-      {
-        "title": "Improved modcase creation dialog.",
-        "description": "Removed unneeded \"back\" button at the start of the case creation dialog."
-      },
-      {
-        "title": "Fixed application startup process.",
-        "description": "Two bugs in the applications startup process have been fixed that caused the app to not work properly and eventually crash"
-      },
-      {
-        "title": "Fixed NRE in unban procedure.",
-        "description": "Fixed a caching issue during the unban procedure that occurred when a user was unbanned before MASZ tries to unban him."
-      },
-      {
-        "title": "Removed case bin.",
-        "description": "The case bin tab has been removed since the new filters in the modcase table can do the same thing."
-      }
-    ]
-  },
-  {
-    "title":  "Version 2.5.0",
-    "version": "v2.5.0",
-    "released_at": "2021-12-31",
-    "contributors": [
-      {
-        "name": "FeroxFoxxo",
-        "link": "https://github.com/FeroxFoxxo",
-        "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
-      },
-      {
-        "name": "TrissieTheHusky",
-        "link": "https://github.com/TrissieTheHusky",
-        "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
-      },
-      {
-        "name": "Bricksmaster",
-        "link": "https://github.com/Bricksmaster",
-        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Removed upload size cap.",
-        "description": "The limit of 10MB has been removed. Please add this to your own reverse proxy as you see fit."
-      },
-      {
-        "title": "Reworked plugin system.",
-        "description": "As part of the changes stated in the technical section, the plugin system has been reworked. You might need to adjust your existing plugins. If you need any help, feel free to contact me on Discord."
-      }
-    ],
-    "features": [
-      {
-        "title": "Added version info to insights tab.",
-        "description": "The insights tab will now display the currently deployed version."
-      },
-      {
-        "title": "Added reasoning for discord audit logs.",
-        "description": "The reason of a punishment will now be displayed in discords audit log.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/469"
-      },
-      {
-        "title": "Added import of existing bans on guild register.",
-        "description": "You can now import existing bans on guild register. Those will not trigger announcements or dm notification but will be added to the database.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/475"
-      },
-      {
-        "title": "Added more internal notifications.",
-        "description": "Your internal webhook will now receive further notifications about automod auditlog or motd changes.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/474"
-      },
-      {
-        "title": "Change content of website embed.",
-        "description": "Siteadmins can now edit the content that is displayed in the website embed. Head over to the new settings tab to do so."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed search in multi select.",
-        "description": "A bug was fixed that corrupted selected elements in the multi select when using the search."
-      },
-      {
-        "title": "Fixed display of comment locked status.",
-        "description": "A bug was fixed that caused the comment locked status to not be displayed correctly.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/468"
-      },
-      {
-        "title": "Fixed display of creation type.",
-        "description": "A bug was fixed that caused the creation type of a modcase to not be displayed correctly."
-      },
-      {
-        "title": "Fixed switch of guild in guild edit view.",
-        "description": "A bug was fixed that caused the guild edit view to not refresh if the guild was switched via the taskbar.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/473"
-      },
-      {
-        "title": "fix multiple endpoint matching.",
-        "description": "A bug was fixed that caused internal server errors on certain ambiguous routes."
-      },
-      {
-        "title": "Updated documentation.",
-        "description": "The documentation on OAuth redirect urls has been improved."
-      }
-    ],
-    "technical": [
-      {
-        "title": "MASZ now uses \"Discord.NET\".",
-        "description": "MASZ now uses the library Discord.NET instead of DSharpPlus as the latter one had major caching issues."
-      },
-      {
-        "title": "Upgraded to .NET 6.",
-        "description": "MASZ now uses .NET 6 which is a LTS version."
-      }
-    ]
-  },
-  {
-    "title":  "Version 2.4.0",
-    "version": "v2.4.0",
-    "released_at": "2021-12-15",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "Use bot icon instead of default.",
-        "description": "Your bot icon will now also replace the image on the login page as well as the websites favicon.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/454"
-      },
-      {
-        "title": "Advanced modcase table filters.",
-        "description": "You can now filter the modcase table by users, moderators, date values and more.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/455"
-      },
-      {
-        "title": "Added unmute and unban command",
-        "description": "A unmute and unban command has been added which offers you the possibility to delete or deactivate cases of the mentioned user.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/435"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Spaces and newlines in automoderation log.",
-        "description": "Spaces and newlines will now be displayed in the automoderation log view.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/456"
-      },
-      {
-        "title": "Modcase inactivity display.",
-        "description": "A bug was fixed that showed a modcase to be inactive after reactivating it.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/457"
-      }
-    ]
-  },
-  {
-    "title":  "Version 2.3.0",
-    "version": "v2.3.0",
-    "released_at": "2021-11-23",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      },
-      {
-        "name": "Bricksmaster",
-        "link": "https://github.com/Bricksmaster",
-        "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "Added multiple translations.",
-        "description": "Added translations for spanish, italian, french and russian."
-      },
-      {
-        "title": "Copyright notice.",
-        "description": "Added copyright notice in toolbar."
-      },
-      {
-        "title": "Fixed owner permissions.",
-        "description": "An owner of a guild can now do anything."
-      },
-      {
-        "title": "Update warning.",
-        "description": "An update warning in the toolbar has been added.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/444"
-      },
-      {
-        "title": "Inactive cases.",
-        "description": "Cases can now be toggled to be active or inactive, their status is shown in the caseview.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/434"
-      },
-      {
-        "title": "Avatar command.",
-        "description": "Added avatar command, which shows the avatar of the mentioned user."
-      },
-      {
-        "title": "Configurable automod notifications.",
-        "description": "Channel notifications for automods are now configurable."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Fixed X-Forwarded-For header.",
-        "description": "MASZ now correctly uses the X-Forwarded-For header for ip ratelimiting and logging."
-      },
-      {
-        "title": "Adjusted permissions in strict mode.",
-        "description": "Moderators without corresponding permissions can no longer edit modcases in strict mode."
-      },
-      {
-        "title": "Fixed text wrapping for long servernames in toolbar.",
-        "description": ""
-      },
-      {
-        "title": "Adjusted command permissions in strict mode.",
-        "description": "Moderators without corresponding permissions can no longer use punish commands in strict mode."
-      },
-      {
-        "title": "Fixed null value handling for site admins env var.",
-        "description": "MASZ now correctly works without any siteadmins defined."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Reworked Readme.",
-        "description": "Applied current style guides to the readme file. Added a latest version badge to the readme."
-      }
-    ]
-  },
-  {
-    "title": "Version 2.2.0",
-    "version": "v2.2.0",
-    "released_at": "2021-11-06",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      }
-    ],
-    "breaking": [
-      {
-        "title": "New license.",
-        "description": "MASZ is now licensed under GPLv3.",
-        "icon": "link",
-        "link": "https://choosealicense.com/licenses/gpl-3.0/"
-      },
-      {
-        "title": "Adjusted duplicated character handling.",
-        "description": "The duplicated character automod will no longer trigger on digits and backtick quotes (code blocks)."
-      }
-    ],
-    "features": [
-      {
-        "title": "Thread automod support.",
-        "description": "The bot will now try to join created threads which will allow automoderation in these threads.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/345"
-      },
-      {
-        "title": "Added more punish commands.",
-        "description": "Added more special commands to punish members (warn, kick, mute, ban) in addition to the existing punish command."
-      },
-      {
-        "title": "Guild-levle AuditLog.",
-        "description": "An auditlog on guildlevel has been added for various events (more to come). Enable this in your guilds config tab.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/blob/master/docs/guildauditlog.png"
-      },
-      {
-        "title": "Public file mode.",
-        "description": "An environment variable has been added to expose the file endpoint to unauthorized access. Use \"ENABLE_PUBLIC_FILES=true\" in your .env to enable this."
-      },
-      {
-        "title": "Update warning.",
-        "description": "A warning in the insights tab will notify siteadmins of available updates.",
-        "icon": "link",
-        "link": "https://cdn.discordapp.com/attachments/779446982904905758/904643938500091954/unknown.png"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Select dashboard on guildoverview correctly.",
-        "description": "Fixed a bug where the guild dashboard was not correctly selected on the website."
-      },
-      {
-        "title": "FIxed max count for dashboard charts.",
-        "description": "The max value on the y-Axis is now seperated for automod and modcase charts."
-      },
-      {
-        "title": "Fixed permanent modcases by punish command.",
-        "description": "Fixed a bug where modcases created by the punish command where not permanent."
-      },
-      {
-        "title": "Improved cache and identity handling.",
-        "description": "The internal cache and identities are now getting updated on discord guild events. For example an identity immediately loses permissions as soon as a member loses a moderator role."
-      },
-      {
-        "title": "Improved login/information endpoint.",
-        "description": "The /users/@me endpoint has been improved as it longer needs to check a users banned guilds everytime it is requested."
-      },
-      {
-        "title": "Fixed sorting of roles and channels in automodconfig.",
-        "description": ""
-      },
-      {
-        "title": "Fixed rerendering of automodconfig.",
-        "description": "Fixed a bug where automodconfigs have been rerendered on edits which caused the whole website to flicker."
-      },
-      {
-        "title": "Fixed automod event linked case.",
-        "description": "Fixed a bug where the case of an automoderation was incorrectly linked.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/439"
-      },
-      {
-        "title": "Fixed automod config.",
-        "description": "Fixed a bug where to automod configs custom word field would stay empty after loading the current config."
-      },
-      {
-        "title": "Adjusted wording of punish command.",
-        "description": "Description and parameters have been adjusted to be clearer."
-      },
-      {
-        "title": "Fixed cleanup command.",
-        "description": "The cleanup command will now stop if the channel is empty."
-      },
-      {
-        "title": "Regex exception handling.",
-        "description": "Invalid regex patterns in link and customword automod will no longer crash the automoderator."
-      },
-      {
-        "title": "Adjusted translations.",
-        "description": "Some german translations have been improved."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Docker image tags.",
-        "description": "Image tags will now follow the semantic versioning specification."
-      },
-      {
-        "title": "Run GitHub Action on main repo only.",
-        "description": "This will stop the docker publish action to fail on other repos where it is of no use anyways."
-      }
-    ]
-  },
-  {
-    "title": "Version 2.1.0",
-    "version": "v2.1.0",
-    "released_at": "2021-10-23",
-    "features": [
-      {
-        "title": "Link Automod.",
-        "description": "Added a link automod that triggers on http/https links. You can also allow certain links.",
-        "icon": "code",
-        "link": "https://github.com/zaanposni/discord-masz/issues/417"
-      },
-      {
-        "title": "Duplicated characters Automod.",
-        "description": "Added a automod that triggers on duplicated characters even with linebreaks. This also recognizes \"empty\" messages.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/417"
-      },
-      {
-        "title": "Invite Automod filter.",
-        "description": "Added a filter to the invite automod to allow certain guilds.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/417"
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Improved UX.",
-        "description": "The custom filter field in automod configuration is now bigger so everything is readable."
-      },
-      {
-        "title": "Error on modcase ban create.",
-        "description": "Fixed a bug that caused api calls for ban modcases to fail.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/428"
-      },
-      {
-        "title": "Display of last moderator.",
-        "description": "Fixed a bug where the \"Last edit by moderator...\" field was visible even though there were no edit at all.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/427"
-      },
-      {
-        "title": "Time display",
-        "description": "Adjusted some places on the website where the configured timezone was not used."
-      },
-      {
-        "title": "Improved punish slashcommand",
-        "description": "Renamed warn option from \"None\" to \"Warn\"."
-      }
-    ]
-  },
-  {
-    "title": "Version 2",
-    "version": "v2.0.0",
-    "released_at": "2021-10-16",
-    "gist_feature_link": "https://gist.github.com/zaanposni/340d7f3d313867cda877f3147ff04a53"
-  },
-  {
-    "title": "Version 1.13.1",
-    "version": "v1.13.1",
-    "released_at": "2021-08-29",
-    "contributors": [
-      {
-        "name": "FlixProd",
-        "link": "https://github.com/FlixProd",
-        "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
-      }
-    ],
-    "breaking": [
-      {
-        "title": "Spam automod uses seconds.",
-        "description": "The spam automoderation now uses seconds instead of minutes. Please change your current configuration if needed."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Cleanup mode choices.",
-        "description": "Added choices to cleanup command to improve UX.",
-        "icon": "code",
-        "link": "https://github.com/zaanposni/discord-masz/pull/399"
-      },
-      {
-        "title": "Fixed errors in track command.",
-        "description": "Command does not longer fail on valid unused invite.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/397"
-      },
-      {
-        "title": "Added error message to report command.",
-        "description": "The report command will now respond with an error if there is no internal webhook configured."
-      },
-      {
-        "title": "Defering commands.",
-        "description": "Slash commands will now be defered if they take too long to avoid errors."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Security warnings.",
-        "description": "Adjusted a nuget dependency to fix vulnerabilities."
-      }
-    ]
-  },
-  {
-    "title": "Version 1.13",
-    "version": "v1.13",
-    "released_at": "2021-08-21",
-    "contributors": [
-      {
-        "name": "BS-scripter",
-        "link": "https://github.com/BS-scripter",
-        "icon": "https://avatars.githubusercontent.com/u/64974851?v=4"
-      },
-      {
-        "name": "knabb215",
-        "link": "https://github.com/knabb215",
-        "icon": "https://avatars.githubusercontent.com/u/16668654?v=4"
-      }
-    ],
-    "features": [
-      {
-        "title": "OAuth error page.",
-        "description": "An error page has been added to catch the failure of the discord oauth login.",
-        "icon": "link",
-        "link": "/oauthfailed"
-      },
-      {
-        "title": "Copy token button.",
-        "description": "A button has been added to copy a new API token to your clipboard."
-      },
-      {
-        "title": "Invitescan.",
-        "description": "Userscanning has been extended to support invites as input as well and is now called \"Scanning\"."
-      },
-      {
-        "title": "Invitetracking command.",
-        "description": "Added the command $track to view insights of an invite on your guild."
-      },
-      {
-        "title": "Spam automoderation.",
-        "description": "Added automoderation for spam. Trigger on x messages in y minutes.",
-        "icon": "code",
-        "link": "https://github.com/zaanposni/discord-masz/pull/352"
-      },
-      {
-        "title": "Mentioning contributors.",
-        "description": "Contributors are now mentioned here. Thank you all <3."
-      },
-      {
-        "title": "Cleanup command.",
-        "description": "Added the command $cleanup to tidy up guild channels."
-      },
-      {
-        "title": "Slash commands.",
-        "description": "MASZ is now supporting slash commands. Be sure to authorize your bot with the \"applications.commands\" scope."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Whois embed.",
-        "description": "Fixed a bug that caused the content of the embed to be too long."
-      },
-      {
-        "title": "Automoderation presentation.",
-        "description": "Swapped icons for attachment and embed automoderation events. I even believe that was never planned to be like this :D"
-      },
-      {
-        "title": "Button misalignment.",
-        "description": "Fixed a css bug that caused the buttons to be aligned incorrectly.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/discord-masz/issues/355"
-      },
-      {
-        "title": "Improved bot logging.",
-        "description": "The logging of the \"masz_discordbot\" container was improved. The library \"rich\" is used now to format logs."
-      }
-    ],
-    "technical": [
-      {
-        "title": "Security warnings.",
-        "description": "Adjusted several npm dependencies to fix vulnerabilities."
-      }
-    ]
-  },
-  {
-    "title": "Version 1.12.1",
-    "version": "v1.12.1",
-    "released_at": "2021-07-31",
-    "features": [
-      {
-        "title": "Guild icons.",
-        "description": "Default and animated guilds are now supported on the website."
-      },
-      {
-        "title": "Links in patchnotes.",
-        "description": "Patchnotes now support links to refer to further resources."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Intuitive dates.",
-        "description": "The website now uses a months name instead of a number to ensure a less error-prone transmission of information."
-      },
-      {
-        "title": "API changes.",
-        "description": "Usernotes are now deletable by userid and not by resource id. Models on PUT, POST and DELETE requests are now fully returned instead of the ID only."
-      }
-    ],
-    "technical": [
-      {
-        "title": "API Wrapper.",
-        "description": "A python library to integrate the MASZ API in your project has been released.",
-        "icon": "link",
-        "link": "https://github.com/zaanposni/masz-api-wrapper"
-      },
-      {
-        "title": "Cookie service.",
-        "description": "MASZ has not been using cookies for quite some time, the code to read cookies has now been removed as well."
-      }
-    ]
-  },
-  {
-    "title": "Version 1.12",
-    "version": "v1.12",
-    "released_at": "2021-07-17",
-    "features": [
-      {
-        "title": "Hide moderator info.",
-        "description": "The publication of moderator information can now be deactivated on guild level."
-      },
-      {
-        "title": "$cases command.",
-        "description": "The new $cases command allows users to view a list of their modcases and active punishments without logging in to MASZ."
-      },
-      {
-        "title": "$view command.",
-        "description": "The new $view command allows users to view details of their modcase without logging in to MASZ."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Use correct bot prefix.",
-        "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
-      },      
-      {
-        "title": "Improved help command.",
-        "description": "Help command now displays parameters more intuitive. More help for durations and user parameters."
-      },
-      {
-        "title": "Intuitive dates.",
-        "description": "The bot now uses a months abbreviated name instead of a number to ensure a less error-prone transmission of information."
-      },
-      {
-        "title": "Fixed multiple files upload.",
-        "description": "Fixed a bug that uploaded files several times if the upload button was used more than once."
-      },
-      {
-        "title": "Better error messages for $warn and $kick.",
-        "description": "API error will now be displayed if $warn or $kick is used."
-      }
-    ],
-    "technical": [
-      {
-        "title": "RestSharp.",
-        "description": "Upgraded RestSharp to v106.12.0"
-      }
-    ]
-  },
-  {
-    "title": "Version 1.11.7",
-    "version": "v1.11.7",
-    "released_at": "2021-07-06",
-    "features": [
-      {
-        "title": "Styled patchnotes.",
-        "description": "Patchnotes got a brand new style."
-      },
-      {
-        "title": "Custom word filter.",
-        "description": "Added a custom word filter for automoderation."
-      },
-      {
-        "title": "More complexe help.",
-        "description": "Added help pages for each command to the discordbot."
-      },
-      {
-        "title": "Temporary punishments.",
-        "description": "Added a tempban and tempmute command to the discordbot."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "404 - Page.",
-        "description": "Added a cool picture to the 404 error page."
-      },
-      {
-        "title": "Automoderation bugged.",
-        "description": "A bug was fixed that prevented the display of the automod event log."
-      },
-      {
-        "title": "Case creation info.",
-        "description": "Added more information about the case creation type to the modcase view."
-      }
-    ]
-  },
-  {
-    "title": "Version 1.11.6",
-    "version": "v1.11.6",
-    "features": [
-      {
-        "title": "Clear cache button.",
-        "description": "Added a button on the insight page that allows siteadmins to control the backend discord cache."
-      }
-    ],
-    "fixes": [
-      {
-        "title": "Error messages.",
-        "description": "Adjusted some error messages to be clearer."
-      }
-    ]
-  },
-  {
-    "title": "Version 1.11.5",
-    "version": "v1.11.5",
-    "changes": [
-      "Fixed dependency vulnerabilities.",
-      "Allowing discordapp.com and discord.com as webhooks in guildconfig."
-    ]
-  },
-  {
-    "title": "Version 1.11.4.1",
-    "version": "v1.11.4.1",
-    "changes": [
-      "Fixes a bug in auto whois."
-    ]
-  },
-  {
-    "title": "Version 1.11.4",
-    "version": "v1.11.4",
-    "changes": [
-      "Added visualized adminstats (insights).",
-      "Added whois on memberjoin configurable in guildconfig (thanks to Bricksmaster#7130).",
-      "Fixed a bug during guild registration."
-    ]
-  },
-  {
-    "title": "Version 1.11.3",
-    "version": "v1.11.3",
-    "changes": [
-      "Added strict permission checks (thanks to Flix#8361).",
-      "Added more information to adminstats endpoint.",
-      "Added navbar link to adminstats endpoint (siteadmin only)."
-    ]
-  },
-  {
-    "title": "Version 1.11.2",
-    "version": "v1.11.2",
-    "changes": [
-      "Loading guild overview content lazy.",
-      "Added more information to adminstats endpoint.",
-      "Improved case dialog - Trimming userid.",
-      "Added internal notifications for usernotes and usermappings.",
-      "Header in toolbar now redirects to guild list."
-    ]
-  },
-  {
-    "title": "Version 1.11.1",
-    "version": "v1.11.1",
-    "changes": [
-      "Fixed userscan for multiple invites of same person.",
-      "No longer automuting on rejoin and case that is marked to be deleted.",
-      "Fixed a bug that did not correctly sort the expiring punishment table.",
-      "Added usernotes.",
-      "Added usermappings.",
-      "Added more information to guildstats on dashboard."
-    ]
-  },
-  {
-    "title": "Version 1.11",
-    "version": "v1.11",
-    "changes": [
-      "Added the userscan feature.",
-      "Added invite tracking.",
-      "Fixed automods for nitro emotes.",
-      "Fixed reapply of muted role on rejoin.",
-      "Added more stats to the adminstats endpoint.",
-      "Added invite information to whois command."
-    ]
-  },
-  {
-    "title": "Version 1.10.2",
-    "version": "v1.10.2",
-    "changes": [
-      "Minor styling fixes in case view.",
-      "Added option to delete cases that are in the bin as siteadmin.",
-      "Guildlist is now centered."
-    ]
-  },
-  {
-    "title": "Version 1.10.1",
-    "version": "v1.10.1",
-    "changes": [
-      "Minor styling fixes.",
-      "Added GitHub link to navbar.",
-      "Reworked caching behavior for guilds with many cases.",
-      "Improved backend performance especially for case creation.",
-      "Added report command to features command.",
-      "Added option to delete templates.",
-      "Added autorefresh for files after case creation.",
-      "Fixed a bug that made the bot unresponsive.",
-      "Improved quicksearch algorithm.",
-      "Added full API token support."
-    ]
-  },
-  {
-    "title": "Version 1.10 - Website Redesign",
-    "version": "v1.10",
-    "changes": [
-      "Reworked website design.",
-      "Combined modcase and punishment table",
-      "Allowing multiple roles for admins, moderators, and muted punishment.",
-      "Added pie chart for automoderation type analysis.",
-      "Fixed a bug that crashed adminstats endpoint.",
-      "Added newest comments list to dashboard.",
-      "Added robots.txt for search engines.",
-      "Improved google lighthouse rating.",
-      "Modcase comments are now lockable by moderators to prevent spam.",
-      "Added report command when replying on messages.",
-      "Added bin system for modcases, after 7 days cases are deleted."
-    ]
-  },
-  {
-    "title": "Version 1.9.1",
-    "version": "v1.9.1",
-    "changes": [
-      "Fixed bug that displayed configured punishments for automoderations wrong.",
-      "Adjusted styling of navbar.",
-      "Added more information to internal automod notification embed."
-    ]
-  },
-  {
-    "title": "Version 1.9 Dashboard",
-    "version": "v1.9",
-    "changes": [
-      "Added dashboard view for moderators and admins.",
-      "Added loading spinner during login.",
-      "Correctly redirect to requested url after login.",
-      "Adjusted webhook notifications."
-    ]
-  },
-  {
-    "title": "Version 1.8.3",
-    "version": "v1.8.3",
-    "changes": [
-      "Removed prettyhelp from discordbot.",
-      "Added update information for siteadmins in navbar.",
-      "Fixed performance issue during case creation.",
-      "Fixed sorting of role list during guild register."
-    ]
-  },
-  {
-    "title": "Version 1.8.2",
-    "version": "v1.8.2",
-    "changes": [
-      "Adjusted texts and images on front and donation page.",
-      "Added auto caching of guild members on guildconfig creation.",
-      "Fixed problem with browser caching by including angular output hashing."
-    ]
-  },
-  {
-    "title": "Version 1.8.1",
-    "version": "v1.8.1",
-    "changes": [
-      "Removed kick permissions from permanent filter.",
-      "Rearranged buttons in case creation.",
-      "Added adminstats endpoint for internal insights.",
-      "Fixed html escape issue in case description.",
-      "Added bot commands to create cases via discord.",
-      "Now allowing @user, username and id in $whois command.",
-      "Updated discord.py to version 1.6",
-      "Improved backend caching and ratelimit handling.",
-      "Added backend modcase search.",
-      "Reworked case table and search.",
-      "Fixed exposed docker port.",
-      "Removed stats endpoint.",
-      "Added case templates.",
-      "Improved filesystem security.",
-      "Changed font to 'Ubuntu'.",
-      "Added donation tab.",
-      "Now showing navbar without login.",
-      "Reworked index page.",
-      "Fixed color in dark theme datepicker."
-    ]
-  },
-  {
-    "title": "Version 1.8",
-    "version": "v1.8",
-    "changes": [
-      "Fixed automoderation on message update.",
-      "Fixed error if user declines private messages by discordbot.",
-      "Including channel id in automoderation case description.",
-      "Fixed styling issues with browser input autocomplete.",
-      "Added feature to edit comments.",
-      "Added automoderation for emotes, mentions, embeds and attachments.",
-      "Added staff webhook notification for automoderation.",
-      "Fixed tabtitle.",
-      "Added information about creation type to modcases.",
-      "Added filter options to modcase table.",
-      "Added autolink to other cases in case description.",
-      "Added dm notification on case creation and edit.",
-      "Added loading spinner during case creation to avoid confusion on long taking api request.",
-      "Improved backend ratelimit and caching.",
-      "Guildconfig is now editable by guild admins.",
-      "Files are now uploadable during case creation."
-    ]
-  },
-  {
-    "title": "Version 1.7.3.1",
-    "version": "v1.7.3.1",
-    "changes": [
-      "Fixed display of long nicknames in case view",
-      "Correctly reloading member nickname on case creation."
-    ]
-  },
-  {
-    "title": "Version 1.7.3",
-    "version": "v1.7.3",
-    "changes": [
-      "Guildmembers are now selectable by name during case creation.",
-      "Reworked case view design.",
-      "Removing special characters from filenames to ensure availability.",
-      "Removed severity field.",
-      "Rearranged buttons for guild edit/delete.",
-      "Added form validation during case creation.",
-      "Added loading spinners to most pages."
-    ]
-  },
-  {
-    "title": "Version 1.7.2",
-    "version": "v1.7.2",
-    "changes": [
-      "Reworked readme description of MASZ.",
-      "Reworked case list, now showing profil pictures too.",
-      "No showing current user info in case view.",
-      "Added discriminator to modcase model.",
-      "Added backend caching for Discord API.",
-      "Optimized overall caching.",
-      "Improved search for modcases.",
-      "Now showing inactive punishments in a different color.",
-      "Added description field to public announcement embed."
-    ]
-  },
-  {
-    "title": "Version 1.7.1",
-    "version": "v1.7.1",
-    "changes": [
-      "Improved mobile frontend experience.",
-      "Added more precise specification of software requirements for masz.",
-      "Removed unneeded apache files from old php setup.",
-      "Now correctly reapplies muted role on member rejoin.",
-      "Fixed a bug where banned guilds are not displayed correctly.",
-      "Improved UX during guild register.",
-      "Added loading spinner on index page."
-    ]
-  },
-  {
-    "title": "Version 1.7 Angular Rework",
-    "version": "v1.7",
-    "changes": [
-      "Reworked frontend. Now using Angular instead of PHP.",
-      "Fixed some link issues in announcement embeds.",
-      "Fixed date format in announcement embed.",
-      "Fixed wrong punishment due to Chrome Autotranslate."
-    ]
-  },
-  {
-    "title": "Version 1.6 Automoderation",
-    "version": "v1.6",
-    "changes": [
-      "Fixed sorting in modcase table.",
-      "Reworked notification system. Now using JQuery Toast.",
-      "Fixed style in guild register dialog.",
-      "Added automoderation feature.",
-      "Added invite command.",
-      "Fixed url for default profil pictures in announcement.",
-      "Fixed output of register command in DMs.",
-      "Added information of punishment duration in announcement embed."
-    ]
-  },
-  {
-    "title": "Version 1.5.1",
-    "version": "v1.5.1",
-    "changes": [
-      "Fixed link in announcement embeds.",
-      "Now limiting the description in case overview list so buttons do not bug.",
-      "Added info about command arguments in help command.",
-      "Also add label after pressing enter."
-    ]
-  },
-  {
-    "title": "Version 1.5",
-    "version": "v1.5",
-    "changes": [
-      "Added pretty help command to discord bot.",
-      "Added url command to discord bot.",
-      "Added feature command to discord bot.",
-      "Added register command to discord bot.",
-      "Added whois command to discord bot.",
-      "Added more style to the register guild form.",
-      "Now ignoring spaces in user id while creating cases.",
-      "Reapplying muted role if user rejoins guild.",
-      "Reworked dark mode."
-    ]
-  },
-  {
-    "title": "Version 1.4",
-    "version": "v1.4",
-    "changes": [
-      "Added discord username to announcements.",
-      "Files are now removed on guild deletion if wanted.",
-      "Improved guild deletion form.",
-      "Using correct permissions on guild invite link.",
-      "Added webhook notification for files.",
-      "Added more information to all webhook notifications.",
-      "Added simple discord bot.",
-      "Fixed rate limit for assets.",
-      "You can no longer create cases against site admins."
-    ]
-  },
-  {
-    "title": "Version 1.3 - Fileupload",
-    "version": "v1.3",
-    "changes": [
-      "Added suggestions and first steps tips.",
-      "Added file uploads in case overview.",
-      "Reworked case overview into tab system.",
-      "Added toggle for suggestions in the settings tab."
-    ]
-  },
-  {
-    "title": "Version 1.2 - Automated punishment",
-    "version": "v1.2",
-    "changes": [
-      "Added form to delete and edit guild configuration via frontend.",
-      "Public announcement embeds do not contain case description anymore.",
-      "Added DatePicker to case forms.",
-      "Reworked display of case details.",
-      "Added automated punishments that get handled by backend.",
-      "Added punishment tab that displays all current punishments."
-    ]
-  },
-  {
-    "title": "Version 1.1 - Darkmode",
-    "version": "v1.1",
-    "changes": [
-      "Reworked dialog to register guilds.",
-      "Fixed a bug that occures if the bot gets removed from a registered guild.",
-      "Added default darkmode. Toggleable in settings top right corner.",
-      "Fixed unstyled checkbox."
-    ]
-  },
-  {
-    "title": "Version 1.0 - First major release",
-    "version": "v1.0",
-    "changes": [
-      "Added support for default discord user avatar.",
-      "Added modcase comments.",
-      "Login now correctly returns to the requested url.",
-      "It is now possible to delete modcases via frontend.",
-      "Fixed query filters in case overview."
-    ]
-  },
-  {
-    "title": "Version 0.4",
-    "version": "v0.4",
-    "changes": [
-      "Added button for moderators to view all cases they created",
-      "Added info box if modcases are viewed as normal member without special permissions.",
-      "ModCases are now editable.",
-      "Added more info and content to login page.",
-      "Fixed a bug that many fields in modcases could be edited to be null or empty.",
-      "Fixed edit form to display 'EDIT CASE' instead of 'CREATE CASE'"
-    ]
-  },
-  {
-    "title": "Version 0.3",
-    "version": "v0.3",
-    "changes": [
-      "Added form to register guilds via frontend.",
-      "Fixed a bug that modcase labels could be duplicated.",
-      "Added choice dropdown for the punishment field in case creation",
-      "Added choice dropdown for the severity field in case creation.",
-      "Now displaying the correct case id in the tab title.",
-      "'See more patch notes here.' now redirects to github release page.",
-      "The OAuth login no longer opens in a new tab."
-    ]
-  },
-  {
-    "title": "Version 0.2",
-    "version": "v0.2",
-    "changes": [
-      "Fixed display of last moderator id.",
-      "Added search field for modcase table.",
-      "Added option to use labels properly on case creation."
-    ]
-  },
-  {
-    "title": "Version 0.1",
-    "version": "v0.1",
-    "changes": [
-      "Added logout option in the profile dropdown.",
-      "No longer accepting modcases for Discord bots.",
-      "Only show edit/delete/create buttons if user is a moderator or admin."
-    ]
-  },
-  {
-    "title": "Added Patch Notes",
-    "version": "v0.0",
-    "changes": ["Added Patch Notes."]
-  }
+    {
+        "title": "Version 3.5.0",
+        "version": "v3.5.0",
+        "released_at": "2023-09-08",
+        "contributors": [
+            {
+                "name": "UponAnonymous",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            },
+            {
+                "name": "Allan Efendic",
+                "link": "https://github.com/alefDev-prog",
+                "icon": "https://avatars.githubusercontent.com/u/114575583?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "Removed discriminators",
+                "description": "Discriminators have been removed from the codebase in favor of Discords username change."
+            }
+        ],
+        "features": [
+            {
+                "title": "Added experimental message cache.",
+                "description": "This new message cache should reduce the number of missing message content in the auditlog on deleted and updated messages. Use ENABLE_EXPERIMENTAL_MESSAGE_CACHE=true to enable it."
+            },
+            {
+                "title": "Added dutch translations.",
+                "description": "Added dutch (NL) translations for MASZ."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed time input validation in case creation.",
+                "description": "29:xx is no longer a valid time input. 20:xx is now a valid time input."
+            },
+            {
+                "title": "Fixed wrong punishment duration in case creation.",
+                "description": "If you entered a wrong time input, the punishment duration was set to permanent. This has been fixed."
+            },
+            {
+                "title": "Fixed automod logging.",
+                "description": "If the message content was too large, some automod embeds failed to be sent. This has been fixed."
+            },
+            {
+                "title": "Correctly link evidence.",
+                "description": "The linking of evidence for automods and via the frontend has been fixed."
+            },
+            {
+                "title": "Fixed invite automod for markdown.",
+                "description": "Invites sent within the new markdown syntax are now correctly parsed and no longer trigger a false positive on whitelisted guilds."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Last release.",
+                "description": "This is the last release of MASZ for the foreseeable future. If you want to step in as a maintainer, please contact me via Discord. If you want to support me, you can do so on ko-fi: https://ko-fi.com/zaanposni"
+            }
+        ]
+    },
+    {
+        "title": "Version 3.4.1",
+        "version": "v3.4.1",
+        "released_at": "2023-03-04",
+        "features": [
+            {
+                "title": "Quick select for punishment durations.",
+                "description": "You can now quickly select default punishment durations while creating or editing a case."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Unified action buttons in table views.",
+                "description": "All action buttons in table views now have a unified style."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.4.0",
+        "version": "v3.4.0",
+        "released_at": "2023-01-09",
+        "contributors": [
+            {
+                "name": "Simply-Cods",
+                "link": "https://github.com/Simply-Cods",
+                "icon": "https://avatars.githubusercontent.com/u/79521176?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "Verified Evidence.",
+                "description": "You can now save Discord messages in MASZ. They can be linked to multiple cases as verified evidence.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/562"
+            },
+            {
+                "title": "Whois as user context command.",
+                "description": "You can now use the whois command as a user context command."
+            },
+            {
+                "title": "Import existing bans.",
+                "description": "You can now choose again to import existing bans from your guild while registering it."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.3.0",
+        "version": "v3.3.0",
+        "released_at": "2022-12-28",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            },
+            {
+                "name": "Kye",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            },
+            {
+                "name": "Sai-Tamazaki",
+                "link": "https://github.com/Sai-Tamazaki",
+                "icon": "https://avatars.githubusercontent.com/u/121161129?v=4"
+            },
+            {
+                "name": "Simply-Cods",
+                "link": "https://github.com/Simply-Cods",
+                "icon": "https://avatars.githubusercontent.com/u/79521176?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "Filter guilds on \"register guild\" dialog.",
+                "description": "The \"register guild\" dialog now has a search bar to filter guilds by name.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/547"
+            },
+            {
+                "title": "Better application command handling for unregistered guilds.",
+                "description": "Application commands are now only registered for registered guilds. If you cannot use your application commands, try to readd the bot to your discord guild.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/551"
+            },
+            {
+                "title": "Translated slash commands.",
+                "description": "The slash commands are now translated to the guilds language.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/556"
+            },
+            {
+                "title": "Custom bot status.",
+                "description": "The server admin can now configure a custom bot status in their env file.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/563"
+            },
+            {
+                "title": "Added Phishing automod.",
+                "description": "Uses a popular phishing link collection and pihole lists to filter links in your guild. Not yet tested, use at your own risk, please report any problems to the MASZ developers.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/557"
+            },
+            {
+                "title": "Mentions in case description.",
+                "description": "You can now mention users, channels and roles in case description like you would in Discord.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/566"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed public notification webhook when editing a modcase.",
+                "description": "Fixed a bug where the public notification would always be send when editing a modcase.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/550"
+            },
+            {
+                "title": "Fixed css bugs in auditlog configuration.",
+                "description": "Fixed a content shift css bug in the auditlog configuration.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/552"
+            },
+            {
+                "title": "Discord links are now whitelisted from the invite automod.",
+                "description": "Discord resources like \"discord.com/terms\" are now whitelisted from the invite automod.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/559"
+            },
+            {
+                "title": "Fixed timestamp for deleted and updated messages guildauditlog.",
+                "description": "MASZ now correctly uses the UTC timestamp to display the message creation datetime.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/565"
+            },
+            {
+                "title": "Improved german translations.",
+                "description": "The german translations have been greatly improved.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/569"
+            }
+        ],
+        "technical": [
+            {
+                "title": "Added telemetry service.",
+                "description": "This release adds a opt-in telemetry data collection. Data is collected anonymously and only used to improve MASZ. The server admin can opt-in to this by using \"ENABLE_TELEMETRY=true\" in their environment file."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.2.1",
+        "version": "v3.2.1",
+        "released_at": "2022-11-12",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed internal server error for channel API.",
+                "description": "A bug has been fixed that caused channel lists to be empty or fail, if the guild has a forum channel."
+            },
+            {
+                "title": "Fixed reaction added guild auditlog filter.",
+                "description": "The reaction added guild auditlog did not correctly respect the filtered channels."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Correctly request message content intent.",
+                "description": "MASZ will now correctly use the message content intent when connecting to the Discord API."
+            },
+            {
+                "title": "Removed demo instance from readme and website.",
+                "description": "The demo instance of MASZ will be shut down soon. The links to the demo instance have been removed from the readme and website."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.2.0",
+        "version": "v3.2.0",
+        "released_at": "2022-09-01",
+        "contributors": [],
+        "features": [
+            {
+                "title": "Support for voice text channels.",
+                "description": "MASZ now supports voice text channels for automoderation and audit logging.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/543"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Correctly handle missing vanity url.",
+                "description": "In some cases, a missing vanity invite url, caused the invite tracking to fail. This has been fixed."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Discord message content intent.",
+                "description": "Discords message content intent has been enabled today. MASZ should handle blank messages correctly, but if you want to use message related features just as audit logging or automoderation, make sure to enable the message content intent in your bots settings.",
+                "link": "https://discord.com/developers/applications"
+            }
+        ]
+    },
+    {
+        "title": "Version 3.1.3",
+        "version": "v3.1.3",
+        "released_at": "2022-08-20",
+        "contributors": [],
+        "features": [
+            {
+                "title": "Add the current guild to the header.",
+                "description": "The current guild is now displayed in the header while navigating through the dashboard.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/540"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed templates endpoint.",
+                "description": "Templates failed to load if there was an unregistered guild in the database."
+            },
+            {
+                "title": "Too many attachments automod webhook failed.",
+                "description": "If the automoderated message had no content, the generated embed was invalid and thus the internal webhook failed.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/539"
+            }
+        ]
+    },
+    {
+        "title": "Version 3.1.2",
+        "version": "v3.1.2",
+        "released_at": "2022-07-16",
+        "contributors": [],
+        "technical": [
+            {
+                "title": "Upgraded svelte package.",
+                "description": "Upgraded the npm svelte package to a newer version to fix a vulnerability."
+            },
+            {
+                "title": "Upgraded moment package.",
+                "description": "Upgraded the npm moment package to a newer version to fix a vulnerability."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.1.1",
+        "version": "v3.1.1",
+        "released_at": "2022-06-26",
+        "contributors": [],
+        "fixes": [
+            {
+                "title": "Improve invite tracking.",
+                "description": "Failed invite tracking should now result in better logging."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.1.0",
+        "version": "v3.1.0",
+        "released_at": "2022-06-25",
+        "contributors": [],
+        "features": [
+            {
+                "title": "Delete files in case creation",
+                "description": "You can now remove files if you choose to upload them accidentally.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/530"
+            },
+            {
+                "title": "Added zalgo mode",
+                "description": "Guild admins can enable the zalgo mode. This mode will automatically rename everyone with zalgo characters to improve readability on your server.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/524"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Improved error message on empty state of dashboard widgets.",
+                "description": "Dashboard widgets will now show a detailed error instead of \"This is not the widget you are looking for\".",
+                "link": "https://github.com/zaanposni/discord-masz/issues/529"
+            },
+            {
+                "title": "Update cache on channel updates.",
+                "description": "Even more changes in Discord (channel create, channel update, channel delete) are now transferred to MASZ' cache.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/527"
+            }
+        ]
+    },
+    {
+        "title": "Version 3.0.3",
+        "version": "v3.0.3",
+        "released_at": "2022-06-07",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Correctly respond to slash commands.",
+                "description": "A bug has been fixed that caused slash command responses to fail."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.0.2",
+        "version": "v3.0.2",
+        "released_at": "2022-06-05",
+        "contributors": [
+            {
+                "name": "Kye",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Use correct date format.",
+                "description": "A bug has been fixed that caused a wrong date format in case creation/edit, scheduled message dialog and appeal edit."
+            },
+            {
+                "title": "Filter and sort channels in scheduled message dialog.",
+                "description": "Guild channels are now filtered and sorted correctly. It could happen that voice channels were selectable in the scheduled message dialog."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.0.1",
+        "version": "v3.0.1",
+        "released_at": "2022-06-05",
+        "contributors": [
+            {
+                "name": "Kye",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed a breaking bug in the creation and editing of cases.",
+                "description": "A bug that could have rendered the case creation useless has been fixed."
+            }
+        ]
+    },
+    {
+        "title": "Version 3.0.0",
+        "version": "v3.0.0",
+        "released_at": "2022-06-04",
+        "contributors": [
+            {
+                "name": "Kye",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            },
+            {
+                "name": "Bricksmaster",
+                "link": "https://github.com/Bricksmaster",
+                "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "Admins can delete cases.",
+                "description": "Guild admins can now perma delete cases."
+            }
+        ],
+        "features": [
+            {
+                "title": "Completely reworked the frontend.",
+                "description": "MASZ now has a new UI using svelte, carbon design and tailwind. I guess it might be too much to summarize here.",
+                "link": "https://ko-fi.com/zaanposni"
+            },
+            {
+                "title": "Added timeouts.",
+                "description": "If no mute roles are defined, MASZ will use discords timeout functionality.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/476"
+            },
+            {
+                "title": "Paste images from clipboard to case.",
+                "description": "You can now paste files in your clipboard during case creation.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/519"
+            },
+            {
+                "title": "Filter for automods.",
+                "description": "You can now use filters in the automods table."
+            },
+            {
+                "title": "Antiraid command.",
+                "description": "The slash command /antiraid allows you to quickly timeout a user and delete all his recent messages from the server.",
+                "link": "https://github.com/zaanposni/discord-masz/issues/487"
+            }
+        ]
+    },
+    {
+        "title": "Version 2.7.0",
+        "version": "v2.7.0",
+        "released_at": "2022-03-12",
+        "contributors": [
+            {
+                "name": "Bricksmaster",
+                "link": "https://github.com/Bricksmaster",
+                "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+            },
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            },
+            {
+                "name": "FeroxFoxxo",
+                "link": "https://github.com/FeroxFoxxo",
+                "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
+            },
+            {
+                "name": "Kye",
+                "link": "https://github.com/UponAnonymous",
+                "icon": "https://avatars.githubusercontent.com/u/27465814?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "Show full message in guild auditlog,",
+                "description": "The auditlog now shows the full message of the audit log entry, instead of just the first few words."
+            },
+            {
+                "title": "Use application name in tab title.",
+                "description": "The tab title now shows the application name instead of the default \"MASZ\".",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/492"
+            },
+            {
+                "title": "Added more guild auditlog scopes.",
+                "description": "You can now create auditlogs for voice activity and message reactions."
+            },
+            {
+                "title": "Show icon in discord embed.",
+                "description": "The discord embed now shows the icon of the application if configured.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/503"
+            },
+            {
+                "title": "Ban appeals.",
+                "description": "The ability to create and manage ban appeals is now available. You can create a ban appeal questionnaire in your guild settings. You can also define how long a user has to wait before creating ban appeals in your guildconfig."
+            },
+            {
+                "title": "Added public embed mode for guilds.",
+                "description": "When activated, linking a modcase in discord will now display some general information about this modcase in the embed.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/502"
+            },
+            {
+                "title": "Ignore rules on guild auditlogs.",
+                "description": "You can now ignore certain roles or channels in the guild auditlog similiar to the filters in automods.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/504"
+            },
+            {
+                "title": "Timeout in automod.",
+                "description": "You can now choose a timeout for the punishment of automods. This is useful if you want to punish a user without creating a modcase."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed webhook validator.",
+                "description": "The webhook validator was not working properly. It was causing the webhook to fail to validate."
+            },
+            {
+                "title": "Fixed automod and guildtips embed.",
+                "description": "The automod and guildtips embeds were not showing the correct information."
+            },
+            {
+                "title": "Fixed max upload size.",
+                "description": "The max upload size was not being disabled correctly. Please remember that you need to limit it in your own reverse proxy.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/498"
+            },
+            {
+                "title": "Fix userscan for \"ghost\" guilds.",
+                "description": "If the bot was not in a guild that was registered in MASZ, the userscan crashed.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/497"
+            },
+            {
+                "title": "Scheduled messages deleted on guild delete.",
+                "description": "When deleting a guild, MASZ will now correctly remove scheduled messages as well."
+            },
+            {
+                "title": "Fixed search in usernote and usermap.",
+                "description": "The search in usernote and usermap was not working properly when used more than one time.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/491"
+            },
+            {
+                "title": "Improved alginment of guild names and edit buttons in the toolbar.",
+                "description": "The alignment of the guild names and edit buttons in the toolbar was not correct.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/493"
+            },
+            {
+                "title": "Mention user in usermap embed.",
+                "description": "The usermap embed now mentions the user in the embed.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/500"
+            },
+            {
+                "title": "Fixed invite autmod for events.",
+                "description": "The invite autmod for events now works as intended."
+            },
+            {
+                "title": "Fixed text breaking and alignment in automod table.",
+                "description": "The text breaking and alignment in the automod table was not correct and overflowed in the right border of your screen."
+            },
+            {
+                "title": "Fixed duplicated guild tabs.",
+                "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Node docker image.",
+                "description": "The frontend docker image was updated to the LTS version of node."
+            },
+            {
+                "title": "Adjust linking to container in nginx.",
+                "description": "Nginx now redirects requests to http://backend instead of http://masz_backend. If you have a locally adjusted MASZ setup, this might be an issue for you.",
+                "icon": "visiblity",
+                "link": "https://github.com/zaanposni/discord-masz/commit/92f569bbb0130e8d236d3040a24df4c7b960b3af"
+            }
+        ]
+    },
+    {
+        "title": "Version 2.6.0",
+        "version": "v2.6.0",
+        "released_at": "2022-01-23",
+        "contributors": [
+            {
+                "name": "Bricksmaster",
+                "link": "https://github.com/Bricksmaster",
+                "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+            },
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            },
+            {
+                "name": "TrissieTheHusky",
+                "link": "https://github.com/TrissieTheHusky",
+                "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "Some env vars have been moved to the appsettings tab.",
+                "description": "The default language, auditlog webhook url and public file mode settings have been moved to the appsettings tab. The env vars will be ignored."
+            }
+        ],
+        "features": [
+            {
+                "title": "Internal notification for say command.",
+                "description": "The bot will now send a notification to the internal webhook when a moderator uses the say command.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/479"
+            },
+            {
+                "title": "Add more parameters to the appsettings.",
+                "description": "Default language, auditlog webhoook url and public file mode are now adjustable through the appsettings tab. Please note that this is a breaking change and may require reconfiguration by a siteadmin."
+            },
+            {
+                "title": "Added status command.",
+                "description": "A status command has been added that displays the current state of the application, similiar to the insights tab.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/486"
+            },
+            {
+                "title": "Added scheduled message announcements.",
+                "description": "A scheduled message announcement has been added that allows you to send a message to a channel at a specific time. This is useful for announcing events.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/479"
+            },
+            {
+                "title": "Added case label autocompletion.",
+                "description": "While creating or editing cases MASZ will now display choices for case labels based on already existing case labels.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/489"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Delete auditlog config on guild delete.",
+                "description": "If you delete a guild and choose to delete its content, the guilds auditlog config will be deleted as well.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/482"
+            },
+            {
+                "title": "Fixed duplicated guild tabs.",
+                "description": "Fixed a bug that caused duplicated guild tabs to occure after guild registration or swapping the current guild via the toolbar too fast."
+            },
+            {
+                "title": "Fixed case template access permissions.",
+                "description": "Fixed a bug that prevented users from accessing their own case templates.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/485"
+            },
+            {
+                "title": "Fixed case template search.",
+                "description": "Fixed a bug that caused case template searching to fail.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/485"
+            },
+            {
+                "title": "Fixed case template creation permissions.",
+                "description": "Fixed a case where some users could create case templates eventhough they were no moderator and thus not allowed to do that."
+            },
+            {
+                "title": "Improved modcase creation dialog.",
+                "description": "Removed unneeded \"back\" button at the start of the case creation dialog."
+            },
+            {
+                "title": "Fixed application startup process.",
+                "description": "Two bugs in the applications startup process have been fixed that caused the app to not work properly and eventually crash"
+            },
+            {
+                "title": "Fixed NRE in unban procedure.",
+                "description": "Fixed a caching issue during the unban procedure that occurred when a user was unbanned before MASZ tries to unban him."
+            },
+            {
+                "title": "Removed case bin.",
+                "description": "The case bin tab has been removed since the new filters in the modcase table can do the same thing."
+            }
+        ]
+    },
+    {
+        "title": "Version 2.5.0",
+        "version": "v2.5.0",
+        "released_at": "2021-12-31",
+        "contributors": [
+            {
+                "name": "FeroxFoxxo",
+                "link": "https://github.com/FeroxFoxxo",
+                "icon": "https://avatars.githubusercontent.com/u/51069105?v=4"
+            },
+            {
+                "name": "TrissieTheHusky",
+                "link": "https://github.com/TrissieTheHusky",
+                "icon": "https://avatars.githubusercontent.com/u/48584735?v=4"
+            },
+            {
+                "name": "Bricksmaster",
+                "link": "https://github.com/Bricksmaster",
+                "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "Removed upload size cap.",
+                "description": "The limit of 10MB has been removed. Please add this to your own reverse proxy as you see fit."
+            },
+            {
+                "title": "Reworked plugin system.",
+                "description": "As part of the changes stated in the technical section, the plugin system has been reworked. You might need to adjust your existing plugins. If you need any help, feel free to contact me on Discord."
+            }
+        ],
+        "features": [
+            {
+                "title": "Added version info to insights tab.",
+                "description": "The insights tab will now display the currently deployed version."
+            },
+            {
+                "title": "Added reasoning for discord audit logs.",
+                "description": "The reason of a punishment will now be displayed in discords audit log.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/469"
+            },
+            {
+                "title": "Added import of existing bans on guild register.",
+                "description": "You can now import existing bans on guild register. Those will not trigger announcements or dm notification but will be added to the database.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/475"
+            },
+            {
+                "title": "Added more internal notifications.",
+                "description": "Your internal webhook will now receive further notifications about automod auditlog or motd changes.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/474"
+            },
+            {
+                "title": "Change content of website embed.",
+                "description": "Siteadmins can now edit the content that is displayed in the website embed. Head over to the new settings tab to do so."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed search in multi select.",
+                "description": "A bug was fixed that corrupted selected elements in the multi select when using the search."
+            },
+            {
+                "title": "Fixed display of comment locked status.",
+                "description": "A bug was fixed that caused the comment locked status to not be displayed correctly.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/468"
+            },
+            {
+                "title": "Fixed display of creation type.",
+                "description": "A bug was fixed that caused the creation type of a modcase to not be displayed correctly."
+            },
+            {
+                "title": "Fixed switch of guild in guild edit view.",
+                "description": "A bug was fixed that caused the guild edit view to not refresh if the guild was switched via the taskbar.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/473"
+            },
+            {
+                "title": "fix multiple endpoint matching.",
+                "description": "A bug was fixed that caused internal server errors on certain ambiguous routes."
+            },
+            {
+                "title": "Updated documentation.",
+                "description": "The documentation on OAuth redirect urls has been improved."
+            }
+        ],
+        "technical": [
+            {
+                "title": "MASZ now uses \"Discord.NET\".",
+                "description": "MASZ now uses the library Discord.NET instead of DSharpPlus as the latter one had major caching issues."
+            },
+            {
+                "title": "Upgraded to .NET 6.",
+                "description": "MASZ now uses .NET 6 which is a LTS version."
+            }
+        ]
+    },
+    {
+        "title": "Version 2.4.0",
+        "version": "v2.4.0",
+        "released_at": "2021-12-15",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "Use bot icon instead of default.",
+                "description": "Your bot icon will now also replace the image on the login page as well as the websites favicon.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/454"
+            },
+            {
+                "title": "Advanced modcase table filters.",
+                "description": "You can now filter the modcase table by users, moderators, date values and more.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/455"
+            },
+            {
+                "title": "Added unmute and unban command",
+                "description": "A unmute and unban command has been added which offers you the possibility to delete or deactivate cases of the mentioned user.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/435"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Spaces and newlines in automoderation log.",
+                "description": "Spaces and newlines will now be displayed in the automoderation log view.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/456"
+            },
+            {
+                "title": "Modcase inactivity display.",
+                "description": "A bug was fixed that showed a modcase to be inactive after reactivating it.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/457"
+            }
+        ]
+    },
+    {
+        "title": "Version 2.3.0",
+        "version": "v2.3.0",
+        "released_at": "2021-11-23",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            },
+            {
+                "name": "Bricksmaster",
+                "link": "https://github.com/Bricksmaster",
+                "icon": "https://avatars.githubusercontent.com/u/47327755?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "Added multiple translations.",
+                "description": "Added translations for spanish, italian, french and russian."
+            },
+            {
+                "title": "Copyright notice.",
+                "description": "Added copyright notice in toolbar."
+            },
+            {
+                "title": "Fixed owner permissions.",
+                "description": "An owner of a guild can now do anything."
+            },
+            {
+                "title": "Update warning.",
+                "description": "An update warning in the toolbar has been added.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/444"
+            },
+            {
+                "title": "Inactive cases.",
+                "description": "Cases can now be toggled to be active or inactive, their status is shown in the caseview.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/434"
+            },
+            {
+                "title": "Avatar command.",
+                "description": "Added avatar command, which shows the avatar of the mentioned user."
+            },
+            {
+                "title": "Configurable automod notifications.",
+                "description": "Channel notifications for automods are now configurable."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Fixed X-Forwarded-For header.",
+                "description": "MASZ now correctly uses the X-Forwarded-For header for ip ratelimiting and logging."
+            },
+            {
+                "title": "Adjusted permissions in strict mode.",
+                "description": "Moderators without corresponding permissions can no longer edit modcases in strict mode."
+            },
+            {
+                "title": "Fixed text wrapping for long servernames in toolbar.",
+                "description": ""
+            },
+            {
+                "title": "Adjusted command permissions in strict mode.",
+                "description": "Moderators without corresponding permissions can no longer use punish commands in strict mode."
+            },
+            {
+                "title": "Fixed null value handling for site admins env var.",
+                "description": "MASZ now correctly works without any siteadmins defined."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Reworked Readme.",
+                "description": "Applied current style guides to the readme file. Added a latest version badge to the readme."
+            }
+        ]
+    },
+    {
+        "title": "Version 2.2.0",
+        "version": "v2.2.0",
+        "released_at": "2021-11-06",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "New license.",
+                "description": "MASZ is now licensed under GPLv3.",
+                "icon": "link",
+                "link": "https://choosealicense.com/licenses/gpl-3.0/"
+            },
+            {
+                "title": "Adjusted duplicated character handling.",
+                "description": "The duplicated character automod will no longer trigger on digits and backtick quotes (code blocks)."
+            }
+        ],
+        "features": [
+            {
+                "title": "Thread automod support.",
+                "description": "The bot will now try to join created threads which will allow automoderation in these threads.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/345"
+            },
+            {
+                "title": "Added more punish commands.",
+                "description": "Added more special commands to punish members (warn, kick, mute, ban) in addition to the existing punish command."
+            },
+            {
+                "title": "Guild-levle AuditLog.",
+                "description": "An auditlog on guildlevel has been added for various events (more to come). Enable this in your guilds config tab.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/blob/master/docs/guildauditlog.png"
+            },
+            {
+                "title": "Public file mode.",
+                "description": "An environment variable has been added to expose the file endpoint to unauthorized access. Use \"ENABLE_PUBLIC_FILES=true\" in your .env to enable this."
+            },
+            {
+                "title": "Update warning.",
+                "description": "A warning in the insights tab will notify siteadmins of available updates.",
+                "icon": "link",
+                "link": "https://cdn.discordapp.com/attachments/779446982904905758/904643938500091954/unknown.png"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Select dashboard on guildoverview correctly.",
+                "description": "Fixed a bug where the guild dashboard was not correctly selected on the website."
+            },
+            {
+                "title": "FIxed max count for dashboard charts.",
+                "description": "The max value on the y-Axis is now seperated for automod and modcase charts."
+            },
+            {
+                "title": "Fixed permanent modcases by punish command.",
+                "description": "Fixed a bug where modcases created by the punish command where not permanent."
+            },
+            {
+                "title": "Improved cache and identity handling.",
+                "description": "The internal cache and identities are now getting updated on discord guild events. For example an identity immediately loses permissions as soon as a member loses a moderator role."
+            },
+            {
+                "title": "Improved login/information endpoint.",
+                "description": "The /users/@me endpoint has been improved as it longer needs to check a users banned guilds everytime it is requested."
+            },
+            {
+                "title": "Fixed sorting of roles and channels in automodconfig.",
+                "description": ""
+            },
+            {
+                "title": "Fixed rerendering of automodconfig.",
+                "description": "Fixed a bug where automodconfigs have been rerendered on edits which caused the whole website to flicker."
+            },
+            {
+                "title": "Fixed automod event linked case.",
+                "description": "Fixed a bug where the case of an automoderation was incorrectly linked.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/439"
+            },
+            {
+                "title": "Fixed automod config.",
+                "description": "Fixed a bug where to automod configs custom word field would stay empty after loading the current config."
+            },
+            {
+                "title": "Adjusted wording of punish command.",
+                "description": "Description and parameters have been adjusted to be clearer."
+            },
+            {
+                "title": "Fixed cleanup command.",
+                "description": "The cleanup command will now stop if the channel is empty."
+            },
+            {
+                "title": "Regex exception handling.",
+                "description": "Invalid regex patterns in link and customword automod will no longer crash the automoderator."
+            },
+            {
+                "title": "Adjusted translations.",
+                "description": "Some german translations have been improved."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Docker image tags.",
+                "description": "Image tags will now follow the semantic versioning specification."
+            },
+            {
+                "title": "Run GitHub Action on main repo only.",
+                "description": "This will stop the docker publish action to fail on other repos where it is of no use anyways."
+            }
+        ]
+    },
+    {
+        "title": "Version 2.1.0",
+        "version": "v2.1.0",
+        "released_at": "2021-10-23",
+        "features": [
+            {
+                "title": "Link Automod.",
+                "description": "Added a link automod that triggers on http/https links. You can also allow certain links.",
+                "icon": "code",
+                "link": "https://github.com/zaanposni/discord-masz/issues/417"
+            },
+            {
+                "title": "Duplicated characters Automod.",
+                "description": "Added a automod that triggers on duplicated characters even with linebreaks. This also recognizes \"empty\" messages.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/417"
+            },
+            {
+                "title": "Invite Automod filter.",
+                "description": "Added a filter to the invite automod to allow certain guilds.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/417"
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Improved UX.",
+                "description": "The custom filter field in automod configuration is now bigger so everything is readable."
+            },
+            {
+                "title": "Error on modcase ban create.",
+                "description": "Fixed a bug that caused api calls for ban modcases to fail.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/428"
+            },
+            {
+                "title": "Display of last moderator.",
+                "description": "Fixed a bug where the \"Last edit by moderator...\" field was visible even though there were no edit at all.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/427"
+            },
+            {
+                "title": "Time display",
+                "description": "Adjusted some places on the website where the configured timezone was not used."
+            },
+            {
+                "title": "Improved punish slashcommand",
+                "description": "Renamed warn option from \"None\" to \"Warn\"."
+            }
+        ]
+    },
+    {
+        "title": "Version 2",
+        "version": "v2.0.0",
+        "released_at": "2021-10-16",
+        "gist_feature_link": "https://gist.github.com/zaanposni/340d7f3d313867cda877f3147ff04a53"
+    },
+    {
+        "title": "Version 1.13.1",
+        "version": "v1.13.1",
+        "released_at": "2021-08-29",
+        "contributors": [
+            {
+                "name": "FlixProd",
+                "link": "https://github.com/FlixProd",
+                "icon": "https://avatars.githubusercontent.com/u/68478616?v=4"
+            }
+        ],
+        "breaking": [
+            {
+                "title": "Spam automod uses seconds.",
+                "description": "The spam automoderation now uses seconds instead of minutes. Please change your current configuration if needed."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Cleanup mode choices.",
+                "description": "Added choices to cleanup command to improve UX.",
+                "icon": "code",
+                "link": "https://github.com/zaanposni/discord-masz/pull/399"
+            },
+            {
+                "title": "Fixed errors in track command.",
+                "description": "Command does not longer fail on valid unused invite.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/397"
+            },
+            {
+                "title": "Added error message to report command.",
+                "description": "The report command will now respond with an error if there is no internal webhook configured."
+            },
+            {
+                "title": "Defering commands.",
+                "description": "Slash commands will now be defered if they take too long to avoid errors."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Security warnings.",
+                "description": "Adjusted a nuget dependency to fix vulnerabilities."
+            }
+        ]
+    },
+    {
+        "title": "Version 1.13",
+        "version": "v1.13",
+        "released_at": "2021-08-21",
+        "contributors": [
+            {
+                "name": "BS-scripter",
+                "link": "https://github.com/BS-scripter",
+                "icon": "https://avatars.githubusercontent.com/u/64974851?v=4"
+            },
+            {
+                "name": "knabb215",
+                "link": "https://github.com/knabb215",
+                "icon": "https://avatars.githubusercontent.com/u/16668654?v=4"
+            }
+        ],
+        "features": [
+            {
+                "title": "OAuth error page.",
+                "description": "An error page has been added to catch the failure of the discord oauth login.",
+                "icon": "link",
+                "link": "/oauthfailed"
+            },
+            {
+                "title": "Copy token button.",
+                "description": "A button has been added to copy a new API token to your clipboard."
+            },
+            {
+                "title": "Invitescan.",
+                "description": "Userscanning has been extended to support invites as input as well and is now called \"Scanning\"."
+            },
+            {
+                "title": "Invitetracking command.",
+                "description": "Added the command $track to view insights of an invite on your guild."
+            },
+            {
+                "title": "Spam automoderation.",
+                "description": "Added automoderation for spam. Trigger on x messages in y minutes.",
+                "icon": "code",
+                "link": "https://github.com/zaanposni/discord-masz/pull/352"
+            },
+            {
+                "title": "Mentioning contributors.",
+                "description": "Contributors are now mentioned here. Thank you all <3."
+            },
+            {
+                "title": "Cleanup command.",
+                "description": "Added the command $cleanup to tidy up guild channels."
+            },
+            {
+                "title": "Slash commands.",
+                "description": "MASZ is now supporting slash commands. Be sure to authorize your bot with the \"applications.commands\" scope."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Whois embed.",
+                "description": "Fixed a bug that caused the content of the embed to be too long."
+            },
+            {
+                "title": "Automoderation presentation.",
+                "description": "Swapped icons for attachment and embed automoderation events. I even believe that was never planned to be like this :D"
+            },
+            {
+                "title": "Button misalignment.",
+                "description": "Fixed a css bug that caused the buttons to be aligned incorrectly.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/discord-masz/issues/355"
+            },
+            {
+                "title": "Improved bot logging.",
+                "description": "The logging of the \"masz_discordbot\" container was improved. The library \"rich\" is used now to format logs."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Security warnings.",
+                "description": "Adjusted several npm dependencies to fix vulnerabilities."
+            }
+        ]
+    },
+    {
+        "title": "Version 1.12.1",
+        "version": "v1.12.1",
+        "released_at": "2021-07-31",
+        "features": [
+            {
+                "title": "Guild icons.",
+                "description": "Default and animated guilds are now supported on the website."
+            },
+            {
+                "title": "Links in patchnotes.",
+                "description": "Patchnotes now support links to refer to further resources."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Intuitive dates.",
+                "description": "The website now uses a months name instead of a number to ensure a less error-prone transmission of information."
+            },
+            {
+                "title": "API changes.",
+                "description": "Usernotes are now deletable by userid and not by resource id. Models on PUT, POST and DELETE requests are now fully returned instead of the ID only."
+            }
+        ],
+        "technical": [
+            {
+                "title": "API Wrapper.",
+                "description": "A python library to integrate the MASZ API in your project has been released.",
+                "icon": "link",
+                "link": "https://github.com/zaanposni/masz-api-wrapper"
+            },
+            {
+                "title": "Cookie service.",
+                "description": "MASZ has not been using cookies for quite some time, the code to read cookies has now been removed as well."
+            }
+        ]
+    },
+    {
+        "title": "Version 1.12",
+        "version": "v1.12",
+        "released_at": "2021-07-17",
+        "features": [
+            {
+                "title": "Hide moderator info.",
+                "description": "The publication of moderator information can now be deactivated on guild level."
+            },
+            {
+                "title": "$cases command.",
+                "description": "The new $cases command allows users to view a list of their modcases and active punishments without logging in to MASZ."
+            },
+            {
+                "title": "$view command.",
+                "description": "The new $view command allows users to view details of their modcase without logging in to MASZ."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Use correct bot prefix.",
+                "description": "Bot output and help pages now use configured bot prefix instead of default \"$\"."
+            },
+            {
+                "title": "Improved help command.",
+                "description": "Help command now displays parameters more intuitive. More help for durations and user parameters."
+            },
+            {
+                "title": "Intuitive dates.",
+                "description": "The bot now uses a months abbreviated name instead of a number to ensure a less error-prone transmission of information."
+            },
+            {
+                "title": "Fixed multiple files upload.",
+                "description": "Fixed a bug that uploaded files several times if the upload button was used more than once."
+            },
+            {
+                "title": "Better error messages for $warn and $kick.",
+                "description": "API error will now be displayed if $warn or $kick is used."
+            }
+        ],
+        "technical": [
+            {
+                "title": "RestSharp.",
+                "description": "Upgraded RestSharp to v106.12.0"
+            }
+        ]
+    },
+    {
+        "title": "Version 1.11.7",
+        "version": "v1.11.7",
+        "released_at": "2021-07-06",
+        "features": [
+            {
+                "title": "Styled patchnotes.",
+                "description": "Patchnotes got a brand new style."
+            },
+            {
+                "title": "Custom word filter.",
+                "description": "Added a custom word filter for automoderation."
+            },
+            {
+                "title": "More complexe help.",
+                "description": "Added help pages for each command to the discordbot."
+            },
+            {
+                "title": "Temporary punishments.",
+                "description": "Added a tempban and tempmute command to the discordbot."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "404 - Page.",
+                "description": "Added a cool picture to the 404 error page."
+            },
+            {
+                "title": "Automoderation bugged.",
+                "description": "A bug was fixed that prevented the display of the automod event log."
+            },
+            {
+                "title": "Case creation info.",
+                "description": "Added more information about the case creation type to the modcase view."
+            }
+        ]
+    },
+    {
+        "title": "Version 1.11.6",
+        "version": "v1.11.6",
+        "features": [
+            {
+                "title": "Clear cache button.",
+                "description": "Added a button on the insight page that allows siteadmins to control the backend discord cache."
+            }
+        ],
+        "fixes": [
+            {
+                "title": "Error messages.",
+                "description": "Adjusted some error messages to be clearer."
+            }
+        ]
+    },
+    {
+        "title": "Version 1.11.5",
+        "version": "v1.11.5",
+        "changes": [
+            "Fixed dependency vulnerabilities.",
+            "Allowing discordapp.com and discord.com as webhooks in guildconfig."
+        ]
+    },
+    {
+        "title": "Version 1.11.4.1",
+        "version": "v1.11.4.1",
+        "changes": ["Fixes a bug in auto whois."]
+    },
+    {
+        "title": "Version 1.11.4",
+        "version": "v1.11.4",
+        "changes": [
+            "Added visualized adminstats (insights).",
+            "Added whois on memberjoin configurable in guildconfig (thanks to Bricksmaster#7130).",
+            "Fixed a bug during guild registration."
+        ]
+    },
+    {
+        "title": "Version 1.11.3",
+        "version": "v1.11.3",
+        "changes": [
+            "Added strict permission checks (thanks to Flix#8361).",
+            "Added more information to adminstats endpoint.",
+            "Added navbar link to adminstats endpoint (siteadmin only)."
+        ]
+    },
+    {
+        "title": "Version 1.11.2",
+        "version": "v1.11.2",
+        "changes": [
+            "Loading guild overview content lazy.",
+            "Added more information to adminstats endpoint.",
+            "Improved case dialog - Trimming userid.",
+            "Added internal notifications for usernotes and usermappings.",
+            "Header in toolbar now redirects to guild list."
+        ]
+    },
+    {
+        "title": "Version 1.11.1",
+        "version": "v1.11.1",
+        "changes": [
+            "Fixed userscan for multiple invites of same person.",
+            "No longer automuting on rejoin and case that is marked to be deleted.",
+            "Fixed a bug that did not correctly sort the expiring punishment table.",
+            "Added usernotes.",
+            "Added usermappings.",
+            "Added more information to guildstats on dashboard."
+        ]
+    },
+    {
+        "title": "Version 1.11",
+        "version": "v1.11",
+        "changes": [
+            "Added the userscan feature.",
+            "Added invite tracking.",
+            "Fixed automods for nitro emotes.",
+            "Fixed reapply of muted role on rejoin.",
+            "Added more stats to the adminstats endpoint.",
+            "Added invite information to whois command."
+        ]
+    },
+    {
+        "title": "Version 1.10.2",
+        "version": "v1.10.2",
+        "changes": [
+            "Minor styling fixes in case view.",
+            "Added option to delete cases that are in the bin as siteadmin.",
+            "Guildlist is now centered."
+        ]
+    },
+    {
+        "title": "Version 1.10.1",
+        "version": "v1.10.1",
+        "changes": [
+            "Minor styling fixes.",
+            "Added GitHub link to navbar.",
+            "Reworked caching behavior for guilds with many cases.",
+            "Improved backend performance especially for case creation.",
+            "Added report command to features command.",
+            "Added option to delete templates.",
+            "Added autorefresh for files after case creation.",
+            "Fixed a bug that made the bot unresponsive.",
+            "Improved quicksearch algorithm.",
+            "Added full API token support."
+        ]
+    },
+    {
+        "title": "Version 1.10 - Website Redesign",
+        "version": "v1.10",
+        "changes": [
+            "Reworked website design.",
+            "Combined modcase and punishment table",
+            "Allowing multiple roles for admins, moderators, and muted punishment.",
+            "Added pie chart for automoderation type analysis.",
+            "Fixed a bug that crashed adminstats endpoint.",
+            "Added newest comments list to dashboard.",
+            "Added robots.txt for search engines.",
+            "Improved google lighthouse rating.",
+            "Modcase comments are now lockable by moderators to prevent spam.",
+            "Added report command when replying on messages.",
+            "Added bin system for modcases, after 7 days cases are deleted."
+        ]
+    },
+    {
+        "title": "Version 1.9.1",
+        "version": "v1.9.1",
+        "changes": [
+            "Fixed bug that displayed configured punishments for automoderations wrong.",
+            "Adjusted styling of navbar.",
+            "Added more information to internal automod notification embed."
+        ]
+    },
+    {
+        "title": "Version 1.9 Dashboard",
+        "version": "v1.9",
+        "changes": [
+            "Added dashboard view for moderators and admins.",
+            "Added loading spinner during login.",
+            "Correctly redirect to requested url after login.",
+            "Adjusted webhook notifications."
+        ]
+    },
+    {
+        "title": "Version 1.8.3",
+        "version": "v1.8.3",
+        "changes": [
+            "Removed prettyhelp from discordbot.",
+            "Added update information for siteadmins in navbar.",
+            "Fixed performance issue during case creation.",
+            "Fixed sorting of role list during guild register."
+        ]
+    },
+    {
+        "title": "Version 1.8.2",
+        "version": "v1.8.2",
+        "changes": [
+            "Adjusted texts and images on front and donation page.",
+            "Added auto caching of guild members on guildconfig creation.",
+            "Fixed problem with browser caching by including angular output hashing."
+        ]
+    },
+    {
+        "title": "Version 1.8.1",
+        "version": "v1.8.1",
+        "changes": [
+            "Removed kick permissions from permanent filter.",
+            "Rearranged buttons in case creation.",
+            "Added adminstats endpoint for internal insights.",
+            "Fixed html escape issue in case description.",
+            "Added bot commands to create cases via discord.",
+            "Now allowing @user, username and id in $whois command.",
+            "Updated discord.py to version 1.6",
+            "Improved backend caching and ratelimit handling.",
+            "Added backend modcase search.",
+            "Reworked case table and search.",
+            "Fixed exposed docker port.",
+            "Removed stats endpoint.",
+            "Added case templates.",
+            "Improved filesystem security.",
+            "Changed font to 'Ubuntu'.",
+            "Added donation tab.",
+            "Now showing navbar without login.",
+            "Reworked index page.",
+            "Fixed color in dark theme datepicker."
+        ]
+    },
+    {
+        "title": "Version 1.8",
+        "version": "v1.8",
+        "changes": [
+            "Fixed automoderation on message update.",
+            "Fixed error if user declines private messages by discordbot.",
+            "Including channel id in automoderation case description.",
+            "Fixed styling issues with browser input autocomplete.",
+            "Added feature to edit comments.",
+            "Added automoderation for emotes, mentions, embeds and attachments.",
+            "Added staff webhook notification for automoderation.",
+            "Fixed tabtitle.",
+            "Added information about creation type to modcases.",
+            "Added filter options to modcase table.",
+            "Added autolink to other cases in case description.",
+            "Added dm notification on case creation and edit.",
+            "Added loading spinner during case creation to avoid confusion on long taking api request.",
+            "Improved backend ratelimit and caching.",
+            "Guildconfig is now editable by guild admins.",
+            "Files are now uploadable during case creation."
+        ]
+    },
+    {
+        "title": "Version 1.7.3.1",
+        "version": "v1.7.3.1",
+        "changes": [
+            "Fixed display of long nicknames in case view",
+            "Correctly reloading member nickname on case creation."
+        ]
+    },
+    {
+        "title": "Version 1.7.3",
+        "version": "v1.7.3",
+        "changes": [
+            "Guildmembers are now selectable by name during case creation.",
+            "Reworked case view design.",
+            "Removing special characters from filenames to ensure availability.",
+            "Removed severity field.",
+            "Rearranged buttons for guild edit/delete.",
+            "Added form validation during case creation.",
+            "Added loading spinners to most pages."
+        ]
+    },
+    {
+        "title": "Version 1.7.2",
+        "version": "v1.7.2",
+        "changes": [
+            "Reworked readme description of MASZ.",
+            "Reworked case list, now showing profil pictures too.",
+            "No showing current user info in case view.",
+            "Added discriminator to modcase model.",
+            "Added backend caching for Discord API.",
+            "Optimized overall caching.",
+            "Improved search for modcases.",
+            "Now showing inactive punishments in a different color.",
+            "Added description field to public announcement embed."
+        ]
+    },
+    {
+        "title": "Version 1.7.1",
+        "version": "v1.7.1",
+        "changes": [
+            "Improved mobile frontend experience.",
+            "Added more precise specification of software requirements for masz.",
+            "Removed unneeded apache files from old php setup.",
+            "Now correctly reapplies muted role on member rejoin.",
+            "Fixed a bug where banned guilds are not displayed correctly.",
+            "Improved UX during guild register.",
+            "Added loading spinner on index page."
+        ]
+    },
+    {
+        "title": "Version 1.7 Angular Rework",
+        "version": "v1.7",
+        "changes": [
+            "Reworked frontend. Now using Angular instead of PHP.",
+            "Fixed some link issues in announcement embeds.",
+            "Fixed date format in announcement embed.",
+            "Fixed wrong punishment due to Chrome Autotranslate."
+        ]
+    },
+    {
+        "title": "Version 1.6 Automoderation",
+        "version": "v1.6",
+        "changes": [
+            "Fixed sorting in modcase table.",
+            "Reworked notification system. Now using JQuery Toast.",
+            "Fixed style in guild register dialog.",
+            "Added automoderation feature.",
+            "Added invite command.",
+            "Fixed url for default profil pictures in announcement.",
+            "Fixed output of register command in DMs.",
+            "Added information of punishment duration in announcement embed."
+        ]
+    },
+    {
+        "title": "Version 1.5.1",
+        "version": "v1.5.1",
+        "changes": [
+            "Fixed link in announcement embeds.",
+            "Now limiting the description in case overview list so buttons do not bug.",
+            "Added info about command arguments in help command.",
+            "Also add label after pressing enter."
+        ]
+    },
+    {
+        "title": "Version 1.5",
+        "version": "v1.5",
+        "changes": [
+            "Added pretty help command to discord bot.",
+            "Added url command to discord bot.",
+            "Added feature command to discord bot.",
+            "Added register command to discord bot.",
+            "Added whois command to discord bot.",
+            "Added more style to the register guild form.",
+            "Now ignoring spaces in user id while creating cases.",
+            "Reapplying muted role if user rejoins guild.",
+            "Reworked dark mode."
+        ]
+    },
+    {
+        "title": "Version 1.4",
+        "version": "v1.4",
+        "changes": [
+            "Added discord username to announcements.",
+            "Files are now removed on guild deletion if wanted.",
+            "Improved guild deletion form.",
+            "Using correct permissions on guild invite link.",
+            "Added webhook notification for files.",
+            "Added more information to all webhook notifications.",
+            "Added simple discord bot.",
+            "Fixed rate limit for assets.",
+            "You can no longer create cases against site admins."
+        ]
+    },
+    {
+        "title": "Version 1.3 - Fileupload",
+        "version": "v1.3",
+        "changes": [
+            "Added suggestions and first steps tips.",
+            "Added file uploads in case overview.",
+            "Reworked case overview into tab system.",
+            "Added toggle for suggestions in the settings tab."
+        ]
+    },
+    {
+        "title": "Version 1.2 - Automated punishment",
+        "version": "v1.2",
+        "changes": [
+            "Added form to delete and edit guild configuration via frontend.",
+            "Public announcement embeds do not contain case description anymore.",
+            "Added DatePicker to case forms.",
+            "Reworked display of case details.",
+            "Added automated punishments that get handled by backend.",
+            "Added punishment tab that displays all current punishments."
+        ]
+    },
+    {
+        "title": "Version 1.1 - Darkmode",
+        "version": "v1.1",
+        "changes": [
+            "Reworked dialog to register guilds.",
+            "Fixed a bug that occures if the bot gets removed from a registered guild.",
+            "Added default darkmode. Toggleable in settings top right corner.",
+            "Fixed unstyled checkbox."
+        ]
+    },
+    {
+        "title": "Version 1.0 - First major release",
+        "version": "v1.0",
+        "changes": [
+            "Added support for default discord user avatar.",
+            "Added modcase comments.",
+            "Login now correctly returns to the requested url.",
+            "It is now possible to delete modcases via frontend.",
+            "Fixed query filters in case overview."
+        ]
+    },
+    {
+        "title": "Version 0.4",
+        "version": "v0.4",
+        "changes": [
+            "Added button for moderators to view all cases they created",
+            "Added info box if modcases are viewed as normal member without special permissions.",
+            "ModCases are now editable.",
+            "Added more info and content to login page.",
+            "Fixed a bug that many fields in modcases could be edited to be null or empty.",
+            "Fixed edit form to display 'EDIT CASE' instead of 'CREATE CASE'"
+        ]
+    },
+    {
+        "title": "Version 0.3",
+        "version": "v0.3",
+        "changes": [
+            "Added form to register guilds via frontend.",
+            "Fixed a bug that modcase labels could be duplicated.",
+            "Added choice dropdown for the punishment field in case creation",
+            "Added choice dropdown for the severity field in case creation.",
+            "Now displaying the correct case id in the tab title.",
+            "'See more patch notes here.' now redirects to github release page.",
+            "The OAuth login no longer opens in a new tab."
+        ]
+    },
+    {
+        "title": "Version 0.2",
+        "version": "v0.2",
+        "changes": [
+            "Fixed display of last moderator id.",
+            "Added search field for modcase table.",
+            "Added option to use labels properly on case creation."
+        ]
+    },
+    {
+        "title": "Version 0.1",
+        "version": "v0.1",
+        "changes": [
+            "Added logout option in the profile dropdown.",
+            "No longer accepting modcases for Discord bots.",
+            "Only show edit/delete/create buttons if user is a moderator or admin."
+        ]
+    },
+    {
+        "title": "Added Patch Notes",
+        "version": "v0.0",
+        "changes": ["Added Patch Notes."]
+    }
 ]

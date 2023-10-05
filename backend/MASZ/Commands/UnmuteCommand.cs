@@ -58,8 +58,8 @@ namespace MASZ.Commands
             embed.AddField(Translator.T().CmdUndoResultTitle(), Translator.T().CmdUndoResultWaiting());
 
             var button = new ComponentBuilder()
-                .WithButton(Translator.T().CmdUndoUnmuteButtonsDelete(), $"unmute-delete:{user.Id}", ButtonStyle.Primary)
-                .WithButton(Translator.T().CmdUndoUnmuteButtonsDeactivate(), $"unmute-deactivate:{user.Id}", ButtonStyle.Secondary)
+                .WithButton(Translator.T().CmdUndoUnmuteButtonsDeactivate(), $"unmute-deactivate:{user.Id}", ButtonStyle.Primary)
+                .WithButton(Translator.T().CmdUndoUnmuteButtonsDelete(), $"unmute-delete:{user.Id}", ButtonStyle.Secondary)
                 .WithButton(Translator.T().CmdUndoButtonsCancel(), "unmute-cancel", ButtonStyle.Danger);
 
             await Context.Interaction.RespondAsync(embed: embed.Build(), components: button.Build());

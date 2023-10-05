@@ -612,6 +612,8 @@
             },
             "misc": {
                 "title": "Sonstiges",
+                "sync": "Neue Strafen mit MASZ synchronisieren",
+                "syncexplained": "Synchronisiere automatisch neue Strafen, die nicht von MASZ erstellt wurden, in die Datenbank von MASZ.",
                 "whois": "Whois bei Mitgliederbeitritt ausführen",
                 "whoisexplained": "Sendet automatisch Informationen über neue Mitglieder an deinen internen Webhook.",
                 "importbans": "Importiere existierende Banns",

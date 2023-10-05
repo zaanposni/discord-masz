@@ -612,6 +612,8 @@
             },
             "misc": {
                 "title": "Varie",
+                "sync": "Sincronizza le nuove punizioni con MASZ",
+                "syncexplained": "Sincronizza automaticamente le nuove punizioni che non sono state create da MASZ nel database di MASZ.",
                 "whois": "Esegui whois sulla presenza di un membro",
                 "whoisexplained": "Invia automaticamente le informazioni sull'utente iscritto al tuo webhook interno.",
                 "importbans": "Importa i bann esistenti",
