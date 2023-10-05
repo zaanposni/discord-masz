@@ -103,6 +103,7 @@ namespace MASZ.Commands
                 StringBuilder caseInfo = new();
                 foreach (ModCase modCase in cases.Take(5))
                 {
+                    caseInfo.Append($"**{modCase.GetPunishment(Translator)}** ");
                     caseInfo.Append($"[{modCase.CaseId} - {modCase.Title.Replace("\n", " ").Truncate(50)}]");
                     caseInfo.Append($"({Config.GetBaseUrl()}/guilds/{modCase.GuildId}/cases/{modCase.CaseId})\n");
                 }
@@ -117,7 +118,7 @@ namespace MASZ.Commands
                     StringBuilder activeInfo = new();
                     foreach (ModCase modCase in activeCases.Take(5))
                     {
-                        activeInfo.Append($"{modCase.GetPunishment(Translator)} ");
+                        activeInfo.Append($"**{modCase.GetPunishment(Translator)}** ");
                         if (modCase.PunishedUntil != null)
                         {
                             activeInfo.Append($"({Translator.T().Until()} {modCase.PunishedUntil.Value.ToDiscordTS()}) ");

@@ -2,7 +2,7 @@
     {
         "title": "Version 3.6.0",
         "version": "v3.6.0",
-        "released_at": "2023-10-03",
+        "released_at": "2023-10-05",
         "features": [
             {
                 "title": "Punishment via modals.",
@@ -12,6 +12,10 @@
             {
                 "title": "Sync new punishments.",
                 "description": "You can now choose to sync new bans into MASZ that were not created by MASZ. MASZ uses details in the auditlog to create a valid mocase."
+            },
+            {
+                "title": "Added more content to the whois embed.",
+                "description": "The whois embed now contains the case punishment types for all cases and not just the active ones."
             }
         ],
         "fixes": [
