@@ -19,7 +19,6 @@ namespace MASZ.Services
         private bool _demoModeEnabled;
         private bool _customPluginsEnabled;
         private bool _corsEnabled;
-        private bool _telemetryEnabled;
         private string _deployMode;
         private string _discordBotStatus;
         private bool _lowMemoryPhishingListEnabled;
@@ -55,7 +54,6 @@ namespace MASZ.Services
             _demoModeEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_DEMO_MODE"));
             _customPluginsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CUSTOM_PLUGINS"));
             _corsEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_CORS"));
-            _telemetryEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_TELEMETRY"));
             _deployMode = Environment.GetEnvironmentVariable("DEPLOY_MODE");
             _discordBotStatus = Environment.GetEnvironmentVariable("DISCORD_BOT_STATUS");
             _lowMemoryPhishingListEnabled = string.Equals("true", Environment.GetEnvironmentVariable("ENABLE_LOW_MEMORY_PHISHING_LIST"));
@@ -145,11 +143,6 @@ namespace MASZ.Services
         public bool IsCorsEnabled()
         {
             return _corsEnabled;
-        }
-
-        public bool IsTelemetryEnabled()
-        {
-            return _telemetryEnabled;
         }
 
         public string GetDeployMode()
