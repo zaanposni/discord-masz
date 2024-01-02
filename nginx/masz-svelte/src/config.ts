@@ -13,8 +13,6 @@ export const LOCAL_STORAGE_KEY_ADMIN_DASHBOARD_ITEMS = "__masz-admin-dashboard-i
 export const LOCAL_STORAGE_KEY_GUILD_DASHBOARD_ITEMS = "__masz-guild-dashboard-items";
 export const LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY = "__masz-guild-quicksearch-history";
 
-export const FEEDBACK_COOKIE_NAME = "__masz-feedback";
-
 export const APP_NAME = "MASZ";
 export const APP_VERSION = "v3.6.0";
 

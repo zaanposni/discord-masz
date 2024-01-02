@@ -27,29 +27,5 @@ namespace MASZ.Controllers
         {
             return Ok(DiscordApplicationView.CreateOrDefault(await _discordAPI.GetCurrentApplicationInfo()));
         }
-
-        [HttpGet("versions")]
-        public async Task<IActionResult> GetReleases()
-        {
-            var restClient = new RestClient("https://maszindex.zaanposni.com/");
-            var request = new RestRequest("/api/v1/versions", Method.Get);
-            request.AddQueryParameter("name", "masz_backend");
-
-            var response = await restClient.ExecuteAsync(request);
-
-            return Ok(response.Content);
-        }
-
-        [HttpPost("feedback")]
-        public async Task<IActionResult> PostFeedback([FromBody] FeedbackDto feedback)
-        {
-            var restClient = new RestClient("https://maszindex.zaanposni.com/");
-            var request = new RestRequest("/api/v1/feedback", Method.Post);
-            request.AddJsonBody(feedback);
-
-            var response = await restClient.ExecuteAsync(request);
-
-            return Ok(response.Content);
-        }
     }
 }
