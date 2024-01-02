@@ -239,7 +239,6 @@ using (var scope = app.Services.CreateScope())
 
     await AppSettingsRepository.CreateDefault(scope.ServiceProvider).ApplyAppSettings();
 
-    scope.ServiceProvider.GetRequiredService<TelemetryService>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<AuditLogger>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<DiscordAnnouncer>().RegisterEvents();
     scope.ServiceProvider.GetRequiredService<DiscordBot>().RegisterEvents();
