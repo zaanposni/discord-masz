@@ -11,7 +11,6 @@
     import { flip } from "svelte/animate";
     import { dndzone } from "svelte-dnd-action";
     import type { IDashboardItem } from "../../models/IDashboardItem";
-    import VersionDisplay from "../../components/admin/dashboard/VersionDisplay.svelte";
     import Monitoring from "../../components/admin/dashboard/Monitoring.svelte";
     import CurrentlyLoggedIn from "../../components/admin/dashboard/CurrentlyLoggedIn.svelte";
     import ResourceStats from "../../components/admin/dashboard/ResourceStats.svelte";
@@ -19,12 +18,6 @@
     import DiscordInvite from "../../components/admin/dashboard/DiscordInvite.svelte";
 
     adminDashboardItems.set([
-        {
-            id: "admin-version",
-            translationKey: "adminversion",
-            component: VersionDisplay,
-            mode: WidgetMode.x2_1,
-        },
         {
             id: "admin-status",
             translationKey: "adminstatus",
