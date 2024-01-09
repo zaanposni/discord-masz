@@ -2,7 +2,7 @@
     {
         "title": "Version 3.7.0",
         "version": "v3.7.0",
-        "released_at": "2024-01-02",
+        "released_at": "2024-01-09",
         "breaking": [
             {
                 "title": "Removed telemetry, feedback and version service.",
