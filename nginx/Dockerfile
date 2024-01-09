@@ -7,7 +7,6 @@ RUN npm install
 RUN npm run build
 
 RUN apt update && apt install -y python3-pip
-RUN python3 -m pip install rich
 RUN python3 hashbuild.py
 
 FROM nginx:alpine

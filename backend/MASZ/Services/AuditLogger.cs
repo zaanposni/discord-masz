@@ -75,15 +75,6 @@ namespace MASZ.Services
                 QueueLog("Public file mode: `DISABLED`");
             }
 
-            if (_config.IsTelemetryEnabled())
-            {
-                QueueLog("Telemetry: `ENABLED`");
-            }
-            else
-            {
-                QueueLog("Telemetry: `DISABLED`");
-            }
-
             QueueLog($"============== /STARTUP =============");
             await ExecuteWebhook();
         }
