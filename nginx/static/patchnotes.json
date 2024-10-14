@@ -1,5 +1,16 @@
 [
     {
+        "title": "Version 3.8.0",
+        "version": "v3.8.0",
+        "released_at": "2024-10-14",
+        "technical": [
+            {
+                "title": "Bumped various versions. Run containers in non-root mode.",
+                "description": "Bumped npm and nuget packages to the latest version. The containers now run in non-root mode. Use .NET 8.0 instead of 6.0."
+            }
+        ]
+    },
+    {
         "title": "Version 3.7.0",
         "version": "v3.7.0",
         "released_at": "2024-01-09",
