@@ -22,7 +22,7 @@ builder.Logging.ClearProviders();
 
 builder.Logging.AddProvider(new LoggerProvider());
 
-builder.WebHost.UseUrls("http://0.0.0.0:80/");
+builder.WebHost.UseUrls("http://0.0.0.0:8080/");
 
 string connectionString =
             $"Server={   Environment.GetEnvironmentVariable("MYSQL_HOST")};" +

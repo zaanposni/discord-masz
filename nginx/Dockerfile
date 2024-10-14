@@ -22,6 +22,11 @@ COPY --from=compile-frontend /svelte/dist/ /var/www/data/
 ENV TZ=UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN addgroup -S nginxgroup && adduser -S nginxuser -G nginxgroup
+RUN chmod 777 /var/cache/nginx /var/run /etc/nginx /var/log/nginx
+
+USER nginxuser
+
 CMD ["nginx", "-g", "daemon off;"]
 
 EXPOSE 80
