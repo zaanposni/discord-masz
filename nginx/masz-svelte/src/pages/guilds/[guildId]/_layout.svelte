@@ -1,5 +1,19 @@
 <script lang="ts">
-    import { Catalog16, Chat16, ChatOperational16, Dashboard16, Flash16, Group16, List16, Police16, ScalesTipped16, Settings16, TextFootnote16, UserIdentification16, Box16 } from "carbon-icons-svelte";
+    import {
+        Catalog,
+        Chat,
+        ChatOperational,
+        Dashboard,
+        Flash,
+        Group,
+        List,
+        Police,
+        ScalesTipped,
+        Settings,
+        TextFootnote,
+        UserIdentification,
+        Box,
+    } from "carbon-icons-svelte";
     import { currentParams } from "../../../stores/currentParams";
     import { navConfig } from "../../../stores/nav";
 
@@ -11,91 +25,139 @@
                     titleKey: "guild.dashboard",
                     href: "/guilds/" + $currentParams.guildId,
                     checkSelected: "/guilds/" + $currentParams.guildId + "/index",
-                    icon: Dashboard16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Dashboard,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
-                    titleKey: 'placeholder00',
+                    titleKey: "placeholder00",
                     isDivider: true,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.cases",
                     href: `/guilds/${$currentParams.guildId}/cases`,
-                    icon: List16,
+                    icon: List,
                 },
                 {
                     titleKey: "guild.evidence",
                     href: `/guilds/${$currentParams.guildId}/evidence`,
-                    icon: Box16,
+                    icon: Box,
                 },
                 {
                     titleKey: "guild.automods",
                     href: `/guilds/${$currentParams.guildId}/automods`,
-                    icon: Flash16,
+                    icon: Flash,
                 },
                 {
                     titleKey: "guild.appeals",
                     href: `/guilds/${$currentParams.guildId}/appeals`,
-                    icon: ScalesTipped16,
+                    icon: ScalesTipped,
                 },
                 {
-                    titleKey: 'placeholder01',
+                    titleKey: "placeholder01",
                     isDivider: true,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.usernotes",
                     href: `/guilds/${$currentParams.guildId}/usernotes`,
-                    icon: UserIdentification16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    icon: UserIdentification,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.usermaps",
                     href: `/guilds/${$currentParams.guildId}/usermaps`,
-                    icon: Group16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Group,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.messages",
                     href: `/guilds/${$currentParams.guildId}/messages`,
-                    icon: Chat16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId) || user.modGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Chat,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin ||
+                            user.adminGuilds.map((x) => x.id).includes(params.guildId) ||
+                            user.modGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
-                    titleKey: 'placeholder02',
+                    titleKey: "placeholder02",
                     isDivider: true,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.settings.motd",
                     href: `/guilds/${$currentParams.guildId}/motd`,
-                    icon: ChatOperational16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    icon: ChatOperational,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.settings.auditlog",
                     href: `/guilds/${$currentParams.guildId}/auditlog`,
-                    icon: Catalog16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Catalog,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.settings.automod",
                     href: `/guilds/${$currentParams.guildId}/automodconfig`,
-                    icon: Police16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Police,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.settings.zalgo",
                     href: `/guilds/${$currentParams.guildId}/zalgo`,
-                    icon: TextFootnote16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    icon: TextFootnote,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
                 {
                     titleKey: "guild.settings.base",
                     href: `/guilds/${$currentParams.guildId}/settings`,
-                    icon: Settings16,
-                    isAllowedToView: (user, params) => user && params?.guildId && (user.isAdmin || user.adminGuilds.map(x => x.id).includes(params.guildId))
+                    icon: Settings,
+                    isAllowedToView: (user, params) =>
+                        user &&
+                        params?.guildId &&
+                        (user.isAdmin || user.adminGuilds.map((x) => x.id).includes(params.guildId)),
                 },
             ],
         });

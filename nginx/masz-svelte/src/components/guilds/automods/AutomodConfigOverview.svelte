@@ -1,12 +1,12 @@
 <script lang="ts">
     import { slide, fade } from "svelte/transition";
     import type { IAutomodConfig } from "./../../../models/api/IAutomodConfig";
-    import { Checkbox, Modal, MultiSelect, Select, SelectItem, TextArea, TextInput } from "carbon-components-svelte";
+    import { Checkbox, Modal, MultiSelect, Select, SelectItem, TextArea, TextInput, Button } from "carbon-components-svelte";
     import { types } from "./configOverview";
     import automodTypes from "../../../services/enums/AutomoderationType";
     import automodActions from "../../../services/enums/AutomoderationAction";
     import { _ } from "svelte-i18n";
-    import { writable, Writable } from "svelte/store";
+    import { writable, type Writable } from "svelte/store";
     import API from "../../../services/api/api";
     import { currentParams } from "../../../stores/currentParams";
     import { CacheMode } from "../../../services/api/CacheMode";
@@ -14,7 +14,7 @@
     import AutomoderationActionTag from "../../api/AutomoderationActionTag.svelte";
     import { AutomodAction } from "../../../models/api/AutomodActionEnum";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
-    import { Edit32 } from "carbon-icons-svelte";
+    import { Edit } from "carbon-icons-svelte";
     import type { AutomodType } from "../../../models/api/AutomodType";
     import type { IAutoModRuleDefinition } from "../../../models/IAutoModRuleDefinition";
     import type { IDiscordChannel } from "../../../models/discord/IDiscordChannel";
@@ -312,7 +312,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full" style={matches ? "grid-auto-rows: 1fr;" : ""}>
         {#each Array.from(types) as rule}
             <div class="p-4 automod-widget">
-                <div class="flex flex-row items-center">
+                <div class="flex flex-row items-start">
                     <div class="self-start">
                         <Checkbox
                             checked={$automods.find((x) => x.autoModerationType === rule.type) !== undefined}
@@ -323,8 +323,8 @@
                     <div class="font-bold text-md lg:text-xl">{$_(automodTypes.getById(rule.type))}</div>
                     <div class="grow" />
                     {#if $automods.find((x) => x.autoModerationType === rule.type) !== undefined}
-                        <div class="cursor-pointer h-6 w-6 ml-2" transition:fade|local>
-                            <Edit32
+                        <div class="cursor-pointer h-6 w-6 mr-4" transition:fade|local>
+                            <Button icon={Edit} kind="ghost" iconDescription="edit"
                                 on:click={() => {
                                     onEdit(rule);
                                 }} />

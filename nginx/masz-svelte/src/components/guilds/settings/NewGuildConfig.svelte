@@ -2,8 +2,8 @@
     import GuildIcon from "./../../discord/GuildIcon.svelte";
     import { Button, DataTable, Toolbar, ToolbarContent, ToolbarSearch, Loading, Row } from "carbon-components-svelte";
     import moment from "moment";
-    import { Add32, Add24 } from "carbon-icons-svelte";
-    import { writable, Writable } from "svelte/store";
+    import { Add } from "carbon-icons-svelte";
+    import { writable, type Writable } from "svelte/store";
     import type { IDiscordGuild } from "../../../models/discord/IDiscordGuild";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
@@ -85,7 +85,7 @@
                     </Toolbar>
                     <svelte:fragment slot="cell" let:row let:cell>
                         {#if cell.key === "action"}
-                            <Button on:click={() => selectGuild(row)} icon={Add24} iconDescription={$_("guilds.add.button")} />
+                            <Button on:click={() => selectGuild(row)} icon={Add} iconDescription={$_("guilds.add.button")} />
                         {:else if cell.key === "name"}
                             <div class="flex flex-row items-center">
                                 <GuildIcon guild={row} />
@@ -108,7 +108,7 @@
             </div>
         {:else if $selectedGuildError}
             <div class="flex flex-col items-center justify-center w-full mt-8" transition:slide|local on:click={invite}>
-                <Button icon={Add32}>{$_("guilds.add.invitefirst")}</Button>
+                <Button icon={Add}>{$_("guilds.add.invitefirst")}</Button>
             </div>
         {:else}
             <div class="mt-8" transition:slide|local>

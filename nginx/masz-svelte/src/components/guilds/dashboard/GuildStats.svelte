@@ -10,7 +10,7 @@
     import { CacheMode } from "../../../services/api/CacheMode";
     import API from "../../../services/api/api";
     import type { IGuildStats } from "../../../models/api/IGuildStats";
-    import { CheckmarkFilled16, CircleSolid16 } from "carbon-icons-svelte";
+    import { CheckmarkFilled, CircleSolid } from "carbon-icons-svelte";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Normal;
@@ -42,7 +42,7 @@
             <div class="mr-1">
                 {stats?.moderationCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" />
+            <CircleSolid style="fill: var(--cds-ui-04)" />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -53,7 +53,7 @@
             <div class="mr-1">
                 {stats?.trackedInvites}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" />
+            <CircleSolid style="fill: var(--cds-ui-04)" />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -64,7 +64,7 @@
             <div class="mr-1">
                 {stats?.userNotes}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" />
+            <CircleSolid style="fill: var(--cds-ui-04)" />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -75,7 +75,7 @@
             <div class="mr-1">
                 {stats?.userMappings}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" />
+            <CircleSolid style="fill: var(--cds-ui-04)" />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -86,7 +86,7 @@
             <div class="mr-1">
                 {stats?.appeals}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" />
+            <CircleSolid style="fill: var(--cds-ui-04)" />
         </div>
     </div>
     <div slot="loading">

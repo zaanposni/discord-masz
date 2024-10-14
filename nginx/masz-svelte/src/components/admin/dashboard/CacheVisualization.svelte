@@ -11,7 +11,7 @@
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
     import { chart } from "../../../core/charts/chart.js";
-import { CircleSolid16 } from "carbon-icons-svelte";
+    import { CircleSolid } from "carbon-icons-svelte";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Loading;
@@ -70,7 +70,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {userCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -79,7 +79,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {guildCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -88,7 +88,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {guildBanCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -97,7 +97,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {guildMemberCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -106,7 +106,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {dmChannelCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -115,7 +115,7 @@ import { CircleSolid16 } from "carbon-icons-svelte";
         <div class="mr-1">
             {tokenUserCount}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div slot="loading">
         <div class="dash-widget-list-border flex items-center" style="height: 2rem">

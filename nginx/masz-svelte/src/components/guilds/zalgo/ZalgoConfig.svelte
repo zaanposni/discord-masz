@@ -10,10 +10,10 @@
         TextInput,
         TextInputSkeleton,
     } from "carbon-components-svelte";
-    import { ArrowRight20 } from "carbon-icons-svelte";
+    import { ArrowRight } from "carbon-icons-svelte";
     import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
     import { _ } from "svelte-i18n";
-    import { writable, Writable } from "svelte/store";
+    import { writable, type Writable } from "svelte/store";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { IZalgoConfig } from "../../../models/api/IZalgoConfig";
     import type { IDiscordUser } from "../../../models/discord/IDiscordUser";
@@ -137,7 +137,7 @@
             <UserIcon class="mr-2" user={result.user} />
             <div>{result.oldName}</div>
             <div class="mx-2">
-                <ArrowRight20 />
+                <ArrowRight />
             </div>
             <div>{result.newName}</div>
         </div>

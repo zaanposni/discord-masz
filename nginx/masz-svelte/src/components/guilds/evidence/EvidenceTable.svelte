@@ -2,7 +2,7 @@
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { _ } from "svelte-i18n";
     import { MultiSelect, TextInput, Button, SkeletonPlaceholder, SkeletonText, Tile, Link } from "carbon-components-svelte";
-    import { Search32, Launch20, Filter24, Add24 } from "carbon-icons-svelte";
+    import { Search, Launch, Filter, Add } from "carbon-icons-svelte";
     import { slide } from "svelte/transition";
     import { currentParams } from "../../../stores/currentParams";
     import API from "../../../services/api/api";
@@ -136,8 +136,8 @@
             {$_("nav.guild.evidence")}
         </h2>
         <div class="flex flex-row">
-            <Button class="!mr-2" iconDescription={$_("guilds.evidencetable.create")} icon={Add24} on:click={() => createModalOpen.set(!$createModalOpen)}>{$_("guilds.evidencetable.create")}</Button>
-            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+            <Button class="!mr-2" on:click={() => createModalOpen.set(!$createModalOpen)}>{$_("guilds.evidencetable.create")}</Button>
+            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter} on:click={toggleFilter} />
         </div>
         {#if filterOpened}
             <div
@@ -168,7 +168,7 @@
                     <TextInput bind:value={searchValue} labelText={$_("guilds.modcasetable.search")} placeholder={$_("guilds.modcasetable.search")} />
                 </div>
                 <div class="self-end">
-                    <Button icon={Search32} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
+                    <Button icon={Search} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
                 </div>
             </div>
         {/if}
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Link href={`/guilds/${evidenceView.verifiedEvidence.guildId}/evidence/${evidenceView.verifiedEvidence.id}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${evidenceView.verifiedEvidence.guildId}/evidence/${evidenceView.verifiedEvidence.id}`} icon={Launch} class="align-end" />
                         </div>
                     </Tile>
                 </a>

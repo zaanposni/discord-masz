@@ -21,20 +21,20 @@
         Tooltip,
     } from "carbon-components-svelte";
     import {
-        ChevronDown24,
-        ChevronUp24,
-        Edit24,
-        List24,
-        Locked24,
-        Power24,
-        Send24,
-        Share24,
-        TrashCan24,
-        Upload24,
-        CopyLink24,
-        WatsonHealthAiStatusComplete24,
-        Box24,
-        CheckmarkFilled24,
+        ChevronDown,
+        ChevronUp,
+        Edit,
+        List,
+        Locked,
+        Power,
+        Send,
+        Share,
+        TrashCan,
+        Upload,
+        CopyLink,
+        WatsonHealthAiStatusComplete,
+        Box,
+        CheckmarkFilled,
     } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { ICaseView } from "../../../models/api/ICaseView";
@@ -652,7 +652,7 @@
                 <div transition:slide|local>
                     <Tile class="mb-2" light>
                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                            <List24 class="shrink-0 mr-2" />
+                            <List class="shrink-0 mr-2" />
                             <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                 #{modCase.modCase.caseId}
                             </div>
@@ -664,7 +664,7 @@
                                 <PunishmentTag modCase={modCase.modCase} />
                             </div>
                             <div class="cursor-pointer">
-                                <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
+                                <Button icon={CopyLink} kind="ghost" iconDescription="link" class="mr-2" on:click={() => linkCase(modCase.modCase)} />
                             </div>
                         </div>
                     </Tile>
@@ -708,7 +708,7 @@
                 <div transition:slide|local>
                     <Tile class="mb-2" light>
                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                            <List24 class="shrink-0 mr-2" />
+                            <List class="shrink-0 mr-2" />
                             <div class="shrink-0 mr-2">
                                 <div class="flex flex-row flex-wrap items-center">
                                     <UserIcon class="self-start mr-2" user={evidence.reported}/>
@@ -721,7 +721,7 @@
                                 {evidence.verifiedEvidence.reportedContent.slice(0, 31)}
                             </div>
                             <div class="cursor-pointer">
-                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence.verifiedEvidence)} />
+                                <Button icon={CopyLink} kind="ghost" class="mr-2" on:click={() => linkEvidence(evidence.verifiedEvidence)} />
                             </div>
                         </div>
                     </Tile>
@@ -791,7 +791,7 @@
         <div class="flex flex-col">
             <!-- Icon -->
             <div class="flex flex-row grow items-center" style="color: var(--cds-text-02)">
-                <List24 class="mr-2" />
+                <List class="mr-2" />
                 {#if $currentParams?.guild?.name && $currentParams?.caseId && !caseLoading}
                     <div class="flex flex-row items-center">
                         {$currentParams.guild?.name}-{$currentParams.caseId}
@@ -824,7 +824,7 @@
                         </div>
                     {:else}
                         <div class:mb-2={matches && isModeratorInGuild($authUser, $currentParams.guildId)} class:mr-2={matches}>
-                            <Button size="small" kind="secondary" icon={Share24} on:click={shareCase}>{$_("guilds.caseview.sharecase")}</Button>
+                            <Button size="small" kind="secondary" icon={Share} on:click={shareCase}>{$_("guilds.caseview.sharecase")}</Button>
                         </div>
                         <input type="file" bind:this={fileUploadRef} name="fileUpload" multiple={true} accept="image/*" style="display:none;" />
                         {#if matches}
@@ -833,7 +833,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={Upload24}
+                                        icon={Upload}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={uploadFile}>{$_("guilds.caseview.uploadfile")}</Button>
                                 </div>
@@ -841,7 +841,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={CopyLink24}
+                                        icon={CopyLink}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={() => {
                                             linkCaseModalOpen.set(true);
@@ -851,7 +851,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={CopyLink24}
+                                        icon={CopyLink}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={() => linkEvidenceModalOpen.set(true)}
                                     >
@@ -862,7 +862,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={Box24}
+                                        icon={Box}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={() => createEvidenceModalOpen.set(true)}
                                     >
@@ -874,7 +874,7 @@
                                         <Button
                                             size="small"
                                             kind="secondary"
-                                            icon={Power24}
+                                            icon={Power}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
                                             on:click={handleActivation}
                                             >{$modCase.modCase.punishmentActive
@@ -887,14 +887,14 @@
                                         <Button
                                             size="small"
                                             kind="secondary"
-                                            icon={Locked24}
+                                            icon={Locked}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
                                             on:click={lockComments}>{$_("guilds.caseview.lockcomments")}</Button>
                                     {:else}
                                         <Button
                                             size="small"
                                             kind="secondary"
-                                            icon={Locked24}
+                                            icon={Locked}
                                             disabled={$modCase.modCase.markedToDeleteAt !== null}
                                             on:click={unlockComments}>{$_("guilds.caseview.unlockcomments")}</Button>
                                     {/if}
@@ -903,7 +903,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={Edit24}
+                                        icon={Edit}
                                         disabled={$modCase.modCase.markedToDeleteAt !== null}
                                         on:click={() => {
                                             $goto(`/guilds/${$currentParams.guildId}/cases/${$currentParams.caseId}/edit`);
@@ -911,12 +911,12 @@
                                 </div>
                                 {#if $modCase.modCase.markedToDeleteAt === null}
                                     <div class="mr-2 mb-2">
-                                        <Button size="small" kind="danger" icon={TrashCan24} on:click={deleteCaseModal}
+                                        <Button size="small" kind="danger" icon={TrashCan} on:click={deleteCaseModal}
                                             >{$_("guilds.caseview.delete")}</Button>
                                     </div>
                                 {:else}
                                     <div class="mr-2 mb-2">
-                                        <Button size="small" icon={WatsonHealthAiStatusComplete24} on:click={restoreCase}
+                                        <Button size="small" icon={WatsonHealthAiStatusComplete} on:click={restoreCase}
                                             >{$_("guilds.caseview.restore")}</Button>
                                     </div>
                                 {/if}
@@ -1021,7 +1021,7 @@
                                                         on:click={() => {
                                                             deleteFile(file.fullName);
                                                         }}>
-                                                        <TrashCan24 />
+                                                        <TrashCan />
                                                     </div>
                                                 </div>
                                             {/if}
@@ -1039,7 +1039,7 @@
                                                         on:click={() => {
                                                             deleteFile(file.fullName);
                                                         }}>
-                                                        <TrashCan24 />
+                                                        <TrashCan />
                                                     </div>
                                                 </div>
                                             {/if}
@@ -1088,7 +1088,7 @@
                                 {#each $modCase?.linkedCases ?? [] as linked}
                                     <Tile class="mb-2">
                                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                            <List24 class="shrink-0 mr-2" />
+                                            <List class="shrink-0 mr-2" />
                                             <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                                 #{linked.caseId}
                                             </div>
@@ -1129,7 +1129,7 @@
                             {#each $modCase?.linkedEvidence ?? [] as evidence}
                                 <Tile class="mb-2">
                                     <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                        <Box24 class="shrink-0 mr-2"/>
+                                        <Box class="shrink-0 mr-2"/>
                                         <div class="flex flex-col shrink-0 mr-2" style="color: var(--cds-text-02)">
                                             <div class="mb-1">{evidence.username}</div>
                                             <div>{evidence.sentAt.format(
@@ -1139,7 +1139,7 @@
                                         <div class="grow truncate mr-2" title={evidence.reportedContent}>
                                             {evidence.reportedContent}
                                         </div>
-                                        <Tooltip icon={CheckmarkFilled24}>
+                                        <Tooltip icon={CheckmarkFilled}>
                                             <p>{$_("guilds.caseview.verifiedevidence")}</p>
                                         </Tooltip>
                                         <div class="ml-2">
@@ -1253,15 +1253,16 @@
                                                 ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
                                                     !isModeratorInGuild($authUser, $currentParams.guildId))} />
                                     </div>
-                                    <Send24
-                                        class={!$modCase.modCase.allowComments ||
+                                    <Button
+                                        icon={Send}
+                                        iconDescription={$_("guilds.caseview.addacomment")}
+                                        kind="ghost"
+                                        disabled={!$modCase.modCase.allowComments ||
                                         $modCase.modCase.markedToDeleteAt !== null ||
                                         newComment?.trim()?.length === 0 ||
                                         (newComment?.trim()?.length ?? 0) > 300 ||
                                         ($modCase?.comments?.at(-1)?.comment?.userId === $authUser?.discordUser?.id &&
-                                            !isModeratorInGuild($authUser, $currentParams.guildId))
-                                            ? ""
-                                            : "cursor-pointer"}
+                                            !isModeratorInGuild($authUser, $currentParams.guildId))}
                                         on:click={sendComment} />
                                 </div>
                                 {#if !$modCase.modCase.allowComments}
@@ -1294,7 +1295,7 @@
                                 id="furtherdetails-case-button"
                                 size="small"
                                 iconDescription=""
-                                icon={openFurtherDetails ? ChevronUp24 : ChevronDown24}
+                                icon={openFurtherDetails ? ChevronUp : ChevronDown}
                                 on:click={() => {
                                     openFurtherDetails = !openFurtherDetails;
                                 }} />

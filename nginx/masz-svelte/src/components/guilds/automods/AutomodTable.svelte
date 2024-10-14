@@ -1,20 +1,20 @@
 <script lang="ts">
     import type { IDiscordUser } from "./../../../models/discord/IDiscordUser";
     import {
-        Launch20,
-        Email20,
-        FaceSatisfied20,
-        Group20,
-        DocumentAttachment20,
-        ContentView20,
-        RecentlyViewed20,
-        ErrorOutline20,
-        AnalyticsCustom20,
-        TextScale20,
-        Link20,
-        Search32,
-        Filter24,
-        Fish20,
+        Launch,
+        Email,
+        FaceSatisfied,
+        Group,
+        DocumentAttachment,
+        ContentView,
+        RecentlyViewed,
+        ErrorOutline,
+        AnalyticsCustom,
+        TextScale,
+        Link as LinkIcon,
+        Search,
+        Filter,
+        Fish,
     } from "carbon-icons-svelte";
     import { Button, Link, MultiSelect, SkeletonText, Tag, Tile } from "carbon-components-svelte";
     import API from "../../../services/api/api";
@@ -122,27 +122,27 @@
     function getIconByAutomodType(type: AutomodType) {
         switch (type) {
             case AutomodType.InvitePosted:
-                return Email20;
+                return Email;
             case AutomodType.TooManyEmotes:
-                return FaceSatisfied20;
+                return FaceSatisfied;
             case AutomodType.TooManyMentions:
-                return Group20;
+                return Group;
             case AutomodType.TooManyAttachments:
-                return DocumentAttachment20;
+                return DocumentAttachment;
             case AutomodType.TooManyEmbeds:
-                return ContentView20;
+                return ContentView;
             case AutomodType.TooManyAutoModerations:
-                return RecentlyViewed20;
+                return RecentlyViewed;
             case AutomodType.CustomWordFilter:
-                return ErrorOutline20;
+                return ErrorOutline;
             case AutomodType.TooManyMessages:
-                return AnalyticsCustom20;
+                return AnalyticsCustom;
             case AutomodType.TooManyDuplicatedCharacters:
-                return TextScale20;
+                return TextScale;
             case AutomodType.TooManyPhishingLinks:
-                return Fish20;
+                return Fish;
             default:
-                return Link20;
+                return LinkIcon;
         }
     }
 
@@ -176,7 +176,7 @@
             {$_("nav.guild.automods")}
         </h2>
         <div class="flex flex-row">
-            <Button iconDescription={$_("guilds.automodtable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+            <Button iconDescription={$_("guilds.automodtable.useadvancedfilter")} icon={Filter} on:click={toggleFilter} />
         </div>
         {#if filterOpened}
             <div
@@ -210,7 +210,7 @@
                         on:select={(e) => onSelect("actions", e.detail.selectedIds)} />
                 </div>
                 <div class="self-end">
-                    <Button icon={Search32} on:click={executeSearch}>{$_("guilds.automodtable.executesearch")}</Button>
+                    <Button icon={Search} on:click={executeSearch}>{$_("guilds.automodtable.executesearch")}</Button>
                 </div>
             </div>
         {/if}
@@ -292,7 +292,7 @@
                             </div>
                         </div>
                         {#if event.associatedCaseId}
-                            <Link href={`/guilds/${event.guildId}/cases/${event.associatedCaseId}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${event.guildId}/cases/${event.associatedCaseId}`} icon={Launch} class="align-end" />
                         {/if}
                     </div>
                 </Tile>

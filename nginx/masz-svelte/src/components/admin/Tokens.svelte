@@ -11,7 +11,7 @@
         TextInput,
         InlineNotification,
     } from "carbon-components-svelte";
-    import { Copy24, Information24, TrashCan24 } from "carbon-icons-svelte";
+    import { Copy, Information, TrashCan } from "carbon-icons-svelte";
     import moment from "moment";
     import { _ } from "svelte-i18n";
     import type { Writable } from "svelte/store";
@@ -97,7 +97,7 @@
     modalHeading={$_("admin.tokens.createnew")}
     passiveModal={!$newTokenRawValue}
     primaryButtonText={$_("admin.tokens.copy")}
-    primaryButtonIcon={Copy24}
+    primaryButtonIcon={Copy}
     secondaryButtonText={$_("admin.tokens.cancel")}
     shouldSubmitOnEnter={false}
     on:click:button--primary={copyToken}
@@ -118,7 +118,7 @@
         <div class="flex flex-col" transition:slide|local>
             <TextInput value={$newTokenRawValue} readonly />
             <div class="flex flex-row flex-nowrap mt-2">
-                <Information24 class="mr-2" />
+                <Information class="mr-2" />
                 <div class="italic">{$_('admin.tokens.unique')}</div>
             </div>
         </div>
@@ -162,7 +162,7 @@
             <svelte:fragment slot="cell" let:row let:cell>
                 {#if cell.key === "action"}
                     <div class="flex items-center justify-center">
-                        <Button on:click={deleteToken} icon={TrashCan24} kind="danger" iconDescription={$_("admin.tokens.delete")} />
+                        <Button on:click={deleteToken} icon={TrashCan} kind="danger" iconDescription={$_("admin.tokens.delete")} />
                     </div>
                 {:else if cell.key === "createdAt" || cell.key === "validUntil"}
                     {moment(cell.value).format($currentLanguage?.momentDateFormat ?? "YYYY-MM-DD")}

@@ -10,7 +10,7 @@
     import { CacheMode } from "../../../services/api/CacheMode";
     import API from "../../../services/api/api";
     import type { IGuildStats } from "../../../models/api/IGuildStats";
-    import { CheckmarkFilled16, CircleSolid16 } from "carbon-icons-svelte";
+    import { CheckmarkFilled, CircleSolid } from "carbon-icons-svelte";
 
     export let dashboardItem: IDashboardItem;
     let widgetState = WidgetState.Normal;
@@ -42,7 +42,7 @@
             <div class="mr-1" title={`${stats?.warnCount} ${$_("warns")}`}>
                 {stats?.warnCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_("warns")}`} />
+            <CircleSolid style="fill: var(--cds-ui-04)" title={`${stats?.warnCount} ${$_("warns")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -54,7 +54,7 @@
                 <div class="mr-1" title={`${stats?.activeMuteCount} ${$_("widgets.guildpunishmentstats.activemutes")}`}>
                     {stats?.activeMuteCount}
                 </div>
-                <CheckmarkFilled16
+                <CheckmarkFilled
                     class="mr-3"
                     style="fill: var(--cds-support-success)"
                     title={`${stats?.activeMuteCount} ${$_("widgets.guildpunishmentstats.activemutes")}`} />
@@ -62,7 +62,7 @@
             <div class="mr-1" title={`${stats?.muteCount} ${$_("mutes")}`}>
                 {stats?.muteCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_("mutes")}`} />
+            <CircleSolid style="fill: var(--cds-ui-04)" title={`${stats?.muteCount} ${$_("mutes")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -73,7 +73,7 @@
             <div class="mr-1" title={`${stats?.kickCount} ${$_("kicks")}`}>
                 {stats?.kickCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_("kicks")}`} />
+            <CircleSolid style="fill: var(--cds-ui-04)" title={`${stats?.kickCount} ${$_("kicks")}`} />
         </div>
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
@@ -85,7 +85,7 @@
                 <div class="mr-1" title={`${stats?.activeBanCount} ${$_("widgets.guildpunishmentstats.activebans")}`}>
                     {stats?.activeBanCount}
                 </div>
-                <CheckmarkFilled16
+                <CheckmarkFilled
                     class="mr-3"
                     style="fill: var(--cds-support-success)"
                     title={`${stats?.activeBanCount} ${$_("widgets.guildpunishmentstats.activebans")}`} />
@@ -93,7 +93,7 @@
             <div class="mr-1" title={`${stats?.banCount} ${$_("bans")}`}>
                 {stats?.banCount}
             </div>
-            <CircleSolid16 style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_("bans")}`} />
+            <CircleSolid style="fill: var(--cds-ui-04)" title={`${stats?.banCount} ${$_("bans")}`} />
         </div>
     </div>
     <div slot="loading">

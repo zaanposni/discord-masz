@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Tag } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
-    import { getI18NMessageStatus, IScheduledMessage } from "../../models/api/IScheduledMessage";
+    import { getI18NMessageStatus, type IScheduledMessage } from "../../models/api/IScheduledMessage";
     import { ScheduledMessageStatus } from "../../models/api/ScheduledMessageStatus";
 
     let classes: string = "";

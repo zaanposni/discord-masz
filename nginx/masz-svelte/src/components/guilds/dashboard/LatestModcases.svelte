@@ -11,7 +11,7 @@
     import { Link, SkeletonText, Truncate } from "carbon-components-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import UserIcon from "../../discord/UserIcon.svelte";
-    import { Launch20 } from "carbon-icons-svelte";
+    import { Launch } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { guildDashboardEnableDragging } from "../../../stores/dashboardItems";
 
@@ -49,7 +49,7 @@
                 <Truncate title={entry.modCase.title}>
                     {entry.modCase.title}
                 </Truncate>
-                <Link href={`/guilds/${entry.modCase.guildId}/cases/${entry.modCase.caseId}`} icon={Launch20} class="align-end" />
+                <Link href={`/guilds/${entry.modCase.guildId}/cases/${entry.modCase.caseId}`} icon={Launch} class="align-end" />
             </div>
         {/each}
         <div slot="loading">

@@ -6,7 +6,7 @@
     import { _ } from "svelte-i18n";
     import { writable } from "svelte/store";
     import type { Writable } from "svelte/store";
-    import { CircleSolid16 } from "carbon-icons-svelte";
+    import { CircleSolid } from "carbon-icons-svelte";
     import { SkeletonText } from "carbon-components-svelte";
     import type { IAdminStats } from "../../../models/api/IAdminStats";
     import API from "../../../services/api/api";
@@ -37,7 +37,7 @@
         <div class="mr-1">
             {$adminStats.guilds}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -46,7 +46,7 @@
         <div class="mr-1">
             {$adminStats.modCases}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -55,7 +55,7 @@
         <div class="mr-1">
             {$adminStats.automodEvents}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -64,7 +64,7 @@
         <div class="mr-1">
             {$adminStats.userNotes}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -73,7 +73,7 @@
         <div class="mr-1">
             {$adminStats.userMappings}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -82,7 +82,7 @@
         <div class="mr-1">
             {$adminStats.trackedInvites}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div slot="loading">
         <div class="dash-widget-list-border flex items-center" style="height: 2rem">

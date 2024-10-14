@@ -6,7 +6,7 @@
     import { _ } from "svelte-i18n";
     import { writable } from "svelte/store";
     import type { Writable } from "svelte/store";
-    import { CircleSolid16 } from "carbon-icons-svelte";
+    import { CircleSolid } from "carbon-icons-svelte";
     import { SkeletonText } from "carbon-components-svelte";
     import type { IAdminStats } from "../../../models/api/IAdminStats";
     import API from "../../../services/api/api";
@@ -58,7 +58,7 @@
                 {$_("widgets.adminstatus.offline")}
             {/if}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.botStatus, 200, 400)})" />
+        <CircleSolid style="fill: var({calcColor($adminStats.botStatus, 200, 400)})" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -73,7 +73,7 @@
                 {$_("widgets.adminstatus.offline")}
             {/if}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.dbStatus, 30, 60)})" />
+        <CircleSolid style="fill: var({calcColor($adminStats.dbStatus, 30, 60)})" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -88,7 +88,7 @@
                 {$_("widgets.adminstatus.offline")}
             {/if}
         </div>
-        <CircleSolid16 style="fill: var({calcColor($adminStats.cacheStatus, 1, 5)})" />
+        <CircleSolid style="fill: var({calcColor($adminStats.cacheStatus, 1, 5)})" />
     </div>
     <div slot="loading">
         <div class="dash-widget-list-border flex items-center" style="height: 2rem">

@@ -1,4 +1,4 @@
-import { derived, Readable, Writable } from "svelte/store";
+import { derived, type Readable, type Writable } from "svelte/store";
 import { writable } from "svelte/store";
 import type { IDiscordApplication } from "../models/IDiscordApplication";
 
