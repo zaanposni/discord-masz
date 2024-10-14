@@ -1,4 +1,4 @@
-import { derived, Readable, writable, Writable } from "svelte/store";
+import { derived, type Readable, writable, type Writable } from "svelte/store";
 import { GUILD_QUICKSEARCH_MAX_HISTORY_ENTRIES, LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY } from "../config";
 import type { IGuildSearchHistory } from "../models/IGuildSearchHistory";
 import { currentParams } from "./currentParams";

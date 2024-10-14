@@ -1,6 +1,6 @@
 <script lang="ts">
     import ScheduledMessageFailureReasons from "./../../../services/enums/ScheduledMessageFailureReason";
-    import { Add32, Edit20, Delete20 } from "carbon-icons-svelte";
+    import { Add, Edit, Delete } from "carbon-icons-svelte";
     import {
         Button,
         ComboBox,
@@ -296,7 +296,7 @@
         </h2>
         <div class="flex flex-row">
             {#if $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
-                <Button class="!mr-2" icon={Add32} on:click={openModal}>{$_("guilds.messages.createnew")}</Button>
+                <Button class="!mr-2" icon={Add} on:click={openModal}>{$_("guilds.messages.createnew")}</Button>
             {/if}
         </div>
     </div>
@@ -394,14 +394,14 @@
                             {#if message.status === ScheduledMessageStatus.Pending}
                                 <Link
                                     class="mb-2 cursor-pointer"
-                                    icon={Edit20}
+                                    icon={Edit}
                                     on:click={() => {
                                         editMessage(message);
                                     }} />
                             {/if}
                             <Link
                                 class="cursor-pointer"
-                                icon={Delete20}
+                                icon={Delete}
                                 on:click={() => {
                                     initDeleteModal(message);
                                 }} />

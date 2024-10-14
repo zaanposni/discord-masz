@@ -26,7 +26,7 @@
         TimePicker,
         Tile,
     } from "carbon-components-svelte";
-    import { Box24, CopyLink24, Unlink24 } from "carbon-icons-svelte";
+    import { Box, CopyLink, Unlink } from "carbon-icons-svelte";
     import Autocomplete from "../../../core/Autocomplete.svelte";
     import type { ICase } from "../../../models/api/ICase";
     import { writable } from "svelte/store";
@@ -448,7 +448,7 @@
                 <div transition:slide|local>
                     <Tile class="mb-2" light>
                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                            <Box24 class="shrink-0 mr-2" />
+                            <Box class="shrink-0 mr-2" />
                             <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                 #{evidence.verifiedEvidence.id}
                             </div>
@@ -464,7 +464,7 @@
                                 {evidence.verifiedEvidence.reportedContent.slice(0, 31)}
                             </div>
                             <div class="cursor-pointer">
-                                <CopyLink24 class="mr-2" on:click={() => linkEvidence(evidence)} />
+                                <CopyLink class="mr-2" on:click={() => linkEvidence(evidence)} />
                             </div>
                         </div>
                     </Tile>
@@ -629,7 +629,7 @@
                         {#each $linkedEvidence ?? [] as evidence}
                         <Tile class="mb-2">
                             <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                <Box24 class="shrink-0 mr-2"/>
+                                <Box class="shrink-0 mr-2"/>
                                 <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                     #{evidence.verifiedEvidence.id}
                                 </div>
@@ -640,7 +640,7 @@
                                     {evidence.verifiedEvidence.reportedContent}
                                 </div>
                                 <div>
-                                    <Unlink24 style="cursor: pointer;" on:click={() => unlinkEvidence(evidence)}/>
+                                    <Unlink style="cursor: pointer;" on:click={() => unlinkEvidence(evidence)}/>
                                 </div>
                             </div>
                         </Tile>
@@ -650,7 +650,7 @@
             {/if}
             <Button
                 size="small"
-                icon={CopyLink24}
+                icon={CopyLink}
                 on:click={onLinkEvidenceButton}
             >
                 {$_("guilds.caseview.linkevidence")}

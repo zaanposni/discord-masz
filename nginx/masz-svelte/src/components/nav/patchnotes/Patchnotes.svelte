@@ -1,6 +1,6 @@
 <script lang="ts">
     import { OutboundLink } from "carbon-components-svelte";
-    import { CheckmarkFilled24, CircleSolid24, LogoGithub24, StarFilled24, WarningFilled24 } from "carbon-icons-svelte";
+    import { CheckmarkFilled, CircleSolid, LogoGithub, StarFilled, WarningFilled } from "carbon-icons-svelte";
     import moment from "moment";
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
@@ -84,7 +84,7 @@
                             {#each patchnote?.breaking ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <WarningFilled24 style="fill: var(--cds-support-error-inverse)" />
+                                        <WarningFilled style="fill: var(--cds-support-error-inverse)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
@@ -100,7 +100,7 @@
                             {#each patchnote?.features ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <StarFilled24 style="fill: var(--cds-support-warning-inverse)" />
+                                        <StarFilled style="fill: var(--cds-support-warning-inverse)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
@@ -116,7 +116,7 @@
                             {#each patchnote?.fixes ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <CheckmarkFilled24 style="fill: var(--cds-support-success-inverse)" />
+                                        <CheckmarkFilled style="fill: var(--cds-support-success-inverse)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
@@ -132,7 +132,7 @@
                             {#each patchnote?.technical ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <LogoGithub24 style="fill: var(--cds-support-info)" />
+                                        <LogoGithub style="fill: var(--cds-support-info)" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div class="text-lg font-semibold">{entry.title}</div>
@@ -148,7 +148,7 @@
                             {#each patchnote?.changes ?? [] as entry}
                                 <div class="flex flex-row col-span-7">
                                     <div>
-                                        <CircleSolid24 style="fill: #161616" />
+                                        <CircleSolid style="fill: #161616" />
                                     </div>
                                     <div class="flex flex-col px-4">
                                         <div>{entry}</div>

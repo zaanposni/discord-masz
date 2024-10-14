@@ -3,7 +3,7 @@
     import { authUser } from "./../stores/auth";
     import { Button, OutboundLink } from "carbon-components-svelte";
     import { onDestroy, onMount } from "svelte";
-    import ArrowRight32 from "carbon-icons-svelte/lib/ArrowRight32";
+	import { ArrowRight } from 'carbon-icons-svelte';
     import Cookies from "../services/cookie";
     import API from "../services/api/api";
     import type { IAuthUser } from "../models/IAuthUser";
@@ -103,7 +103,7 @@
             <div style="height: var(--cds-spacing-11)" />
             <div class="flex flex-row">
                 <div class="grow" />
-                <Button skeleton={loggingIn} class="grow" icon={ArrowRight32} on:click={login}>{$_("login.title")}</Button>
+                <Button skeleton={loggingIn} class="grow" icon={ArrowRight} on:click={login}>{$_("login.title")}</Button>
             </div>
         </div>
         <div style="height: var(--cds-spacing-02)" />

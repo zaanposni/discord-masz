@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Launch20, Add32, Filter24, Search32 } from "carbon-icons-svelte";
+    import { Launch, Add, Filter, Search } from "carbon-icons-svelte";
     import { Button, ComboBox, Link, MultiSelect, SkeletonPlaceholder, SkeletonText, Tag, TextInput, Tile } from "carbon-components-svelte";
     import type { ICompactCaseView } from "../../../models/api/ICompactCaseView";
     import API from "../../../services/api/api";
@@ -172,10 +172,10 @@
         </h2>
         <div class="flex flex-row">
             {#if $authUser?.isAdmin || $authUser?.adminGuilds?.find((x) => x.id === $currentParams.guildId) || $authUser?.modGuilds?.find((x) => x.id === $currentParams.guildId)}
-                <Button class="!mr-2" icon={Add32} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}
+                <Button class="!mr-2" icon={Add} href={$url(`/guilds/${$currentParams.guildId}/cases/new`)}
                     >{$_("guilds.modcasetable.createnewcase")}</Button>
             {/if}
-            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter24} on:click={toggleFilter} />
+            <Button iconDescription={$_("guilds.modcasetable.useadvancedfilter")} icon={Filter} on:click={toggleFilter} />
         </div>
         {#if filterOpened}
             <div
@@ -254,7 +254,7 @@
                     <TextInput bind:value={searchValue} labelText={$_("guilds.modcasetable.search")} placeholder={$_("guilds.modcasetable.search")} />
                 </div>
                 <div class="self-end">
-                    <Button icon={Search32} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
+                    <Button icon={Search} on:click={executeSearch}>{$_("guilds.modcasetable.executesearch")}</Button>
                 </div>
             </div>
         {/if}
@@ -349,7 +349,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <Link href={`/guilds/${caseView.modCase.guildId}/cases/${caseView.modCase.caseId}`} icon={Launch20} class="align-end" />
+                            <Link href={`/guilds/${caseView.modCase.guildId}/cases/${caseView.modCase.caseId}`} icon={Launch} class="align-end" />
                         </div>
                     </Tile>
                 </a>

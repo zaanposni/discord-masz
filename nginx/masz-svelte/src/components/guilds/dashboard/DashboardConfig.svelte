@@ -15,7 +15,7 @@
     import { writable } from "svelte/store";
     import { Modal } from "carbon-components-svelte";
     import { Toggle } from "carbon-components-svelte";
-    import { CircleSolid16, SettingsAdjust20 } from "carbon-icons-svelte";
+    import { CircleSolid, SettingsAdjust } from "carbon-icons-svelte";
     import { confirmDialogMessageKey, confirmDialogReturnFunction, showConfirmDialog } from "../../../core/confirmDialog/store";
     import API from "../../../services/api/api";
     import { toastInfo } from "../../../services/toast/store";
@@ -91,7 +91,7 @@
         <div class="mr-1">
             {$guildDashboardItems.filter((x) => !x.fix).length}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">
@@ -100,7 +100,7 @@
         <div class="mr-1">
             {$visibleGuildDashboardItems.filter((x) => !x.fix).length}
         </div>
-        <CircleSolid16 style="fill: var(--cds-ui-04)" />
+        <CircleSolid style="fill: var(--cds-ui-04)" />
     </div>
     <div
         class="dash-widget-list-border flex flex-row items-center py-2"
@@ -110,7 +110,7 @@
         <div class="grow">
             {$_("widgets.dashboardconfig.configurewidgets")}
         </div>
-        <SettingsAdjust20 />
+        <SettingsAdjust />
     </div>
     <div class="dash-widget-list-border flex flex-row items-center py-2" style="height: 2rem">
         <div class="grow">

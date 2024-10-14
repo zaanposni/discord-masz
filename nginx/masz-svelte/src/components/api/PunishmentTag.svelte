@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Tag } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
-    import { getI18NPunishment, ICase } from "../../models/api/ICase";
+    import { getI18NPunishment, type ICase } from "../../models/api/ICase";
     import { PunishmentType } from "../../models/api/PunishmentType";
 
     let classes: string = "";

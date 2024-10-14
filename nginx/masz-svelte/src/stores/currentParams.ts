@@ -1,4 +1,4 @@
-import { derived, Readable } from "svelte/store";
+import { derived, type Readable } from "svelte/store";
 import { params } from "@roxi/routify";
 import { authUser } from "./auth";
 import type { IRouteParams } from "../models/IRouteParams";

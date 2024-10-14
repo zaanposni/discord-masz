@@ -1,7 +1,7 @@
 <script lang="ts">
     import { slide } from "svelte/transition";
     import { Button, Checkbox, DatePicker, DatePickerInput, Select, SelectItem, SkeletonText, TextArea, Tile } from "carbon-components-svelte";
-    import { ScalesTipped20 } from "carbon-icons-svelte";
+    import { ScalesTipped } from "carbon-icons-svelte";
     import { _ } from "svelte-i18n";
     import type { Writable } from "svelte/store";
     import { writable } from "svelte/store";
@@ -90,7 +90,7 @@
         <div class="flex flex-col">
             <!-- Icon -->
             <div class="flex flex-row grow items-center" style="color: var(--cds-text-02)">
-                <ScalesTipped20 class="mr-2" />
+                <ScalesTipped class="mr-2" />
                 {#if $currentParams?.guild?.name && $currentParams?.appealId && !$loading}
                     <div class="flex flex-row items-center">
                         {$currentParams.guild?.name}-{$currentParams.appealId}

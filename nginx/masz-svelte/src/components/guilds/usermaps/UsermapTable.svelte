@@ -1,6 +1,6 @@
 <script lang="ts">
     import type { IDiscordUser } from "./../../../models/discord/IDiscordUser";
-    import { Add24, Delete16, Edit16, Filter24 } from "carbon-icons-svelte";
+    import { Add, Delete, Edit, Filter } from "carbon-icons-svelte";
     import { Button, Loading, Modal, OverflowMenu, OverflowMenuItem, SkeletonText, TextArea, Tile } from "carbon-components-svelte";
     import API from "../../../services/api/api";
     import { CacheMode } from "../../../services/api/CacheMode";
@@ -191,7 +191,7 @@
             {$_("nav.guild.usermaps")}
         </h2>
         <div class="flex flex-row">
-            <Button iconDescription={$_("guilds.usermap.createusermap")} icon={Add24} on:click={() => userMapModal.set(true)}>{$_("guilds.usermap.createusermap")}</Button>
+            <Button iconDescription={$_("guilds.usermap.createusermap")} icon={Add} on:click={() => userMapModal.set(true)}>{$_("guilds.usermap.createusermap")}</Button>
         </div>
     </div>
     {#if initialLoading}

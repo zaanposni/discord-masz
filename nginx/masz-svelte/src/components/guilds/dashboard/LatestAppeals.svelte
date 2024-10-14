@@ -8,7 +8,7 @@
     import { CacheMode } from "../../../services/api/CacheMode";
     import { Link, SkeletonText, Truncate } from "carbon-components-svelte";
     import UserIcon from "../../discord/UserIcon.svelte";
-    import { Launch20 } from "carbon-icons-svelte";
+    import { Launch } from "carbon-icons-svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { guildDashboardEnableDragging } from "../../../stores/dashboardItems";
     import type { IAppealView } from "../../../models/api/IAppealView";
@@ -49,7 +49,7 @@
                 <Truncate title={appeal.userId}>
                     {appeal.user?.username || appeal.username}
                 </Truncate>
-                <Link href={`/guilds/${appeal.guildId}/appeals/${appeal.id}`} icon={Launch20} class="align-end" />
+                <Link href={`/guilds/${appeal.guildId}/appeals/${appeal.id}`} icon={Launch} class="align-end" />
             </div>
         {/each}
         <div slot="loading">

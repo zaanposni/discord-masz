@@ -18,24 +18,19 @@
         HeaderPanelDivider,
         HeaderSearch,
     } from "carbon-components-svelte";
-    import SettingsAdjust20 from "carbon-icons-svelte/lib/SettingsAdjust20";
+	import { SettingsAdjust, Star, StarFilled, Logout, Launch, Help } from 'carbon-icons-svelte';
     import { showUserSettings } from "../components/nav/store";
     import Usersettings from "../components/nav/usersettings.svelte";
     import { APP_NAME, APP_VERSION } from "../config";
     import { anyGuilds, authUser, isLoggedIn } from "../stores/auth";
     import { currentParams } from "../stores/currentParams";
-    import Star24 from "carbon-icons-svelte/lib/Star24";
-    import StarFilled24 from "carbon-icons-svelte/lib/StarFilled24";
-    import Logout24 from "carbon-icons-svelte/lib/Logout24";
     import { favoriteGuild } from "../stores/favoriteGuild";
     import { _ } from "svelte-i18n";
     import { navConfig } from "../stores/nav";
     import deleteCookie from "../services/cookie/deleteCookie";
     import API from "../services/api/api";
-    import Launch20 from "carbon-icons-svelte/lib/Launch20";
     import { showCredits } from "../components/nav/credits/store";
     import Credits from "../components/nav/credits/Credits.svelte";
-    import Help20 from "carbon-icons-svelte/lib/Help20";
     import CurrentUserIcon from "../components/discord/CurrentUserIcon.svelte";
     import { applicationInfo, privacyPolicyUrl, termsOfServiceUrl } from "../stores/applicationInfo";
     import MediaQuery from "../core/MediaQuery.svelte";
@@ -121,14 +116,16 @@
                 {/if}
                 <HeaderGlobalAction
                     aria-label="Credits"
-                    icon={Help20}
+                    icon={Help}
+                    iconDescription="Credits"
                     on:click={() => {
                         showCredits.set(true);
                     }} />
             {/if}
             <HeaderGlobalAction
                 aria-label="Settings"
-                icon={SettingsAdjust20}
+                icon={SettingsAdjust}
+                iconDescription="Settings"
                 on:click={() => {
                     showUserSettings.set(true);
                 }} />
@@ -137,18 +134,18 @@
                     <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
                         <div class="flex flex-row flex-nowrap">
                             {$_("nav.terms")}
-                            <Launch20 class="ml-1" />
+                            <Launch class="ml-1" />
                         </div>
                     </HeaderPanelLink>
                     <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
                         <div class="flex flex-row flex-nowrap">
                             {$_("nav.privacy")}
-                            <Launch20 class="ml-1" />
+                            <Launch class="ml-1" />
                         </div>
                     </HeaderPanelLink>
                     <HeaderPanelDivider />
                     <HeaderPanelLinks>
-                        <NavItem item={Logout24} text={$_("nav.logout")} on:click={logout} />
+                        <NavItem item={Logout} text={$_("nav.logout")} on:click={logout} />
                     </HeaderPanelLinks>
                 </HeaderAction>
                 <HeaderAction bind:isOpen={switcherIsOpen}>
@@ -167,25 +164,25 @@
                         <HeaderPanelLink href="https://github.com/zaanposni/discord-masz/issues/new/choose" target="_blank">
                             <div class="flex flex-row flex-nowrap">
                                 {$_("nav.reportabug")}
-                                <Launch20 class="ml-1" />
+                                <Launch class="ml-1" />
                             </div>
                         </HeaderPanelLink>
                         <HeaderPanelLink href="https://discord.gg/5zjpzw6h3S" target="_blank">
                             <div class="flex flex-row flex-nowrap">
                                 {$_("nav.community")}
-                                <Launch20 class="ml-1" />
+                                <Launch class="ml-1" />
                             </div>
                         </HeaderPanelLink>
                         <HeaderPanelLink href={$termsOfServiceUrl} target="_blank">
                             <div class="flex flex-row flex-nowrap">
                                 {$_("nav.terms")}
-                                <Launch20 class="ml-1" />
+                                <Launch class="ml-1" />
                             </div>
                         </HeaderPanelLink>
                         <HeaderPanelLink href={$privacyPolicyUrl} target="_blank">
                             <div class="flex flex-row flex-nowrap">
                                 {$_("nav.privacy")}
-                                <Launch20 class="ml-1" />
+                                <Launch class="ml-1" />
                             </div>
                         </HeaderPanelLink>
                         <HeaderPanelDivider />
@@ -194,7 +191,7 @@
                             <HeaderPanelDivider />
                             {#each $authUser.adminGuilds as guild (guild.id)}
                                 <NavItem
-                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    item={$favoriteGuild === guild.id ? StarFilled : Star}
                                     text={guild.name}
                                     on:iconClick={(e) => {
                                         toggleFavorite(guild.id);
@@ -206,7 +203,7 @@
                             {/each}
                             {#each $authUser.modGuilds as guild (guild.id)}
                                 <NavItem
-                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    item={$favoriteGuild === guild.id ? StarFilled : Star}
                                     text={guild.name}
                                     on:iconClick={(e) => {
                                         toggleFavorite(guild.id);
@@ -218,7 +215,7 @@
                             {/each}
                             {#each $authUser.memberGuilds as guild (guild.id)}
                                 <NavItem
-                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    item={$favoriteGuild === guild.id ? StarFilled : Star}
                                     text={guild.name}
                                     on:iconClick={(e) => {
                                         toggleFavorite(guild.id);
@@ -230,7 +227,7 @@
                             {/each}
                             {#each $authUser.bannedGuilds as guild (guild.id)}
                                 <NavItem
-                                    item={$favoriteGuild === guild.id ? StarFilled24 : Star24}
+                                    item={$favoriteGuild === guild.id ? StarFilled : Star}
                                     text={guild.name}
                                     on:iconClick={(e) => {
                                         toggleFavorite(guild.id);

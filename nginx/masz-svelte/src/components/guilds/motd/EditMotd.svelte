@@ -2,7 +2,7 @@
     import { Button, Checkbox, InlineLoading, SkeletonText, TextArea } from "carbon-components-svelte";
     import Warning_02 from "carbon-pictograms-svelte/lib/Warning_02.svelte";
     import { _ } from "svelte-i18n";
-    import { writable, Writable } from "svelte/store";
+    import { writable, type Writable } from "svelte/store";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import type { IMotd } from "../../../models/api/IMotd";
     import type { IMotdView } from "../../../models/api/IMotdView";

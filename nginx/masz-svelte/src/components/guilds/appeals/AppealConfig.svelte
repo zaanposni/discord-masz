@@ -11,7 +11,7 @@
     import { flip } from "svelte/animate";
     import { dndzone } from "svelte-dnd-action";
     import { toastError, toastSuccess } from "../../../services/toast/store";
-    import { Edit24, TrashCan24 } from "carbon-icons-svelte";
+    import { Edit, TrashCan } from "carbon-icons-svelte";
 
     const appealStructures: Writable<IAppealStructure[]> = writable([]);
     const loading: Writable<boolean> = writable(false);
@@ -196,14 +196,14 @@
                                     on:click={() => {
                                         onEdit(appealStructure);
                                     }}>
-                                    <Edit24 />
+                                    <Edit />
                                 </div>
                                 <div
                                     class="cursor-pointer shrink-0 text-red-500 ml-1"
                                     on:click={() => {
                                         deleteQuestion(appealStructure.id);
                                     }}>
-                                    <TrashCan24 />
+                                    <TrashCan />
                                 </div>
                             </div>
                         </Tile>

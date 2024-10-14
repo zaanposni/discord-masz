@@ -10,7 +10,7 @@
     import { _ } from "svelte-i18n";
     import { Modal, Loading, TextInput, InlineLoading, Tile, SkeletonText, Button, OverflowMenu, OverflowMenuItem, CopyButton } from "carbon-components-svelte";
     import { slide } from "svelte/transition";
-    import { Box24, List24, CopyLink24, Share24, ChevronUp24, ChevronDown24, LogoDiscord24, TrashCan24 } from "carbon-icons-svelte";
+    import { Box, List, CopyLink, Share, ChevronUp, ChevronDown, LogoDiscord, TrashCan } from "carbon-icons-svelte";
     import PunishmentTag from "../../api/PunishmentTag.svelte";
     import MediaQuery from "../../../core/MediaQuery.svelte";
     import { authUser, isAdminInGuild, isModeratorInGuild } from "../../../stores/auth";
@@ -186,7 +186,7 @@
                 <div transition:slide|local>
                     <Tile class="mb-2" light>
                         <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                            <List24 class="shrink-0 mr-2"/>
+                            <List class="shrink-0 mr-2"/>
                             <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                 #{modCase.modCase.caseId}
                             </div>
@@ -198,7 +198,7 @@
                                 <PunishmentTag modCase={modCase.modCase} />
                             </div>
                             <div class="cursor-pointer">
-                                <CopyLink24 class="mr-2" on:click={() => linkCase(modCase.modCase)} />
+                                <Button icon={CopyLink} kind="ghost" iconDescription="link" class="mr-2" on:click={() => linkCase(modCase.modCase)} />
                             </div>
                         </div>
                     </Tile>
@@ -218,7 +218,7 @@
         <div class="flex flex-col">
             <!-- Icon -->
             <div class="flex flex-row grow items-center" id="title" style="color: var(--cds-text-02)">
-                <Box24 class="mr-2" />
+                <Box class="mr-2" />
                 {#if $currentParams?.guild?.name && $currentParams?.evidenceId && !loading}
                     <div class="flex flex-row items-center">
                         {$currentParams.guild?.name}-{$_("guilds.evidenceview.evidence")}#{$currentParams.evidenceId}
@@ -236,14 +236,14 @@
                         </div>
                     {:else}
                         <div class:mr-2={matches}>
-                            <Button size="small" kind="secondary" icon={Share24} on:click={shareEvidence}>{$_("guilds.evidenceview.shareevidence")}</Button>
+                            <Button size="small" kind="secondary" icon={Share} on:click={shareEvidence}>{$_("guilds.evidenceview.shareevidence")}</Button>
                         </div>
                         {#if matches}
                             <div class="mr-2">
                                 <Button
                                     size="small"
                                     kind="secondary"
-                                    icon={LogoDiscord24}
+                                    icon={LogoDiscord}
                                     href={`discord://discord.com/channels/${$evidence.evidence.guildId}/${$evidence.evidence.channelId}/${$evidence.evidence.messageId}`}>
                                         {$_("guilds.evidenceview.goto")}
                                 </Button>
@@ -253,7 +253,7 @@
                                     <Button
                                         size="small"
                                         kind="secondary"
-                                        icon={CopyLink24}
+                                        icon={CopyLink}
                                         on:click={() => linkToCaseModalOpen.set(true)}>
                                             {$_("guilds.evidenceview.linktocase")}
                                         </Button>
@@ -264,7 +264,7 @@
                                     <Button
                                         size="small"
                                         kind="danger"
-                                        icon={TrashCan24}
+                                        icon={TrashCan}
                                         on:click={deleteEvidence}>
                                             {$_("guilds.caseview.delete")}
                                     </Button>
@@ -330,7 +330,7 @@
                             {#each $evidence?.linkedCases ?? [] as linked}
                                 <Tile class="mb-2">
                                     <div class="flex flex-row grow-0 w-full max-w-full items-center">
-                                        <List24 class="shrink-0 mr-2" />
+                                        <List class="shrink-0 mr-2" />
                                         <div class="shrink-0 mr-2" style="color: var(--cds-text-02)">
                                             #{linked.caseId}
                                         </div>
@@ -381,7 +381,7 @@
                                 id="furtherdetails-case-button"
                                 size="small"
                                 iconDescription=""
-                                icon={openFurtherDetails ? ChevronUp24 : ChevronDown24}
+                                icon={openFurtherDetails ? ChevronUp : ChevronDown}
                                 on:click={() => openFurtherDetails = !openFurtherDetails} />
                         </div>
                     {/if}

@@ -18,7 +18,7 @@
         Tooltip,
         Toggle,
     } from "carbon-components-svelte";
-    import { derived, Writable } from "svelte/store";
+    import { derived, type Writable } from "svelte/store";
     import { writable } from "svelte/store";
     import { currentParams } from "../../../stores/currentParams";
     import API from "../../../services/api/api";

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Add32 } from 'carbon-icons-svelte';
+	import { Add } from 'carbon-icons-svelte';
     import { url } from "@roxi/routify";
     import { Button } from "carbon-components-svelte";
     import GuildCards from "../../components/guilds/GuildCards.svelte";
@@ -25,7 +25,7 @@
 </style>
 
 {#if $authUser?.isAdmin}
-    <Button icon={Add32} href={$url(`/guilds/new`)}>{$_("guilds.add.button")}</Button>
+    <Button icon={Add} href={$url(`/guilds/new`)}>{$_("guilds.add.button")}</Button>
 {/if}
 
 {#if !$anyGuilds}

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { Button, Checkbox, Select, SelectItem, SelectSkeleton, SkeletonText, TextArea, TextInput, TextInputSkeleton } from "carbon-components-svelte";
     import { _ } from "svelte-i18n";
-    import { derived, Writable } from "svelte/store";
+    import { derived, type Writable } from "svelte/store";
     import { writable } from "svelte/store";
     import MediaQuery from "../../core/MediaQuery.svelte";
     import type { IMASZSettings } from "../../models/api/IMASZSettings";
