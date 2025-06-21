@@ -14,7 +14,7 @@ export const LOCAL_STORAGE_KEY_GUILD_DASHBOARD_ITEMS = "__masz-guild-dashboard-i
 export const LOCAL_STORAGE_KEY_GUILD_QUICKSEARCH_HISTORY = "__masz-guild-quicksearch-history";
 
 export const APP_NAME = "MASZ";
-export const APP_VERSION = "v3.8.0";
+export const APP_VERSION = "v3.8.1";
 
 export const GUILD_QUICKSEARCH_MAX_HISTORY_ENTRIES = 10;
 
