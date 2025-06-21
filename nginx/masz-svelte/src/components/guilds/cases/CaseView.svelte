@@ -1011,7 +1011,7 @@
                         <div class="mb-2 font-bold">{$_("guilds.caseview.attachments")}</div>
                         <div class="flex flex-row overflow-x-auto overflow-y-clip pb-2">
                             {#each $files as file}
-                                <div class="grow shrink-0 h-80 max-h-80">
+                                <div class="grow shrink-0 h-80 max-h-80 w-80 max-w-80">
                                     {#if preloadFileExtensions.includes(file.fileName.split(".").pop())}
                                         <Tile class="flex flex-col overflow-hidden h-full p-4 mr-2">
                                             {#if isModeratorInGuild($authUser, $currentParams.guildId)}

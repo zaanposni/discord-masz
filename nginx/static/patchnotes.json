@@ -1,5 +1,22 @@
 [
     {
+        "title": "Version 3.8.1",
+        "version": "v3.8.1",
+        "released_at": "2025-06-21",
+        "fixes": [
+            {
+                "title": "Allow all kind of user ids for user note creation and update.",
+                "description": "Previously the user ids were limited to 18 characters long snowflake ids."
+            }
+        ],
+        "technical": [
+            {
+                "title": "Bumped various versions.",
+                "description": "Bumped npm and nuget packages to the latest version."
+            }
+        ]
+    },
+    {
         "title": "Version 3.8.0",
         "version": "v3.8.0",
         "released_at": "2024-10-14",
